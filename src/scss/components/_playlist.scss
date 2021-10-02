@@ -1,0 +1,80 @@
+.yt {
+    &-playlist {
+        background: #000;
+        padding: 0;
+    }
+
+    &-content {
+        padding: 0;
+    }
+
+    &-menu {
+        padding: 0;
+        max-height: 540px;
+        overflow: scroll;
+        overflow-x: hidden;
+        @include respond-below(xl) {
+            overflow-y: hidden;
+            overflow-x: unset;
+            max-height: 110px;
+            display: flex;
+        }
+    }
+
+    &-menu {
+        &::-webkit-scrollbar {
+            background-color: #232323;
+            width: 6px;
+            @include respond-below(xl) {
+                height: 6px;
+            }
+        }
+        &::-webkit-scrollbar-thumb {
+            background-color: rgb(68, 68, 68);
+            border-radius: 6px;
+        }
+    }
+}
+
+.media {
+    padding: 0.5rem;
+    // width: 100%;
+    flex: 1 0 auto;
+    &:hover {
+        background: #111;
+    }
+    &.active {
+        background: #181818;
+    }
+    &-left {
+    }
+
+    a {
+        display: flex;
+        text-decoration: none;
+    }
+
+    .media-body {
+        margin-left: 0.5rem;
+        .media-heading {
+            color: #fff;
+            font-size: 11pt;
+            color: #424242;
+            line-height: 1rem;
+            padding-top: 10px;
+            max-width: 290px;
+            cursor: pointer;
+            text-align: left;
+
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+
+        a {
+            margin-left: 0.5rem;
+        }
+    }
+}

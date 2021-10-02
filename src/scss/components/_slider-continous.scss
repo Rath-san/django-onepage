@@ -1,0 +1,22 @@
+.carousel-continous {
+  overflow: hidden;
+  width: 100%;
+  &__inner {
+    // display: flex;
+    width: 100%;
+    display: grid;
+    background: #333;
+    grid-template-columns: repeat(3, 1fr);
+    // grid-template-rows: 1;
+  }
+  &__item {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  img,
+  video {
+    width: 100%;
+    display: block;
+  }
+}

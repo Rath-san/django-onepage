@@ -1,0 +1,63 @@
+.video {
+  text-align: center;
+  position: relative;
+  .container {
+    position: relative;
+  }
+  @media screen and (max-width: 768px) {
+    margin-top: 0rem;
+  }
+
+  .image__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    .img-lazy {
+      height: 100%;
+    }
+    // img {
+    //   height: 100%;
+    //   object-fit: cover;
+    // }
+  }
+  
+  &.trailer {
+    // background-position: center;
+    // background-size: cover;
+    // z-index: 2;
+    // padding-bottom: 0;
+    // padding-top: 4rem;
+    // position: relative;
+    padding-bottom: 7rem;
+
+    @include respond-below(sm) {
+      margin-top: 0;
+    }
+  }
+
+  &.tutorial {
+    // padding-top: 3rem;
+    // padding-bottom: 0;
+    // background-position: top;
+    // background-size: 100% 50%;
+    // background-repeat: no-repeat;
+    // z-index: 1;
+    // overflow: visible;
+    margin-bottom: -1px;
+    padding-bottom: 7rem;
+
+    .section__text {
+      margin-bottom: 4rem;
+    }
+  }
+
+  &s__wrapper {
+    background-image: $cta-gradient;
+    background-position: center;
+    background-size: 100% 50%;
+    background-repeat: no-repeat;
+
+  }
+}

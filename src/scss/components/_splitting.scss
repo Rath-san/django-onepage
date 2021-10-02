@@ -1,0 +1,36 @@
+$animation-duration: 1s;
+
+// .section__text {
+//   &::after {
+//     transition: transform $animation-duration cubic-bezier(0.3, 0, 0.3, 1),
+//     opacity $animation-duration linear;  
+//   }
+// }
+
+.word  {
+  display: inline-block;
+  opacity: 0;
+  &:first-of-type {
+    transform: translateX(-1rem);
+  }
+
+  &:last-of-type {
+    transform: translateX(1rem);
+  }
+
+  transition: transform $animation-duration cubic-bezier(0.3, 0, 0.3, 1),
+    opacity $animation-duration linear;
+  transition-delay: calc(10ms + (100ms * var(--word-index)));
+  [data-visible=true] & {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.bg--full--absolute {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}

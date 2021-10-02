@@ -1,0 +1,157 @@
+div[id^='prBA'] {
+  margin-bottom: 2.5rem;
+  @media screen and (max-width: 768px) {
+    &:last-child {
+      margin-bottom: 2rem;
+    }
+  }
+}
+
+.ba-slider {
+  position: relative;
+  overflow: hidden;
+  background-color: #222;
+  img {
+    width: 100%;
+    display: block;
+  }
+  &.big {
+    left: 50%;
+    -webkit-transform: translateX(-50%) translateY(0%);
+    transform: translateX(-50.03%) translateY(0%);
+  }
+
+  .resize {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 50%;
+    overflow: hidden;
+  }
+
+  img {
+    transition: opacity 0.2s ease-in-out;
+    &.bigPreviewImg {
+      object-position: center;
+      object-fit: contain;
+      display: block;
+      height: auto;
+    }
+  }
+
+  &:hover {
+    .handle {
+      img {
+        opacity: 1;
+      }
+    }
+  }
+
+  .handle {
+    background: rgba(0, 0, 0, 1) none repeat scroll 0 0;
+    bottom: 0;
+    cursor: ew-resize;
+    left: 50%;
+    margin-left: 0px;
+    position: absolute;
+    top: 0;
+    width: 1px;
+    &:after {
+      margin: -32px 0 0 -5px;
+      transition: all 0.3s ease 0s;
+      height: 30px;
+      position: absolute;
+      top: 50%;
+      width: 30px;
+    }
+
+    &-control {
+      $control-width: 32px;
+      $scaling-arrow-width: 6px;
+
+      display: block;
+      width: $control-width;
+      height: $control-width;
+      background-color: #000;
+      border-radius: 50%;
+      top: 50%;
+      // margin-left: 2px;
+      position: absolute;
+      margin-left: -15px;
+      margin-top: $control-width / -2;
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        z-index: 1;
+        width: $scaling-arrow-width;
+        height: $scaling-arrow-width;
+        border-top: $scaling-arrow-width / 1.5 solid transparent;
+        border-bottom: $scaling-arrow-width / 1.5 solid transparent;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      $arrow-color: #FA7BFC;
+
+      &::before {
+        left: 6px;
+        border-right: 4px solid $arrow-color;
+      }
+
+      &::after {
+        right: 6px;
+        border-left: 4px solid $arrow-color;
+      }
+    }
+  }
+}
+
+.section-prevs-row {
+  .pagination-pointer {
+    // font-family: 'Fira Sans Condensed', sans-serif;
+    font-size: 1.1rem;
+    color: #666666;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin: 0 auto;
+    padding-top: 1.6rem;
+    padding-bottom: 0.7rem;
+  }
+}
+
+.section-prevs {
+  &__title {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+}
+
+.prev__title {
+  display: none;
+  text-transform: uppercase;
+  font-size: 1rem;
+  color: #666;
+  // font-family: 'Roboto Condensed', sans-serif;
+  margin-bottom: 1rem;
+}
+
+.prev__label {
+  display: none;
+  position: absolute;
+  background-color: #000;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 300;
+  left: 15px;
+  bottom: -10px;
+  padding: 0.3rem;
+  white-space: nowrap;
+  // font-family: 'Roboto Condensed', sans-serif;
+  &.right {
+    left: unset;
+    right: 15px;
+  }
+}
+

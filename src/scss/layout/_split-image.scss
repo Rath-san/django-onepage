@@ -1,0 +1,27 @@
+.split-image {
+  position: relative;
+  padding: 11rem 0;
+  .section {
+    &__bg {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      @media screen and (max-width: 768px) {
+        flex-direction: column;
+      }
+      .img-lazy {
+        width: 50%;
+        height: 100%;
+        @media screen and (max-width: 768px) {
+          width: 100%;
+        }
+        img {
+          object-fit: cover;
+        }
+      }
+    }
+  }
+}

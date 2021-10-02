@@ -1,0 +1,26 @@
+.save-money {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 50%;
+    background-color: #FF6699;
+    @include square(5em);
+    font-weight: 400;
+    text-align: center;
+    color: #fff;
+    text-transform: uppercase;
+    // font-size: 20rem;
+    span {
+        display: block;
+        text-align: center;
+        line-height: 1.2;
+    }
+
+    &__price {
+        font-weight: 600;
+        font-size: 1.25em;
+        margin-bottom: -.25em;
+        margin-right: -.25em;
+    }
+}

@@ -1,0 +1,126 @@
+.promo {
+    padding-bottom: 0;
+    position: relative;
+    z-index: 5;
+    // margin-bottom: -1px;
+    // background-color: #;
+    margin-bottom: -1px;
+    padding-top: 0;
+    // background-color: #f3f3f3;
+    .image__background {
+        transform: translateY(2rem);
+        img {
+
+            object-fit: cover;
+            width: 100%; // for class
+        }
+    }
+
+    .comp-1 {
+        position: absolute;
+        z-index: 1;
+        max-width: 18%;
+        max-height: 30%;
+        transform: translateX(1rem);
+        @media screen and (max-width: 640px) {
+            display: none;
+        }
+    }
+
+    .carousel-item {
+        picture img {
+            min-height: 600px;
+            object-fit: cover;
+            width: 100%;
+            height: auto;
+        }
+        &:nth-child(1) {
+            .comp-1 {
+                right: 25%;
+                top: 41%;
+                @include respond-below(md) {
+                    top: 25%;
+                    // right: 10%;
+                    max-width: 50%;
+                }
+            }
+        }
+        &:nth-child(2) {
+            .comp-1 {
+                top: 24%;
+                right: 32.5%;
+                @include respond-below(md) {
+                    top: 20%;
+                    right: 15%;
+                    max-width: 30%;
+                    max-height: 30%;
+                }
+            }
+        }
+        &:nth-child(3) {
+            .comp-1 {
+                top: 24%;
+                right: 25.5%;
+                max-width: 20%;
+                max-height: unset;
+                @include respond-below(md) {
+                    top: 30%;
+                    right: 10%;
+                    max-width: 30%;
+                }
+            }
+        }
+        &.active {
+            .comp-1 {
+                opacity: 1 !important;
+                transform: translateX(0);
+            }
+        }
+    }
+
+    &[data-visible=true] {
+        .secuence:not(.comp-1) {
+            opacity: 1 !important;
+            transform: translateY(0);
+        }
+
+        .section__head {
+            > * {
+                opacity: 1 !important;
+                transform: translateY(0);
+            }
+        }
+    }
+    
+    .section {
+        &__content {
+            position: absolute;
+            bottom: 6.25vw;
+            left: 8vw;
+            right: 0;
+            z-index: 1;
+            @include respond-below(sm) {
+                left: 5%;
+                bottom: 3rem;
+            }
+        }
+        &__head {
+            max-width: 20em;
+            > * {
+                transform: translateY(2rem);
+            }
+        }
+        &__subtitle {
+
+        }
+        &__title {
+
+        }
+        &__text {
+            @include respond-below(md) {
+                margin-bottom: 1rem;
+            }
+
+        }
+    }
+}

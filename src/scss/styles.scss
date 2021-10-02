@@ -1,0 +1,104 @@
+// @import './vendor/bootstrap';
+// @import './vendor/splitting';
+@import "./abstract/variables";
+@import "mixins/mixins";
+@import "utils/utils";
+// @import './utils/animations';
+@import "./utils/shadows";
+@import "./utils/bg";
+// @import './components/lazy-image';
+@import "./components/fonts";
+@import "./components/button";
+// @import './components/titles';
+@import "./components/header";
+@import "./components/footer";
+@import "./components/video";
+// @import './components/logos';
+@import "./components/compatible-software";
+@import "./components/tech-spec";
+@import "./components/minstaller";
+@import "./components/scroll-to-btn";
+@import "./layout/containers";
+@import "./layout/presets";
+@import "./components/promo-grid";
+@import "./components/splitting";
+
+// @import './components/prevs';
+// @import './components/preview-big';
+// @import './components/magic-card';
+// @import './components/bundle-items';
+// @import './components/videoPopup';
+// @import './components/save-money';
+// @import './components/slider-continous';
+@import "./components/image-background";
+@import "./components/promo";
+@import "./layout/text-size";
+
+$animation-duration: 1s;
+
+.secuence {
+    --s-index: 0;
+    // opacity: 0;
+    // will-change: all;
+    transition: all $animation-duration cubic-bezier(0.3, 0, 0.3, 1);
+    transition-delay: calc(100ms + (200ms * var(--s-index)));
+}
+
+.carousel {
+    &-inner {
+        height: 100%;
+    }
+    &-item {
+        height: 100%;
+    }
+}
+
+.carousel-item {
+    &.active {
+        &.carousel-item-left {
+        }
+    }
+    &-left {
+        opacity: 1 !important;
+    }
+    &-next {
+        z-index: 10;
+    }
+}
+
+.ts-mi {
+    position: relative;
+    background-color: #fff;
+    max-height: 1050px;
+    padding: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.carousel-indicators {
+    display: flex;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    left: unset;
+    margin: 0;
+    li {
+        @include square(10px);
+        transform: scale(0.5);
+        // border: 1px solid #fff;
+
+        background-color: #fff;
+        filter: blur(2px);
+        // width: 20px;
+        // height: 20px;
+        border-radius: 50%;
+        + li {
+            margin-left: 0.5rem;
+        }
+    }
+    .active {
+        filter: blur(0px);
+        transform: scale(1);
+        border: none;
+    }
+}

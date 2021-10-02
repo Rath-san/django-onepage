@@ -1,0 +1,116 @@
+
+// @keyframes scroll-prompt{
+//   0% {
+//     opacity: 0;
+//     height: 1%;
+//   }
+//   5% {
+//     opacity: 1;
+//   }
+//   40% {
+//     height: 100%;
+//     transform: translateY(0%);
+//   }
+//   75% {
+//     opacity: 1;
+//   }
+//   80% {
+//     height: 1%;
+//     transform: translateY(60px);
+//     opacity: 0;
+//   }
+//   100% {
+//     height: 1%;
+//     transform: translateY(60px);
+//     opacity: 0;
+//   }
+// }
+
+// .scroll-to-btn {
+
+//   $width: 2px;
+//   transform: translateY(-50%);
+
+//   position: relative;
+//   // width: $width;
+//   // height: $width * 10;
+//   // max-width: $width;
+//   // overflow: hidden;
+//   border-radius: 50%;
+//   padding: 1.5rem 1rem;
+
+//   &::after,
+//   &::before {
+//     left: 50%;
+//     margin-left: -1px;
+//     top: 0;
+//     content: "";
+//     position: absolute;
+//     width: $width;
+//     height: 100%;
+    
+//   }
+
+//   &:before {
+//     background: $glow-underlay-1;
+//     background-repeat: no-repeat;
+//     opacity: .5;
+//   }
+
+//   &::after {
+//     background: #ff00cd;
+//     animation-duration: 1.25s;
+//     animation-iteration-count: infinite;
+//     animation-timing-function: ease;
+//     animation-name: scroll-prompt;
+//     box-sizing: border-box;
+//     box-shadow: $glow-shadow-1;
+//   }
+// }
+
+.scroll-to-btn {
+  $color: #fff;
+  $header-height: 92vh;
+
+  color: $color;
+  font-weight: 400;
+  margin: 34px auto 0 auto;
+  display: block;
+  border: 1px solid $color;
+  border-radius: 11px;
+  bottom: 0;
+  height: 37px;
+  width: 22px;
+  position: relative;
+  z-index: 1;
+
+  @media all and (max-height: 450px) {
+    // margin-bottom: .5rem;
+    display: none;
+  }
+
+  @include respond-below(sm) {
+    display: none;
+  }
+
+  @media screen and (min-height: 1020px) {
+    visibility: hidden;
+  }
+
+  &:before {
+    $width: 6px;
+    content: '';
+    width: $width;
+    height: $width;
+    background: $color;
+    margin-left: -$width / 2;
+    top: 8px;
+    border-radius: 50%;
+    left: 50%;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-name: mouse-scroll;
+    position: absolute;
+    box-sizing: border-box;
+  }
+}

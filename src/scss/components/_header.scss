@@ -1,0 +1,430 @@
+.header {
+  color: #fff;
+  overflow: hidden;
+  .image__background {
+    height: 100%;
+    .img-lazy {
+      height: 100%;
+    }
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    margin-top: 2rem;
+    padding: 0;
+  }
+
+  &__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    will-change: opacity;
+    opacity: 0;
+    margin-top: 5rem;
+    transition: opacity 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+    .img-lazy {
+      height: 100%;
+    }
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      object-position: bottom;
+      @include respond-below(md) {
+        // object-position: 47%;
+      }
+    }
+  }
+
+  %anim {
+  }
+
+  &__logo {
+    // width: 90%;
+    margin-bottom: .5rem;
+    // max-width: 500px;
+    // @include respond-below(md) {
+    //   min-width: 280px;
+    //   // max-width: 280px;
+    // }
+    
+
+    h1 {
+      // font-size: 2rem;
+      // font-size: calc(1vw + .5rem);
+      font-size: clamp(2.5rem, 15vw, 5.5rem);
+      font-weight: 600;
+      // margin-bottom: 1.5rem;
+    }
+
+    img {
+      height: auto;
+      width: 100%;
+      max-width: 550px;
+    }
+  }
+
+  .dvr {
+    max-width: 64px;
+    height: auto;
+    @media screen and (max-width: 768px) {
+      max-width: 48px;
+
+      margin-bottom: 3rem;
+      img {
+        object-fit: contain;
+      }
+    }
+  }
+
+  &__subtitle {
+    font-weight: 400;
+    margin-bottom: 3rem;
+    @include respond-below(md) {
+      max-width: 12em;
+    }
+
+    &.large {
+      font-size: 1.75rem;
+      color: #fff;
+      margin: auto;
+      margin-bottom: 1rem;
+
+      @include respond-below(md) {
+        padding: 0 5%;
+        // bottom: 13%;
+        max-width: 12em;
+        line-height: 1.2;
+        text-align: center;
+      }
+
+      @include respond-below(sm) {
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+$animation-duration: 1s;
+.header__logo,
+.header__subtitle,
+.dvr {
+  opacity: 0;
+  transform: translateY(20px);
+  will-change: opacity, transform;
+  transition: transform $animation-duration cubic-bezier(0.3, 0, 0.3, 1),
+    opacity $animation-duration linear;
+  transition-delay: calc(10ms + (200ms * var(--h-index)));
+}
+
+.header.animated-in {
+  .header__bg,
+  .header__logo,
+  .header__subtitle,
+  .dvr {
+    opacity: 1 !important;
+    transform: translateY(0px);
+  }
+}
+section.header, footer.footer {
+  position: relative;
+  z-index: 1;
+
+  $min-height: 650px;
+  $max-height: 860px;
+
+  $min-content-height: 160px; /* set to height of the portion of the first section within which content is comfortably visible */
+  $scroll-prompt-height: 34px;
+  $scroll-prompt-margin: 0px;
+  $scroll-prompt-margin-min: 10px;
+  $scroll-prompt-height-total: $scroll-prompt-height + 2 * $scroll-prompt-margin-min;
+
+  min-height: $min-height; /* might adjust per plugin */
+  max-height: $max-height;
+  height: calc(100vh - #{$min-content-height});
+
+  // .scroll-prompt {
+  //   margin-top: $scroll-prompt-margin;
+  // }
+
+  @media (max-height: $min-height + $min-content-height) {
+    // height: calc(100vh - #{$scroll-prompt-height-total}); /* accomodate scroll prompt */
+    max-height: unset;
+  }
+  $break1: $min-height + $scroll-prompt-height + 2 * $scroll-prompt-margin;
+  $break2: $min-height + $scroll-prompt-height + 2 * $scroll-prompt-margin-min;
+  @media (max-height: $break1) {
+    .scroll-prompt {
+      // @debug $break1;
+      // @debug $break2;
+      // clamp
+      // if you change value of break1 or break2, recalculate this set of linear equations:
+      //    $scroll-prompt-margin = a * $break1 + b
+      //    $scroll-prompt-margin-min = a * $break2 + b
+      // (you can paste them into wolfram alpha e.g. 28 = a * 740 + b, 10 = a * 700 + b)
+      // but... honestly, don't :) we want the pages to be coherent
+
+      margin-top: calc(.5 * 100vh - 342px);
+    }
+  }
+  @media (max-height: $break2) {
+    height: 100vh;
+    max-height: unset;
+    .scroll-prompt {
+      display: none;
+    }
+  }
+  @media (min-height: $max-height + $min-content-height) {
+    .scroll-prompt {
+      display: none;
+    }
+  }
+
+  @media (max-width: 480px) {
+    height: 13 / 9 * 100vw;
+    /* not 100vh to avoid content jump on scroll on mobile Chrome and Firefox */
+  }
+}
+$color-gray: #9A9A9A;
+
+.scroll-prompt {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  // top: 100%; /* will hang over the next section, make sure to provide sufficient padding */
+  color: $color-gray;
+  // margin-top: 34px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  // font-size: 12px;
+  text-transform: uppercase;
+  z-index: 4;
+
+  @include respond-below(lg) {
+    display: none;
+  }
+}
+
+section.header {
+  position: relative;
+  padding: 0;
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    top: unset;
+    bottom: 0px;
+    left: -15%;
+    height: 2px;
+    background: white
+      linear-gradient(to right, #3fd5ef, #fde92d, #f1565b, #3fd5ef);
+  }
+  .container-fluid {
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 10vw;
+    margin-top: 3.5rem;
+  }
+}
+
+.image-background {
+  background-color: #000;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  .img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+
+$animation-duration: .5s;
+
+.header__bg,
+.scroll-prompt,
+.pack__item,
+.save-money,
+.header__logo,
+.header__subtitle,
+.header__title,
+.dvr {
+  will-change: opacity, transform;
+  transition:
+    transform $animation-duration cubic-bezier(0.3, 0, 0.3, 1),
+    opacity $animation-duration linear;
+  transition-delay: calc(10ms + (200ms * var(--h-index))), calc(10ms + (200ms * var(--h-index)));
+}
+
+.pack__item,
+.save-money {
+  will-change: opacity, transform;
+  transition:
+    transform $animation-duration cubic-bezier(0.3, 0, 0.3, 1),
+    opacity $animation-duration linear;
+  transition-delay: calc(10ms + (100ms * var(--h-index))), calc(10ms + (100ms * var(--h-index)));
+}
+
+.pack__item {
+  transform: translateY(10%);
+}
+
+.header__bg {
+  transform: scale(1.05);
+}
+
+.header__logo,
+.header__subtitle,
+.header__title,
+.dvr {
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+
+
+body.ready {
+  .header__bg {
+    opacity: 1 !important;
+    transform: scale(1);
+  }
+
+  .scroll-prompt,
+  .pack__item,
+  .save-money {
+    opacity: 1 !important;
+  }
+
+  .pack__item {
+    transform: translateY(0);
+  }
+
+  .header__logo,
+  .header__subtitle,
+  .header__title,
+  .dvr {
+    opacity: 1 !important;
+    transform: translateY(0);
+  }
+}
+
+
+.pack {
+  padding-top: 0;
+  padding-bottom: 1.5rem;
+  margin-top: -200px;
+  position: relative;
+  z-index: 1;
+  @include respond-below(md) {
+    margin-top: -25%;
+  }
+
+  // only position
+  .save-money {
+    position: absolute;
+    right: 50px;
+    top: -20px;
+    z-index: 1;
+    @include respond-below(sm) {
+      top: -30%;
+      right: 0;
+    }
+  }
+
+  &__items,
+  &__links {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__items {
+    margin: 0 .5rem;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    // max-width: 1000px;  
+    // &__wrapper {
+
+    // }
+  }
+
+  &__item {
+    // border: 1px solid red;
+    &:first-of-type {
+      margin-left: 7%;
+    }
+
+    + .pack__item {
+      margin-left: -100px;
+      @media screen and (max-width: 1060px) {
+        margin-left: -20%;
+      }
+    }
+    img {
+      width: 105%;
+      max-width: unset;
+      transform: scale(.95);
+      transform-origin: 50% 40%;
+      transition: transform .15s ease-in;
+    }
+    &.active {
+      img {
+        transform: scale(1);
+        z-index: 1;
+      }
+    }
+  }
+
+  &__title {
+    font-size: 1rem;
+    text-transform: uppercase;
+    margin-top: .5rem;
+    margin-bottom: 2.5rem;
+  }
+
+    &__links {
+      flex-wrap: wrap;
+      @include respond-below(sm) {
+        flex-direction: column;
+      }
+  }
+
+  &__link {
+    margin: 0 1rem;
+    color: #000;
+    text-decoration: none;
+    margin-bottom: 1.25rem;
+    &:hover {
+      // color: #000;
+      text-decoration: none;
+    }
+    &.active {
+      color: #007bff;
+    }
+    h5 {
+      // font-family: 'P', sans-serif;
+      font-size: .9rem;
+      font-weight: 400;
+      text-transform: none;
+    }
+  }
+}

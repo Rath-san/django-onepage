@@ -1,0 +1,12 @@
+.bg {
+  &--light {
+    background-color: #fff;
+    color: #000;
+  }
+  &--dark {
+    // margin-top: 0px;
+    // margin-bottom: -2px;
+    background-color: #141412;
+    color: #fff;
+  }
+}

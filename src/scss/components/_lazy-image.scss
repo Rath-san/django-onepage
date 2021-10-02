@@ -1,0 +1,35 @@
+.img-lazy {
+  $time: .15s;
+  position: relative;
+  // &.img-cached {
+  //   .placeholder {
+  //     opacity: 0;
+  //   }
+  //   img {
+  //     transition: none;
+  //     opacity: 1;
+  //   }
+  // }
+  .placeholder {
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    will-change: opacity;
+    transition: opacity $time ease-in-out;
+    // filter: blur(30px);
+  }
+
+  img {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    will-change: opacity;
+    transition: opacity $time ease-in-out;
+    .animated-in & {
+      opacity: 1;
+    }
+  }
+}

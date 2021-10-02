@@ -1,0 +1,82 @@
+$rem: 20px;
+
+$font-size-title: $rem * 2;
+$font-size-sub-title: $rem * 1.2;
+$font-size-body: $rem * .9;
+
+$font-family-subtitle: 'Mukta', sans-serif;
+$font-family-title: 'Mukta', sans-serif;
+$font-family-text: 'Mukta', sans-serif;
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1;
+  margin-bottom: 0;
+}
+
+b {
+  // font-weight: 500;
+}
+
+main {
+  font-family: $font-family-text;
+  line-height: 1.8;
+}
+
+.section {
+  &__title {
+    font-size: 2rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  &__subtitle {
+    font-size: .7rem;
+    font-weight: 500;
+    margin-bottom: .8rem;
+    text-transform: uppercase;
+    // color: $color-cta;
+  }
+
+  &__display {
+    font-size: 10rem;
+    font-weight: 600;
+    line-height: 1;
+    @include respond-below(sm) {
+      font-size: 7rem;
+    }
+  }
+
+  &__text {
+    font-size: .9rem;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+
+    @media screen and (max-width: 1024px) {
+      font-size: 18px;
+    }
+
+    @media screen and (max-width : 1440px) {
+      white-space: unset;
+    }
+
+    &--inset {
+      padding-left: 5rem;
+    }
+
+    &__content {
+      position: relative;
+      z-index: 0;
+
+      @media screen and (max-width: 1440px) {
+        padding: 0 5%;
+      }
+
+    }
+  }
+}

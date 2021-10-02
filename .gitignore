@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Macosx
+.DS_Store
+
+# Frontend stuff
+node_modules
