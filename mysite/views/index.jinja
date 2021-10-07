@@ -6,79 +6,96 @@
     {% include './components/nav.jinja' %}
     {# {% include './components/bundle-popup.jinja' %} #}
 
-     {% set srcsetSizesDesktop = [
-        1800,
-        2560
-     ] %}
-
     {% set srcsetSizesMobile = [
         320,
         640,
-        960,
-        1024
     ] %}
 
-    {% set srcsetSizes = [
-        [320, 320],
-        [640, 640],
-        [1280, 1280],
-        [1800, 1800],
-        [2560, 2560]
-    ]%}
+    {% set srcsetSizesDesktop = [
+        960,
+        1280,
+        1600,
+        1920,
+        2240,
+        2560
+     ] %}
 
-    {% set templateId = '1366' %}
+    {% set templateId = '1368' %}
     {% set refresh = 6 %}
     {% set mediaUrl = 'https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media' % templateId %}
 
     {% set data = {
         'header': {
-            'subtitle': 'Assorted Channel Openers for DaVinci Resolve'
+            'subtitle': 'Event Graphic Layout Toolbox for Final Cut Pro'
         },
         'trailer': {
             'title': 'Watch trailer',
-            'text': 'See these attention-grabbing intros in action and feel the impact they’d have on your channel’s look!'
+            'text': 'See how this plugin boosts your edit’s visuals and speaks to the audience!'
         },
         'tutorial': {
             'subtitle': 'watch tutorial',
-            'title': 'Improve your workflow',
-            'text': 'Get to know the tips and tricks to maximize the benefits from using mIntro 2 DV!'
+            'title': 'Improve your editing skills',
+            'text': 'Learn how to draw more attention to your event with graphic design!'
         },
         'promo': {
-            'subtitle': 'Distinct and memorable visuals',
-            'title': 'Define your channel',
-            'text': 'Captivate the viewers, grab their attention and make them want to come back for more.'
+            'subtitle': 'Create a successful campaign',
+            'title': 'Boost popularity and drive ticket sales',
+            'text': 'With mEvent plugin at your disposal, constructing the whole graphic design for any event is easy, fast, and lets you craft visuals that sell.'
         },
-        'promo_grid': {
-            'video': 'src',
-            'video_2': 'src',
-            'subtitle': 'Excellently crafted',
-            'title': 'Motion design that attracts',
-            'text': 'These ready-to-use visual presets will help you get your content on another level.',
+        'promobig': {
+            'subtitle': 'Introduce the VIPs with style',
+            'title': 'Use some name-dropping',
+            'text': 'The sheer number and versatility of mEvent presets let you illustrate any topic and inspire your audience to visit your event. Especially with some important guests announced!'
+        },
+        'promogridslider': {
+            'subtitle': 'Build an appealing layout',
+            'title': 'Spur excitement',
+            'text': 'These stylish graphics will help you build trust with your audience and pump up the hype to attract even more visitors!'
+        },
+        'preset': {
+            'title': 'Let the visuals speak',
+            'subtitle': 'Any theme can be more expressive',
+            'text': 'This massive collection of ready-to-use presets gives you the creative freedom to make any gathering of people more tempting to attend.'
         },
         'footer': {
-            'subtitle': 'Improve the image',
-            'title': 'All eyes on your content',
-            'text': 'Revealing logotypes or animating typography to convey messages has never been this easy. You can use the spare time to polish every video to pure excellence.'
+            'title': "Increase the impact of your event",
+            'text': "Building a cohesive layout to advertise and promote your event has never been easier. With this massive amount of elements at your fingertips, you can highlight every aspect of what's coming and make the audience anticipate it even harder!"
         }
     } %}
 
     <main>
-        <section class="header bg--dark text-center">
+        <div class="overlay-countdown">
+			<img src="{{mediaUrl}}/loader.gif" width="400" height="311" alt="" />
+		</div>
+        <section class="header text-center">
             <div class="header__bg" style="opacity:0">
                 <picture>
-                    <source media="(max-width: 992px)" srcset="
+                    <source media="(max-width: 640px)" srcset="
                         {% for size in srcsetSizesMobile %}
-                            {{mediaUrl}}/header_top_full-{{size}}.jpg {{size}}w,
+                            {{mediaUrl}}/header_mobile-{{size}}.webp {{size}}w,
                         {% endfor %}
-                    ">
+                    "
+                    type="image/webp">
+                    <source media="(max-width: 640px)" srcset="
+                        {% for size in srcsetSizesMobile %}
+                            {{mediaUrl}}/header_mobile-{{size}}.jpg {{size}}w,
+                        {% endfor %}
+                    "
+                    type="image/jpeg">
+                    <source srcset="
+                        {% for size in srcsetSizesDesktop %}
+                            {{mediaUrl}}/header-{{size}}.webp {{size}}w,
+                        {% endfor %}
+                    "
+                    type="image/webp">
                     <img
                         width="2560"
                         height="850"
-                        src="{{mediaUrl}}/header_top_full-2560.jpg"
-                        alt="Editor recording voiceover for video production"
+                        src="{{mediaUrl}}/header-2560.jpg"
+                        alt=""
                         srcset="
                             {% for size in srcsetSizesDesktop %}
-                                {{mediaUrl}}/header_top_full-{{size}}.jpg {{size}}w,
+                                {{mediaUrl}}/header-{{size}}.jpg {{size}}w,
                             {% endfor %}
                         "
                         sizes="100vw">
@@ -87,14 +104,42 @@
             <div class="container-fluid">
                 <div class="header__content section__text__content">
                     <div class="header__logo" style="--h-index: 0; opacity: 0">
-                        <h1><span>mIntro</span> <span>3</span></h1>
-                        {# <img src="{{'%s/mmorphcut_logo.png?%r' % (mediaUrl, refresh)}}" height="380" width="1200" alt=""> #}
+                        <h1><span>mEvent</span></h1>
+                        <svg width="100" height="6" viewBox="0 0 100 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0 1H47L50.3941 4.40833L53.7882 1H100" stroke="#5736ED"/>
+                        </svg>
                     </div>
                 </div>
                 <p class="header__subtitle" style="--h-index: 1; opacxity: 0">
                     {{data.header.subtitle}}
                 </p>
-                <img width="150" height="150" class="dvr" src="{{mediaUrl}}/dvr.png" alt="" srcset="" style="--h-index: 2; opacity: 0">
+            </div>
+            <div class="header__deco header__deco--2" style="--s-index: 6; opacity:0">
+                <div class="s-l-wrapper">
+                    {% for x in range(0,2) %}
+                        <span class="s-l" style="--i: {{loop.index}}">+</span>
+                    {% endfor %}
+                </div>
+                <div class="deco__content">
+                    <p onclick="scrollToAnchor('trailer');">scroll down</p>
+                    <!--<p>don't miss it!</p>-->
+                </div>
+                <div class="s-r-wrapper">
+                    {% for x in range(0,2) %}
+                        <span class="s-r" style="--i: {{loop.index}}">+</span>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="header__deco header__deco--1">
+                <div class="deco__content">
+                    <p class="secuence" style="--s-index: 0; opacity:0">Jarod<br>Fowler</p>
+                    <p class="secuence" style="--s-index: 2; opacity:0">Today's Guest</p>
+                    <p class="secuence" style="--s-index: 3; opacity:0">
+                        Economist<br>
+                        Analyst
+                    </p>
+                </div>
+                <img class="secuence" style="--s-index: 1; opacity:0" src="{{mediaUrl}}/x.png" alt="">
             </div>
         </section>
 
@@ -107,27 +152,7 @@
         {% set trailerUrl = 'https://www.youtube.com/embed/puOyNif8fUI?rel=0' %}
 
         <section class="video trailer">
-            <div class="image__background">
-                <picture>
-                    <source media="(max-width: 992px)" srcset="
-                        {% for size in srcsetSizesMobile %}
-                            {{mediaUrl}}/trailer_bg-2560.jpg {{size}}w,
-                        {% endfor %}
-                    ">
-                    <img
-                        loading="lazy"
-                        width="2560"
-                        height="1050"
-                        src="{{mediaUrl}}/trailer_bg-{{size}}.jpg"
-                        alt="Editor recording voiceover for video production"
-                        srcset="
-                            {% for size in srcsetSizesDesktop %}
-                                {{mediaUrl}}/trailer_bg-{{size}}.jpg {{size}}w,
-                            {% endfor %}
-                        "
-                        sizes="100vw">
-                </picture>
-            </div>
+            <img loading="lazy" class="arrow__deco" src="{{mediaUrl}}/arrows.png" alt="Decoration arrow">
             <div class="container">
                 <div class="row">
                     <div class="col">
@@ -145,6 +170,12 @@
                     </div>
                 </div>
             </div>
+            <svg class="wave" viewBox="0 0 20 1" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M0.773589 0.787263C0.289119 0.810705 0 0.810705 0 0.810705V0H10H20V0.810705C20 0.810705 19.8496 0.810705 18.9998 0.798984C18.0573 0.785985 17.4472 0.380934 16.6517 0.380934C15.9914 0.380934 15.4561 0.49033 14.7177 0.558703C13.9793 0.627076 12.5825 0.63489 11.9984 0.685681C11.4143 0.736472 11.0253 0.775084 10.7736 0.787263C10.2891 0.810705 10 0.810705 10 0.810705C10 0.810705 9.84958 0.810705 8.9998 0.798984C8.05734 0.785985 7.44717 0.380934 6.65169 0.380934C5.9914 0.380934 5.45614 0.49033 4.71772 0.558703C3.97929 0.627076 2.58254 0.63489 1.99844 0.685681C1.41434 0.736472 1.0253 0.775084 0.773589 0.787263Z"
+                    fill="#000"
+                />
+            </svg>
         </section>
 
         <a class="nav" name="tutorial"></a>
@@ -154,14 +185,29 @@
             <section class="video tutorial bg--light">
                 <div class="image__background">
                     <picture>
-                        <source media="(max-width: 992px)" srcset="
+                        <source media="(max-width: 640px)" srcset="
+                            {% for size in srcsetSizesMobile %}
+                                {{mediaUrl}}/tutorial_bg-{{size}}.webp {{size}}w,
+                            {% endfor %}
+                        "
+                        type="image/webp">
+                        <source media="(max-width: 640px)" srcset="
                             {% for size in srcsetSizesMobile %}
                                 {{mediaUrl}}/tutorial_bg-{{size}}.jpg {{size}}w,
                             {% endfor %}
-                        ">
+                        "
+                        type="image/jpeg">
+                        <source srcset="
+                            {% for size in srcsetSizesDesktop %}
+                                {{mediaUrl}}/tutorial_bg-{{size}}.webp {{size}}w,
+                            {% endfor %}
+                        "
+                        type="image/webp">
                         <img
+                            width="2560"
+                            height="850"
                             src="{{mediaUrl}}/tutorial_bg-2560.jpg"
-                            alt="Editor recording voiceover for video production"
+                            alt=""
                             srcset="
                                 {% for size in srcsetSizesDesktop %}
                                     {{mediaUrl}}/tutorial_bg-{{size}}.jpg {{size}}w,
@@ -188,200 +234,340 @@
                 </div>
             </section>
 
+        {% set srcsetSizesDesktop1 = [
+            960,
+            1280,
+            1600,
+            1920,
+        ] %}
+
         <section class="promo">
             <div class="secuence" style="--s-index: 0; opacity: 0;">
-                <div id="demo" class="carousel slide carousel-fade">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img class="comp-1 secuence" style="--s-index: 0; opacity: 0;" src="{{mediaUrl}}/digital_shot.png" alt="">
-                            <picture>
-                                <source media="(max-width: 640px)" srcset="
-                                    {{mediaUrl}}/slider_1_mobile-640.jpg 640w,
-                                    {{mediaUrl}}/slider_1_mobile-320.jpg 320w,
-                                ">
-                                <source media="(max-width: 992px)" srcset="
-                                    {% for size in srcsetSizesMobile %}
-                                        {{mediaUrl}}/slider_1-{{size}}.jpg {{size}}w,
+                <div id="demo" class="carousel slide carousel-fade fade-new">
+                    <div class="container-fluid">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6 col-xl-8 carousel-inner__wrapper">
+                                <div class="carousel-inner">
+                                    {% for image in [{'src': 'slider_1'}, {'src': 'slider_2'}] %}
+                                        <div class="carousel-item {% if loop.index == 1 %}active{% endif %}">
+                                            <picture>
+                                                <source media="(max-width: 640px)" srcset="
+                                                    {% for size in srcsetSizesMobile %}
+                                                        {{mediaUrl}}/{{image.src}}-{{size}}.webp {{size}}w,
+                                                    {% endfor %}
+                                                "
+                                                type="image/webp">
+                                                <source media="(max-width: 640px)" srcset="
+                                                    {% for size in srcsetSizesMobile %}
+                                                        {{mediaUrl}}/{{image.src}}-{{size}}.jpg {{size}}w,
+                                                    {% endfor %}
+                                                "
+                                                type="image/jpeg">
+                                                <source srcset="
+                                                    {% for size in srcsetSizesDesktop1 %}
+                                                        {{mediaUrl}}/{{image.src}}-{{size}}.webp {{size}}w,
+                                                    {% endfor %}
+                                                "
+                                                type="image/webp">
+                                                <img
+                                                    width="1920"
+                                                    height="1080"
+                                                    src="{{mediaUrl}}/{{image.src}}-1920.jpg"
+                                                    alt=""
+                                                    srcset="
+                                                        {% for size in srcsetSizesDesktop1 %}
+                                                            {{mediaUrl}}/{{image.src}}-{{size}}.jpg {{size}}w,
+                                                        {% endfor %}
+                                                    "
+                                                    sizes="100vw">
+                                            </picture>
+                                        </div>
                                     {% endfor %}
-                                ">
-                                <img
-                                    width="2560"
-                                    height="1050"
-                                    src="{{mediaUrl}}/slider_1-2560.jpg"
-                                    alt="Editor recording voiceover for video production"
-                                    srcset="
-                                        {% for size in srcsetSizesDesktop %}
-                                            {{mediaUrl}}/slider_1-{{size}}.jpg {{size}}w,
-                                        {% endfor %}
-                                    "
-                                    sizes="100vw">
-                            </picture>
-                        </div>
-                        <div class="carousel-item">
-                            <img class="comp-1 secuence" style="--s-index: 0; opacity: 0;" src="{{mediaUrl}}/tech_box.png" alt="">
-                            <picture>
-                                <source media="(max-width: 640px)" srcset="
-                                    {{mediaUrl}}/slider_2_mobile-640.jpg 640w,
-                                    {{mediaUrl}}/slider_2_mobile-320.jpg 320w,
-                                ">
-                                <source media="(max-width: 992px)" srcset="
-                                    {% for size in srcsetSizesMobile %}
-                                        {{mediaUrl}}/slider_2-{{size}}.jpg {{size}}w,
-                                    {% endfor %}
-                                ">
-                                <img
-                                    width="2560"
-                                    height="1050"
-                                    src="{{mediaUrl}}/slider_2-2560.jpg"
-                                    alt="Editor recording voiceover for video production"
-                                    srcset="
-                                        {% for size in srcsetSizesDesktop %}
-                                            {{mediaUrl}}/slider_2-{{size}}.jpg {{size}}w,
-                                        {% endfor %}
-                                    "
-                                    sizes="100vw">
-                            </picture>
-                        </div>
-                        <div class="carousel-item">
-                            <img class="comp-1 secuence" style="--s-index: 0; opacity: 0;" src="{{mediaUrl}}/logo_3.png" alt="">
-                            <picture>
-                                <source media="(max-width: 640px)" srcset="
-                                    {{mediaUrl}}/slider_3_mobile-640.jpg 640w,
-                                    {{mediaUrl}}/slider_3_mobile-320.jpg 320w,
-                                ">
-                                <source media="(max-width: 992px)" srcset="
-                                    {% for size in srcsetSizesMobile %}
-                                        {{mediaUrl}}/slider_3-{{size}}.jpg {{size}}w,
-                                    {% endfor %}
-                                ">
-                                <img
-                                    width="2560"
-                                    height="1050"
-                                    src="{{mediaUrl}}/slider_3-2560.jpg"
-                                    alt="Editor recording voiceover for video production"
-                                    srcset="
-                                        {% for size in srcsetSizesDesktop %}
-                                            {{mediaUrl}}/slider_3-{{size}}.jpg {{size}}w,
-                                        {% endfor %}
-                                    "
-                                    sizes="100vw">
-                            </picture>
-                        </div>
-                    </div>
-                    <ol class="carousel-indicators">
-                        {% for number in range(1,4) %}
-                            <li data-target="#demo" data-slide-to="{loop.index}" class="{% if loop.index == 1 %}active{% endif %}"></li>
-                        {% endfor %}
-                    </ol>
-                </div>
-            </div>
-            <div class="section__content">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="section__head">
-                                <p class="section__subtitle secuence" style="--s-index: 2; opacity: 0;">{{data.promo.subtitle}}</p>
-                                <h2 class="section__title secuence" style="--s-index: 3; opacity: 0;">{{data.promo.title}}</h2>
-                                <p class="section__text secuence" style="--s-index: 4; opacity: 0;">{{data.promo.text}}</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-xl-4">
+                                <div class="carousel-content">
+                                    <div class="section__content">
+                                        <div class="section__head">
+                                            <p class="section__subtitle secuence" style="--s-index: 2; opacity: 0;">{{data.promo.subtitle}}</p>
+                                            <h2 class="section__title secuence" style="--s-index: 3; opacity: 0;">{{data.promo.title}}</h2>
+                                            <p class="section__text secuence" style="--s-index: 4; opacity: 0;">{{data.promo.text}}</p>
+                                        </div>
+                                        <ol class="carousel-indicators">
+                                            {% for number in range(0,2) %}
+                                                <li data-target="#demo" data-slide-to="{{loop.index - 1}}" class="{% if loop.index - 1 == 0 %}active{% endif %}"></li>
+                                            {% endfor %}
+                                        </ol>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <section class="promo-grid">
-            <video height="1000" width="1280" loading="lazy" class="promo-1 secuence" src="{{mediaUrl}}/web_mov.mp4" alt="" srcset="" style="--s-index: 0; opacity: 0;" loop autoplay muted playsinline></video>
-            <div class="promo-2 secuence section__head" style="--s-index: 1; opacity: 0;">
-                <p class="section__subtitle">{{data.promo_grid.title}}</p>
-                <h2 class="section__title">{{data.promo_grid.subtitle}}</h2>
-                <p class="section__text">{{data.promo_grid.text}}</p>
+
+        <section class="promo-big">
+            <div class="image__background--static">
+                <picture>
+                    <source media="(max-width: 640px)" srcset="
+                        {% for size in srcsetSizesMobile %}
+                            {{mediaUrl}}/gradient_bg-{{size}}.webp {{size}}w,
+                        {% endfor %}
+                    "
+                    type="image/webp">
+                    <source media="(max-width: 640px)" srcset="
+                        {% for size in srcsetSizesMobile %}
+                            {{mediaUrl}}/gradient_bg-{{size}}.jpg {{size}}w,
+                        {% endfor %}
+                    "
+                    type="image/jpeg">
+                    <source srcset="
+                        {% for size in srcsetSizesDesktop %}
+                            {{mediaUrl}}/gradient_bg-{{size}}.webp {{size}}w,
+                        {% endfor %}
+                    "
+                    type="image/webp">
+                    <img
+                        width="2560"
+                        height="850"
+                        src="{{mediaUrl}}/gradient_bg-2560.jpg"
+                        alt=""
+                        srcset="
+                            {% for size in srcsetSizesDesktop %}
+                                {{mediaUrl}}/gradient_bg-{{size}}.jpg {{size}}w,
+                            {% endfor %}
+                        "
+                        sizes="100vw">
+                </picture>
             </div>
-            <div id="demo1" class="carousel slide carousel-fade promo-3 secuence" style="--s-index: 3; opacity: 0;">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img
-                            width="640"
-                            height="1000" src="{{mediaUrl}}/grid_tall-2-640.jpg" alt=""
-                            srcset="
-                                {{mediaUrl}}/grid_tall-2-640.jpg 1200w,
-                                {{mediaUrl}}/grid_tall-2-320.jpg 640w,
-                            ">
-                    </div>
-                    <div class="carousel-item">
-                        <img
-                            width="640"
-                            height="1000" src="{{mediaUrl}}/grid_tall_2-640.jpg" alt=""
-                            srcset="
-                                {{mediaUrl}}/grid_tall_2-640.jpg 1200w,
-                                {{mediaUrl}}/grid_tall_2-320.jpg 640w,
-                            ">
+            <div class="section__content">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <div class="section__head">
+                                <p class="section__subtitle">{{data.promobig.subtitle}}</p>
+                                <h2 class="section__title">{{data.promobig.title}}</h2>
+                                <p class="section__text">{{data.promobig.text}}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <div id="demo10" class="carousel slide carousel-fade">
+                                <div class="carousel-inner">
+                                    {% for r in range(1,4) %}
+                                        <div class="carousel-item {% if loop.index == 1 %}active{% endif %}">
+                                            <img src="{{mediaUrl}}/speaker_{{r}}.png" alt="" srcset="">
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            
+                        </div>
                     </div>
                 </div>
             </div>
-            <div id="demo2" class="carousel slide carousel-fade promo-4 secuence" style="--s-index: 2; opacity: 0;">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img
-                            width="640"
-                            height="1000" class="" src="{{mediaUrl}}/grid_small-640.jpg" alt=""
-                            srcset="
-                                {{mediaUrl}}/grid_small-640.jpg 1200w,
-                                {{mediaUrl}}/grid_small-320.jpg 640w,
-                            ">
+        </section>
+
+        <section class="promo-grid-slider">
+            <div class="carousel slide">
+                {% for item in range(0,1) %}
+                    <div class="carousel-item {% if loop.index == 1 %}active{% endif %}">
+                        <div class="comp-grid">
+                            <video loading="lazy" class="" src="{{mediaUrl}}/mov2-o.mp4" alt="" srcset="" style="--s-index: 0; opacity: 1;" loop autoplay muted playsinline></video>
+                            {# <picture> #}
+                                {# <img
+                                    width="2560"
+                                    height="1050"
+                                    src="https://via.placeholder.com/2560x1500/{{loop.index * 2}}{{loop.index * 3}}EC9D"
+                                    alt="Editor recording voiceover for video production"
+                                    sizes="50vw"> #}
+                            {# </picture> #}
+                            {% set srcsetSizesDesktop2 = [
+                                960,
+                                1120
+                            ] %}
+                            <div id="demoa" class="carousel slide">
+                                <div class="carousel-inner">
+                                    {% for j in range(1,7) %}
+                                        <div class="carousel-item {% if loop.index == 1 %}active{% endif %}">
+                                            <picture>
+                                                <source media="(max-width: 640px)" srcset="
+                                                    {% for size in srcsetSizesMobile %}
+                                                        {{mediaUrl}}/square_{{j}}-{{size}}.webp {{size}}w,
+                                                    {% endfor %}
+                                                "
+                                                sizes="50vw"
+                                                type="image/webp">
+                                                <source media="(max-width: 640px)" srcset="
+                                                    {% for size in srcsetSizesMobile %}
+                                                        {{mediaUrl}}/square_{{j}}-{{size}}.jpg {{size}}w,
+                                                    {% endfor %}
+                                                "
+                                                sizes="50vw"
+                                                type="image/jpeg">
+                                                <source srcset="
+                                                    {% for size in srcsetSizesDesktop2 %}
+                                                        {{mediaUrl}}/square_{{j}}-{{size}}.webp {{size}}w,
+                                                    {% endfor %}
+                                                "
+                                                type="image/webp">
+                                                <img
+                                                    width="1120"
+                                                    height="1120"
+                                                    src="{{mediaUrl}}/square_{{j}}-{{size}}.jpg"
+                                                    alt=""
+                                                    srcset="
+                                                        {% for size in srcsetSizesDesktop2 %}
+                                                            {{mediaUrl}}/square_{{j}}-{{size}}.jpg {{size}}w,
+                                                        {% endfor %}
+                                                    "
+                                                    sizes="33vw">
+                                            </picture>
+                                            {# <picture>
+                                                <img
+                                                    width="1050"
+                                                    height="1050"
+                                                    src="{{mediaUrl}}/square_{{j}}.jpg"
+                                                    alt="Editor recording voiceover for video production"
+                                                    sizes="33vw">
+                                            </picture> #}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div id="demob" class="carousel slide">
+                                <div class="carousel-inner">
+                                    {% for j in range(1,7) %}
+                                        <div class="carousel-item {% if loop.index == 4 %}active{% endif %}">
+                                            <picture>
+                                                <source media="(max-width: 640px)" srcset="
+                                                    {% for size in srcsetSizesMobile %}
+                                                        {{mediaUrl}}/square_{{j}}-{{size}}.webp {{size}}w,
+                                                    {% endfor %}
+                                                "
+                                                sizes="50vw"
+                                                type="image/webp">
+                                                <source media="(max-width: 640px)" srcset="
+                                                    {% for size in srcsetSizesMobile %}
+                                                        {{mediaUrl}}/square_{{j}}-{{size}}.jpg {{size}}w,
+                                                    {% endfor %}
+                                                "
+                                                sizes="50vw"
+                                                type="image/jpeg">
+                                                <source srcset="
+                                                    {% for size in srcsetSizesDesktop2 %}
+                                                        {{mediaUrl}}/square_{{j}}-{{size}}.webp {{size}}w,
+                                                    {% endfor %}
+                                                "
+                                                type="image/webp">
+                                                <img
+                                                    width="1120"
+                                                    height="1120"
+                                                    src="{{mediaUrl}}/square_{{j}}-{{size}}.jpg"
+                                                    alt=""
+                                                    srcset="
+                                                        {% for size in srcsetSizesDesktop2 %}
+                                                            {{mediaUrl}}/square_{{j}}-{{size}}.jpg {{size}}w,
+                                                        {% endfor %}
+                                                    "
+                                                    sizes="33vw">
+                                            </picture>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="section__head">
+                                <p class="section__subtitle">{{data.promogridslider.subtitle}}</p>
+                                <h2 class="section__title">{{data.promogridslider.title}}</h2>
+                                <p class="section__text">{{data.promogridslider.text}}</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="carousel-item">
-                        <img
-                            width="640"
-                            height="1000" class="" src="{{mediaUrl}}/grid_small_2-640.jpg" alt=""
-                            srcset="
-                                {{mediaUrl}}/grid_small_2-640.jpg 1200w,
-                                {{mediaUrl}}/grid_small_2-320.jpg 640w,
-                            ">
-                    </div>
-                </div>
+                {% endfor %}
             </div>
-            
         </section>
 
         <section class="prevs center">
-            {% set productPageTemplateId = '1366' %} 
+            {% set productPageTemplateId = templateId %} 
             {% set collapseAfter = 8 %}
             {% set namePrefix = '' %}
             {% set categories = [
-                    { 'key':'Intro', 'label': 'Intros', 'count': 30},
-                    { 'key':'Add-on', 'label': 'Add-ons', 'count': 10},
-                    { 'key':'Typography', 'label': 'Typography', 'count': 5},
-                    { 'key':'Background', 'label': 'Backgrounds', 'count': 10},
+                    { 'key':'Add-ons', 'label': 'Add-ons', 'count': 15},
+                    { 'key':'Backgrounds', 'label': 'Backgrounds', 'count': 11},
+                    { 'key':'Descriptions', 'label': 'Descriptions', 'count': 15},
+                    { 'key':'Drop_Zones', 'label': 'Drop Zones', 'count': 19},
+                    { 'key':'Lineups', 'label': 'Lineups', 'count': 16},
+                    { 'key':'Logos', 'label': 'Logos', 'count': 14},
+                    { 'key':'Lower3rds', 'label': 'Lower 3rds', 'count': 14},
+                    { 'key':'Numbers', 'label': 'Number', 'count': 10},
+                    { 'key':'Titles', 'label': 'Titles', 'count': 23},
+                    { 'key':'Transitions', 'label': 'Transitions', 'count': 7},
                 ]
             %}
 
             <div class="image__background">
                 <picture>
-                    <source media="(max-width: 992px)" srcset="
+                    <source media="(max-width: 640px)" srcset="
                         {% for size in srcsetSizesMobile %}
-                            {{mediaUrl}}/presets_bg-{{size}}.jpg {{size}}w,
+                            {{mediaUrl}}/hands_bg-{{size}}.webp {{size}}w,
                         {% endfor %}
-                    ">
+                    "
+                    type="image/webp">
+                    <source media="(max-width: 640px)" srcset="
+                        {% for size in srcsetSizesMobile %}
+                            {{mediaUrl}}/hands_bg-{{size}}.jpg {{size}}w,
+                        {% endfor %}
+                    "
+                    type="image/jpeg">
+                    <source srcset="
+                        {% for size in srcsetSizesDesktop1 %}
+                            {{mediaUrl}}/hands_bg-{{size}}.webp {{size}}w,
+                        {% endfor %}
+                    "
+                    type="image/webp">
                     <img
-                        loading="lazy"
-                        src="{{'%s/presets_bg-2560.jpg?%r' % (mediaUrl, refresh)}}"
-                        alt="Editor recording voiceover for video production"
+                        width="1920"
+                        height="1080"
+                        src="{{mediaUrl}}/hands_bg-1920.jpg"
+                        alt=""
                         srcset="
-                            {% for size in srcsetSizesDesktop %}
-                                {{mediaUrl}}/presets_bg-{{size}}.jpg {{size}}w,
+                            {% for size in srcsetSizesDesktop1 %}
+                                {{mediaUrl}}/hands_bg-{{size}}.jpg {{size}}w,
                             {% endfor %}
                         "
                         sizes="100vw">
                 </picture>
+                {# <picture>
+                    
+                    <source media="(max-width: 992px)" srcset="
+                        {% for size in srcsetSizesMobile %}
+                            {{mediaUrl}}/hands_bg.jpg {{size}}w,
+                        {% endfor %}
+                    ">
+                    <img
+                        loading="lazy"
+                        src="{{mediaUrl}}/hands_bg.jpg"
+                        alt="Editor recording voiceover for video production"
+                        srcset="
+                            {% for size in srcsetSizesDesktop %}
+                                {{mediaUrl}}/hands_bg.jpg {{size}}w,
+                            {% endfor %}
+                        "
+                        sizes="100vw">
+                </picture> #}
             </div>
             
             <div class="container">
                 <div class="row">
                     <div class="col-12 text-center">
                         <div class="lines__comp">
-                            <video loading="lazy" src="{{mediaUrl}}/presets_amount.mp4" loop autoplay muted playsinline></video>
                             <div class="section__head">
-                                <p class="section__display">55</p>
+                                <p class="section__display">
+                                    <span>140+</span>
+                                    <span class="pop">
+                                        <span>easy to use</span>
+                                    </span>
+                                </p>
                                 <h2 class="section__title">
                                     astounding presets
                                 </h2>
@@ -400,6 +586,10 @@
                 </div>
             </div>
 
+            {% for j in range(1,7) %}
+                
+            {% endfor %}
+
             <div id="product-prev-grid" class="product-prev-grid container">
     			{% for category in categories %}
 					{% set key = category.key %}
@@ -408,16 +598,6 @@
                         </h3>
                     {% endif %}
 					<div class="row {{ category.rowClass | default('') }} {% if category.count == 5 %}row-5{% endif %}">
-                        {% if key == 'Movement' %}
-                            <picture>
-                                <img loading="lazy" class="deco__img palm-addon" src="{{'%s/palm_addon.png?%r' % (mediaUrl, refresh)}}" alt="" srcset="">
-                            </picture>
-                        {% endif %}
-                        {% if key == 'Overlay' %}
-                            <picture>
-                                <img loading="lazy" class="deco__img sphere-grid" src="{{'%s/sphere_grid.jpg?%r' % (mediaUrl, refresh)}}" alt="" srcset="">
-                            </picture>
-                        {% endif %}
 						{% for i in range(category.count) %}
 							{% set num = '%02d' % loop.index %}
                             {# https://s3.motionvfx.com/mvfxpublic/products/templates/1297/media/Background_{{num}}.mp4 #}
@@ -449,28 +629,26 @@
 				{% endfor %}
                 
 			</div>
+            <div class="section__content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="section__head">
+                                <p class="section__subtitle">sub</p>
+                                <h2 class="section__title">title</h2>
+                                <p class="section__text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi vitae eum dicta fuga numquam. Corporis ab ad quasi, cum, qui soluta officia ipsa veritatis fugiat harum perferendis, iusto autem nam?</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <img src="{{mediaUrl}}/mon.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <a class="nav" href="#" name="specs" rel="noopener noreferrer"></a>
         <div class="ts-mi">
-            <div class="image__background">
-                <picture>
-                    <source media="(max-width: 992px)" srcset="
-                        {% for size in srcsetSizesMobile %}
-                            {{mediaUrl}}/tech_spec-{{size}}.jpg {{size}}w,
-                        {% endfor %}
-                    ">
-                    <img
-                        src="{{'%s/tech_spec.jpg-2500?%r' % (mediaUrl, refresh)}}"
-                        alt="Editor recording voiceover for video production"
-                        srcset="
-                            {% for size in srcsetSizesDesktop %}
-                                {{mediaUrl}}/tech_spec-{{size}}.jpg {{size}}w,
-                            {% endfor %}
-                        "
-                        sizes="100vw">
-                </picture>
-            </div>
         <section class="tech-spec bg--light">
             <div class="container">
                 <div class="row">
@@ -487,8 +665,8 @@
                                             {{ product.productdetails.minimal_requirements.replace('FCP 10', 'FCP 10').replace('Motion 5', 'Motion 5').replace(', ', ',<br>') }}
                                         {% endautoescape %}
                                     </div>
-                                    {# <div class="tcell tlabel">Includes</div>
-                                    <div class="tcell tdata"></div> #}
+                                    <div class="tcell tlabel">Includes</div>
+                                    <div class="tcell tdata">60 -------</div>
                                     <div class="tcell tlabel">Size</div>
                                     <div class="tcell tdata">
                                         {{ "%.1f MB"|format(product.productdetails.source_size / 1000) }}
@@ -548,20 +726,28 @@
             <div class="image__background">
                 <picture>
                     <source media="(max-width: 640px)" srcset="
-                        {{mediaUrl}}/footer_mobile-640.jpg 640w,
-                        {{mediaUrl}}/footer_mobile-320.jpg 320w,
-                    ">
-                    <source media="(max-width: 992px)" srcset="
                         {% for size in srcsetSizesMobile %}
-                            {{mediaUrl}}/footer-{{size}}.jpg {{size}}w,
+                            {{mediaUrl}}/footer_mobile-{{size}}.webp {{size}}w,
                         {% endfor %}
-                    ">
+                    "
+                    type="image/webp">
+                    <source media="(max-width: 640px)" srcset="
+                        {% for size in srcsetSizesMobile %}
+                            {{mediaUrl}}/footer_mobile-{{size}}.jpg {{size}}w,
+                        {% endfor %}
+                    "
+                    type="image/jpeg">
+                    <source srcset="
+                        {% for size in srcsetSizesDesktop %}
+                            {{mediaUrl}}/footer-{{size}}.webp {{size}}w,
+                        {% endfor %}
+                    "
+                    type="image/webp">
                     <img
-                        loading="lazy"
                         width="2560"
                         height="850"
-                        src="{{'%s/mmorphcut_header-2560.jpg?%r' % (mediaUrl, refresh)}}"
-                        alt="Editor recording voiceover for video production"
+                        src="{{mediaUrl}}/footer-2560.jpg"
+                        alt=""
                         srcset="
                             {% for size in srcsetSizesDesktop %}
                                 {{mediaUrl}}/footer-{{size}}.jpg {{size}}w,
@@ -575,7 +761,7 @@
                     <div class="col-12">
                         <div class="footer__content section__text__content">
                             <div class="section__head">
-                                <h2 class="section__subtitle">{{ data.footer.subtitle }}</h2>
+                                <!-- <h2 class="section__subtitle">{{ data.footer.subtitle }}</h2> -->
                                 <h2 class="footer__title section__title">{{ data.footer.title }}</h2>
                                 <p class="footer__text section__text">{{ data.footer.text }}</p>
                             </div>

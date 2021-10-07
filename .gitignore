@@ -133,3 +133,8 @@ dmypy.json
 
 # Frontend stuff
 node_modules
+
+# Local files
+src/_images
+src/_prevs
+src/_data

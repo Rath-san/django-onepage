@@ -25,7 +25,7 @@ section {
 
     &.promo {
         .section__head {
-            max-width: 20em;
+            max-width: 26em;
             // @include respond-below(lg) {
             //     max-width: unset;
             // }
@@ -37,11 +37,52 @@ section {
             }
         }
     }
+
+    &.promo-big {
+        .section {
+            &__head {
+                max-width: 32em;
+            }
+            &__title {
+                // max-width: em;
+            }
+            &__text {
+                
+            }
+        }
+    }
+
+    &.promo-grid-slider {
+        .section__head {
+            max-width: 37em;
+        }
+    }
+    // &.promo-compositions {
+    //     .section__head {
+    //         max-width: 25em;
+    //         margin: auto;
+    //     }
+    // }
+    &.prevs {
+        .lines__comp {
+            .section__title {
+                max-width: 8em;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+        .section__content {
+            .section__head {
+                max-width: 23em;
+            }
+        }
+    }
 }
 
 footer.footer {
     .section {
         &__title {
+            max-width: 11em;
         }
         &__text {
             max-width: 31em;

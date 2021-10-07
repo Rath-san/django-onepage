@@ -8,6 +8,29 @@
     margin-top: 0rem;
   }
 
+  .wave {
+    width: 200%;
+    height: auto;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    z-index: 1;
+    margin-top: -2px;
+    fill: #000;
+    // bottom: 0;
+    // width: 50%;
+    animation: identifier 38s linear 0s infinite forwards;
+  }
+
+  @keyframes identifier {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
   .image__background {
     position: absolute;
     top: 0;
@@ -24,13 +47,23 @@
   }
   
   &.trailer {
+
+    .arrow__deco {
+      position: absolute;
+      right: 5vw;
+      width: 15vw;
+      bottom: 5vw;
+    }
     // background-position: center;
     // background-size: cover;
     // z-index: 2;
     // padding-bottom: 0;
     // padding-top: 4rem;
     // position: relative;
-    padding-bottom: 7rem;
+    padding-bottom: 0;
+    @include respond-below(xl) {
+      padding-bottom: 2rem;
+    }
 
     @include respond-below(sm) {
       margin-top: 0;
@@ -38,18 +71,27 @@
   }
 
   &.tutorial {
-    // padding-top: 3rem;
-    // padding-bottom: 0;
-    // background-position: top;
-    // background-size: 100% 50%;
-    // background-repeat: no-repeat;
-    // z-index: 1;
-    // overflow: visible;
+    padding-top: 14rem;
     margin-bottom: -1px;
     padding-bottom: 7rem;
 
-    .section__text {
-      margin-bottom: 4rem;
+    @include respond-below(xl) {
+      padding-top: 10rem;
+      padding-bottom: 4rem;
+    }
+
+    @include respond-below(md) {
+      padding-top: 4rem;
+      padding-bottom: 2rem;
+    }
+
+    .section {
+      &__title {
+        // color: $color-cta;
+      }
+      &__text {
+        margin-bottom: 4rem;
+      }
     }
   }
 

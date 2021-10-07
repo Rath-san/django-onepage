@@ -10,13 +10,14 @@ $animation-duration: 1s;
 .word  {
   display: inline-block;
   opacity: 0;
-  &:first-of-type {
-    transform: translateX(-1rem);
-  }
+  transform: translateX(1rem);
+  // &:first-of-type {
+  //   transform: translateX(-1rem);
+  // }
 
-  &:last-of-type {
-    transform: translateX(1rem);
-  }
+  // &:last-of-type {
+  //   transform: translateX(1rem);
+  // }
 
   transition: transform $animation-duration cubic-bezier(0.3, 0, 0.3, 1),
     opacity $animation-duration linear;

@@ -4,9 +4,9 @@ $font-size-title: $rem * 2;
 $font-size-sub-title: $rem * 1.2;
 $font-size-body: $rem * .9;
 
-$font-family-subtitle: 'Mukta', sans-serif;
-$font-family-title: 'Mukta', sans-serif;
-$font-family-text: 'Mukta', sans-serif;
+$font-family-subtitle: 'Lato', sans-serif;
+$font-family-title: 'Montserrat', sans-serif;
+$font-family-text: 'Lato', sans-serif;
 
 
 h1,
@@ -17,6 +17,7 @@ h5,
 h6 {
   line-height: 1;
   margin-bottom: 0;
+  font-family: $font-family-title;
 }
 
 b {
@@ -31,22 +32,27 @@ main {
 .section {
   &__title {
     font-size: 2rem;
-    font-weight: 500;
+    font-weight: 600;
     margin-bottom: 1rem;
     line-height: 1.2;
+    font-family: $font-family-title;
+    @include respond-below(sm) {
+      font-size: 1.5rem;
+    }
   }
   &__subtitle {
     font-size: .7rem;
-    font-weight: 500;
+    font-weight: 400;
     margin-bottom: .8rem;
     text-transform: uppercase;
-    // color: $color-cta;
+    font-family: $font-family-subtitle;
   }
 
   &__display {
-    font-size: 10rem;
+    font-size: 7rem;
     font-weight: 600;
     line-height: 1;
+    font-family: $font-family-title;
     @include respond-below(sm) {
       font-size: 7rem;
     }
