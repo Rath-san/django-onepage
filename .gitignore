@@ -135,6 +135,11 @@ dmypy.json
 node_modules
 
 # Local files
-src/_images
-src/_prevs
+src/_images/**/*.jpg
+src/_images/**/*.png
+src/_images/**/*.webp
+src/_images/**/*.svg
+src/_images/**/*.mp4
+src/_prevs/**/*.jpg
+src/_prevs/*
 src/_data
