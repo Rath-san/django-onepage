@@ -1,8 +1,6 @@
 const { watch, series } = require("gulp");
 const {
   resizeImages,
-  resizeImagesDesktop,
-  resizeImagesMobile,
   resizeImagesCustom,
 } = require("./gulp-tasks/image-resize");
 const scssTask = require("./gulp-tasks/styles");
@@ -12,23 +10,23 @@ const {
   browserSyncTask,
 } = require("./gulp-tasks/server");
 
+const { hashTask } = require('./gulp-tasks/hash-file');
+
 const { DIRS } = require("./gulp-tasks/constants");
 
 function watchTask() {
   watch(DIRS.templates, browsersyncReload);
-  watch(DIRS.styles.src, scssTask);
-  watch(DIRS.scripts.src, series(jsTask, browsersyncReload));
+  watch(DIRS.styles.src, series(scssTask, hashTask));
+  watch(DIRS.scripts.src, series(jsTask, browsersyncReload, hashTask));
 }
 
 module.exports = {
   resize: resizeImages,
-  resizeMobile: resizeImagesMobile,
-  resizeDesktop: resizeImagesDesktop,
   resizeCustom: resizeImagesCustom,
   dev: series(
     scssTask,
     jsTask,
     browserSyncTask,
-    watchTask
+    watchTask,
   ),
 };

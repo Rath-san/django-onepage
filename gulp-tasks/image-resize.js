@@ -11,16 +11,45 @@ const {
     RESPONSIVE_SIZES,
 } = require("./constants");
 
+const BREAKPOINTS = {
+    mobile: "m",
+    desktop: "d",
+};
+
+/*
+    ex
+    * desktop only with constant height
+        'mbundle_footer-d_2560x860.jpg'
+    * mobile only with proportional height
+        'mbundle_footer-m_2560.jpg'
+    * with constant height on all breakpoints
+        'mbundle_footer-2560.jpg'
+*/
+
 function resizeTask(
     size,
-    imgSrc = DIRS.images.src,
+    imgSrc = [DIRS.images.src, "src/_images/*.png"],
     imgDist = DIRS.images.dist
 ) {
     return src(imgSrc).pipe(
         through2.obj(async function (file, _, cb) {
+            const [name, meta] = file.basename.split("-");
 
-            const width = size.w;
-            const height = size.h ?? 860;
+            // if m | d perform resizing acording to mobile or desktop only
+            const bpExec = /(d|m)_/gi.exec(meta);
+            const breakpoint = bpExec ? bpExec[1] : undefined;
+            const isMobileOnly = breakpoint === BREAKPOINTS.mobile;
+
+            const activeBreakpoints = 
+            !breakpoint
+                ? RESPONSIVE_SIZES
+                : isMobileOnly
+                    ? RESPONSIVE_SIZES_MOBILE
+                    : RESPONSIVE_SIZES_DESKTOP;
+
+            // if hasHeight resize acordingly
+            const hExec = /x(.+)\./gi.exec(meta);
+            const height = hExec ? Number(hExec[1]) : undefined;
             // make sharp instance
             const img = sharp(file.contents);
 
@@ -28,91 +57,64 @@ function resizeTask(
             // read image size
             const imgMetadata = await img.metadata();
             const imgWidth = imgMetadata.width;
-            if (imgWidth >= width) {
-                // do stuff
-                const resizedImg = img.resize(width, height, {
-                    fastShrinkOnLoad: false,
-                });
 
-                resizedImg.toFormat("jpg", {
-                    quality: 75,
-                });
-
+            // do stuff
+            activeBreakpoints.forEach((size) => {
+                const width = size.w;
                 const generateName = (customExt) => {
-                    const fileBaseName = file.basename;
-                    const fileExtOriginal = file.extname;
-                    const fileExt = customExt ? `.${customExt}` : file.extname;
-                    const fileBaseNameWithoutExt = fileBaseName.slice(
-                        0,
-                        -fileExtOriginal.length
-                    );
-                    return `${fileBaseNameWithoutExt
+
+                    const fileExt = customExt
+                        ? `.${customExt}`
+                        : file.extname;
+    
+                    return `${name
                         .split(" ")
-                        .join("_")}-${width}${fileExt}`;
+                        .join("_")}-${!breakpoint ? '' : isMobileOnly ? 'm_' : 'd_'}${width}${fileExt}`;
                 };
 
-                const saveFile = (format) => {
-                    const clone = resizedImg.clone();
 
-                    if (format) {
-                        clone.toFormat(format, {
-                          quality: 85
-                        });
-                    }
+                if (imgWidth >= width) {
+                    const resizedImg = img.resize(width, height, {
+                        // fastShrinkOnLoad: false,
+                    });
 
-                    clone.toFile(
-                        path.resolve(
-                            __dirname,
-                            "../",
-                            imgDist,
-                            `${generateName(format ?? 0)}`
-                        )
-                    );
-                };
+                    resizedImg.toFormat("png", {
+                        quality: 100,
+                    });
 
-                const formats = [null, 'webp'];
-                formats.forEach((f) => {
-                    saveFile(f);
-                });
+                    const saveFile = async (format) => {
+                        const clone = resizedImg.clone();
 
-                // const resizedImgBuffer = await resizedImg.toBuffer();
+                        if (format) {
+                            clone.toFormat(format, {
+                                quality: 50,
+                            });
+                        }
 
-                // file.contents = resizedImgBuffer;
-            } else {
-                cb();
-                return;
-            }
+                        await clone.toFile(
+                            path.resolve(
+                                __dirname,
+                                "../",
+                                imgDist,
+                                `${generateName(format ?? 0)}`
+                            )
+                        );
+                    };
+
+                    const FORMATS = [null, "webp"];
+                    FORMATS.forEach((f) => {
+                        saveFile(f);
+                    });
+                }
+            });
 
             return cb();
         })
     );
-    // .pipe(rename(function(path) {
-    //     path.basename = path.basename.toLowerCase()
-    //     path.basename = `${path.basename.split(' ').join('_')}-${size}`
-    //   })
-    // )
-    // // .pipe(imagemin())
-    // .pipe(dest(imgDist));
 }
 
 function resizeImages(cb) {
-    RESPONSIVE_SIZES.forEach((size) => {
-        resizeTask(size);
-    });
-    cb();
-}
-
-function resizeImagesMobile(cb) {
-    RESPONSIVE_SIZES_MOBILE.forEach((size) => {
-        resizeTask(size, `${DIRS.images.src}/mobile/*`);
-    });
-    cb();
-}
-
-function resizeImagesDesktop(cb) {
-    RESPONSIVE_SIZES_DESKTOP.forEach((size) => {
-        resizeTask(size, `${DIRS.images.src}/desktop/*`);
-    });
+    resizeTask();
     cb();
 }
 
@@ -126,7 +128,5 @@ function resizeImagesCustom(cb) {
 
 module.exports = {
     resizeImages,
-    resizeImagesMobile,
-    resizeImagesDesktop,
     resizeImagesCustom,
 };

@@ -3,6 +3,7 @@ const sourcemaps = require("gulp-sourcemaps");
 const source = require("vinyl-source-stream");
 const buffer = require("vinyl-buffer");
 const rollup = require("@rollup/stream");
+const hash = require('rollup-plugin-hash');
 const { terser } = require("rollup-plugin-terser");
 
 // Add support for require() syntax
