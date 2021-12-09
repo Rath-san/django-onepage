@@ -1,0 +1,31 @@
+.page-paginator {
+  width: 100%;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .pagination-pointer {
+    display: inline-block;
+    font-size: 0.9rem;
+    font-weight: 400;
+    margin: 0;
+    padding: 0 0.5em;
+  }
+
+  img {
+    padding: 0.5rem;
+    width: 1.75em;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.pagination {
+  &__top {
+  }
+
+  &__bottom {
+    margin-top: 2rem;
+  }
+}

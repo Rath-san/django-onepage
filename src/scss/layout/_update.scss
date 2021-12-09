@@ -1,0 +1,107 @@
+.update {
+  overflow: hidden;
+  .container {
+    z-index: 1;
+    position: relative;
+  }
+  position: relative;
+  padding: 10rem 0 20rem 0;
+  @media screen and (max-width: 768px) {
+    padding: 5rem 0;
+    // overflow: hidden;
+  }
+  &__subtitle {
+    margin-top: 3rem;
+    // text-shadow: 2px 2px 10px #000;
+  }
+
+  &__progress {
+  }
+
+  &__bg {
+    display: flex;
+    align-items: center;
+
+    &__item {
+      &__wrapper {
+        will-change: transform;
+        padding: 0 4rem;
+        transition: transform 0.15s ease;
+        width: 100%;
+        @media screen and (max-width: 768px) {
+          display: none;
+        }
+        &:nth-child(1) {
+          .update__bg__item {
+            transform: translateY(110%);
+            filter: blur(10px);
+          }
+        }
+        &:nth-child(2) {
+          .update__bg__item {
+            transform: translateY(20%);
+          }
+        }
+        &:nth-child(3) {
+          .update__bg__item {
+            transform: translateY(80%);
+          }
+        }
+        &:nth-child(4) {
+          .update__bg__item {
+            transform: translateY(100%);
+          }
+        }
+        &:nth-child(5) {
+          .update__bg__item {
+            transform: translateY(-5%);
+          }
+        }
+        &:nth-child(6) {
+          .update__bg__item {
+            transform: translateY(50%);
+            filter: blur(10px);
+          }
+        }
+      }
+
+      &s {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        width: 2400px;
+        margin: auto;
+        position: absolute;
+        transform: translateX(-50%);
+        left: 50%;
+        z-index: 5;
+      }
+    }
+
+    &__matrix {
+      background-color: transparent;
+      opacity: 0.15;
+      z-index: 1;
+      &__shadow {
+        box-shadow: 0 0 300px 40px inset #030200;
+        @media screen and (max-width: 768px) {
+          height: 120%;
+          width: 120%;
+          left: -10% !important;
+          box-shadow: 0 -100px 100px 40px inset #030200;
+          // display: none;
+        }
+        z-index: 6;
+        &--2 {
+          box-shadow: 0 0 300px 40px inset #030200;
+          @media screen and (max-width: 768px) {
+            display: none;
+            // box-shadow: 0 0 120px 90px inset #030200;
+          }
+          // z-index: 7;
+        }
+      }
+    }
+  }
+}

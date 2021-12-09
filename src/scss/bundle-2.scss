@@ -1,0 +1,265 @@
+@import './abstract/variables';
+@import './mixins/mixins';
+
+@font-face {
+    font-family: Proxima Nova;
+    src: url("sansation_light.woff");
+}
+
+.popup-left {
+    -webkit-transition: transform 0.6s ease-in-out;
+    transition: transform 0.6s ease-in-out;
+    font-family: Proxima, sans-serif, arial;
+    width: 13%;
+    min-width: 320px;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    background-color: #fff;
+    padding: 3rem 0.2rem 1.6rem;
+    position: fixed;
+    transform: translate(-101%);
+    top: 20%;
+    z-index: 100;
+    box-shadow: 3.5px 6.062px 38px 0 rgba(0, 0, 0, 0.1);
+}
+
+.popup-left .close {
+    cursor: pointer;
+}
+.popup-left .close {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.5rem;
+}
+.popup-left .close img {
+    width: 14px;
+    display: block;
+}
+
+.popup-left .promo-img {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.popup-left .promo-img img {
+    width: 100%;
+}
+
+.popup-left p.popup-left-title {
+    display: block;
+    text-align: center;
+    font-size: 0.9rem;
+    line-height: 1.3rem;
+    margin-bottom: 0.55rem;
+}
+
+.popup-left p.popup-left-title span {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.popup-left p.popup-left-subtitle {
+    display: block;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.popup-left p.popup-left-link {
+    display: block;
+    text-align: center;
+    margin: 1rem auto;
+}
+
+.popup-left p.popup-left-link a {
+    -webkit-transition: background-color 0.2s, box-shadow 0.2s ease-in-out;
+    transition: background-color 0.2s, box-shadow 0.2s ease-in-out;
+    display: block;
+    max-width: 180px;
+    margin: 0 auto;
+    padding: 0.8rem 0.8rem 0.82rem;
+    background-color: #3d98ff;
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.7rem;
+    border-radius: 2px;
+    box-shadow: 0 2px 20px rgba(61, 152, 255, 0.5);
+}
+
+.popup-left p.popup-left-link a:hover {
+    background-color: #1784ff;
+    box-shadow: 0 2px 20px rgba(61, 152, 255, 0.8);
+}
+
+@media all and (max-width: 1680px) {
+    .popup-left {
+        width: 22%;
+    }
+
+    .popup-left p.popup-left-title {
+        display: block;
+        text-align: center;
+        font-size: 0.9rem;
+        line-height: 1.3rem;
+    }
+    .popup-left p.popup-left-subtitle {
+        display: block;
+        text-align: center;
+        font-size: 0.9rem;
+    }
+    .popup-left p.popup-left-link {
+        display: block;
+        text-align: center;
+        margin: 1rem auto;
+    }
+}
+
+@media all and (max-width: 1280px) {
+    .popup-left {
+        width: 25%;
+        min-width: 250px;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+
+    .popup-left p.popup-left-title {
+        font-size: 0.9rem;
+        line-height: 1.3rem;
+    }
+    .popup-left p.popup-left-subtitle {
+        font-size: 0.9rem;
+    }
+    .popup-left p.popup-left-link a {
+        font-size: 0.7rem;
+    }
+}
+@media all and (max-width: 1024px) {
+    .background .popup-left {
+        padding: 3rem 0.7rem 0.5rem 0.7rem;
+    }
+}
+
+@media all and (max-width: 992px) {
+    .background .popup-left {
+        width: 30%;
+        min-width: 250px;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        padding: 3rem 0.9rem 0.5rem 0.9rem;
+    }
+    .background .popup-left p.popup-left-title {
+        font-size: 0.9rem;
+        line-height: 1.3rem;
+    }
+    .background .popup-left p.popup-left-title span {
+        font-size: 1.2rem;
+    }
+    .background .popup-left p.popup-left-subtitle {
+        font-size: 0.9rem;
+    }
+    .background .popup-left p.popup-left-link {
+        margin: 1rem auto;
+    }
+    .background .popup-left p.popup-left-link a {
+        max-width: 170px;
+        font-size: 0.7rem;
+        border-radius: 2px;
+    }
+}
+
+@media all and (max-width: 767px) {
+    .popup-left {
+        width: 35%;
+        min-width: 200px;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        padding: 3rem 0.9rem 0.5rem 0.9rem;
+    }
+    .popup-left p.popup-left-title {
+        font-size: 0.7rem;
+        line-height: 1rem;
+    }
+    .popup-left p.popup-left-title span {
+        font-size: 1rem;
+    }
+    .popup-left p.popup-left-subtitle {
+        font-size: 0.8rem;
+    }
+    .popup-left p.popup-left-link {
+        margin: 1rem auto;
+    }
+    .popup-left p.popup-left-link a {
+        max-width: 160px;
+        font-size: 0.7rem;
+        border-radius: 2px;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+    }
+}
+
+@media all and (max-width: 589px) {
+    .popup-left {
+        width: 200px;
+        padding: 3rem 0.5rem 0.5rem 0.5rem;
+    }
+    .popup-left p.popup-left-title {
+        font-size: 0.7rem;
+        line-height: 1rem;
+    }
+    .popup-left p.popup-left-title span {
+        font-size: 1rem;
+    }
+    .popup-left p.popup-left-subtitle {
+        font-size: 0.8rem;
+    }
+    .popup-left p.popup-left-link {
+        margin: 1rem auto;
+    }
+    .popup-left p.popup-left-link a {
+        max-width: 120px;
+        font-size: 0.55rem;
+    }
+}
+
+.off-tag {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 50%;
+    background-color: #FF6699;
+    @include square(5em);
+    font-weight: 400;
+    text-align: center;
+    color: #fff;
+    text-transform: uppercase;
+    font-family: 'Proxima', sans-serif;
+	font-size: .75rem;
+
+	@include respond-below(md) {
+		font-size: .65rem;
+	}
+
+	@include respond-below(sm) {
+		font-size: .5rem;
+	}
+
+    span {
+        display: block;
+        text-align: center;
+        line-height: 1.2;
+    }
+
+    &__percentage {
+        font-weight: 600;
+        font-size: 1.25em;
+        margin-bottom: -.25em;
+        margin-right: -.25em;
+    }
+}
+
+.popup-left {
+	.off-tag {
+		position: absolute;
+		top: 2rem;
+	}
+}

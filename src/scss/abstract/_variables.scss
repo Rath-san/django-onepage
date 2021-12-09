@@ -1,0 +1,76 @@
+$color-link: #429BFC;
+$color-link-2: #FED246;
+$color-cta: #FA5E62;
+
+$color-cta: #27FF82;
+
+$cta-gradient: linear-gradient(
+  transparent 0%,
+  darken(#33EC9D, 53%) 50%,
+  transparent 100%
+);
+
+$navbar-height: 100px;
+
+$swg: linear-gradient(
+    #F434AA 0%,
+    #1C020C 26%,
+    #F020CA 27%,
+    #660951 51%,
+    #EC10BC 52%,
+    #9957FB 65%,
+    #36105E 66%,
+    #C524FA 83%,
+    #10033D 84%,
+    #9E3BFB 100%
+    );
+
+$swg1: linear-gradient(
+    #DE12E5 0%,
+    #3B0008 29%,
+    #532408 30%,
+    #E5BC7C 31%,
+    #F4C96A 40%,
+    #F49653 57%,
+    #F4307F 73%,
+    #58083D 74%,
+    #F4307F 79%,
+    #58083D 93%,
+    #3A0029 100%
+);
+
+$glow-underlay-1: linear-gradient(
+    180deg,
+    // #2b1165 0%,
+    #c600ff 0%,
+    #c600ff 100%,
+    // #ab24b1 69%,
+    // #f54171 100%
+  );
+
+  $glow-underlay-1-horizontal: linear-gradient(
+    90deg,
+    // #2b1165 0%,
+    #c600ff 0%,
+    #1a3a82 100%,
+    // #ab24b1 69%,
+    // #f54171 100%
+  );
+
+$glow-shadow-1: 0 0 0.025em #fff, 
+0 0 0.05em #fff, 
+0 0 0.1em #ff00cd, 
+0 0 0.2em #ff00cd, 
+0 0 0.25em #ff00cd, 
+0 0 0.75em #ff00cd, 
+0 0 1.25em #ff00cd, 
+0 0 1.75em rgba(#ff00cd, .5);
+
+$rere: #c600ff;
+$fefe: #ff00cd;
+
+// needs to be moved
+@mixin square($width) {
+  width: $width;
+  height: $width;
+}

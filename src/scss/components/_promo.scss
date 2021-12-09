@@ -1,0 +1,297 @@
+.promo {
+  position: relative;
+  padding: 0;
+  // text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  > * {
+    &:nth-child(1) {
+    }
+    &:nth-child(2) {
+      @include respond-below(xl) {
+      // @media screen and (max-width: 914px) {
+        order: 2;
+      }
+    }
+    &:nth-child(3) {
+    }
+  }
+
+  .image__background {
+    &--static {
+      img {
+        max-height: 1000px;
+        // object-fit: contain;
+        @media screen and (max-width: 960px) {
+          object-position: left 30%;
+          object-fit: cover;
+          min-height: 400px;
+          max-height: 75vw;
+        }
+      }
+    }
+  }
+
+  &--1 {
+    // max-height: 1100px;
+    .image__background {
+      &--static {
+        img {
+          max-height: 1100px !important;
+          @include respond-below(xl) {
+            max-height: 700px !important;
+          }
+          // object-fit: contain;
+          // @media screen and (max-width: 960px) {
+          //     object-position: left 30%;
+          //     object-fit: cover;
+          //     max-height: 75vw;
+          // }
+        }
+      }
+    }
+    .section {
+      &__content {
+
+        // @include respond-below(xl) {
+          margin-top: 0;
+        // }
+        @include respond-above(xl) {
+          margin-top: 5vw;
+        }
+      }
+
+      &__head {
+        margin-bottom: 0 !important;
+      }
+    }
+    // .section__text {
+    //   margin-bottom: 1rem;
+    // }
+  }
+
+  &--2 {
+    // .image__background {
+    //   &--static {
+    //     img {
+    //       // max-height: 1150px !important;
+    //       // object-fit: contain;
+    //       // @media screen and (max-width: 960px) {
+    //       //     max-height: 400px !important;
+    //       // }
+    //     }
+    //   }
+    // }
+    .section {
+      &__content {
+        @include respond-below(sm) {
+          margin-top: 1rem !important;
+        }
+      }
+    }
+  }
+
+  &__deco {
+    position: absolute;
+    z-index: 1;
+
+    &--1 {
+      top: 0;
+      transform: translate(-30%, -50%);
+      @include respond-below(lg) {
+        display: none;
+      }
+      video,
+      img {
+        width: clamp(100px, 35vw, 530px);
+        height: auto;
+      }
+    }
+
+    &--2 {
+      right: 0;
+      top: 0;
+      bottom: 0;
+      // mix-blend-mode: screen;
+      @include respond-below(xl) {
+        max-height: calc(1100 / 2560 * 100vw);
+      }
+
+      @include respond-below(lg) {
+        display: none;
+      }
+
+      video,
+      img {
+        height: 100%;
+        object-fit: cover;
+        width: clamp(100px, 25vw, 430px);
+      }
+    }
+  }
+
+  .section {
+    &__content {
+      position: absolute;
+      z-index: 1;
+      // transform: translateY(30%);
+      width: 100%;
+      padding-bottom: 0rem;
+      // height: 100%;
+      @media screen and (max-width: 1030) {
+        
+      }
+      @include respond-below(xl) {
+        height: unset;
+        // transform: translateY(-50%);
+        // margin-top: -38vw;
+        // position: static;
+      }
+
+      @include respond-below(md) {
+        // transform: translateY(-50%);
+        position: static;
+
+        margin-top: 2.5rem;
+      }
+    }
+    &__head {
+      max-width: clamp(300px, 50%, 640px);
+      margin-left: auto;
+      @include respond-below(xl) {
+        margin-bottom: 2rem;
+        max-width: clamp(300px, 70%, 640px);
+        margin-left: unset;
+        margin-right: auto;
+      }
+      @include respond-below(lg) {
+        max-width: clamp(500px, 70%, 640px);
+      }
+    }
+    &__subtitle {
+    }
+    &__title {
+    }
+
+    &__text {
+      padding-left: 0;
+      margin-bottom: 0rem;
+      @include respond-above(lg) {
+        padding-left: 5em;
+      }
+    }
+  }
+
+  &__inversed {
+    text-align: left;
+    // padding-bottom: 2rem;
+    .section {
+      &__head {
+        margin-left: 0px;
+        margin-right: auto;
+        // margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.promo {
+  &[data-visible="true"] {
+    .secuence:not(.comp-1) {
+      opacity: 1 !important;
+      transform: translateY(0);
+    }
+
+    .section__head {
+      > * {
+        opacity: 1 !important;
+        transform: translateY(0);
+      }
+    }
+  }
+}
+
+.promo-slider {
+  .big__prev__content {
+    // position: relative;
+    // text-decoration: underline;
+    // text-shadow: 0 0 20px black;
+    margin-top: 2.5rem;
+    &.section__content {
+      pointer-events: none;
+      @include respond-below(xl) {
+        position: static;
+        height: unset;
+        margin-top: 2rem !important;
+      }
+    }
+
+    .section__head {
+      // position: relative;
+      // &::after {
+      //     content: '';
+      //     position: absolute;
+      //     background: #00000099;
+      //     top: -100px;
+      //     bottom: -100px;
+      //     left: -100px;
+      //     right: 0;
+      //     z-index: -1;
+      //     filter: blur(100px);
+      //     border-radius: 50%;
+      // }
+    }
+  }
+
+  //   .carousel-item {
+  //     &--3 {
+
+  //     }
+  //   }
+
+  .carousel-indicators {
+    display: flex;
+    left: unset;
+    bottom: unset;
+    margin: 0;
+    width: auto;
+    max-width: initial;
+    right: 0;
+    left: 50%;
+    bottom: calc(50% - 10rem);
+    padding-left: calc(5rem - 8px);
+    justify-content: start;
+    @include respond-below(xl) {
+      position: static;
+      // position: relative;
+      padding: 0 calc(10%);
+      margin: 2.5rem 0 -3.5rem 0;
+      align-self: flex-end;
+    }
+
+    @media screen and (max-width: 914px) {
+      align-self: flex-start;
+      margin: 2.5rem 0 0 0;
+    }
+    
+    &__item {
+      font-size: 0.9rem;
+      cursor: pointer;
+      margin: 0 1rem;
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+
+    .active {
+      text-decoration: underline;
+      background-color: transparent;
+    }
+  }
+  @include respond-below(md) {
+    margin-bottom: -3rem;
+  }
+}

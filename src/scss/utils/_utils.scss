@@ -1,0 +1,24 @@
+@function more-shadows($n, $directionX, $directionY, $colors) {
+    $value: "-1px 0 0 #{nth($colors, 1)}";
+
+    $colorsLength: length($colors);
+
+    $colorSpaceBase: ceil($n / $colorsLength);
+    $colorSpace: $colorSpaceBase;
+
+    $currentColor: nth($colors, 1);
+
+    @for $i from 2 through $n {
+        @if $colorSpace < $i {
+            $currentColor: nth($colors, 1 + 1);
+            $colorSpace: $colorSpace + $colorSpaceBase;
+        }
+
+        $value: "#{$value}, #{$i * $directionX}px #{$i * 2 * $directionY}px 0 "+darken(
+                $currentColor,
+                $i * 8.5
+            );
+    }
+    // $value: '#{$value}, #{$glow-shadow-1}';
+    @return unquote($value);
+}

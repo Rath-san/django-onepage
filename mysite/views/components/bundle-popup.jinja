@@ -1,0 +1,33 @@
+    <!-- bundle popup -->
+    {% set bundle_mediaUrl = 'https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media' % 1357 %}
+
+    {% set bundle_name = 'mBundle WEDDING' %}
+    {% set bundle_img = '%s/%s.png?%r' % (bundle_mediaUrl, 'mbundle_wedding', refresh) %}
+    {% set bundle_link = 'https://www.motionvfx.com/store,mbundle-wedding,p3638.html' %}
+    {% set bundle_off = 55 %}
+
+    <!-- bundle-popup  -->
+    <link href="https://s3.motionvfx.com/mvfxpublic/products/templates/1357/css/bundle-2.css?response-content-type=text/css" rel="stylesheet">
+    <script src="https://s3.motionvfx.com/mvfxpublic/products/templates/1212/js/bundle.js"></script>
+
+    <div class="popup-left" id="bundle">
+        <div class="close"><img loading="lazy" src="https://www.motionvfx.com/static/svg/close.svg?1578" onclick="hideBundle();"></div>
+        <div class="off off-tag">
+            <span class="off-tag__text">save</span>
+            <span class="off-tag__percentage">{{bundle_off}}%</span>
+        </div>
+
+        <div class="promo-img">
+            <a href="{{bundle_link}}" target="_blank"><img src="{{bundle_img}}" /></a>
+        </div>
+        <p class="popup-left-title">
+            Get {{ product.title }} with<br /><span>{{bundle_name}}</span>
+        </p>
+        <p class="popup-left-subtitle">
+            and save {{bundle_off}}%!
+        </p>
+        <p class="popup-left-link">
+            <a href="{{bundle_link}}" target="_blank">FIND OUT MORE</a>
+        </p>
+    </div>
+    <!-- bundle popup end -->

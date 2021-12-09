@@ -1,0 +1,37 @@
+body {
+  background-color: #000;
+}
+
+main {
+  background-color: #000;
+  color: #27FF82;
+  overflow: hidden;
+  @media screen and (max-width: 960px) {
+    font-size: 0.875rem;
+  }
+}
+
+section {
+  padding: 5.25rem 0;
+
+  @include respond-below(md) {
+    padding: 4rem 0;
+  }
+
+  @include respond-below(sm) {
+    padding: 3.25rem 0
+  }
+}
+
+.section {
+  &__head {}
+  &__content {
+    @media screen and (max-width: 1920px) {
+      padding: 0 calc(10% - 15px);
+    }
+  }
+}
+
+.container {
+  max-width: 1280px;
+}

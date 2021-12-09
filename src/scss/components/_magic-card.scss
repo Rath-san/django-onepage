@@ -1,0 +1,104 @@
+// @property --rotate {
+//     syntax: "<angle>";
+//     initial-value: 132deg;
+//     inherits: false;
+//   }
+  
+//   :root {
+//   }
+  
+  
+//   body {
+//     min-height: 100vh;
+//     background: #212534;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     font-family: cursive;
+//   }
+  
+:root {
+    // --rotate: 132deg;
+}
+
+
+@keyframes spin {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+.card {
+    --card-height: 65vh;
+    --card-width: calc(var(--card-height) / 1.5);
+    background: #191c29;
+    width: var(--card-width);
+    height: var(--card-height);
+    padding: 3px;
+    position: relative;
+    border-radius: 6px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    font-size: 1.5em;
+    color: rgba(88, 199, 250, 0%);
+    cursor: pointer;
+    margin: auto;
+    z-index: 1;
+    overflow: hidden;
+    &:hover {
+        &:before,
+        &:after {
+            animation: none;
+            opacity: 0;
+        }
+    }
+    &::before {
+        left: 50%;
+        top: 50%;
+        transform-origin: center;
+        content: "";
+        width: 200%;
+        height: 150%;
+        border-radius: 8px;
+        transform: translate(-50%, -50%) rotate(45deg);
+        background: linear-gradient(
+            90deg,
+            #5ddcff,
+            #3c67e3 43%,
+            #4e00c2
+        );
+        position: absolute;
+        z-index: -1;
+        // top: -1%;
+        // left: -2%;
+        animation: spin 2.5s linear infinite;
+    }
+    
+    // &::after {
+    //     position: absolute;
+    //     content: "";
+    //     top: calc(var(--card-height) / 6);
+    //     left: 0;
+    //     right: 0;
+    //     z-index: -1;
+    //     height: 100%;
+    //     width: 100%;
+    //     margin: 0 auto;
+    //     transform: scale(0.8);
+    //     filter: blur(calc(var(--card-height) / 6));
+    //     background: linear-gradient(
+    //         0deg,
+    //         #5ddcff,
+    //         #3c67e3 43%,
+    //         #4e00c2
+    //     );
+    //     opacity: 1;
+    //     // transition: opacity .5s;
+    //     animation: spin 2.5s linear infinite;
+    // }
+}

@@ -1,0 +1,110 @@
+
+%ma {
+    margin-left: auto;
+    margin-right: auto;
+}
+section {
+    &.header {
+        .header__subtitle {
+            max-width: 19em;
+
+        }
+    }
+
+    &.trailer {
+        .section__text {
+            @extend %ma;
+            max-width: 28em;
+        }
+    }
+    &.tutorial {
+        .section__text {
+            @extend %ma;
+            max-width: 28em;
+        }
+    }
+
+    &.promo {
+        .section {
+            &__text {
+                // max-width: 21em;
+            }
+            &__head {
+                // max-width: 26em;
+                // @include respond-below(lg) {
+                //     max-width: unset;
+                // }
+            }
+        }
+
+        // &--workflow {
+        //     .section__title {
+        //         // max-width: 10em;
+        //     }
+        // }
+    }
+
+    &.promo-grid {
+        .section {
+            &__head {
+                // max-width: 32em;
+            }
+            &__text {
+
+            }
+        }
+    }
+
+    &.promo-slider {
+        .section {
+            &__text {
+                max-width: 30em;
+            }
+        }
+    }
+
+    &.promo-big {
+        .section {
+            &__head {
+            }
+            &__title {
+            }
+            &__text {
+                
+            }
+        }
+    }
+
+    &.prevs {
+        .lines__comp {
+            .section__title {
+                // max-width: 8em;
+                // margin-left: auto;
+                // margin-right: auto;
+            }
+        }
+        .section__content {
+            .section__head {
+                // max-width: 23em;
+            }
+        }
+
+        .section__head--end {
+            .section__text {
+                // max-width: 23em;
+            }
+        }
+    }
+}
+
+footer.footer {
+    .section {
+        &__title {
+        }
+        &__text {
+            @extend %ma;
+            max-width: 36em;
+        }
+    }
+    
+}

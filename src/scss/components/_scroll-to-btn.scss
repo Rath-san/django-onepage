@@ -1,0 +1,45 @@
+.scroll-to-btn {
+  $color: #27FF82;
+  $header-height: 92vh;
+
+  color: $color;
+  font-weight: 400;
+  margin: 34px auto 0 auto;
+  display: block;
+  border: 1px solid $color;
+  border-radius: 11px;
+  bottom: 0;
+  height: 37px;
+  width: 22px;
+  position: relative;
+  z-index: 1;
+
+  @media all and (max-height: 450px) {
+    display: none;
+  }
+
+  @include respond-below(sm) {
+    display: none;
+  }
+
+  @media screen and (min-height: 1020px) {
+    visibility: hidden;
+  }
+
+  &:before {
+    $width: 6px;
+    content: '';
+    width: $width;
+    height: $width;
+    background: $color;
+    margin-left: -$width / 2;
+    top: 8px;
+    border-radius: 50%;
+    left: 50%;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-name: mouse-scroll;
+    position: absolute;
+    box-sizing: border-box;
+  }
+}
