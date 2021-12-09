@@ -14,87 +14,138 @@
     ] %}
 
     {% set srcsetSizesDesktop = [
-        1280,
+        1280,  
         1600,
         1920,
         2560
      ] %}
 
-    {% set templateId = '1376' %}
+
+    {% set templateId = '1378' %}
     {% set refresh = 6 %}
     {% set mediaUrl = 'https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media' % templateId %}
 
     {% set data = {
         'header': {
-            'subtitle': 'Matrix-Inspired Layout Pack for Final Cut Pro & DaVinci Resolve'
+            'subtitle': 'Powerful Typography Presets for DaVinci Resolve'
         },
         'trailer': {
-            'title': 'WATCH TRAILER',
-            'subtitle': 'ENTER THE MATRIX',
-            'text': 'See the pack in action and discover how deep the rabbit hole goes…'
+            'title': 'EXPERIENCE THE ACTION',
+            'text': 'See the powerful impact this plugin has on your shots and feel the hype build up!'
         },
         'tutorial': {
-            'title': 'WATCH TUTORIALS',
-            'subtitle': 'LEARN THE SIMULATION',
-            'text': 'Get the know-how on how to simulate the Matrix reality. It is you who set the rules.'
+            'title': 'GRASP THE KNOW-HOW, PERFECT YOUR WORKFLOW',
+            'text': 'Watch the tutorial and get some useful tricks to make your edits better in no time!'
         },
-        'preset': {
-            'text': 'Your tutorials, vlogs, reviews, and other videos will gain extra quality to make a lasting impression.'
+        'presets': {
+            'title': 'DIVERSE PRESETS',
+            'text': 'With over 60 assets, including titles, backgrounds, and add-ons, you’ll find exactly what you need for any project.',
+            'title2': 'DATABENDING-INSPIRED VIDEO TRANSITIONS <b>DESIGN</b> TRENDY GLITCHY GRAPHICS',
+            'text2': 'mTitle Hype DV is sleek, intuitive, and easy to use, making it perfect for video editors, marketers, and creatives alike.'
         },
         'footer': {
-            'title': 'CHOOSE TO AMAZE',
-            'subtitle': 'footer subtitle',
-            'text': 'With mMatrix at your fingertips, you will be able to generate an entire dimension of digital glitches and cinematic effects that will tie your edit into one cohesive whole. Drag your audience inside the Matrix and leave them breathless.'
+            'title': 'PUT YOUR MESSAGE ACROSS',
+            'text': 'Give any edit a dose of dynamism and speak to your audience with modern typographical design. The end result is a package that sells itself.'
         }
     } %}
+
+    {% set placeholder = 'https://via.placeholder.com' %}
+
+    <style>
+        .section__title {
+            opacity: 0;
+        }
+    </style>
+
+    {# <div hidden>
+        <svg id="arrow" class="arrow" width="100" height="100" viewBox="-5 -5 110 132" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M56.1584 61.3374L56.4671 61L56.1584 60.6626L1.13487 0.5H43.9902L99.3224 61L43.9902 121.5H1.13487L56.1584 61.3374Z" fill="#fff"/>
+        </svg>
+        <svg id="circle" class="circle" width="100" height="100" viewBox="-5 -5 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="65" cy="65" r="64.5" fill="#fff"/>
+        </svg>
+        <svg id="crossEmpty" width="100" class="cross-empty" height="100" viewBox="-5 -5 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M62 0H38V38H0V62H38V100H62V62H100V38H62V0Z" fill="#fff"/>
+        </svg>
+        <svg id="cross" width="100" height="100" class="cross" viewBox="-5 -5 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M62 0H38V38H0V62H38V100H62V62H100V38H62V0Z" fill="#fff"/>
+        </svg>
+    </div> #}
 
     <main>
         <section class="header text-center">
             <div class="header__bg" style="opacity:0">
-                <canvas id="canv"></canvas>
+                {# <canvas id="canv"></canvas> #}
+                <picture>
+                    <source media="(max-width: 512px)" srcset="
+                        {% for size in srcsetSizesMobile %}
+                            {{mediaUrl}}/mTitleHype_top-{{size}}.webp {{size}}w,
+                        {% endfor %}
+                    "
+                    type="image/webp">
+                    <source media="(max-width: 512px)" srcset="
+                        {% for size in srcsetSizesMobile %}
+                            {{mediaUrl}}/mTitleHype_top-{{size}}.jpg {{size}}w,
+                        {% endfor %}
+                    "
+                    type="image/jpeg">
+                    <source srcset="
+                        {% for size in srcsetSizesDesktop %}
+                            {{mediaUrl}}/mTitleHype_top-{{size}}.webp {{size}}w,
+                        {% endfor %}
+                    "
+                    type="image/webp">
+                    <img
+                        loading="lazy"
+                        width="2560"
+                        height="1250"
+                        src="{{mediaUrl}}/mTitleHype_top-2560.jpg"
+                        {# src="{{placeholder}}/2560x860" #}
+                        alt=""
+                        srcset="
+                            {% for size in srcsetSizesDesktop %}
+                                {{mediaUrl}}/mTitleHype_top-{{size}}.jpg {{size}}w,
+                            {% endfor %}
+                        "
+                        sizes="100vw">
+                    {# <img
+                        width="2560"
+                        height="1100"
+                        src="https://via.placeholder.com/2560x1100"
+                        sizes="100vw"> #}
+                </picture>
             </div>
             <div class="container-fluid">
                 <div class="header__content section__text__content">
                     <div class="header__logo" style="--h-index: 0; opacity: 0" >
-                        <video autoplay muted playsinline loop src="{{mediaUrl}}/mMatrix_logo.mp4"></video>
-                        <img src="{{mediaUrl}}/mMatrix_logo-d.jpg" alt="" width="1280" height="625">
+                        <video class="d-none d-md-block" autoplay muted playsinline src="{{mediaUrl}}/mTitleHype_logo.mp4" width="622" height="350"></video>
+                        <img class="d-md-none" src="{{mediaUrl}}/mTitleHype_logo.jpg" alt="mTitleHype logo" width="444" height="205">
                         <h1 class="header__title" hidden>
-                            <small>mMatrix</small>
+                            {{product.head_info}}
                         </h1>
                     </div>
                 </div>
-                <p class="header__subtitle section__text" style="--h-index: 4; opacity: 0">
+                <h2 class="header__subtitle section__text" style="--h-index: 4; opacity: 0">
                     {{data.header.subtitle}}
-                </p>
+                </h2>
             </div>
 
-            <div class="header__deco secuence" style="--h-index: 5; opacity: 0">
+            {# <div class="header__deco secuence" style="--h-index: 5; opacity: 0">
                 <img class="secuence" src="https://s3.motionvfx.com/mvfxpublic/software/fcp_color_icon.png" width="35" alt="" style="--h-index: 5; opacity: 0">
                 &
-                <img class="secuence" src="https://s3.motionvfx.com/mvfxpublic/software/DV_color_icon.png" width="35" alt="" style="--h-index: 6; opacity: 0">
-            </div>
+                <img class="secuence" src="https://s3.motionvfx.com/mvfxpublic/software/DV_color_icon.png" width="50" height="50" alt="" style="--h-index: 6; opacity: 0">
+            </div> #}
 
         </section>
-
-        <p class="random-string section--">
-            <i data-final="W"></i>
-            <i data-final="A"></i>
-            <i data-final="T"></i>
-            <i data-final="C"></i>
-            <i data-final="H"></i>
-            <i data-final=" "></i>
-            <i data-final="T"></i>
-            <i data-final="R"></i>
-            <i data-final="A"></i>
-            <i data-final="I"></i>
-            <i data-final="L"></i>
-            <i data-final="E"></i>
-            <i data-final="R"></i>
-        </p>
 
         <div class="scroll-prompt" style="--h-index: 2; opacity: 0">
             <a class="scroll-to-btn" href="#" onclick="scrollToAnchor('trailer');" tabindex="-1"></a>
         </div>
+
+        {# <svg width="100" height="100" class="cross" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <use href="#arrow" />
+        </svg> #}
+
 
         <a class="nav" name="trailer"></a>
 
@@ -106,12 +157,12 @@
                     <div class="col">
                         <div class="section__content">
                             <div class="section__head">
-                                <p class="section__subtitle secuence" style="--s-index:0; opacity: 0;">
+                                {# <p class="section__subtitle secuence" style="--s-index:0; opacity: 0;">
                                     {{data.trailer.subtitle}}
-                                </p>
-                                <h2 class="section__title">
+                                </p> #}
+                                <div class="section__title">
                                     {{data.trailer.title}}
-                                </h2>
+                                </div>
                                 <p class="section__text secuence" style="--s-index:2; opacity: 0;">
                                     {{data.trailer.text}}
                                 </p>
@@ -130,8 +181,6 @@
         <a class="nav" name="tutorial"></a>
 
         {% set tutorialUrl1 = 'https://www.youtube.com/embed/OnmlG4NuH3Y?rel=0' %}
-        {% set tutorialUrl2 = 'https://www.youtube.com/embed/OnmlG4NuH3Y?rel=0' %}
-        {% set tutorialUrl3 = 'https://www.youtube.com/embed/OnmlG4NuH3Y?rel=0' %}
 
         <section class="video tutorial">
             <div class="container text-center">
@@ -139,337 +188,64 @@
                     <div class="col-12">
                         <div class="section__content">
                             <div class="section__head">
-                                <p class="section__subtitle secuence" style="--s-index:0; opacity: 0">
+                                {# <p class="section__subtitle secuence" style="--s-index:0; opacity: 0">
                                     {{data.tutorial.subtitle}}
-                                </p>
-                                <h2 class="section__title">
+                                </p> #}
+                                <div class="section__title">
                                     {{data.tutorial.title}}
-                                </h2>
+                                </div>
                                 <p class="section__text secuence" style="--s-index:2; opacity: 0">
                                     {{data.tutorial.text}}
                                 </p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="yt embed-responsive embed-responsive-16by9 animated animated--fade--bottom">
                             <iframe loading="lazy" src="{{tutorialUrl1}}" frameborder="0"
                                 allow="autoplay; encrypted-media" allowfullscreen="" title="Watch Tutorial"
                                 style="background-color: #000"></iframe>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="yt embed-responsive embed-responsive-16by9 animated animated--fade--bottom">
-                            <iframe loading="lazy" src="{{tutorialUrl2}}" frameborder="0"
-                                allow="autoplay; encrypted-media" allowfullscreen="" title="Watch Tutorial"
-                                style="background-color: #000"></iframe>
-                        </div>
-                    </div>
-                    <div class="col-md-6 offset-md-3">
-                        <div class="yt embed-responsive embed-responsive-16by9 animated animated--fade--bottom">
-                            <iframe loading="lazy" src="{{tutorialUrl3}}" frameborder="0"
-                                allow="autoplay; encrypted-media" allowfullscreen="" title="Watch Tutorial"
-                                style="background-color: #000"></iframe>
-                        </div>
-                    </div>
                 </div>
+            </div>
+            <div class="container center academy-link">
+                Get more tips & tricks for DaVinci Resolve at <a target="_blank" href="https://www.motionvfx.com/page/davinci-resolve.html#tutorial">MotionVFX Academy</a>
             </div>
         </section>
-
-        {% with promos = [
-            {
-                'title': 'A CRUISE TO THE FUTURE',
-                'subtitle': 'DVR & FCP',
-                'text': 'Use Final Cut Pro or DaVinci Resolve to stylize your project just like Hollywood’s favorite sci-fi saga — the Matrix. You choose your universe.',
-                'image': 'mmatrix_town',
-            },
-            {
-                'title': 'CREATE A CINEMATIC EXPERIENCE',
-                'subtitle': 'ASTOUND YOUR AUDIENCE',
-                'text': 'This versatile pack is stocked with iconic visual effects, gradings, typography, and transitions to give your project a truly unique atmosphere.',
-                'image': 'mmatrix_gfx_woman',
-            }
-        ]%}
-        {% for promo in promos %}
-        <section class="promo {% if loop.index % 2 == 0 %}promo__inversed{% endif %} promo--{{loop.index}}" >
-            <div class="image__background--static secuence" style="--s-index: 0; opacity: 0;">
-                <picture>
-                    <source media="(max-width: 960px)" srcset="
-                        {% for size in srcsetSizesMobile %}
-                            {{mediaUrl}}/{{promo.image}}-m_{{size}}.webp {{size}}w,
-                        {% endfor %}
-                    "
-                    type="image/webp">
-                    <source media="(max-width: 992px)" srcset="
-                            {% for size in srcsetSizesMobile %}
-                                {{mediaUrl}}/{{promo.image}}-m_{{size}}.jpg {{size}}w,
-                            {% endfor %}
-                        "
-                        type="image/jpeg">
-                    <source srcset="
-                            {% for size in srcsetSizesDesktop %}
-                                {{mediaUrl}}/{{promo.image}}-d_{{size}}.webp {{size}}w,
-                            {% endfor %}
-                        "
-                        type="image/webp">
-                    <img
-                        loading="lazy"
-                        width="2560"
-                        height="1600"
-                        src="{{mediaUrl}}/{{promo.image}}-d_2560.jpg"
-                        alt=""
-                        srcset="
-                            {% for size in srcsetSizesDesktop %}
-                                {{mediaUrl}}/{{promo.image}}-d_{{size}}.jpg {{size}}w,
-                            {% endfor %}
-                        "
-                        sizes="100vw">
-                    {# <img
-                        width="2560"
-                        height="1200"
-                        src="https://via.placeholder.com/2560x1200"
-                        sizes="100vw"> #}
-                </picture>
-            </div>
-            {% if loop.index % 2 == 0 %}
-                <div class="container promo__deco promo__deco--1">
-                    <video class="secuence" style="--s-index:1; opacity: 0" autoplay muted playsinline loop src="{{mediaUrl}}/mmatrix_man-1250x1250.mp4"></video>
-                    {# <img
-                        width="530"
-                        height="530"
-                        src="https://via.placeholder.com/530"
-                        sizes="40vw"> #}
-                </div>
-            {% endif %}
-            {% if loop.index % 2 == 0 %}
-                <div class="promo__deco promo__deco--2">
-                    <video class="secuence" style="--s-index:1; opacity: 0" autoplay muted playsinline loop src="{{mediaUrl}}/mMatrix_stripes-1250x1250.mp4"></video>
-                    {# <img
-                        width="430"
-                        height="1000"
-                        src="https://via.placeholder.com/430x1000"
-                        sizes="40vw"> #}
-                </div>
-            {% endif %}
-            <div class="section__content">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="section__head">
-                                <p class="section__subtitle secuence" style="--s-index:2; opacity: 0">
-                                    {{promo.subtitle}}
-                                </p>
-                                <h2 class="section__title">
-                                    {{promo.title}}
-                                </h2>
-                                <p class="section__text secuence" style="--s-index:3; opacity: 0">{{promo.text}}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        {% endfor %}
-        {% endwith %}
-
-        {% with promo = {
-            'title': 'TAKE THE RED PILL',
-            'subtitle': 'DEFINE THE REALITY',
-            'text': 'Discover a whole new universe of digital simulation and give your shots a distinct and instantly recognizable vibe.'
-        } %}
-        
-        {% set slides = ['Morpheus', 'Trinity', 'Neo'] %}
-        <section class="promo promo-slider" >
-            
-            <div id="demo" class="before-after big__prev carousel slide">
-                <div class="carousel-inner">
-                    {% for slideName in slides %}
-                        {% set slidesIndex = loop.index %}
-                        <div class="carousel-item carousel-item--{{slidesIndex}} {% if slidesIndex == 1 %}active{% endif %}">
-                            <div class="prBeforeAfter secuence" style="--s-index:0; opacity: 0">
-                                <div class="ba-slider big img-fluid">
-                                    <picture>
-                                        <source media="(max-width: 1024px)" srcset="
-                                            {% for size in srcsetSizesMobile %}
-                                                {{mediaUrl}}/mMatrix_{{slidesIndex}}_after-m_{{size}}.webp {{size}}w,
-                                            {% endfor %}
-                                        "
-                                        type="image/webp">
-                                        <source media="(max-width: 1024px)" srcset="
-                                            {% for size in srcsetSizesMobile %}
-                                                {{mediaUrl}}/mMatrix_{{slidesIndex}}_after-m_{{size}}.jpg {{size}}w,
-                                            {% endfor %}
-                                        "
-                                        type="image/jpeg">
-                                        <source srcset="
-                                                {% for size in srcsetSizesDesktop %}
-                                                    {{mediaUrl}}/mMatrix_{{slidesIndex}}_after-{{size}}.webp {{size}}w,
-                                                {% endfor %}
-                                            "
-                                            type="image/webp">
-                                        <img
-                                            width="2560"
-                                            height="1100"
-                                            src="{{mediaUrl}}/mMatrix_{{slidesIndex}}_after-2560.jpg"
-                                            alt=""
-                                            srcset="
-                                                {% for size in srcsetSizesDesktop %}
-                                                    {{mediaUrl}}/mMatrix_{{slidesIndex}}_after-{{size}}.jpg {{size}}w,
-                                                {% endfor %}
-                                            "
-                                            sizes="100vw">
-                                        {# <img
-                                            width="2560"
-                                            height="1200"
-                                            src="https://via.placeholder.com/2560x1200"
-                                            sizes="100vw"> #}
-                                    </picture>
-                                    <div class="resize">
-                                    <picture>
-                                        <source media="(max-width: 1024px)" srcset="
-                                            {% for size in srcsetSizesMobile %}
-                                                {{mediaUrl}}/mMatrix_{{slidesIndex}}_before-m_{{size}}.webp {{size}}w,
-                                            {% endfor %}
-                                        "
-                                        type="image/webp">
-                                        <source media="(max-width: 1024px)" srcset="
-                                            {% for size in srcsetSizesMobile %}
-                                                {{mediaUrl}}/mMatrix_{{slidesIndex}}_before-m_{{size}}.jpg {{size}}w,
-                                            {% endfor %}
-                                        "
-                                        type="image/jpeg">
-                                        <source srcset="
-                                                {% for size in srcsetSizesDesktop %}
-                                                    {{mediaUrl}}/mMatrix_{{slidesIndex}}_before-{{size}}.webp {{size}}w,
-                                                {% endfor %}
-                                            "
-                                            type="image/webp">
-                                        <img
-                                            width="2560"
-                                            height="1100"
-                                            src="{{mediaUrl}}/mMatrix_{{slidesIndex}}_before-2560.jpg"
-                                            alt=""
-                                            srcset="
-                                                {% for size in srcsetSizesDesktop %}
-                                                    {{mediaUrl}}/mMatrix_{{slidesIndex}}_before-{{size}}.jpg {{size}}w,
-                                                {% endfor %}
-                                            "
-                                            sizes="100vw">
-                                        {# <img
-                                            width="2560"
-                                            height="1200"
-                                            src="https://via.placeholder.com/2560x1200"
-                                            sizes="100vw"> #}
-                                    </picture>
-                                    </div>
-                                    <span class="handle">
-                                        <div class="handle-control"></div>
-                                    </span>
-                                </div>
-                                <h4 class="prev__label">Before</h4>
-                                <h4 class="prev__label right">after</h4>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
-            <div class="section__content big__prev__content">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="section__head">
-                                <p class="section__subtitle secuence" style="--s-index:2; opacity: 0">
-                                    {{promo.subtitle}}
-                                </p>
-                                <h2 class="section__title">
-                                    {{promo.title}}
-                                </h2>
-                                <p class="section__text secuence" style="--s-index:3; opacity: 0">{{promo.text}}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-indicators secuence" style="--s-index:2; opacity: 0">
-                {% for slideName in slides %}
-                    <div class="carousel-indicators__item {% if loop.index == 1 %}active{% endif %}">{{slideName}}</div>
-                {% endfor %}
-            </div>
-        </section>
-        {% endwith %}
 
         <section class="prevs center">
             {% set productPageTemplateId = templateId %} 
             {% set collapseAfter = 8 %}
             {% set namePrefix = '' %}
             {% set categories = [
-                    { 'key':'Effects', 'label': 'Effects', 'count': 6},
-                    { 'key':'Transitions', 'label': 'Transitions', 'count': 5},
-                    { 'key':'Typography', 'label': 'Typography', 'count': 4},
-                    { 'key':'LUT_Presets', 'label': 'LUT Preset', 'count': 1},
-                    { 'key':'Background', 'label': 'Background', 'count': 1},
+                    { 'key':'Hype', 'label': 'Hype', 'count': 50},
+                    { 'key':'Add_on', 'label': 'Addons', 'count': 6},
+                    { 'key':'Background', 'label': 'Backgrounds', 'count': 6},
                 ]
             %}
-            {% set presets_count = '20' %}
-
-            <div class="image__background">
-                <picture>
-                    <source media="(max-width: 512px)" srcset="
-                        {% for size in srcsetSizesMobile %}
-                            {{mediaUrl}}/mmatrix_underprev-m_{{size}}.webp {{size}}w,
-                        {% endfor %}
-                    "
-                    type="image/webp">
-                    <source media="(max-width: 512px)" srcset="
-                        {% for size in srcsetSizesMobile %}
-                            {{mediaUrl}}/mmatrix_underprev-m_{{size}}.jpg {{size}}w,
-                        {% endfor %}
-                    "
-                    type="image/jpeg">
-                    <source srcset="
-                        {% for size in srcsetSizesDesktop %}
-                            {{mediaUrl}}/mmatrix_underprev-d_{{size}}.webp {{size}}w,
-                        {% endfor %}
-                    "
-                    type="image/webp">
-                    <img
-                        loading="lazy"
-                        width="2560"
-                        height="1250"
-                        src="{{mediaUrl}}/mmatrix_underprev-d_2560.jpg"
-                        alt=""
-                        srcset="
-                            {% for size in srcsetSizesDesktop %}
-                                {{mediaUrl}}/mmatrix_underprev-d_{{size}}.jpg {{size}}w,
-                            {% endfor %}
-                        "
-                        sizes="100vw">
-                    {# <img
-                        width="2560"
-                        height="1100"
-                        src="https://via.placeholder.com/2560x1100"
-                        sizes="100vw"> #}
-                </picture>
-            </div>
+            {% set presets_count = '60+' %}
 
             <div class="container">
                 <div class="row">
                     <div class="col-12 text-center">
+                        <div class="section__display">
+                            {{presets_count}}
+                        </div>
                         <div class="section__head">
-                            <div class="video__wrapper">
-                                <video autoplay muted playsinline loading="lazy" src="{{mediaUrl}}/20.mp4"></video>
-                            </div>
-                            {# <div class="section__display">
+                            {# <div class="video__wrapper"> #}
+                                {# <video autoplay muted playsinline loading="lazy" src="{{mediaUrl}}/20.mp4"></video> #}
+                            {# </div> #}
                             
-                                {{presets_count}}
-                            </div> #}
-                            <h2 class="section__title">
-                                DIVERSIFIED TOOLS & EFFECTS
+                            <div class="section__title">
+                                {{data.presets.title}}
+                            </div>
+                            <h2 class="section__text">
+                                {{data.presets.text}}
                             </h2>
-                            <p class="section__subtitle">
+                            {# <p class="section__subtitle">
                                 hover or tap to preview animations
-                            </p>
+                            </p> #}
                         </div>
                     </div>
                 </div>
@@ -482,20 +258,13 @@
 					<!--<div class="row {#{{ category.rowClass | default('') }}#} {#{% if category.count == 5 %}row-5{% endif %}#}">-->
                         {% if categories|length > 1 %}
                         {# {% if key == 'LUT_Presets' or key == 'Background' %}col-6{% else%}col-12{% endif %} #}
-                            <div class="{% if key == 'LUT_Presets' or key == 'Background' %}col-12 col-sm-6 col-lg-3{% else%}col-12{% endif %}">
-                                <h3 class="{{ 'left' if loop.index % 2 != 0 else 'left' }}">{{ category.label }}</h3>
+                            <div class="{% if key == 'LUT_Presets' %}col-12 col-sm-6 col-lg-3{% else%}col-12{% endif %}">
+                                <div class="{{ 'left' if loop.index % 2 != 0 else 'left' }}">{{ category.label }}</h3>
                                 <div class="row">
                                 {% for i in range(category.count) %}
                                     {% set num = '%02d' % loop.index %}
-                                    {% set filename = 'https://s3.motionvfx.com/mvfxpublic/products/templates/' + productPageTemplateId + '/media/' + key + '_' + num %}
-                                    <div class="
-                                            product-prev-col
-                                            {% if key == 'LUT_Presets' or key == 'Background' %}
-                                                col-6 col-sm-12
-                                            {% else%}
-                                                col-6 col-lg-3
-                                            {% endif %}
-                                            {#{% if loop.index > collapseAfter %}collapse prev-collapse-{{ key }}{% endif %}#}"
+                                    {% set filename = 'https://s3.motionvfx.com/mvfxpublic/products/templates/' + productPageTemplateId + '/media/mTitle_' + key + '_' + num %}
+                                    <div class="product-prev-col col-6 col-lg-3 {% if loop.index > collapseAfter %}collapse prev-collapse-{{ key }}{% endif %}"
                                         id="prev-collapse-{{ num }}-{{ loop.index }}"
                                     >
                                         <div class="product-prev-cell" data-mp4-src="{{ filename }}.mp4?{{refresh}}">
@@ -527,31 +296,95 @@
                 {% endfor %}
                 </div>
 			</div>
+            <div class="prevs__bottom">
+                <div class="image__background--static">
+                    <picture>
+                        {# <source media="(max-width: 512px)" srcset="
+                            {% for size in srcsetSizesMobile %}
+                                {{mediaUrl}}/mmatrix_underprev-m_{{size}}.webp {{size}}w,
+                            {% endfor %}
+                        "
+                        type="image/webp"> #}
+                        <source media="(max-width: 600px)" srcset="
+                            {{mediaUrl}}/mTitleHype_underprev-m_1024-raw.jpg 600w,
+                            {# {% for size in srcsetSizesMobile %}
+                                {{mediaUrl}}/mTitleHype_underprev-{{size}}.jpg {{size}}w,
+                            {% endfor %} #}
+                        "
+                        type="image/jpeg">
+                        <source srcset="
+                            {% for size in srcsetSizesDesktop %}
+                                {{mediaUrl}}/mTitleHype_underprev-{{size}}.webp {{size}}w,
+                            {% endfor %}
+                        "
+                        type="image/webp">
+                        <img
+                            loading="lazy"
+                            width="2560"
+                            height="1250"
+                            src="{{mediaUrl}}/mTitleHype_underprev-2560.jpg"
+                            {# src="{{placeholder}}/2560x1200" #}
+                            alt=""
+                            {# srcset="
+                                {% for size in srcsetSizesDesktop %}
+                                    {{mediaUrl}}/mmatrix_underprev-{{size}}.jpg {{size}}w,
+                                {% endfor %}
+                            " #}
+                            sizes="100vw">
+                        {# <img
+                            width="2560"
+                            height="1100"
+                            src="https://via.placeholder.com/2560x1100"
+                            sizes="100vw"> #}
+                    </picture>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="section__content">
+                                <div class="section__head">
+                                    <div class="section__title">
+                                        {% autoescape off %}{{data.presets.title2}}{% endautoescape %}
+                                    </div>
+                                    <h2 class="section__text">
+                                        {{data.presets.text2}}
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <a class="nav" href="#" name="specs" rel="noopener noreferrer"></a>
-        <div class="ts-mi">
-        
-            <section class="tech-spec bg--dark">
+        <div class="ts-mi bg--dark">
+
+            <section class="tech-spec">
                 <div class="container">
                     <div class="row">
                         <div class="col-12">
                             <div class="tech-spec-info">
                                 <div class="section__text__content">
                                     <div class="section__head">
-                                        <h2 class="section__title tech-spec__title section__title">
+                                        <div class="section__title tech-spec__title section__title">
                                             Technical specifications
-                                        </h2>
+                                        </div>
                                     </div>
                                     <div class="ttable tech-spec__table">
                                         <div class="tcell tlabel">Supported software</div>
                                         <div class="tcell tdata">
-                                            {% autoescape off %}
-                                                {{ product.productdetails.minimal_requirements.replace('FCP 10', 'FCP 10').replace('Motion 5', 'Motion 5').replace(', ', ',<br>') }}
-                                            {% endautoescape %}
+                                            <h3 class="section__text">
+                                                {% autoescape off %}
+                                                    {{ product.productdetails.minimal_requirements.replace('FCP 10', 'FCP 10').replace('Motion 5', 'Motion 5').replace(', ', ',<br>') }}
+                                                {% endautoescape %}
+                                            </h3>
                                         </div>
                                         <div class="tcell tlabel">Includes</div>
-                                        <div class="tcell tdata"><span>Background (1), Effects (6), LUT Presets (1), Transitions (5), Typography (4)</span></div>
+                                        <div class="tcell tdata">
+                                            <h3 class="section__text">
+                                                <span>Background (1), Effects (6), LUT Presets (1), Transitions (5), Typography (4)</span></div>
+                                            </h3>
                                         <div class="tcell tlabel">Size</div>
                                         <div class="tcell tdata">
                                             {{ "%.1f MB"|format(product.productdetails.source_size / 1000) }}
@@ -587,13 +420,13 @@
                     </div>
             </section>
 
-            <section class="minstaller__section bg--dark">
+            <section class="minstaller__section">
 
                 <div class="container">
                     <div class="row">
                         <div class="col">
                             <div class="minstaller">
-                                <h3 class="minstaller__title">mInstaller</h3>
+                                <div class="minstaller__title">mInstaller</div>
                                 <p class="minstaller__description">
                                     After purchasing, the product is
                                     <b>instantly available </b>for download via
@@ -605,28 +438,27 @@
                     </div>
                 </div>
             </section>
+
         </div>
 
         <footer class="footer">
-            <video loading="lazy" class="footer__deco footer__deco--1 d-none d-md-block" autoplay muted playsinline loop src="{{mediaUrl}}/footer_1.mp4"></video>
-            <video loading="lazy" class="footer__deco footer__deco--2 d-none d-md-block" autoplay muted playsinline loop src="{{mediaUrl}}/footer_2.mp4"></video>
             <div class="image__background--static">
                 <picture>
                     <source media="(max-width: 512px)" srcset="
                         {% for size in srcsetSizesMobile %}
-                            {{mediaUrl}}/mmatrix_footer-m_{{size}}.webp {{size}}w,
+                            {{mediaUrl}}/mTitleHype_footer-{{size}}.webp {{size}}w,
                         {% endfor %}
                     "
                     type="image/webp">
                     <source media="(max-width: 512px)" srcset="
                         {% for size in srcsetSizesMobile %}
-                            {{mediaUrl}}/mmatrix_footer-m_{{size}}.jpg {{size}}w,
+                            {{mediaUrl}}/mTitleHype_footer-{{size}}.jpg {{size}}w,
                         {% endfor %}
                     "
                     type="image/jpeg">
                     <source srcset="
                         {% for size in srcsetSizesDesktop %}
-                            {{mediaUrl}}/mmatrix_footer-d_{{size}}.webp {{size}}w,
+                            {{mediaUrl}}/mTitleHype_footer-{{size}}.webp {{size}}w,
                         {% endfor %}
                     "
                     type="image/webp">
@@ -634,11 +466,12 @@
                         loading="lazy"
                         width="2560"
                         height="1100"
-                        src="{{mediaUrl}}/mmatrix_footer-d_2560.jpg"
+                        src="{{mediaUrl}}/mTitleHype_footer-2560.jpg"
+                        {# src="{{placeholder}}/2560x960" #}
                         alt=""
                         srcset="
                             {% for size in srcsetSizesDesktop %}
-                                {{mediaUrl}}/mmatrix_footer-d_{{size}}.jpg {{size}}w,
+                                {{mediaUrl}}/mTitleHype_footer-{{size}}.jpg {{size}}w,
                             {% endfor %}
                         "
                         sizes="100vw">
@@ -656,9 +489,9 @@
                             <div class="section__text__content">
                                 <div class="section__head">
                                     {# <p class="section__subtitle">{{ data.footer.subtitle }}</p> #}
-                                    <h2 class="footer__title section__title">
+                                    <div class="footer__title section__title">
                                         {{data.footer.title}}
-                                    </h2>
+                                    </div>
                                     <p class="footer__text section__text secuence" style="--s-index:0; opacity: 0">
                                         {{ data.footer.text }}
                                     </p>
@@ -674,12 +507,6 @@
                 </div>
             </div>
         </footer>
-        <div class="footer__info">
-            <img class="footer__info-img" src="{{mediaUrl}}/wb_logo.png" alt="">
-            <p class="footer__info-text">
-                WARNER BROS.™, WB shield, THE MATRIX and logos are trademarks and copyrights of Warner Bros. Entertainment Inc, All rights reserved.
-            </p>
-        </div>
     </main>
 
     {% include './components/submenu.jinja' %}
