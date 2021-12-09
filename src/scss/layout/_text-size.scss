@@ -6,21 +6,26 @@
 section {
     &.header {
         .header__subtitle {
-            max-width: 19em;
+            // max-width: 17em;
 
         }
     }
 
     &.trailer {
-        .section__text {
-            @extend %ma;
-            max-width: 28em;
+        .section {
+            &__title {
+                // max-width: 380px
+            }
+            &__text {
+                // @extend %ma;
+                // max-width: 21em;
+            }
         }
     }
     &.tutorial {
         .section__text {
-            @extend %ma;
-            max-width: 28em;
+            // @extend %ma;
+            // max-width: 370px;
         }
     }
 
@@ -46,19 +51,25 @@ section {
 
     &.promo-grid {
         .section {
+            &__title {
+                // max-width: 500px;
+            }
             &__head {
-                // max-width: 32em;
+                
             }
             &__text {
-
+                // max-width: calc(400px + 6.75rem);
             }
         }
     }
 
     &.promo-slider {
         .section {
+            &__title {
+                // max-width: 500px;
+            }
             &__text {
-                max-width: 30em;
+                // max-width: 30em;
             }
         }
     }
@@ -76,6 +87,9 @@ section {
     }
 
     &.prevs {
+        .section__text {
+            // max-width: 390px;
+        }
         .lines__comp {
             .section__title {
                 // max-width: 8em;
@@ -100,10 +114,12 @@ section {
 footer.footer {
     .section {
         &__title {
+            // @extend %ma;
+            // max-width: 450px;
         }
         &__text {
-            @extend %ma;
-            max-width: 36em;
+            // @extend %ma;
+            // max-width: 500px;
         }
     }
     

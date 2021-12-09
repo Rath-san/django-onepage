@@ -3,7 +3,7 @@ $animation-duration: 1s;
 // .section__text {
 //   &::after {
 //     transition: transform $animation-duration cubic-bezier(0.3, 0, 0.3, 1),
-//     opacity $animation-duration linear;  
+//     opacity $animation-duration linear;
 //   }
 // }
 .word {
@@ -11,10 +11,10 @@ $animation-duration: 1s;
   display: inline-block;
 }
 
-.word  {
+.word {
   display: inline-block;
-  opacity: 0;
-  transform: translateY(-1rem);
+  // opacity: 0;
+  // transform: translateY(-1rem);
   // &:first-of-type {
   //   transform: translateX(-1rem);
   // }
@@ -23,12 +23,18 @@ $animation-duration: 1s;
   //   transform: translateX(1rem);
   // }
 
-  transition: transform $animation-duration cubic-bezier(0.3, 0, 0.3, 1),
-    opacity $animation-duration linear;
+  // transition: transform $animation-duration cubic-bezier(0.3, 0, 0.3, 1),
+  //   opacity $animation-duration linear;
   transition-delay: calc(10ms + (100ms * var(--word-index)));
-  [data-visible=true] & {
-    opacity: 1;
+  [data-visible="true"] & {
+    opacity: 1 !important;
     transform: translateX(0);
+  }
+}
+
+.deco-sign {
+  .word {
+    transition: none !important;
   }
 }
 

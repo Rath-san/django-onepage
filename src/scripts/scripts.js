@@ -1,12 +1,15 @@
 import { doOnVisible } from "./libs/do-on-visible";
 import initPrevs from "./utils/prevs";
 import Splitting from "splitting";
-import "./vendor/beforeafter";
-import Matrix from "./libs/matrix";
-import { randomString } from './libs/random-string';
+import { throttle, handleTouchEvents } from "./utils/utils";
+import scroller, { gui } from "./libs/scroller";
+// import { animSignsPrevs } from "./libs/anim-sign";
+// import "./vendor/beforeafter";
+// import Matrix from "./libs/matrix";
+// import { randomString } from './libs/random-string';
 
 // const animateTitle = () => {
-//   const titles = 
+//   const titles =
 //   titles.forEach(
 //     (el, idx) => {
 //       console.log(el);
@@ -23,28 +26,37 @@ const callBASlider = function () {
   const baseOffset = 12;
   const isAfter = (e) => e.classList.contains("right");
 
-  $(".prev__label").each(function (i, e) {
-    $(e).on("click", function () {
-      const parent = this.closest(".prBeforeAfter");
-      const resize = $(parent).find(".resize");
-      const handle = $(parent).find(".handle");
+  // $(".prev__label").each(function (i, e) {
+  //   $(e).on("click", function () {
+  //     const parent = this.closest(".prBeforeAfter");
+  //     const resize = $(parent).find(".resize");
+  //     const handle = $(parent).find(".handle");
 
-      const newOffset = `${isAfter(e) ? baseOffset : 100 - baseOffset}%`;
+  //     const newOffset = `${isAfter(e) ? baseOffset : 100 - baseOffset}%`;
 
-      resize.css("width", newOffset);
-      handle.css("left", newOffset);
-    });
-  });
+  //     resize.css("width", newOffset);
+  //     handle.css("left", newOffset);
+  //   });
+  // });
 };
 
 (() => {
   document.body.classList.add("initialized");
 
-  Matrix.init();
+  // animSignsPrevs('.prevs');
+  // animSignsPrevs('.promo-big');
+
+  // Matrix.init();
+
+  const titles = Array.from(document.querySelectorAll(".section__title"));
+
+  titles.forEach((title) => {
+    title.style.opacity = 1;
+  });
 
   Splitting({
     target: ".section__title, .left",
-    by: "chars",
+    by: "words",
   });
 
   // animateTitle();
@@ -64,10 +76,6 @@ const callBASlider = function () {
     doOnVisible({
       sectionSelector: sections,
       cbIn: (target) => {
-        // if (target.dataset.visible) {
-        //   const title = target.querySelector('.section__title');
-        //   randomString(title, ".char")
-        // }
         target.dataset.visible = true;
       },
       cbOut: (target) => {
@@ -77,10 +85,46 @@ const callBASlider = function () {
     });
   });
 
+  // const decoFloat = (el) => {
+  //   const offsetValue = .25;
+
+  //   const translate = (ev) => {
+  //     const offsetPercentageHorizontal =
+  //       Math.abs(ev.clientX / window.innerHeight) * 100 * offsetValue;
+  //     const offsetPercentageVertical =
+  //       Math.abs(ev.clientY / window.innerHeight) * 100 * offsetValue;
+
+  //     el.style.transform = `translate(${-offsetPercentageHorizontal}%, ${-offsetPercentageVertical}%)`;
+  //   };
+
+  //   const mouseEvents = () => {
+  //     window.addEventListener("mousemove", throttle(translate, 100));
+  //   };
+
+  //   mouseEvents();
+  // };
+
+  // const elements = Array.from(
+  //   document.querySelectorAll(".deco-float__wrapper")
+  // );
+
+  // elements.forEach((el) => {
+  //   const onTransitionEnd = (ev) => {
+  //     el.classList.remove("entering");
+  //     el.removeEventListener("transitionend", onTransitionEnd);
+  //     decoFloat(el);
+  //   };
+
+  //   el.addEventListener("transitionend", onTransitionEnd);
+  // });
+
+  const demo = ["#carousel-1"];
+  const indicators = $(".carousel-indicators div");
+
   const makeSlider = (id) => {
     const slider = $(id).carousel({
-      pause: "hover",
-      interval: 7500,
+      pause: false,
+      interval: 5000,
       wrap: true,
     });
 
@@ -89,11 +133,20 @@ const callBASlider = function () {
     return slider;
   };
 
-  const demo = ["#demo"];
-  const indicators = $(".carousel-indicators div");
-
   demo.forEach((id, index) => {
     makeSlider(id);
+
+    $(id).on("click", (e) => {
+      demo.forEach((id, idx) => {
+        if (id === demo[demo.length - 1]) {
+          $(id).carousel("next");
+        } else {
+          setTimeout(() => {
+            $(id).carousel("next");
+          }, 250 * idx);
+        }
+      });
+    });
 
     $(id).on("slide.bs.carousel", (e) => {
       indicators.each((i, el) => {
@@ -106,17 +159,38 @@ const callBASlider = function () {
 
     setTimeout(() => {
       $(id).carousel("cycle");
-    }, 500 * index);
+    }, 250 * index);
   });
 
-  indicators.each((i, el) => {
-    el.addEventListener("click", () => {
-      demo.forEach((id) => {
-        $(id).carousel(i);
-      });
-    });
-  });
-  
-  callBASlider();
+  const carouselMobile = document.getElementById("carousel-mobile");
+
+  const onRightSwipe = () => {
+    $("#carousel-mobile").carousel("next");
+  };
+
+  const onLeftSwipe = () => {
+    $("#carousel-mobile").carousel("prev");
+  };
+
+  handleTouchEvents(carouselMobile, {
+    onLeftSwipe,
+    onRightSwipe,
+    // onTopSwipe: (val) => console.log({top: val}),
+    // onDownSwipe: (val) => console.log({down: val})
+  }).init();
+
+  scroller().init();
+
+  // indicators.each((i, el) => {
+  //   el.addEventListener("click", () => {
+  //     demo.forEach((id) => {
+  //       $(id).carousel(i);
+  //     });
+  //   });
+  // });
+
+  // callBASlider();
   initPrevs();
+
+  gui();
 })();

@@ -1,7 +1,8 @@
 .minstaller {
   &__section {
     position: relative;
-    padding: 0 5% 4rem 5%;
+    // padding: 0 5% 4rem 5%;
+    padding: 0 5%;
     background-color: transparent;
     @media screen and (max-width: 960px) {
       // padding: 0 5% 0rem 5%;
@@ -19,19 +20,18 @@
 
     text-rendering: optimizeLegibility !important;
     -webkit-font-smoothing: antialiased !important;
-    font-weight: 400;
+    font-weight: 500;
   }
 
   &__description {
-    font-weight: 300;
     max-width: 50%;
     margin: 0 auto;
-    max-width: 410px;
+    max-width: 450px;
     // font-family: 'Proxima', sans-serif;
     text-rendering: optimizeLegibility !important;
     -webkit-font-smoothing: antialiased !important;
     font-weight: 400;
-    font-size: 18px;
+    // font-size: 18px;
     line-height: 1.6;
   }
 }

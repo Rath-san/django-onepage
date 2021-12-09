@@ -1,0 +1,17 @@
+.animated--fade--bottom {
+  will-change: opacity, transform;
+  opacity: 0;
+  -webkit-transform: translate3d(0, 10%, 0);
+          transform: translate3d(0, 10%, 0);
+  -webkit-transition: opacity 1s ease-in-out, -webkit-transform 1s ease-in-out;
+  transition: opacity 1s ease-in-out, -webkit-transform 1s ease-in-out;
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out, -webkit-transform 1s ease-in-out;
+}
+
+.animated-in.animated--fade--bottom {
+  opacity: 1;
+  -webkit-transform: translate3d(0, 0%, 0);
+          transform: translate3d(0, 0%, 0);
+}
+/*# sourceMappingURL=page.css.map */

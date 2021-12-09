@@ -1,15 +1,13 @@
 .tech-spec {
-  padding-top: 7.5rem;
-  // padding: 10rem 0;
-  // padding-top: 4rem;
-  // padding-bottom: 2rem;
-  margin-bottom: -1px;
-  padding-left: 5%;
-  padding-right: 5%;
+  padding: 0 5%;
 
-  @include respond-below(md) {
-    padding-top: 3rem;
-  }
+  // .section__text {
+  //   margin-bottom: 0;
+  // }
+
+  // @include respond-below(md) {
+  //   padding-top: 3rem;
+  // }
 
   &__title {
     margin-bottom: 3rem;
@@ -23,7 +21,7 @@
   }
 
   &__table {
-    font-weight: 400;
+    // font-weight: 400;
     width: 100%;
     td {
       // padding-bottom: 2rem;
@@ -75,7 +73,8 @@
   }
   &label {
       text-align: right;
-      color: #9a9a9a;
+      font-weight: 400;
+      // color: #000;
       @media screen and (max-width: 450px) {
           text-transform: uppercase;
           font-weight: 600;

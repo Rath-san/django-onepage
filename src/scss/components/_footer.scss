@@ -4,9 +4,10 @@
   justify-content: center;
   position: relative;
   text-align: center;
-  max-height: 1100px !important;
+  max-height: 950px !important;
   margin-top: -1px;
   padding-top: 0;
+  background: #9aa9ae;
   @media screen and (max-width: 512px) {
     max-height: unset !important;
   }
@@ -49,27 +50,6 @@
     &--2 {
       right: 21vw;
       top: 2.5vw;
-    }
-  }
-
-  &__info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 1rem 5% 2rem 5%;
-    font-family: 'Proxima';
-    &-text {
-      color: #fff;
-      max-width: 480px;
-      margin-bottom: 0;
-      font-size: 13px;
-      line-height: 24px;
-      font-weight: 100;
-    }
-    &-img {
-      max-width: 60px;
-      margin-bottom: .8rem;
     }
   }
 }
