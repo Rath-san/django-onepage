@@ -2,8 +2,25 @@ import { doOnVisible } from "./libs/do-on-visible";
 import initPrevs from "./utils/prevs";
 import Splitting from "splitting";
 
+// const onHeaderImagesLoaded = () => {
+//     const header = document.querySelector('section.header')
+//     const images = Array.from(header.querySelectorAll('img'));
+//     const loadedImages = images.map(img => false);
+
+//     images.forEach((img, idx) => {
+//         img.onload = () => {
+//             loadedImages[idx] = true
+//             if (loadedImages.every(val => val)) {
+//                 header.classList.add("loaded")
+//             }
+//         }
+//     })
+// }
+
+// onHeaderImagesLoaded();
+
 (() => {
-    document.body.classList.add("ready");
+    document.body.classList.add("initialized");
     Splitting({
         target: ".section__title, .left",
         by: "words",
@@ -31,36 +48,36 @@ import Splitting from "splitting";
         });
 
 
-        function onImagesReady(images, callback) {
-            images.forEach(imgUrl => {
-            const img = document.createElement('img');
-            img.addEventListener('load', () => {
-                img.remove();
-                incrementCounter();
-            });
-            img.setAttribute('src', imgUrl);
-            });
-            const count = images.length;
-            let counter = 0;
-            function incrementCounter() {
-                counter++;
-                if (counter === count) {
-                    callback();
-                }
-            }
-        }
+        // function onImagesReady(images, callback) {
+        //     images.forEach(imgUrl => {
+        //     const img = document.createElement('img');
+        //     img.addEventListener('load', () => {
+        //         img.remove();
+        //         incrementCounter();
+        //     });
+        //     img.setAttribute('src', imgUrl);
+        //     });
+        //     const count = images.length;
+        //     let counter = 0;
+        //     function incrementCounter() {
+        //         counter++;
+        //         if (counter === count) {
+        //             callback();
+        //         }
+        //     }
+        // }
 
         function overlayCountdown() {
-            const countdown = document.querySelector('.overlay-countdown');
-            const img = countdown.querySelector('img');
-            const src = img.currentSrc || img.src;
+            // const countdown = document.querySelector('.overlay-countdown');
+            // const img = countdown.querySelector('img');
+            // const src = img.currentSrc || img.src;
 
-            onImagesReady([ src ], () => {
-            countdown.classList.add('show');
-            setTimeout(() => {
-                countdown.classList.add('hide');
-            }, 2300);
-            });
+            // onImagesReady([ src ], () => {
+            // countdown.classList.add('show');
+            // setTimeout(() => {
+            //     countdown.classList.add('hide');
+            // }, 2300);
+            // });
         }
 
         overlayCountdown();

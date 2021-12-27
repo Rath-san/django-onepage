@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "gulp dev",
-    "resize": "gulp resize",
-    "resize:c": "gulp resizeCustom --width '[320, 640]'"
+    "resize:image": "gulp resizeImage",
+    "resize:video": "gulp resizeVideo"
   },
   "keywords": [],
   "author": "",
@@ -16,10 +16,13 @@
     "@rollup/plugin-commonjs": "^20.0.0",
     "@rollup/plugin-node-resolve": "^13.0.4",
     "@rollup/stream": "^2.0.0",
+    "any-shell-escape": "^0.1.1",
     "babel-core": "^6.26.3",
     "babel-preset-es2015": "^6.24.1",
     "browser-sync": "^2.27.5",
     "cssnano": "^5.0.7",
+    "eslint": "^8.4.1",
+    "ffmpeg-static": "^4.4.0",
     "gulp": "^4.0.2",
     "gulp-hash": "^4.2.2",
     "gulp-imagemin": "^7.1.0",

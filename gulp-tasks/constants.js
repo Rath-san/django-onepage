@@ -1,23 +1,12 @@
-const BASE_WIDTH = 320;
-
 const RESPONSIVE_SIZES_MOBILE = [
-    {w: 400},
-    {w: 800},
-    // {w: BASE_WIDTH},
-    // {w: BASE_WIDTH * 2},
-    // {w: BASE_WIDTH * 3},
+    {w: 640},
+    {w: 960}
 ];
 
 const RESPONSIVE_SIZES_DESKTOP = [
-    // {w: 1200},
-    // {w: 1800},
-    // {w: 2560},
-    {w: BASE_WIDTH * 4},
-    {w: BASE_WIDTH * 5},
-    {w: BASE_WIDTH * 6},
-    // {w: 1120},
-    {w: BASE_WIDTH * 7},
-    {w: BASE_WIDTH * 8},
+    {w: 1280},
+    {w: 1920},
+    {w: 2560},
 ];
 const RESPONSIVE_SIZES = [
     ...RESPONSIVE_SIZES_MOBILE,
@@ -92,7 +81,6 @@ const DIRS = {
 };
 
 module.exports = {
-    BASE_WIDTH,
     RESPONSIVE_SIZES,
     RESPONSIVE_SIZES_MOBILE,
     RESPONSIVE_SIZES_DESKTOP,

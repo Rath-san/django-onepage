@@ -3,7 +3,6 @@ const sass = require("gulp-sass")(require("node-sass"));
 const postcss = require("gulp-postcss");
 const cssnano = require("cssnano");
 const { browserSync } = require("./server");
-const hash = require('gulp-hash');
 
 const { DIRS } = require("./constants");
 

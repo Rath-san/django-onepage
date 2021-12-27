@@ -7,18 +7,17 @@
     {# {% include './components/bundle-popup.jinja' %} #}
 
     {% set srcsetSizesMobile = [
-        320,
         640,
+        960
     ] %}
 
     {% set srcsetSizesDesktop = [
-        960,
         1280,
-        1600,
         1920,
-        2240,
         2560
      ] %}
+
+    {% set scrsetAll = srcsetSizesMobile + srcsetSizesDesktop %}
 
     {% set templateId = '1368' %}
     {% set refresh = 6 %}
@@ -26,7 +25,7 @@
 
     {% set data = {
         'header': {
-            'subtitle': 'Event Graphic Layout Toolbox for Final Cut Pro'
+            'subtitle': 'Event <b>Graphic</b> Layout Toolbox for Final Cut Pro'
         },
         'trailer': {
             'title': 'Watch trailer',
@@ -63,42 +62,88 @@
         }
     } %}
 
+    {% macro picture_source(name, sizeset, media, sizes="100vw", ext=["webp", "jpeg"]) %}
+        <source media="{{media}}"
+            srcset="
+                {% for size in sizeset %}
+                    {{mediaUrl}}/{{name}}-{{size}}.webp {{size}}w,
+                {% endfor %}
+            "
+            type="image/{{ext[0]}}"
+            sizes="{{sizes}}"
+        >
+        <source media="{{media}}"
+            srcset="
+                {% for size in sizeset %}
+                    {{mediaUrl}}/{{name}}-{{size}}.webp {{size}}w,
+                {% endfor %}
+            "
+            type="image/{{ext[1]}}"
+            sizes="{{sizes}}"
+        >
+    {% endmacro %}
+
+    {% set image = {
+        "name": "header",
+        "ext": "jpg",
+        "lazy": True,
+        "size": {
+            "width": "2560",
+            "height": "850"
+        },
+        "alt": "",
+        "sizes": "100vw",
+        "srcsets": {
+            "mobile": {
+                "widths": srcsetSizesMobile,
+                "media": "(max-width: 640px)",
+                "sizes": ""
+            },
+            "desktop": {
+                "widths": srcsetSizesDesktop,
+                "media": "",
+                "sizes": "100vw"
+            }
+        }
+    } %}
+
+    {% macro picture(image) %}
+        {% if image.srcsets.mobile %}
+            {{picture_source(
+                image.name + "_mobile",
+                image.srcsets.mobile.widths,
+                image.srcsets.mobile.media,
+                image.srcsets.mobile.sizes
+                ["webp", image.ext]
+            )}}
+        {% endif %}
+        {% if image.srcsets.desktop %}
+            {{picture_source(
+                image.name,
+                image.srcsets.desktop.widths,
+                image.srcsets.desktop.media,
+                image.srcsets.desktop.sizes
+                ["webp", image.ext]
+            )}}
+        {% endif %}
+
+        <img
+            width="{{image.size.width}}"
+            height="{{image.size.height}}"
+            src="{{mediaUrl}}/{{name}}-{{image.size.width}}.{{ext}}"
+            alt="{{image.alt}}"
+            sizes="{{image.srcsets.desktop.sizes}}"
+        >
+    {% endmacro %}
+
     <main>
-        <div class="overlay-countdown">
-			<img src="{{mediaUrl}}/loader.gif" width="400" height="311" alt="" />
-		</div>
+        {# <div class="overlay-countdown">
+            <img src="{{mediaUrl}}/loader.gif" width="400" height="311" alt="" />
+        </div> #}
         <section class="header text-center">
             <div class="header__bg" style="opacity:0">
                 <picture>
-                    <source media="(max-width: 640px)" srcset="
-                        {% for size in srcsetSizesMobile %}
-                            {{mediaUrl}}/header_mobile-{{size}}.webp {{size}}w,
-                        {% endfor %}
-                    "
-                    type="image/webp">
-                    <source media="(max-width: 640px)" srcset="
-                        {% for size in srcsetSizesMobile %}
-                            {{mediaUrl}}/header_mobile-{{size}}.jpg {{size}}w,
-                        {% endfor %}
-                    "
-                    type="image/jpeg">
-                    <source srcset="
-                        {% for size in srcsetSizesDesktop %}
-                            {{mediaUrl}}/header-{{size}}.webp {{size}}w,
-                        {% endfor %}
-                    "
-                    type="image/webp">
-                    <img
-                        width="2560"
-                        height="850"
-                        src="{{mediaUrl}}/header-2560.jpg"
-                        alt=""
-                        srcset="
-                            {% for size in srcsetSizesDesktop %}
-                                {{mediaUrl}}/header-{{size}}.jpg {{size}}w,
-                            {% endfor %}
-                        "
-                        sizes="100vw">
+                    {{picture(image)}}
                 </picture>
             </div>
             <div class="container-fluid">
@@ -111,7 +156,7 @@
                     </div>
                 </div>
                 <p class="header__subtitle" style="--h-index: 1; opacxity: 0">
-                    {{data.header.subtitle}}
+                    {{data.header.subtitle|safe}}
                 </p>
             </div>
             <div class="header__deco header__deco--2" style="--s-index: 6; opacity:0">
@@ -142,6 +187,83 @@
                 <img class="secuence" style="--s-index: 1; opacity:0" src="{{mediaUrl}}/x.png" alt="">
             </div>
         </section>
+
+        {% set items = ['a', 'b', 'c'] %}
+        <table>
+            {%- for row in items|batch(2, 'f') %}
+                <tr>
+                    {%- for column in row %}
+                        <td>{{ column }}</td>
+                    {%- endfor %}
+                </tr>
+            {%- endfor %}
+        </table>
+
+        <div>
+            {{1000000|filesizeformat()}}
+        </div>
+        <div>
+            {{items|join('|', attribute='username')}}
+        </div>        
+        {% set itesms_length = items|length %}
+        <div>
+            {{itesms_length}}
+        </div>
+        {% set unioner = [] %}
+        <div>
+            {{unioner|join('|')}}
+        </div>
+
+        <div>
+            {{items|pprint}}
+        </div>
+
+        <div>
+            {{'<b>1</b>'|safe}}
+        </div>
+
+        {% set sumi = [
+            dict(price=1),
+            dict(price=2)
+        ] %}
+jsum
+        <div>
+            sum: {{sumi|sum(attribute="price")}}
+        </div>
+
+        <div>
+            {{'hello wolrd or nope'|title}}
+        </div>
+
+        <div>
+            {{lipsum(1)}}
+        </div>
+
+        <div>
+            {%- if True -%}
+                yay
+            {%- endif -%}
+        </div>
+
+        <div>{{scrsetAll|pprint}}</div>
+
+        <script>
+            const onHeaderImagesLoaded = () => {
+            const header = document.querySelector('section.header')
+            const images = Array.from(header.querySelectorAll('.header__bg img, header__content img'));
+            const loadedImages = images.map(img => false);
+                images.forEach((img, idx) => {
+                    img.onload = () => {
+                        loadedImages[idx] = true
+                        if (loadedImages.every(val => val)) {
+                            header.classList.add("loaded")
+                        }
+                    }
+                })
+            }
+
+            onHeaderImagesLoaded();
+        </script>
 
         <div class="scroll-prompt" style="--h-index: 2; opacity: 0">
             <a class="scroll-to-btn" href="#" onclick="scrollToAnchor('trailer');" tabindex="-1"></a>
@@ -329,6 +451,7 @@
                     "
                     type="image/webp">
                     <img
+                        loading="lazy"
                         width="2560"
                         height="850"
                         src="{{mediaUrl}}/gradient_bg-2560.jpg"
@@ -586,10 +709,6 @@
                 </div>
             </div>
 
-            {% for j in range(1,7) %}
-                
-            {% endfor %}
-
             <div id="product-prev-grid" class="product-prev-grid container">
     			{% for category in categories %}
 					{% set key = category.key %}
@@ -672,27 +791,13 @@
                                         {{ "%.1f MB"|format(product.productdetails.source_size / 1000) }}
                                     </div>
                                     {# {% for kind in ['trailer', 'tutorial'] %}
-                                        {% with musics = product
-                                            .productdetails
-                                            .music
-                                            .select_related('music_portal')
-                                            .all()
-                                            .filter(used_in_trailer = kind == 'trailer')
-                                        %}
-                                        {% if length(musics) %}
-                                            <div class="tcell tlabel">Music used in {{ kind }}</div>
-                                            <div class="tcell tdata">
-                                            {% for music in musics %}
-                                                {% if music.music_portal.name == "www.premiumbeat.com" or music.music_portal.name == "www.shutterstock.com" %}
-                                                    <a href="{{ music.url }}" target="_blank" rel="noopener noreferrer">{{music.music_portal.name.replace('www.','') }} — {{ music.title }}</a>
-                                                    {% if not loop.last %},&nbsp;<wbr>{% endif %}
-                                                {% else %}
-                                                    {{ music.music_portal.name.replace('www.','') }} — {{ music.title }}
-                                                    {% if not loop.last %},&nbsp;<wbr>{% endif %}
-                                                {%endif%}
-                                            {%endfor%}
-                                            </div>
-                                        {% endif %}
+                                        {% with musics=product.productdetails.music.select_related('music_portal').all().filter(used_in_trailer=kind=='trailer') %}
+                                            {% if length(musics) %}
+                                                <div class="cell label">Music used in {{ kind }}</div>
+                                                <div class="cell data">
+                                                    {% include 'product/music_info.jinja2' %}
+                                                </div>
+                                            {% endif %}
                                         {% endwith %}
                                     {% endfor %} #}
                                 </div>
@@ -744,6 +849,7 @@
                     "
                     type="image/webp">
                     <img
+                        loading="lazy"
                         width="2560"
                         height="850"
                         src="{{mediaUrl}}/footer-2560.jpg"

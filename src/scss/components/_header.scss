@@ -152,7 +152,7 @@
         right: 2em;
         width: 8em;
         transform: translateX(1em);
-        .ready & {
+        .loaded & {
           opacity: 1 !important;
           transform: translateX(0);
         }
@@ -166,7 +166,7 @@
         align-self: flex-end;
         color: #fff;
         transform: translateX(1em);
-        .ready & {
+        .loaded & {
           opacity: 1 !important;
           transform: translateX(0);
         }
@@ -196,7 +196,7 @@
       justify-content: center;
       font-size: .65rem;
 
-      .ready & {
+      .loaded & {
         opacity: 1 !important;
       }
 
@@ -231,7 +231,7 @@
 
       .s-l {
         right: 0;
-        .ready & {
+        .loaded & {
           transform: translateX(calc(-2.5rem * var(--i))) rotate(calc(10deg * var(--i)));
         }
         &-wrapper {
@@ -241,7 +241,7 @@
       }
 
       .s-r {
-        .ready & {
+        .loaded & {
           transform: translateX(calc(2.5rem * var(--i))) rotate(calc(-10deg * var(--i)));
         }
         &-wrapper {
@@ -447,7 +447,7 @@ $animation-duration: .5s;
 
 
 
-body.ready {
+.header.loaded {
   .header__bg {
     opacity: 1 !important;
     transform: scale(1);

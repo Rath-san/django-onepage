@@ -7,18 +7,11 @@ def index(request, **kwargs):
 
     def select_related(p, **kwargs):
         return {
-            'all' : lambda : [{
+            'all' : lambda : list({
                     'used_in_trailer' : True
                 }, {
                     'used_in_trailer' : False
-                }]
-            # {
-            #     'filter' : lambda g : [{
-            #         'used_in_trailer' : True
-            #     }, {
-            #         'used_in_trailer' : False
-            #     }]
-            # }
+                })
         }
 
         # product.productdetails.minimal_requirements
