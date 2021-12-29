@@ -5,13 +5,14 @@
     {% elif music.music_portal.name == "epidemicsound.com" %}
     {% set url = "https://www.epidemicsound.com/campaign/invite-a-creator/?_us=Referral&_usx=3zpfqv" %}
     {% endif %}
-    {% set portal_name = music.music_portal.name.replace('www.','') | lower %}
-
+    {% set portal_name = music.music_portal.name | replace('www.','') | lower %}
+    
     {% if url != '' %}
         <a class="music-portal" href="{{ url }}" target="_blank" rel="noopener noreferrer">{{ portal_name }}</a>
     {% else %}
         <span class="music-portal">{{ portal_name }}</span>
     {% endif %}
+
     <span class="separator"> — </span>
     <span class="music-title">{{ music.title.replace(' - ', ' — ') }}</span>
 {% endmacro %}

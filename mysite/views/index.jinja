@@ -247,6 +247,10 @@ jsum
 
         <div>{{scrsetAll|pprint}}</div>
 
+        <pre>
+        __product: {{product|pprint}}
+        </pre>
+
         <script>
             const onHeaderImagesLoaded = () => {
             const header = document.querySelector('section.header')
@@ -615,16 +619,6 @@ jsum
             {% set collapseAfter = 8 %}
             {% set namePrefix = '' %}
             {% set categories = [
-                    { 'key':'Add-ons', 'label': 'Add-ons', 'count': 15},
-                    { 'key':'Backgrounds', 'label': 'Backgrounds', 'count': 11},
-                    { 'key':'Descriptions', 'label': 'Descriptions', 'count': 15},
-                    { 'key':'Drop_Zones', 'label': 'Drop Zones', 'count': 19},
-                    { 'key':'Lineups', 'label': 'Lineups', 'count': 16},
-                    { 'key':'Logos', 'label': 'Logos', 'count': 14},
-                    { 'key':'Lower3rds', 'label': 'Lower 3rds', 'count': 14},
-                    { 'key':'Numbers', 'label': 'Number', 'count': 10},
-                    { 'key':'Titles', 'label': 'Titles', 'count': 23},
-                    { 'key':'Transitions', 'label': 'Transitions', 'count': 7},
                 ]
             %}
 
@@ -790,16 +784,16 @@ jsum
                                     <div class="tcell tdata">
                                         {{ "%.1f MB"|format(product.productdetails.source_size / 1000) }}
                                     </div>
-                                    {# {% for kind in ['trailer', 'tutorial'] %}
+                                    {% for kind in ['trailer', 'tutorial'] %}
                                         {% with musics=product.productdetails.music.select_related('music_portal').all().filter(used_in_trailer=kind=='trailer') %}
-                                            {% if length(musics) %}
-                                                <div class="cell label">Music used in {{ kind }}</div>
-                                                <div class="cell data">
+                                            {% if musics|length %}
+                                                <div class="tcell tlabel">Music used in {{ kind }}</div>
+                                                <div class="tcell tdata">
                                                     {% include 'product/music_info.jinja2' %}
                                                 </div>
                                             {% endif %}
                                         {% endwith %}
-                                    {% endfor %} #}
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>
@@ -873,7 +867,7 @@ jsum
                             </div>
                             <div class="button-buy">
                                 {% with discount_text="INTRO", version=2 %}
-                                    {% include "product/buy_button.jinja2" %}
+                                    {# {% include "product/buy_button.jinja2" %} #}
                                 {% endwith %}
                             </div>
                         </div>

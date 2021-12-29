@@ -144,3 +144,6 @@ src/_prevs/**/*.jpg
 src/_prevs/*
 src/_data
 spa-db
+spa-db-journal
+
+migrations

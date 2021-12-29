@@ -2,6 +2,8 @@ from django.db.models.query_utils import select_related_descend
 from django.shortcuts import render
 from django.http import HttpResponse
 
+from .dop.models import Music, Product
+
 
 def index(request, **kwargs):
 
@@ -14,16 +16,15 @@ def index(request, **kwargs):
                 })
         }
 
-        # product.productdetails.minimal_requirements
+    product = Product.objects.all()[0]
+
     context = {
         'product' : {
-            'title': 'Test',
+            'title': product.title,
             'productdetails' : {
-                'minimal_requirements' : 'a, b, c',
-                'source_size' : 10000,
-                'music' : {
-                    'select_related' : select_related
-                }
+                'minimal_requirements' : product.minimal_requirements,
+                'source_size' : product.source_size,
+                'music': Music.objects,
             }
         },
 
