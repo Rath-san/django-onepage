@@ -15,10 +15,9 @@ The core of this project is a simple single page app made with `django` (docker)
 + scripts => es6 modules with iife output (single file)
 + dev server **`browsersync`** => proxy to back
 
-### **Utils**
+### **Utils:**
 + `sharp` for image processing
 + `ffmpeg` courtesy of [ffmpeg-static](https://www.npmjs.com/package/ffmpeg-static) for video processing
-<br>
 <br>
 
 ## **Instalation**
@@ -53,6 +52,8 @@ Launch dev server via:
 ```
 npm run dev
 ```
+> ##### _tasks can be inspected in `gulpfile.js`_
+<br>
 
 On [localhost:3000](http://localhost:3000) it should look all good now.
 <br>
