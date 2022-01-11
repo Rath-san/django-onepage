@@ -86,7 +86,7 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'spa-db',
+        'NAME': 'db.sqlite3',
         'USER': 'root',
         'PASSWORD': 'password',
         'HOST': 'db',
