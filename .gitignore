@@ -146,4 +146,5 @@ src/_data
 spa-db
 spa-db-journal
 
-migrations
+*/migrations/*
+!*/migrations/__init__.py
