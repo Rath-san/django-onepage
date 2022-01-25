@@ -140,8 +140,9 @@ src/_images/**/*.png
 src/_images/**/*.webp
 src/_images/**/*.svg
 src/_images/**/*.mp4
-src/_prevs/**/*.jpg
-src/_prevs/*
+src/_videos/**/*.jpg
+src/_videos/**/*.mp4
+src/_videos/**/*.webm
 src/_data
 spa-db
 spa-db-journal

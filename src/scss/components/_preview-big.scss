@@ -48,32 +48,35 @@
 
   img {
     height: 100%;
-    max-height: 1024px;
     object-fit: cover;
-    object-position: left;
+    min-height: 400px;
   }
 
   &__content {
     position: relative;
+    pointer-events: none;
   }
+
   .prev__label {
     display: block;
     top: 50%;
     bottom: unset;
     left: 0;
     background-color: transparent;
-    font-size: .8rem;
+    font-size: .7rem;
     text-transform: uppercase;
-    transform: translateY(-50%) rotate(-90deg);
-    // font-family: 'Quantico', sans-serif;
+    transform: translate(-6%, -50%) rotate(-90deg);
+
     @include respond-below(md) {
       font-size: .5rem;
     }
+
     &.right {
       left: unset;
       right: 0;
       transform: translateY(-50%) rotate(90deg);
     }
+
   }
   padding-bottom: 0rem;
   @media screen and (max-width: 768px) {
@@ -89,12 +92,20 @@
     transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
   }
 
+
+  .ba {
+    &-draggable,
+    &-resizable {
+      transition: none;
+    }
+  }
+
   .resize {
-    width: 10%;
+    // width: 10%;
   }
 
   .handle {
-    left: 10%;
+    // left: 10%;
   }
 
   &[data-visible="true"] {

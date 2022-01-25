@@ -1,0 +1,19 @@
+.prev-card {
+    // background-color: red;
+    perspective: 5000px;
+    > div {
+        opacity: 0;
+        transition:
+            transform .35s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+            opacity .35s linear;
+        transform: translate3d(0, 100px, -500px) rotate3d(-1, 0, 0, 45deg);
+        transition-delay: calc(0ms + 50ms * var(--s-index));
+    }
+
+    &[data-rowvisible="true"] {
+        > div {
+            transform: translate3d(0, 0px, 0px) rotate3d(-1, 0, 0, 0deg);
+            opacity: 1;
+        }
+    }
+}

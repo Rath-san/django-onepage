@@ -1,131 +1,174 @@
-import { doOnVisible } from "./libs/do-on-visible";
-import initPrevs from "./utils/prevs";
-import Splitting from "splitting";
+// import { doOnVisible } from "./libs/do-on-visible";
+// import initPrevs from "./utils/prevs";
+// import Splitting from "splitting";
+// import { handleTouchEvents } from "./utils/utils";
+// // import scroller, { gui } from "./libs/scroller";
+// // import { animSignsPrevs } from "./libs/anim-sign";
+// import "./vendor/beforeafter";
+// // import Matrix from "./libs/matrix";
+// // import { randomString } from './libs/random-string';
+// import './vendor/popup-tech-spec';
 
-// const onHeaderImagesLoaded = () => {
-//     const header = document.querySelector('section.header')
-//     const images = Array.from(header.querySelectorAll('img'));
-//     const loadedImages = images.map(img => false);
+// // const callBASlider = function () {
+// //     $(".ba-slider").each(function () {
+// //         $(this).beforeAfter(".img-lazy");
+// //     });
 
-//     images.forEach((img, idx) => {
-//         img.onload = () => {
-//             loadedImages[idx] = true
-//             if (loadedImages.every(val => val)) {
-//                 header.classList.add("loaded")
-//             }
+// //     const baseOffset = 12;
+// //     const isAfter = (e) => e.classList.contains("right");
+
+// //     $(".prev__label").each(function (i, e) {
+// //         $(e).on("click", function () {
+// //             const parent = this.closest(".prBeforeAfter");
+// //             const resize = $(parent).find(".resize");
+// //             const handle = $(parent).find(".handle");
+
+// //             const newOffset = `${isAfter(e) ? baseOffset : 100 - baseOffset}%`;
+
+// //             resize.css("width", newOffset);
+// //             handle.css("left", newOffset);
+// //         });
+// //     });
+// // };
+
+// (() => {
+//     document.body.classList.add("initialized");
+
+//     const titles = [
+//         ...Array.from(document.querySelectorAll(".section__title")),
+//     ];
+
+//     titles.forEach((title) => {
+//         title.style.opacity = 1;
+//         title.dataset.title = false;
+//     });
+
+//     Splitting({
+//         target: ".section__title, .left",
+//         by: "words",
+//     });
+
+//     // animateTitle();
+
+//     window.addEventListener("load", () => {
+//         document.body.classList.add("ready");
+
+//         const sections = [
+//             ...Array.from(document.querySelectorAll("section")),
+//             ...Array.from(document.querySelectorAll(".left")),
+//             ...Array.from(document.querySelectorAll("footer")),
+//         ];
+
+//         sections.forEach((s) => {
+//             s.dataset.visible = false;
+//         });
+
+//         doOnVisible({
+//             sectionSelector: sections,
+//             cbIn: (target) => {
+//                 target.dataset.visible = true;
+//             },
+//             cbOut: () => {
+//                 // target.dataset.visible = false;
+//             },
+//             rootMargin: "-150px",
+//         });
+
+//         const prevCards = document.querySelectorAll('.prev-card')
+
+//         doOnVisible({
+//             sectionSelector: prevCards,
+//             cbIn: (target) => {
+//                 target.dataset.rowvisible = true;
+//             },
+//             cbOut: () => {
+//                 // target.dataset.visible = false;
+//             },
+//             rootMargin: "-150px",
+//         });
+//     });
+
+//     const carouselSwiping = (carousel) => {
+//         const carouselEntity = $(`#${carousel.id}`)
+//         const onRightSwipe = () => {
+//             carouselEntity.carousel("next");
+//         };
+    
+//         const onLeftSwipe = () => {
+//             carouselEntity.carousel("prev");
+//         };
+
+//         handleTouchEvents(carousel, {
+//             onLeftSwipe,
+//             onRightSwipe,
+//             // onTopSwipe: (val) => console.log({top: val}),
+//             // onDownSwipe: (val) => console.log({down: val})
+//         }).init();
+//     }
+
+//     const makeSlider = (id, options = {}) => {
+//         const defaultOptions = { pause: false, interval: 5000, wrap: true };
+//         const currentOptions = { ...defaultOptions, ...options};
+//         const slider = $(id).carousel(currentOptions);
+
+//         $(id).carousel("pause");
+//         carouselSwiping(slider[0]);
+
+//         return slider;
+//     };
+
+//     const handleSliding = (options) => (id, index) => {
+//         makeSlider(id, options);
+
+//         const indicators = $(`${id}Indicators > div`);
+
+//         if (indicators) {
+//             const carousel = $(id);
+//             carousel.on("slide.bs.carousel", (e) => {
+//                 indicators.each((i, el) => {
+//                     el.classList.remove("active");
+//                     if (e.to === i) {
+//                         el.classList.add("active");
+//                     }
+//                 });
+//             });
+
+//             indicators.each((i, el) => {
+//                 el.addEventListener("click", () => {
+//                     carousel.carousel(i);
+//                 });
+//             });
 //         }
-//     })
-// }
-
-// onHeaderImagesLoaded();
-
-(() => {
-    document.body.classList.add("initialized");
-    Splitting({
-        target: ".section__title, .left",
-        by: "words",
-    });
-    window.addEventListener("load", () => {
-        const sections = [
-            ...Array.from(document.querySelectorAll("section")),
-            ...Array.from(document.querySelectorAll(".left")),
-            ...Array.from(document.querySelectorAll("footer")),
-        ];
-
-        sections.forEach((s) => {
-            s.dataset.visible = false;
-        });
-
-        doOnVisible({
-            sectionSelector: sections,
-            cbIn: (target) => {
-                target.dataset.visible = true;
-            },
-            cbOut: (target) => {
-                // target.dataset.visible = false;
-            },
-            rootMargin: "-150px",
-        });
 
 
-        // function onImagesReady(images, callback) {
-        //     images.forEach(imgUrl => {
-        //     const img = document.createElement('img');
-        //     img.addEventListener('load', () => {
-        //         img.remove();
-        //         incrementCounter();
-        //     });
-        //     img.setAttribute('src', imgUrl);
-        //     });
-        //     const count = images.length;
-        //     let counter = 0;
-        //     function incrementCounter() {
-        //         counter++;
-        //         if (counter === count) {
-        //             callback();
-        //         }
-        //     }
-        // }
+//         setTimeout(() => {
+//             $(id).carousel("cycle");
+//         }, 250 * index);
+//     }
 
-        function overlayCountdown() {
-            // const countdown = document.querySelector('.overlay-countdown');
-            // const img = countdown.querySelector('img');
-            // const src = img.currentSrc || img.src;
+//     const carouselsPromo = ['#carouselPromo'];
+//     const carouselsMosaics = ["#carouselMosaic11", "#carouselMosaic12", "#carouselMosaic21"];
 
-            // onImagesReady([ src ], () => {
-            // countdown.classList.add('show');
-            // setTimeout(() => {
-            //     countdown.classList.add('hide');
-            // }, 2300);
-            // });
-        }
+//     carouselsPromo.forEach(handleSliding());
+//     carouselsMosaics.forEach(handleSliding({pause: "hover"}));
 
-        overlayCountdown();
+//     const carouselControls = document.querySelector('.mosaic-controls');
+//     const [prev, next] = carouselControls.querySelectorAll('div')
 
-    });
+//     const slideCarousel = (direction = 'next') => () => {
+//         carouselsMosaics.forEach((id, idx) => {
+//             setTimeout(() => {
+//                 $(id).carousel(direction);
+//             }, 250 * idx);
+//         });
+//     }
 
-    initPrevs();
+//     prev.addEventListener('click', slideCarousel('prev'))
+//     next.addEventListener('click', slideCarousel('next'))
+//     // scroller().init();
 
-    const makeSlider = (id) => {
-        const slider = $(id).carousel({
-            pause: false,
-            interval: 5000,
-            wrap: true,
-        });
+//     // callBASlider();
+//     // initPrevs();
 
-        $(id).carousel("pause");
-
-        return slider;
-    };
-
-    const demo = ["#demo"]
-
-    demo.forEach((id, index) => {
-        makeSlider(id);
-
-        setTimeout(() => {
-            $(id).carousel("cycle");
-        }, 500 * index);
-    })
-
-    const sliderIds = ["#demo2", "#demo1", "#demo3", "#demo10"];
-
-    const sliders = sliderIds.map((sliderId, index) => {
-        makeSlider(sliderId);
-
-        setTimeout(() => {
-            $(sliderId).carousel("cycle");
-        }, 250 * index);
-    });
-
-    const s = ["#demoa", "#demob"];
-
-    s.forEach((id, index) => {
-        makeSlider(id);
-
-        setTimeout(() => {
-            $(id).carousel("cycle");
-        }, 500 * index);
-    })
-
-})();
+//     // gui();
+// })();

@@ -1,0 +1,187 @@
+
+
+    {% macro picture_source(name, sizeset, media, sizes="100vw", ext=["webp", "jpeg"]) %}
+        <source media="{{media}}"
+            srcset="
+                {% for size in sizeset %}
+                    {{mediaUrl}}/{{name}}-{{size}}.webp {{size}}w,
+                {% endfor %}
+            "
+            type="image/{{ext[0]}}"
+            sizes="{{sizes}}"
+        >
+        <source media="{{media}}"
+            srcset="
+                {% for size in sizeset %}
+                    {{mediaUrl}}/{{name}}-{{size}}.webp {{size}}w,
+                {% endfor %}
+            "
+            type="image/{{ext[1]}}"
+            sizes="{{sizes}}"
+        >
+    {% endmacro %}
+
+    {% set image = {
+        "name": "header",
+        "ext": "jpg",
+        "lazy": True,
+        "size": {
+            "width": "2560",
+            "height": "850"
+        },
+        "alt": "",
+        "sizes": "100vw",
+        "srcsets": {
+            "mobile": {
+                "widths": srcsetSizesMobile,
+                "media": "(max-width: 640px)",
+                "sizes": ""
+            },
+            "desktop": {
+                "widths": srcsetSizesDesktop,
+                "media": "",
+                "sizes": "100vw"
+            }
+        }
+    } %}
+
+    {% macro picture(image) %}
+        {% if image.srcsets.mobile %}
+            {{picture_source(
+                image.name + "_mobile",
+                image.srcsets.mobile.widths,
+                image.srcsets.mobile.media,
+                image.srcsets.mobile.sizes
+                ["webp", image.ext]
+            )}}
+        {% endif %}
+        {% if image.srcsets.desktop %}
+            {{picture_source(
+                image.name,
+                image.srcsets.desktop.widths,
+                image.srcsets.desktop.media,
+                image.srcsets.desktop.sizes
+                ["webp", image.ext]
+            )}}
+        {% endif %}
+
+        <img
+            width="{{image.size.width}}"
+            height="{{image.size.height}}"
+            src="{{mediaUrl}}/{{name}}-{{image.size.width}}.{{ext}}"
+            alt="{{image.alt}}"
+            sizes="{{image.srcsets.desktop.sizes}}"
+        >
+    {% endmacro %}
+
+
+        {% set items = ['a', 'b', 'c'] %}
+        <table>
+            {%- for row in items|batch(2, 'f') %}
+                <tr>
+                    {%- for column in row %}
+                        <td>{{ column }}</td>
+                    {%- endfor %}
+                </tr>
+            {%- endfor %}
+        </table>
+
+        <div>
+            {{1000000|filesizeformat()}}
+        </div>
+        <div>
+            {{items|join('|', attribute='username')}}
+        </div>        
+        {% set itesms_length = items|length %}
+        <div>
+            {{itesms_length}}
+        </div>
+        {% set unioner = [] %}
+        <div>
+            {{unioner|join('|')}}
+        </div>
+
+        <div>
+            {{items|pprint}}
+        </div>
+
+        <div>
+            {{'<b>1</b>'|safe}}
+        </div>
+
+        {% set sumi = [
+            dict(price=1),
+            dict(price=2)
+        ] %}
+jsum
+        <div>
+            sum: {{sumi|sum(attribute="price")}}
+        </div>
+
+        <div>
+            {{'hello wolrd or nope'|title}}
+        </div>
+
+        <div>
+            {{lipsum(1)}}
+        </div>
+
+        <div>
+            {%- if True -%}
+                yay
+            {%- endif -%}
+        </div>
+
+        <div>{{scrsetAll|pprint}}</div>
+
+        <pre>
+        __product: {{product|pprint}}
+        </pre>
+
+
+{% macro picture(
+	media_url,
+	filename,
+	media_files={},
+	file_sizes=[360, 480, 640, 960],
+	formats=['webp','jpg'],
+	media_sizes='',
+	media='',
+	alt='',
+	img_class='',
+	picture_class='',
+	width='',
+	height=''
+) %}
+	<picture class="{{ picture_class }}">
+		{% for media in media_files %}
+			{% set m = media_files[media] %}
+			{% for format in formats %}
+				<source
+					srcset="
+						{% for size in m['file_sizes'] %}
+							{{ media_url }}/{{ m['filename'] }}-{{ size }}.{{ format }} {{size}}w,
+						{% endfor %}"
+					type="image/{{ format | replace('jpg', 'jpeg') }}"
+					sizes="{{ m['media_sizes'] | default(media_sizes) }}"
+					media="{{ media }}"
+				>
+			{% endfor %}
+		{% endfor %}
+		{% for format in formats %}
+			<source
+				srcset="
+					{% for size in file_sizes %}
+						{{ media_url }}/{{ filename }}-{{ size }}.{{ format }} {{size}}w,
+					{% endfor %}"
+				type="image/{{ format | replace('jpg', 'jpeg') }}"
+				sizes="{{ media_sizes }}"
+				media="{{ media }}">
+		{% endfor %}
+		<img src="{{ media_url }}/{{ filename }}-{{ file_sizes[0] }}.{{ formats[-1] }}"
+			alt="{{alt}}"
+			class="{{img_class}}"
+			width="{{width}}"
+			height="{{height}}">
+	</picture>
+{% endmacro %}

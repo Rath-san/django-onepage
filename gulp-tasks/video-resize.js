@@ -10,12 +10,15 @@ const FORMATS = ["mp4"];
 const VIDEO_QUALITY = 28; // this is not deterministic lower = uglier
 
 const CONFIGS = [
-    {
-        directory: "_prevs",
-    },
     // {
-    //     directory: "_desktop",
+    //     directory: "_prevs",
     // },
+    // {
+    //     directory: "_promo",
+    // },
+    {
+        directory: 'filmlook'
+    }
 ];
 
 function resizeTask(
@@ -33,6 +36,9 @@ function resizeTask(
                     pathToFfmpeg, '-y', '-v', 'error',
                     '-i', file.path,
                     '-c:v', 'libx264',
+
+                    // '-c:v', 'libvpx',
+
                     '-crf', VIDEO_QUALITY,
                     '-profile:v', 'high',
                     '-pix_fmt', 'yuv420p',
@@ -40,7 +46,7 @@ function resizeTask(
                     '-color_trc', 1,
                     '-colorspace', 1,
                     '-an',
-                    resolve(videoDist, file.basename)
+                    resolve(videoDist, `${file.basename}`)
                     ])
 
                 exec(convert, (err) => {

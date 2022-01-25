@@ -2,12 +2,12 @@ $rem: 20px;
 
 $font-size-title: $rem * 2;
 $font-size-sub-title: $rem * 1.2;
-$font-size-body: $rem * .9;
+$font-size-body: $rem * 0.9;
 
-$font-family-subtitle: 'Lato', sans-serif;
-$font-family-title: 'Montserrat', sans-serif;
-$font-family-text: 'Lato', sans-serif;
-
+$font-family-text: "Poppins", sans-serif;
+$font-family-subtitle: $font-family-text;
+$font-family-title: $font-family-text;
+$font-family-title--big: $font-family-text;
 
 h1,
 h2,
@@ -15,9 +15,10 @@ h3,
 h4,
 h5,
 h6 {
-  line-height: 1;
+  line-height: 1.5;
   margin-bottom: 0;
   font-family: $font-family-title;
+  // font-weight: 300;
 }
 
 b {
@@ -26,63 +27,261 @@ b {
 
 main {
   font-family: $font-family-text;
-  line-height: 1.8;
+  font-weight: 300;
 }
 
 .section {
   &__title {
-    font-size: 2rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
+    opacity: 0;
+    // letter-spacing: 1.2px;
+    font-size: 1.8rem;
+    font-weight: 500;
+    // margin-bottom: .75em;
     line-height: 1.2;
     font-family: $font-family-title;
-    @include respond-below(sm) {
-      font-size: 1.5rem;
+    // text-transform: uppercase;
+    // display: flex;
+    letter-spacing: 1px;
+
+    // display: flex;
+    // justify-content: center;
+
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+
+    // .front {
+    //   line-height: .3;
+    // }
+
+    // b {
+    //   font-family: $font-family-title--big;
+    //   font-size: clamp(2rem, 10vw, 3rem);
+    //   font-weight: bold;
+    //   letter-spacing: 3px;
+
+    //   display: inline-block;
+    //   padding: 0 .1em;
+
+      
+    //   line-height: .7;
+      
+    // }
+
+    // @include respond-below(xl) {
+    //   .front {
+    //     line-height: 1.4;
+    //   }
+    //   b {
+    //     padding-left: 0;
+    //     margin-left: -.05em;
+    //     line-height: 1.5;
+    //   }
+    // }
+
+    // .back {
+    //   align-self: flex-end;
+    // }
+
+    // .trailer &,
+    // .tutorial & {
+    //   justify-content: center;
+    //   @include respond-below(xl) {
+    //     flex-direction: column;
+    //     // justify-content: flex-start;
+    //     // align-items: flex-start;
+    //     .front {
+    //       line-height: 1.2;
+    //     }
+    //     .back {
+    //       line-height: .4;
+    //       align-self: center;
+    //     }
+    //   }
+    // }
+
+    // .trailer & {
+    //   margin-top: 2rem;
+    // }
+
+    // .tutorial & {
+
+    // }
+
+    // .promo-carousel &,
+    // .promo-ba &,
+    // .prevs__bottom & {
+    //   .front {
+    //     display: inline-block;
+    //     width: 100%;
+    //     line-height: 1.2;
+    //   }
+    //   b {
+    //     padding-left: 0;
+    //     margin-left: -.05em;
+    //     @include respond-above(xl) {
+    //       line-height: 1.2;
+    //     }
+    //   }
+    //   .back {
+    //     line-height: 3.2;
+    //     @include respond-below(xl) {
+    //       line-height: 4.6;
+    //     }
+    //   }
+
+    //   @media screen and (max-width: 600px) {
+    //     flex-direction: column;
+    //     .front {
+    //       display: inline;
+    //     }
+    //     .back {
+    //       align-self: flex-start;
+    //       line-height: .4;
+    //     }
+    //   }
+    // }
+
+    .prevs__top &,
+    .product-prev-grid & {
+      // margin-bottom: 3rem;
+      justify-content: center;
+      // b {
+      //   line-height: 1;
+      // }
     }
+
+    // .prevs__top & {
+    //   [data-word="TRANSITIONS"] {
+    //     @media screen and (max-width: 840px) {
+    //       margin-left: -2px;
+    //     }
+    //   }
+    // }
+
+    // .product-prev-grid & {
+    //   margin-bottom: 1rem;
+    //   font-family: $font-family-title--big !important;
+    // }
+
+    // .prevs__bottom & {
+    //   margin-bottom: 1.5rem;
+    // }
+
+    // .tech-spec & {
+    //   justify-content: center;
+    //   @include respond-below(xl) {
+    //     justify-content: flex-start;
+    //     // b {
+    //       // line-height: 1.2;
+    //     // }
+    //     flex-direction: column;
+    //   }
+    // }
+
+    // .footer & {
+    //   justify-content: center;
+    //   @include respond-below(xl) {
+    //     flex-direction: column;
+    //   }
+    // }
+
+    // .prevs__bottom & {
+
+    // }
+
+    
+    // font-style: italic;
+    // @include respond-below(sm) {
+    // font-size: 1.6rem;
+    // }
+    // @include respond-below(md) {
+    //   font-size: 28px;
+    // }
   }
+
   &__subtitle {
-    font-size: .7rem;
+    font-size: 0.7rem;
     font-weight: 400;
-    margin-bottom: .8rem;
+    margin-bottom: 0;
+    opacity: 0;
     text-transform: uppercase;
+    // letter-spacing: 7px;
     font-family: $font-family-subtitle;
+    margin-bottom: 1rem;
+
+    .prevs & {
+      // letter-spacing: 2px;
+      font-size: .7rem;
+    }
   }
 
   &__display {
-    font-size: 7rem;
-    font-weight: 600;
+    font-size: 11rem;
+    font-weight: 900;
     line-height: 1;
-    font-family: $font-family-title;
-    @include respond-below(sm) {
-      font-size: 7rem;
-    }
+    margin-bottom: 0;
+    opacity: 0;
+    // font-style: italic;
+    font-family: $font-family-title--big;
+    // -webkit-text-stroke-color: #fff;
+    // -webkit-text-stroke-width: 2px;
+    // color: transparent;
+    // @include respond-below(sm) {
+    //   font-size: 7rem;
+    // }
   }
 
   &__text {
-    font-size: .9rem;
-    margin-bottom: 2.5rem;
-    font-weight: 300;
+    font-size: 0.9rem;
+    opacity: 0;
+    .ts-mi & {
+      opacity: 1;
+    }
+    // margin-bottom: 3rem;
+    // font-weight: 300
+    letter-spacing: .5px;
+    font-family: $font-family-text;
+    // line-height: 1.8;
+    // margin-bottom: 0;
 
-    @media screen and (max-width: 1024px) {
-      font-size: 18px;
+    // margin-bottom: 5rem;
+
+    .trailer &,
+    .tutorial & {
+      margin-bottom: 4rem;
     }
 
-    @media screen and (max-width : 1440px) {
-      white-space: unset;
+    + & {
+      margin-top: 1rem;
     }
-
     &--inset {
-      padding-left: 5rem;
-    }
-
-    &__content {
-      position: relative;
-      z-index: 0;
-
-      @media screen and (max-width: 1440px) {
-        padding: 0 5%;
+      @include respond-above(xl) {
+        padding-left: 2.5rem;
+        // margin-bottom: 0;
       }
-
     }
   }
 }
+
+// .outline {
+//   -webkit-text-stroke-color: #fff;
+//   -webkit-text-stroke-width: 1px;
+//   color: transparent;
+// }
+// .section {
+//   &__subtitle {
+
+//   }
+
+//   &__text {
+
+//   }
+
+//   &__subtitle,
+//   &__text {
+//     opacity: 0;
+//     [data-visible="true"] & {
+//       opacity: 1;
+//     }
+//   }
+// }

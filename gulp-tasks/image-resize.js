@@ -11,7 +11,7 @@ const {
 } = require("./constants");
 
 const FORMATS = ["jpg", "webp"];
-const IMAGE_QUALITY = 50;
+const IMAGE_QUALITY = 25;
 
 const CONFIGS = [
     // {
@@ -26,7 +26,7 @@ const CONFIGS = [
     // },
     // {
     //     directory: "_all",
-    //     sizes: RESPONSIVE_SIZES,
+    //     sizes: RESPONSIVE_SIZES.map((size) => ({ ...size, h: 860 })),
     // },
     // {
     //     directory: "_slider",
@@ -35,11 +35,52 @@ const CONFIGS = [
     //         ...RESPONSIVE_SIZES_DESKTOP
     //     ],
     // },
+    // {
+    //     directory: "_custom",
+    //     sizes: [{w: 2332}],
+    //     targetFormat: ["png", "webp"]
+    // },
+    // {
+    //     directory: "_custom2",
+    //     sizes: [{w: 760}],
+    //     targetFormat: ["jpg", "webp"]
+    // },
+    // {
+    //     directory: "_custom3",
+    //     sizes: [{w: 600}],
+    //     targetFormat: ["jpg", "webp"]
+    // },
+    // {
+    //     directory: "_custom4",
+    //     sizes: RESPONSIVE_SIZES
+    // },
+    // {
+    //     directory: "_custom5",
+    //     sizes: [{w: 640}],
+    //     targetFormat: ["png", "webp"]
+    // },
     {
-        directory: "_prevs",
-        sizes: [{w: 640}],
-        targetFormat: ["jpg"]
-    }
+        directory: "_custom6",
+        sizes: [{w: 512}, {w: 360}],
+        targetFormat: ["jpg", "webp"]
+    },
+    // {
+    //     directory: "_prevs",
+    //     sizes: [{w: 640}],
+    //     targetFormat: ["jpg"]
+    // },
+    // {
+    //     directory: "_slider_small",
+    //     sizes: [{w: 1060}],
+    // },
+    // {
+    //     directory: "_slider_small2",
+    //     sizes: [{w: 1400}],
+    // },
+    // {
+    //     directory: "_slider_small3",
+    //     sizes: [{w: 1080}],
+    // }
 ];
 
 function resizeTask(
@@ -78,7 +119,9 @@ function resizeTask(
                                 : "d_"
                             : "";
 
-                        return `${name
+                        const fName = name.split(".")[0];
+
+                        return `${fName
                             .split(" ")
                             .join(
                                 "_"
@@ -91,11 +134,15 @@ function resizeTask(
                             quality: 100,
                         });
 
-                        const resizedImg = img.resize(width, height, {
-                        });
-
                         const saveFile = async (format = file.extname) => {
-                            const imageClone = resizedImg.clone();
+                            const imageClone = img.clone();
+
+                            if (format === 'jpg' || format === 'jpeg') {
+                                imageClone.flatten({ background: { r: 255, g: 255, b: 255 } })
+                            }
+
+                            imageClone.resize(width, height, {});
+
 
                             imageClone.toFormat(format, {
                                 quality,

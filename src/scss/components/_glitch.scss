@@ -1,0 +1,186 @@
+.glitch-anim-2,
+.glitch-anim-2--visible {
+  $glitch2_duration: 0.78s;
+  $glitch2_timing: $glitch2_duration 0.2s;
+  $glitch2_timing: $glitch2_duration calc(0.1s + 0.1s * var(--word-index, 0));
+  $glitch2_timing2: $glitch2_duration / 2
+    calc(0.1s + 0.1s * var(--word-index, 0));
+  $topMaxPercent: 100;
+  .word {
+    position: relative;
+    // display: inline-block;
+  }
+  .word::after {
+    content: attr(data-word);
+    position: absolute;
+    left: 2px;
+    width: 100%;
+    text-shadow: -5px -2px red;
+    top: 0;
+    color: white;
+    background: black;
+    overflow: hidden;
+    @keyframes noise-anim {
+      $steps: 20;
+      @for $i from 0 to $steps {
+        #{percentage($i*(1/$steps))} {
+          $top: random($topMaxPercent);
+          $bottom: random(101 - $top);
+
+          $topWithPercent: $top * 1%;
+          $bottomWithPercent: $bottom * 1%;
+
+          clip-path: inset(#{$topWithPercent} 0 #{$bottomWithPercent} 0);
+          // $left: 2px + ($steps - $i) * -1px;
+          // left: 5 * round($left / 5);
+          $x: 5 - random(20) * 1px;
+          $y: 5 - random(10) * 1px;
+          transform: translate($x, $y);
+        }
+      }
+      100% {
+        clip-path: inset(0 0 0 0);
+        opacity: 0;
+      }
+    }
+  }
+  [data-title="true"] & .word::after {
+    animation: noise-anim $glitch2_timing linear alternate forwards;
+    // animation-delay: 2s;
+    // animation-iteration-count: infinite;
+  }
+  .word::before {
+    content: attr(data-word);
+    position: absolute;
+    left: -2px;
+    width: 100%;
+    text-shadow: 3px 3px blue;
+    top: 0;
+    color: white;
+    background: black;
+    overflow: hidden;
+    @keyframes noise-anim-2 {
+      $steps: 10;
+      @for $i from 0 to $steps {
+        #{percentage($i*(1/$steps))} {
+          $top: random($topMaxPercent);
+          $bottom: random(101 - $top);
+          $topWithPercent: $top * 1%;
+          $bottomWithPercent: $bottom * 1%;
+          clip-path: inset(#{$topWithPercent} 0 #{$bottomWithPercent} 0);
+
+          // $left: -(2px + ($steps - $i) * -1px);
+          // left: 5 * round($left / 5);
+        }
+      }
+      100% {
+        clip-path: inset(0 0 0 0);
+        opacity: 0;
+      }
+    }
+  }
+  [data-visible="true"] & .word::before {
+    animation: noise-anim-2 $glitch2_timing linear alternate forwards;
+    // animation-iteration-count: infinite;
+  }
+  .word {
+    opacity: 0;
+  }
+  [data-visible="true"] & .word {
+    @keyframes glitch-anim3 {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    @for $w from 1 through 20 {
+      &:nth-child(#{$w}) {
+        @keyframes glitch-anim-word#{$w} {
+          $steps: 4;
+          @for $i from 0 through $steps {
+            #{percentage($i*(1/$steps))} {
+              $x: 10 - random(20) * 1px;
+              $y: 5 - random(10) * 1px;
+              transform: translate($x, $y);
+            }
+          }
+        }
+        animation: glitch-anim3 $glitch2_timing forwards,
+          glitch-anim-word#{$w} $glitch2_timing2 backwards steps(1);
+        // animation-iteration-count: infinite;
+      }
+    }
+  }
+
+  &.section__display {
+    .word {
+      &::before,
+      &::after {
+        background: transparent;
+      }
+    }
+  }
+
+  &.logotype {
+    .word {
+      &::before,
+      &::after {
+        background: transparent;
+        animation-duration: 1s;
+      }
+
+      &::before {
+        text-shadow: -2px -2px red;
+      }
+
+      &::after {
+        text-shadow: 2px 2px blue;
+      }
+    }
+  }
+
+  &.infinite {
+    .word {
+      animation-iteration-count: infinite;
+      &::before,
+      &::after {
+        animation-iteration-count: infinite;
+      }
+    }
+  }
+
+  &--visible {
+    .word {
+      opacity: 1 !important;
+    }
+  }
+}
+
+
+.glitch-anim-shake {
+  $glitch2_duration: 0.78s;
+  $glitch2_timing: $glitch2_duration 0.2s;
+  $glitch2_timing: $glitch2_duration calc(0.1s + 0.1s * var(--word-index, 0));
+  $glitch2_timing2: $glitch2_duration / 2
+    calc(0.1s + 0.1s * var(--word-index, 0));
+  $topMaxPercent: 100;
+
+  @keyframes glitch-anim-shake {
+    $steps: 4;
+    @for $i from 0 through $steps {
+      #{percentage($i*(1/$steps))} {
+        $x: 10 - random(20) * 1px;
+        $y: 5 - random(10) * 1px;
+        transform: translate($x, $y);
+      }
+    }
+  }
+
+  .ready & {
+    opacity: 1 !important;
+    animation: glitch-anim-shake $glitch2_timing2 backwards steps(1);
+}
+
+}

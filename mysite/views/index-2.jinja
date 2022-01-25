@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include './components/head.jinja' %}
+
+<body>
+    {% include './components/nav.jinja' %}
+    {# {% include './components/bundle-popup.jinja' %} #}
+
+    {% set srcsetSizesMobile = [
+        640,
+        960
+    ] %}
+
+    {% set srcsetSizesDesktop = [
+        1280,
+        1920,
+        2560
+     ] %}
+
+     {% set srcsetSizes = srcsetSizesMobile + srcsetSizesDesktop %}
+
+
+    {% set templateId = '1384' %}
+    {% set refresh = 3 %}
+    {% set imagePrefix = 'mTransitionDatamosh' %}
+    {% set mediaUrl = 'https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media' % (templateId) %}
+
+    {% set data = {
+        'header': {
+            'subtitle': 'Powerful Typography Presets for DaVinci Resolve'
+        },
+        'trailer': {
+            'title': 'Watch trailer',
+            'text': 'Check out how mRestyle enlivens your shots and creates an energetic vibe in the entire edit.'
+        },
+        'tutorial': {
+            'subtitle': 'Tips and tricks',
+            'title': 'Watch tutorial',
+            'text': 'Watch this tutorial and get some tips on how to improve your editing game with this collection of visual effects.'
+        },
+        'promo': {
+            'title': 'Diversified, ready-made, and easy to use',
+            'text': 'These video stylizations are just an endless source of creative ideas for your work. Mix and match various effects to generate even more looks and invent visualizations beyond imagination.',
+        },
+        'promo-mosaic': {
+            'subtitle': 'Captivate the viewer',
+            'title': 'Draw attention and evoke emotions',
+            'text': 'A powerful way to give your edits a spectacular stylization and create engaging stories that catch the eye with unique visual effects.'
+        },
+        'prevs': {
+            'subtitle2': 'Effortless workflow',
+            'title': 'Diversified video stylizations',
+            'title2': 'Instantly transform your shots’ character',
+            'text': 'A huge variety of looks and styles to achieve sensational results',
+            'text2': 'Enriching music clips, commercials, themed videos, or any other formula is now a fun, quick, and effortless task that generates an impressive outcome.'
+        },
+        'footer': {
+            'title': 'Let’s make things interesting!',
+            'text': 'Breathe a new spirit into your editing job by applying a set of these exceptional footage effects. Redefine the videos and captivate your audience with thrilling visualizations that make your work truly stand out and astonish.'
+        }
+    } %}
+
+    {% set header_comps = [
+        [
+            'woman',
+            'hand',
+            'circle_red',
+            'circle_yellow',
+        ],
+        [
+            'face_2_square',
+            'face_square',
+            'purple_square',
+            'red_square',
+            'man',
+        ]
+    ] %}
+
+    <main>
+        <section class="header text-center">
+            <img src="https://s3.motionvfx.com/mvfxpublic/products/templates/1384/media/header-2332.webp" style="display: none;" alt="">
+            <div class="header__bg header-comp" style="--h-index: 0;">
+                    <picture class="comp-bg">
+                    {% set image_name = 'header_bg' %}
+                    <source media=""
+                        srcset="
+                            {% for size in srcsetSizes %}
+                                {{mediaUrl}}/{{image_name}}-{{size}}.webp {{size}}w,
+                            {% endfor %}
+                        "
+                        type="image/webp"
+                        sizes="100vw"
+                    >
+                    <source media=""
+                        srcset="
+                            {% for size in srcsetSizes %}
+                                {{mediaUrl}}/{{image_name}}-{{size}}.jpg {{size}}w,
+                            {% endfor %}
+                        "
+                        type="image/jpg"
+                        sizes="100vw"
+                    >
+                    <img
+                        width="2560"
+                        height="860"
+                        src="{{mediaUrl}}/{{image_name}}-2560.jpg"
+                        sizes="100vw">
+                </picture>
+                {% for comp in header_comps %}
+                    {% set comp_index = loop.index %}
+                    <div class="comp">
+                        {% for comp_name in comp %}
+                            <img
+                                class="comp-img {{comp_name}} {% if comp_name == 'woman' or comp_name == 'man' %}static{% endif %}"
+                                width="1"
+                                height="1"
+                                src="{{mediaUrl}}/header-comp-ph.png"
+                                style="--h-index: {{loop.index}}"
+                                sizes="">
+                            {% if comp_index == 2 and loop.index == 2 %}
+                                <div class="comp-img solid_circle" style="--h-index: 5"></div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="container-fluid">
+                <div class="header__content section__text__content">
+                    <div class="header__logo" data-title="true" style="--h-index: 0;">
+                        <h2 class="logotype">
+                            mRestyle
+                        </h2>
+                    </div>
+                </div>
+                <h1 class="header__subtitle section__text" style="--h-index: 1;">
+                    {% autoescape off %} {{product.head_info}} {% endautoescape %}
+                </h1>
+                <div class="header__deco" style="--h-index: 2;">
+                    <img src="https://s3.motionvfx.com/mvfxpublic/software/DV_color_icon.png" width="50" height="50" alt="" style="--h-index: 3;">
+                </div>
+            </div>
+
+        </section>
+        <div class="dr-gradient" style="--h-index: 4"></div>
+
+        <script>
+            const onHeaderImagesLoaded = () => {
+                const header = document.querySelector('section.header')
+                const images = Array.from(header.querySelectorAll('img'));
+                const loadedImages = images.map(img => false);
+                images.forEach((img, idx) => {
+                    loadedImages[idx] = img.complete;
+
+                    if (loadedImages.every(val => val)) {
+                        header.classList.add("loaded")
+                    }
+                    img.onload = () => {
+                        loadedImages[idx] = true
+                        if (loadedImages.every(val => val)) {
+                            header.classList.add("loaded")
+                        }
+                    }
+                })
+            }
+            onHeaderImagesLoaded();
+        </script>
+
+        <div class="scroll-prompt" style="--h-index: 2; opacity: 0;">
+            <a class="scroll-to-btn" href="#" onclick="scrollToAnchor('trailer');" tabindex="-1"></a>
+        </div>
+
+        <a class="nav" name="trailer"></a>
+
+        {% set trailerUrl = 'https://www.youtube.com/embed/nKAZqKYv9e0?rel=0' %}
+
+        <section class="video trailer">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="section__content">
+                            <div class="section__head">
+                                <div class="section__title">
+                                    {% autoescape off %} {{data.trailer.title}} {% endautoescape %}
+                                </div>
+                                <p class="section__text secuence">
+                                    {% autoescape off %} {{data.trailer.text}} {% endautoescape %}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="yt embed-responsive embed-responsive-16by9 animated animated--fade--bottom">
+                            <iframe loading="lazy" iframe src="{{trailerUrl}}"
+                                frameborder="0" allow="autoplay; encrypted-media" allowfullscreen="" title="Watch Trailer"
+                                style="background-color: #000"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <picture class="deco secuence">
+                {% set image_name = 'red' %}
+                <source media=""
+                    srcset="
+                        {{mediaUrl}}/{{image_name}}-600.webp,
+                    "
+                    type="image/webp"
+                >
+                <img
+                    width="2560"
+                    height="860"
+                    src="{{mediaUrl}}/{{image_name}}-600.jpg">
+            </picture>
+        </section>
+
+        <a class="nav" name="tutorial"></a>
+        {% set tutorialUrl1 = 'https://www.youtube.com/embed/tUnFaNAQ-8M?rel=0' %}
+
+        <section class="video tutorial">
+            <div class="image__background">
+                <picture>
+                    {% set image_name = 'tutorial_bg' %}
+                    <source media=""
+                        srcset="
+                            {{mediaUrl}}/{{image_name}}-760.webp,
+                        "
+                        type="image/webp"
+                    >
+                    <img
+                        width="2560"
+                        height="860"
+                        src="{{mediaUrl}}/{{image_name}}-760.jpg">
+                </picture>
+            </div>
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section__content">
+                            <div class="section__head">
+                                <p class="section__subtitle secuence" style="--s-index:0;">
+                                    {{data.tutorial.subtitle}}
+                                </p>
+                                <div class="section__title ">
+                                    {% autoescape off %} {{data.tutorial.title}} {% endautoescape %}
+                                </div>
+                                <p class="section__text secuence" style="--s-index:2;">
+                                    {% autoescape off %} {{data.tutorial.text}} {% endautoescape %}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="yt embed-responsive embed-responsive-16by9 animated animated--fade--bottom">
+                            <iframe loading="lazy" src="{{tutorialUrl1}}" frameborder="0"
+                                allow="autoplay; encrypted-media" allowfullscreen="" title="Watch Tutorial"
+                                style="background-color: #000"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <style>
+                .academy-link {
+                    z-index: 2;
+                    position: relative;
+                    margin: 1rem auto 0 auto;
+                    padding: 0 clamp(2em, 10vw, 10em);
+                    font-size: .9rem;
+                }
+                .academy-link p {
+                    width: Min(100%,29rem)
+                }
+                .academy-link a {
+                    transition: color .15s;
+                    text-decoration: underline;
+                    color: #3D98FF;
+                }
+                .academy-link a:hover {
+                    color: #3D98FF;
+                }
+            </style>
+            <div class="container center academy-link">
+                <p>
+                    Get more tips & tricks for DaVinci Resolve at <a target="_blank" href="https://www.motionvfx.com/page/davinci-resolve.html#tutorial">MotionVFX Academy</a>
+                </p>
+            </div>
+        </section>
+
+        {% with slider_images=[
+            {
+                'src': 'slider_1',
+                'alt': 'string',
+                'label': 'GRAPHIC 01'
+            },
+            {
+                'src': 'slider_2',
+                'alt': 'string',
+                'label': 'GRAPHIC 02'
+            },
+            {
+                'src': 'slider_3',
+                'alt': 'string',
+                'label': 'glitch 07'
+            },
+            {
+                'src': 'slider_4',
+                'alt': 'string',
+                'label': 'glitch 02'
+            }
+        ] %}
+        <section class="promo promo-carousel">
+            <div id="carouselPromo" class="secuence carousel slide carousel-fade fade-new">
+                <div class="carousel-inner">
+                {% for slide_img in slider_images %}
+                    <div class="carousel-item {% if loop.index == 1 %}active{% endif %}">
+                    {% with slide_index = loop.index %}
+                    <picture>
+                        <source media=""
+                            srcset="
+                                {% for size in srcsetSizes %}
+                                    {{mediaUrl}}/{{slide_img.src}}-{{size}}.webp {{size}}w,
+                                {% endfor %}
+                            "
+                            type="image/webp"
+                            sizes="100vw"
+                        >
+                        <source media=""
+                            srcset="
+                                {% for size in srcsetSizes %}
+                                    {{mediaUrl}}/{{slide_img.src}}-{{size}}.jpg {{size}}w,
+                                {% endfor %}
+                            "
+                            type="image/jpeg"
+                            sizes="100vw"
+                        >
+                        <img
+                            class="w-100 d-block"
+                            width="2560"
+                            height="950"
+                            src="{{mediaUrl}}/{{slide_img.src}}-2560.jpg?{{refresh}}"
+                            sizes="100vw">
+                    </picture>
+                    {% endwith %}
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
+
+            <div class="promo-carousel__content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="section__content">
+                                <div class="section__head">
+                                    <div class="section__title">{{data.promo.title}}</div>
+                                    <div class="section__text section__text--inset secuence">
+                                        <span>
+                                            {{data.promo.text}}
+                                        </span>
+                                    </div>
+                                    <div id="carouselPromoIndicators" class="carousel-indicators secuence" style="--s-index:2;">
+                                        {% for image in slider_images %}
+                                            <div class="carousel-indicators__item carousel-indicators__item--dash {% if loop.index == 1 %}active{% endif %}"></div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% endwith %}
+
+        {% with sections = [
+            [{
+                'images': [
+                    ['boots_after-1060', 'boots-1060'],
+                    ['car_after-1060', 'car-1060'],
+                ]
+            },{
+                'images': [
+                    ['m_slider_square_1_after-1400', 'm_slider_square_1-1400'],
+                    ['m_slider_square_3_after-1400', 'm_slider_square_3-1400'],
+                    ['m_slider_square_2_after-1400', 'm_slider_square_2-1400'],
+                ]
+            }], [{
+                'images': [
+                    ['m_slider_tall_1_after-1080', 'm_slider_tall_1-1080'],
+                    ['m_slider_tall_2_after-1080', 'm_slider_tall_2-1080'],
+                    ['m_slider_tall_3_after-1080', 'm_slider_tall_3-1080'],
+                ]
+            }]
+        ] %}
+        <section class="promo promo-mosaic">
+            {% for slides in sections %}
+                {% set section_index = loop.index %}
+                <div class="mosaic-comp mosaic-comp--{{section_index}}">
+                {% for slide in slides %}
+                {% set slidesIndex = loop.index %}
+                <div id="carouselMosaic{{section_index}}{{slidesIndex}}" class="secuence carousel mosaic-item--{{section_index}}-{{slidesIndex}} slide">
+                    {% if slidesIndex == 2 %}
+                        <div class="mosaic-info secuence">hover or tap to see <b>before – after</b></div>
+                    {% endif %}
+                    <div class="carousel-inner">
+                        {% for image in slide.images %}
+                        {% set imageIndex = loop.index %}
+
+                        <div class="carousel-item carousel-item--{{imageIndex}} {% if imageIndex == 1 %}active{% endif %}">
+                            {% if image is iterable and image is not string %}
+                                {% for img in image %}
+                                    <picture class="mosaic-img--{{imageIndex}} image-{% if loop.index == 2 %}before{% else %}after{% endif %}">
+                                        <source media=""
+                                            srcset="
+                                                {{mediaUrl}}/{{img}}.webp,
+                                            "
+                                            type="image/webp"
+                                            sizes="100vw"
+                                        >
+                                        <img
+                                            width="2560"
+                                            height="1100"
+                                            src="{{mediaUrl}}/{{img}}.jpg"
+                                            sizes="100vw">
+                                    </picture>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% if section_index == 2 %}
+                    <picture class="mosaic-item--2-2 secuence">
+                        <video loading="lazy" playsinline loop muted autoplay src="{{mediaUrl}}/new_video_21.mp4?{{refresh}}"></video>
+                    </picture>
+                {% endif %}
+                {% endfor %}
+                </div>
+            {% endfor %}
+            <div class="mosaic-content section__text__content">
+                <div class="section__head">
+                    <p class="section__subtitle secuence">{{ data['promo-mosaic'].subtitle }}</p>
+                    <div class="section__title">
+                        {% autoescape off %} {{data['promo-mosaic'].title}} {% endautoescape %}
+                    </div>
+                    <p class="section__text secuence">
+                        {{ data['promo-mosaic'].text }}
+                    </p>
+                </div>
+                <div class="mosaic-controls secuence">
+                    <div class="mosaic-prev"><</div>
+                    <div class="mosaic-next">></div>
+                </div>
+            </div>
+        </section>
+        {% endwith %}
+
+        <section class="prevs center">
+            {% set productPageTemplateId = templateId %} 
+            {% set collapseAfter = 10 %}
+            {% set namePrefix = '' %}
+            {% set categories = [
+                    { 'key':'CCTV', 'label': 'CCTV', 'count': 10},
+                    { 'key':'Dreamy', 'label': 'Dreamy', 'count': 10},
+                    { 'key':'Glitch', 'label': 'Glitch', 'count': 10},
+                    { 'key':'Graphic', 'label': 'Graphic', 'count': 10},
+                    { 'key':'Retro', 'label': 'Retro', 'count': 10},
+                ]
+            %}
+
+            {% set presets_count = '50' %}
+
+            <div class="container prevs__top">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <div class="section__content" data-title="true">
+                            <div class="section__display secuence">
+                                <div class="">
+                                    <div class="video__wrapper">
+                                        <video autoplay muted playsinline loop loading="lazy" src="{{mediaUrl}}/50.mp4"></video>
+                                        <img src="{{mediaUrl}}/50.jpg" alt="" srcset="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="section__head">
+                                <h2 class="section__title">
+                                    {{data.prevs.title}}
+                                </h2>
+                                <h2 class="section__text secuence">
+                                    {{data.prevs.text}}
+                                </h2>
+                                <p class="section__subtitle tap secuence" style="--s-index:0;">
+                                    hover or tap to preview animations
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="product-prev-grid" class="product-prev-grid container">
+                <div class="row">
+                {% for category in categories %}
+                    {% set key = category.key %}
+                        {% if categories|length > 1 %}
+                            <div class="{% if key == 'LUT_Presets' %}col-12 col-sm-6 col-lg-3{% else%}col-12{% endif %}">
+                                <div class="section__title section__title--big {{ 'left' if loop.index % 2 != 0 else 'left' }}">{{ category.label }}</div>
+                                <div class="row">
+
+                                {% for i in range(category.count) %}
+                                {% set num = '%02d' % loop.index %}
+                                {% set filename = 'https://s3.motionvfx.com/mvfxpublic/products/templates/' + productPageTemplateId + '/media/' + key + num %}
+                                    <div class="prev-card product-prev-col col-6 col-lg-3 {% if loop.index > collapseAfter %}collapse prev-collapse-{{ key }}{% endif %}"
+                                        id="prev-collapse-{{ num }}-{{ loop.index }}"
+                                    >
+                                        <div class="product-prev-cell" style="--s-index: {{i}}" data-mp4-src="{{ filename }}.mp4?{{refresh}}">
+                                            <img loading="lazy" src="{{ filename }}-640.jpg?{{refresh}}" alt="{{ num}}" width="400" height="225"/>
+                                            <div class="loading-spinner"></div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+
+                                {% if category.count > collapseAfter %}
+                                    <div class="col-btn-collapse">
+                                        <button class="btn-collapse" type="button" data-target=".prev-collapse-{{ key }}" aria-expanded="false" aria-controls="{% for j in range(collapseAfter, category.count) %} prev-collapse-{{ key }}-{{ j }} {% endfor %}">
+                                            <span><span class="label-collapsed">Show more</span><span class="label-expanded">Collapse</span> ({{ category.count - collapseAfter }})</span>
+                                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                                    viewBox="0 0 36.6 61.5" style="enable-background:new 0 0 36.6 61.5;" xml:space="preserve" class="btn-collapse-arrow" height="20">
+                                                <style type="text/css">
+                                                    .st0{fill:none;stroke:currentColor;stroke-width:8;stroke-miterlimit:10;}
+                                                </style>
+                                                <polyline class="st0" points="2.8,58.6 30.9,30.5 3.2,2.8 "/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                {% endif %}
+                                </div>
+                            </div>
+                        {% endif %}
+                {% endfor %}
+                </div>
+            </div>
+
+            <div class="prevs__bottom">
+                <div class="image__background">
+                    <picture>
+                        {% set image_name = 'under_prev_bg_2' %}
+                        <source media=""
+                            srcset="
+                                {% for size in srcsetSizes %}
+                                    {{mediaUrl}}/{{image_name}}-{{size}}.webp {{size}}w,
+                                {% endfor %}
+                            "
+                            type="image/webp"
+                            sizes="100vw"
+                        >
+                        <source media=""
+                            srcset="
+                                {% for size in srcsetSizes %}
+                                    {{mediaUrl}}/{{image_name}}-{{size}}.jpg {{size}}w,
+                                {% endfor %}
+                            "
+                            type="image/jpeg"
+                            sizes="100vw"
+                        >
+                        <img
+                            class="secuence"
+                            width="2560"
+                            height="1130"
+                            src="{{mediaUrl}}/{{image_name}}-2560.jpg"
+                            sizes="100vw">
+                    </picture>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="section__head">
+                                <div class="section__subtitle secuence">
+                                    {{data.prevs.subtitle2}}
+                                </div>
+                                <div class="section__title">
+                                    {{data.prevs.title2}}
+                                </div>
+                                <div class="section__text secuence">
+                                    {{data.prevs.text2}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <a class="nav" href="#" name="specs" rel="noopener noreferrer"></a>
+        <div class="ts-mi bg--dark">
+
+            <section class="tech-spec">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="tech-spec-info">
+                                <div class="section__text__content">
+                                    <div class="section__head">
+                                        <div class="section__title tech-spec__title section__title">
+                                            Technical specifications
+                                        </div>
+                                    </div>
+                                    <div class="ttable tech-spec__table">
+                                        <div class="tcell tlabel">Supported software</div>
+                                        <div class="tcell tdata">
+                                            <h3 class="section__text">
+                                                {% autoescape off %}
+                                                    {{ product.productdetails.minimal_requirements.replace('FCP 10', 'FCP 10').replace('Motion 5', 'Motion 5').replace(', ', ',<br>') }}
+                                                {% endautoescape %}
+                                            </h3>
+                                        </div>
+                                        <div class="tcell tlabel">Includes</div>
+                                        <div class="tcell tdata">
+                                            <h3 class="section__text">
+                                                <span>{{presets_count}} DVR Effects</span>
+                                            </h3>
+                                        </div>
+                                        <div class="tcell tlabel">Size</div>
+                                        <div class="tcell tdata">
+                                            {{ "%.0f MB"|format(product.productdetails.source_size / 1000) }}
+                                        </div>
+                                        {% for kind in ['trailer', 'tutorial'] %}
+                                            {% with musics=product.productdetails.music.select_related('music_portal').all().filter(used_in_trailer=kind=='trailer') %}
+                                                {% if musics|length %}
+                                                    <div class="tcell tlabel">Music used in {{ kind }}</div>
+                                                    <div class="tcell tdata">
+                                                        {% include 'product/music_info.jinja2' %}
+                                                    </div>
+                                                {% endif %}
+                                            {% endwith %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </section>
+
+            <section class="minstaller__section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="minstaller">
+                                <div class="minstaller__title">mInstaller</div>
+                                <p class="minstaller__description">
+                                    After purchasing, the product is <b>instantly available </b>for download via <a href="https://www.motionvfx.com/page/minstaller.html" target="_blank" rel="noopener noreferrer">mInstaller</a>.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <footer class="footer">
+            <div class="image__background--static">
+                <picture>
+                    {% set image_name = 'footer_bg' %}
+                    <source media=""
+                        srcset="
+                            {% for size in srcsetSizes %}
+                                {{mediaUrl}}/{{image_name}}-{{size}}.webp {{size}}w,
+                            {% endfor %}
+                        "
+                        type="image/webp"
+                        sizes="100vw"
+                    >
+                    <source media=""
+                        srcset="
+                            {% for size in srcsetSizes %}
+                                {{mediaUrl}}/{{image_name}}-{{size}}.jpg {{size}}w,
+                            {% endfor %}
+                        "
+                        type="image/jpeg"
+                        sizes="100vw"
+                    >
+                    <img
+                        width="2560"
+                        height="860"
+                        src="{{mediaUrl}}/{{image_name}}-2560.jpg"
+                        sizes="100vw">
+                </picture>
+            </div>
+            <div class="section__content footer__content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="section__text__content">
+                                <div class="section__head">
+                                    <div class="footer__title section__title">
+                                        {% autoescape off %} {{data.footer.title}} {% endautoescape %}
+                                    </div>
+                                    <p class="footer__text section__text secuence">
+                                        {{ data.footer.text }}
+                                    </p>
+                                </div>
+                                <div class="button-buy">
+                                    {% with discount_text="INTRO", version=2 %}
+                                        {% include "product/buy_button.jinja2" %}
+                                    {% endwith %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    {% set product_url = "https://www.motionvfx.com/store,mrestyle,p3572.html" %}
+    {% set popup_aria = "mRestyle for Final Cup Pro" %}
+    {% set popup_text = "We also have mRestyle for FCP!" %}
+    <div class="popup-left" id="popup-tech-spec">
+        <div class="close dismiss-button" id="popup-close-button"></div>
+        <div class="promo-img">
+            <a href="{{product_url}}" target="_blank" rel="noopener noreferrer" aria-label="{{popup_aria}}">
+                <picture>
+                    <source media=""
+                        srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1384/media/box_fcp-360.webp 360w,"
+                        type="image/webp"
+                    >
+                    <img class=""
+                        src="https://s3.motionvfx.com/mvfxpublic/products/templates/1384/media/box_fcp-512.jpg"
+                        alt=""
+                        width="360"
+                        height="360"
+                        srcset="{{mediaUrl}}/box_fcp-360.jpg 360w,"
+                    />
+                </picture>
+            </a>
+        </div>
+        <p class="popup-left-title">
+            <span>{{popup_text}}</span>
+        </p>
+        <p class="popup-left-subtitle">
+            <a  target="_blank" rel="noopener noreferrer" href="{{product_url}}">Check it out</a>
+        </p>
+    </div>
+
+    {% set product_url = "https://www.motionvfx.com/store,mrestyle-dv,p3710.html" %}
+    {% set popup_aria = "mRestyle for DaVinci Resolve" %}
+    {% set popup_text = "We also have mRestyle for DVR!" %}
+    <div class="popup-left" id="popup-tech-spec">
+        <div class="close dismiss-button" id="popup-close-button"></div>
+        <div class="promo-img">
+            <a href="{{product_url}}" target="_blank" rel="noopener noreferrer" aria-label="{{popup_aria}}">
+                <picture>
+                    <source media=""
+                        srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1384/media/box_dv-360.webp 360w,"
+                        type="image/webp"
+                    >
+                    <img class=""
+                        src="https://s3.motionvfx.com/mvfxpublic/products/templates/1384/media/box_dv-512.jpg"
+                        alt=""
+                        width="360"
+                        height="360"
+                        srcset="{{mediaUrl}}/box_fcp-360.jpg 360w,"
+                    />
+                </picture>
+            </a>
+        </div>
+        <p class="popup-left-title">
+            <span>{{popup_text}}</span>
+        </p>
+        <p class="popup-left-subtitle">
+            <a  target="_blank" rel="noopener noreferrer" href="{{product_url}}">Check it out</a>
+        </p>
+    </div>
+
+    {% include './components/submenu.jinja' %}
+
+    <script src="dist/scripts.js"></script>
+</body>
+
+</html>

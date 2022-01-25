@@ -6,74 +6,73 @@
 section {
     &.header {
         .header__subtitle {
-            // max-width: 30em;
+            // max-width: 17em;
+
         }
     }
 
     &.trailer {
-        .section__text {
-            @extend %ma;
-            max-width: 24em;
+        .section {
+            &__title {
+                // max-width: 380px
+            }
+            &__text {
+                @extend %ma;
+                max-width: 490px;
+            }
         }
     }
     &.tutorial {
         .section__text {
-            max-width: 28em;
-            margin: auto;
+            @extend %ma;
+            max-width: 490px;
         }
     }
 
-    &.promo {
-        .section__head {
-            max-width: 26em;
-            // @include respond-below(lg) {
-            //     max-width: unset;
-            // }
-        }
-
-        &--workflow {
-            .section__title {
-                max-width: 10em;
-            }
-        }
-    }
-
-    &.promo-big {
+    &.promo-carousel {
         .section {
-            &__head {
-                max-width: 32em;
-            }
             &__title {
-                // max-width: em;
+                max-width: 510px;
             }
             &__text {
-                
+                max-width: 620px;
             }
         }
     }
 
-    &.promo-grid-slider {
-        .section__head {
-            max-width: 37em;
-        }
-    }
-    // &.promo-compositions {
-    //     .section__head {
-    //         max-width: 25em;
-    //         margin: auto;
-    //     }
-    // }
-    &.prevs {
-        .lines__comp {
-            .section__title {
-                max-width: 8em;
-                margin-left: auto;
-                margin-right: auto;
+    &.promo-slider {
+        .section {
+            &__title {
+                // max-width: 500px;
+            }
+            &__text {
+                // max-width: 30em;
             }
         }
-        .section__content {
-            .section__head {
-                max-width: 23em;
+    }
+
+    .prevs {
+        &__top {
+            .section {
+                &__title {
+
+                }
+                &__text {
+                    @extend %ma;
+                    max-width: 340px;
+                    margin-bottom: 3rem;
+                }
+            }
+        }
+        &__bottom {
+            .section {
+                &__title {
+                    max-width: 530px;
+                }
+                &__text {
+                    // @extend %ma;
+                    max-width: 530px;
+                }
             }
         }
     }
@@ -82,15 +81,12 @@ section {
 footer.footer {
     .section {
         &__title {
-            max-width: 11em;
+            // @extend %ma;
+            // max-width: 450px;
         }
         &__text {
-            max-width: 31em;
-            // @include respond-below(md) {
-            @media screen and (max-width:752px) {
-                margin-left: auto;
-                margin-right: auto;
-            }
+            @extend %ma;
+            max-width: 500px;
         }
     }
     
