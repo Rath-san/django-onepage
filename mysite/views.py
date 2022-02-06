@@ -20,7 +20,7 @@ def index(request, **kwargs):
 
     context = {
         'product' : {
-            'head_info': "Diverse Overlay Effects Plugin for Final Cut Pro",
+            'head_info': "Exceptional Color Remapping LUTs",
             'title': product.title,
             'productdetails' : {
                 'meta_title': "This is title",

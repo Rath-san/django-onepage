@@ -4,9 +4,9 @@ $font-size-title: $rem * 2;
 $font-size-sub-title: $rem * 1.2;
 $font-size-body: $rem * 0.9;
 
-$font-family-text: "Poppins", sans-serif;
+$font-family-text: 'Inter', sans-serif;
 $font-family-subtitle: $font-family-text;
-$font-family-title: $font-family-text;
+$font-family-title: 'Staatliches', cursive;
 $font-family-title--big: $font-family-text;
 
 h1,
@@ -27,12 +27,12 @@ b {
 
 main {
   font-family: $font-family-text;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .section {
   &__title {
-    opacity: 0;
+    // opacity: 0;
     // letter-spacing: 1.2px;
     font-size: 1.8rem;
     font-weight: 500;
@@ -141,6 +141,20 @@ main {
     //   }
     // }
 
+    .promo-comp-0 &,
+    .prevs &,
+    .promo-comp-1 &,
+    .tech-spec &,
+    .footer &,
+    .promo-carousel & {
+      font-size: 80px;
+      line-height: 1;
+      @media screen and (max-width: 750px) {
+        font-size: 1.8rem;
+        line-height: 1.2;
+      }
+    }
+
     .prevs__top &,
     .product-prev-grid & {
       // margin-bottom: 3rem;
@@ -200,14 +214,22 @@ main {
   }
 
   &__subtitle {
-    font-size: 0.7rem;
+    font-size: 0.6rem;
     font-weight: 400;
     margin-bottom: 0;
-    opacity: 0;
+    // opacity: 0;
     text-transform: uppercase;
+    letter-spacing: 3px;
     // letter-spacing: 7px;
     font-family: $font-family-subtitle;
     margin-bottom: 1rem;
+
+    .promo-carousel &,
+    .promo-comp-0 & {
+      // @include respond-below(sm) {
+        max-width: 250px;
+      // }
+    }
 
     .prevs & {
       // letter-spacing: 2px;
@@ -220,7 +242,7 @@ main {
     font-weight: 900;
     line-height: 1;
     margin-bottom: 0;
-    opacity: 0;
+    // opacity: 0;
     // font-style: italic;
     font-family: $font-family-title--big;
     // -webkit-text-stroke-color: #fff;
@@ -233,7 +255,7 @@ main {
 
   &__text {
     font-size: 0.9rem;
-    opacity: 0;
+    // opacity: 0;
     .ts-mi & {
       opacity: 1;
     }

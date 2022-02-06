@@ -22,7 +22,11 @@ function jsTask() {
             input: `src/scripts/scripts.js`,
 
             // Apply plugins
-            plugins: [commonjs(), nodeResolve(), terser()],
+            plugins: [commonjs({
+                preferBuiltins: false
+            }), nodeResolve({
+                preferBuiltins: false
+            }), terser()],
 
             // Use cache for better performance
             cache,
@@ -32,6 +36,8 @@ function jsTask() {
                 // Output bundle is intended for use in browsers
                 // (iife = "Immediately Invoked Function Expression")
                 format: "iife",
+
+                globals: { jquery: '$'},
 
                 // Show source code when debugging in browser
                 sourcemap: true,
