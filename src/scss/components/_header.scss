@@ -2,10 +2,23 @@
   // margin-top: 5rem;
   // padding-top: 5rem 0 0 0;
   // background-color: #111;
+  color: #fff;
   position: relative;
   z-index: 15;
+
   .image__background {
     height: 100%;
+  }
+
+  @media screen and (max-width: 960px) {
+    .header__bg {
+      img {
+        object-position: center -15%;
+      }
+    }
+    .carousel {
+      display: none;
+    }
   }
 
   &__content {
@@ -14,7 +27,7 @@
     flex-direction: column;
     justify-content: center;
     width: 100%;
-    margin-top: 5rem;
+    margin-top: 1rem;
     padding: 0;
   }
 
@@ -26,7 +39,7 @@
     bottom: 0;
     right: 0;
     will-change: opacity;
-    opacity: 0;
+    // opacity: 0;
     transition: opacity 1s cubic-bezier(0.075, 0.82, 0.165, 1);
     // background:
     //   url(https://s3.motionvfx.com/mvfxpublic/products/templates/1384/media/header.png);
@@ -82,10 +95,11 @@
   }
 
   &__logo {
-    margin-top: 0rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    max-width: 360px;
+    margin-bottom: 1rem;
     // height: 30vw;
     // max-height: 200px;
 
@@ -136,7 +150,7 @@
     font-weight: 400;
     
     @include respond-below(md) {
-      max-width: 14em;
+      // max-width: 14em;
     }
   }
 
@@ -172,7 +186,7 @@
   }
 }
 
-section.header, footer.footer {
+section.header {
   position: relative;
 
   $min-height: 650px;
@@ -307,18 +321,20 @@ $animation-delay-offset: 200ms;
 .dr-gradient {
   &::after {
     // transform: translateY(-20px);
-    opacity: 0;
+    // opacity: 0;
   }
 }
 
 .header.loaded {
-  * {
-    opacity: 1;
-  }
+  // * {
+  //   opacity: 1;
+  // }
   .header__logo,
   .header__subtitle,
-  .header__deco {
+  .header__deco,
+  .header__bg {
     transform: translateY(0) scale(1);
+    opacity: 1;
   }
   + .dr-gradient {
     opacity: 1;
@@ -329,201 +345,5 @@ $animation-delay-offset: 200ms;
 
   .comp-img {
     opacity: 1;
-  }
-}
-
-.header-comp {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  .comp {
-    position: relative;
-    transform-origin: bottom;
-    // background: red;
-    .static {
-      position: relative;
-    }
-    &:nth-child(2) {
-      margin-left: -270px;
-      margin-right: 20vw;
-
-      transform: scale(.8) translateY(0%);
-
-      @media screen and (max-height: 1000px) {
-        transform: scale(.7) translateY(0%);
-      }
-
-      @media screen and (max-height: 800px) {
-        transform: scale(.65) translateY(0%);
-      }
-
-      @media screen and (max-width: 970px) {
-        transform: scale(.7) translateY(0%);
-        margin-left: -80px;
-        margin-right: 0vw;
-      }
-      
-      // position: absolute;
-      // left: 0;
-      // bottom: 0;
-      // transform: scale(.5) translateY(0%);
-      // transform-origin: bottom;
-    }
-
-    &:nth-child(3) {
-      transform: scale(.75) translateY(0%);
-
-      @media screen and (max-height: 1000px) {
-        transform: scale(.65) translateY(0%);
-      }
-
-      @media screen and (max-height: 800px) {
-        transform: scale(.55) translateY(0%);
-      }
-
-      @media screen and (max-width: 970px) {
-        display: none;
-      }
-
-    }
-
-    // perspective: 200px;
-
-    @keyframes idleAnim {
-      0% {
-        transform: translateY(0);
-      }
-      100% {
-        transform: translateY(20px);
-      }
-    }
-
-    &-img {
-      position: absolute;
-      background: url(https://s3.motionvfx.com/mvfxpublic/products/templates/1384/media/header-2332.png) no-repeat;
-      background: url(https://s3.motionvfx.com/mvfxpublic/products/templates/1384/media/header-2332.webp) no-repeat;
-      opacity: 0;
-
-      transition: opacity .25s ease-in-out;
-      transition-delay: calc(200ms * var(--h-index));
-      
-      animation-name: idleAnim;
-      animation-duration: 3s;
-      animation-timing-function: ease-in-out;
-      animation-iteration-count: infinite;
-      animation-direction: alternate;
-      animation-delay: calc(300ms * 2 * var(--h-index));
-      
-    }
-
-    &-bg {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-    }
-  }
-
-  .circle_red {
-    background-position: -1730px -50px;
-    width: 174px;
-    height: 172px;
-    z-index: 0;
-    bottom: 2px;
-    right: 8%;
-    animation: none;
-  }
-  .circle_yellow {
-    background-position: -1730px -472px;
-    filter: brightness(.5);
-    width: 582px;
-    height: 581px;
-    z-index: 0;
-    top: 10%;
-    left: 14%;
-  }
-  .woman {
-    background-position: -15px -137px;
-    height: 916px;
-    width: 1025px;
-    position: relative;
-    bottom: 1px;
-    z-index: 1;
-    transform: translate3d(0, 0, 0px);
-    @media screen and (max-width: 970px) {
-      background: url(https://s3.motionvfx.com/mvfxpublic/products/templates/1384/media/woman_mobile-640.png?1);
-      background: url(https://s3.motionvfx.com/mvfxpublic/products/templates/1384/media/woman_mobile-640.webp?1);
-      background-position: 71% 50%;
-      background-size: 102%;
-    }
-  }
-  .hand {
-    background-position: -2164px -184px;
-    bottom: -235px;
-    height: 307px;
-    left: 467px;
-    transform: rotate(90deg);
-    width: 166px;
-  }
-
-  .face_2_square {
-    background-position: -1730px -224px;
-    width: 186px;
-    height: 248px;
-    z-index: 1;
-    right: 40%;
-    top: 3%;
-  }
-  .face_square {
-    background-position: -552px -46px;
-    width: 285px;
-    height: 92px;
-    z-index: 2;
-    top: 14%;
-    left: 6%;
-  }
-  .purple_square {
-    background-position: -1916px -1px;
-    width: 248px;
-    height: 471px;
-    z-index: 1;
-    top: 30%;
-    left: -11%;
-  }
-  .red_square {
-    background-position: 0 -1px;
-    width: 552px;
-    height: 137px;
-    z-index: 2;
-    top: 34%;
-    left: 22%;
-  }
-  .man {
-    background-position: -1053px -43px;
-    width: 675px;
-    height: 1010px;
-    transform: translate3d(0, 0, 0px);
-  }
-
-  .solid_circle {
-    background-color: #FF9A45;
-    border-radius: 50%;
-    background-position: -10000px -10000px;
-    bottom: 16%;
-    height: 259px;
-    position: absolute;
-    right: -16%;
-    width: 260px;
-  }
-
-  .woman,
-  .hand,
-  .man {
-    opacity: 1;
-    animation: none;
   }
 }

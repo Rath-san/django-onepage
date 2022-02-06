@@ -19,7 +19,7 @@
 @import "./components/minstaller";
 @import "./components/scroll-to-btn";
 @import "./layout/containers";
-@import "./layout/presets";
+// @import "./layout/presets";
 // @import "./components/promo-grid";
 @import "./components/splitting";
 @import "./components/decos";
@@ -27,7 +27,7 @@
 @import "./components/glitch";
 
 @import './components/prevs';
-@import './components/preview-big';
+// @import './components/preview-big';
 // @import './components/magic-card';
 // @import './components/bundle-items';
 // @import './components/videoPopup';
@@ -71,7 +71,7 @@ $animation-duration: 1s;
         opacity: 1 !important;
       }
       &-next {
-        z-index: 10;
+        z-index: 1;
       }
     }
     &-indicators {
@@ -108,13 +108,45 @@ $animation-duration: 1s;
   //   padding-bottom: 0;
   // }
 
+  .container {
+    position: relative;
+  }
+
+  .deco {
+    position: absolute;
+    left: 70%;
+    bottom: -180px;
+
+    @media screen and (max-width: 1300px) {
+      display: none;
+    }
+
+    img {
+      max-width: 600px;
+      width: 50vw;
+      height: auto;
+    }
+    @media screen and (min-width: 2000px) {
+      left: unset;
+      right: 6vw;
+    }
+    @media screen and (max-width: 1700px) {
+      left: 70%;
+      right: unset;
+      bottom: 0px;
+      img {
+        max-width: 400px;
+      }
+    }
+  }
+
   .tech-spec {
     margin-bottom: 5rem;
   }
 
   @include respond-below(md) {
-    padding-top: 5rem;
-    padding-bottom: 2.5rem;
+    padding-top: 2rem;
+    padding-bottom: 0;
 
     .tech-spec {
       margin-bottom: 2rem;
@@ -265,4 +297,44 @@ $dr-gradient-overlay2: radial-gradient(circle at 60% 100px, #00000090, #00000000
 
 #popup-tech-spec {
   z-index: 1000;
+}
+
+.works-on {
+  margin-top: 2rem;
+  padding: 0 2rem;
+  text-align: center;
+  @include respond-below(sm) {
+    max-width: 330px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .section__text {
+    margin-bottom: 1rem;
+  }
+  img {
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    height: auto;
+  }
+}
+
+.on-mobile {
+  display: none;
+  @media screen and (max-width: 960px) {
+    position: absolute;
+    inset: 0 0 0 0;
+    z-index: 10;
+    display: block;
+  }
+}
+
+
+.lazy-show {
+  opacity: 0;
+  transition: opacity .5s ease-in-out;
+  &__active {
+    opacity: 1;
+  }
 }

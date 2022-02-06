@@ -70,7 +70,7 @@
   }
   &cell {
       h3 {
-        font-weight: 300;
+        font-weight: 400;
       }
       flex: 1;
       flex-basis: 50%;
@@ -82,8 +82,8 @@
   }
   &label {
       text-align: right;
-      font-weight: 300;
-      // color: #9a9a9a;
+      // font-weight: 300;
+      color: #9a9a9a;
       @media screen and (max-width: 450px) {
           text-transform: uppercase;
           font-weight: 600;
@@ -95,7 +95,7 @@
   &data {
       text-align: left;
       max-width: 50%;
-      font-weight: 300;
+      // font-weight: 300;
       span {
         display: inline-block;
         max-width: 25em;

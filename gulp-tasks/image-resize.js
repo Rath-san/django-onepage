@@ -11,7 +11,7 @@ const {
 } = require("./constants");
 
 const FORMATS = ["jpg", "webp"];
-const IMAGE_QUALITY = 25;
+const IMAGE_QUALITY = 50;
 
 const CONFIGS = [
     // {
@@ -36,51 +36,71 @@ const CONFIGS = [
     //     ],
     // },
     // {
-    //     directory: "_custom",
-    //     sizes: [{w: 2332}],
-    //     targetFormat: ["png", "webp"]
+    //     directory: "_footer",
+    //     sizes: [
+    //         ...RESPONSIVE_SIZES_DESKTOP.map(size => ({...size, h: 1200 })),
+    //     ],
     // },
     // {
-    //     directory: "_custom2",
-    //     sizes: [{w: 760}],
-    //     targetFormat: ["jpg", "webp"]
+    //     directory: "_top",
+    //     sizes: [
+    //         ...RESPONSIVE_SIZES_DESKTOP.map(size => ({...size, h: 860 })),
+    //     ],
+    // },
+
+    // {
+    //     directory: "_s7",
+    //     sizes: [
+    //         {w: 1200},
+    //         {w: 600}
+    //     ],
     // },
     // {
-    //     directory: "_custom3",
-    //     sizes: [{w: 600}],
-    //     targetFormat: ["jpg", "webp"]
+    //     directory: "_s6",
+    //     sizes: [
+    //         {w: 1150},
+    //         {w: 575}
+    //     ],
     // },
     // {
-    //     directory: "_custom4",
-    //     sizes: RESPONSIVE_SIZES
+    //     directory: "_s5",
+    //     sizes: [
+    //         {w: 1000},
+    //         {w: 500}
+    //     ],
     // },
     // {
-    //     directory: "_custom5",
-    //     sizes: [{w: 640}],
-    //     targetFormat: ["png", "webp"]
+    //     directory: "_s4",
+    //     sizes: [
+    //         {w: 1200},
+    //         {w: 600}
+    //     ],
     // },
+
     {
-        directory: "_custom6",
-        sizes: [{w: 512}, {w: 360}],
-        targetFormat: ["jpg", "webp"]
+        directory: "_s3",
+        sizes: [
+            {w: 1000},
+            {w: 500}
+        ],
     },
-    // {
-    //     directory: "_prevs",
-    //     sizes: [{w: 640}],
-    //     targetFormat: ["jpg"]
-    // },
-    // {
-    //     directory: "_slider_small",
-    //     sizes: [{w: 1060}],
-    // },
-    // {
-    //     directory: "_slider_small2",
-    //     sizes: [{w: 1400}],
-    // },
-    // {
-    //     directory: "_slider_small3",
-    //     sizes: [{w: 1080}],
-    // }
+    {
+        directory: "_s2",
+        sizes: [
+            {w: 1200},
+            {w: 600}
+        ],
+    },
+    {
+        directory: "_s1",
+        sizes: [
+            {w: 1000},
+            {w: 500}
+        ],
+    },
+
+
+
 ];
 
 function resizeTask(

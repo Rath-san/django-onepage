@@ -4,6 +4,7 @@
 
 <body>
     {% include './components/nav.jinja' %}
+    {# {% include './components/macro.jinja' %} #}
     {# {% include './components/bundle-popup.jinja' %} #}
 
     {% set srcsetSizesMobile = [
@@ -17,246 +18,190 @@
         2560
      ] %}
 
-    {% set scrsetAll = srcsetSizesMobile + srcsetSizesDesktop %}
+     {% set srcsetSizes = srcsetSizesMobile + srcsetSizesDesktop %}
 
-    {% set templateId = '1368' %}
-    {% set refresh = 6 %}
-    {% set mediaUrl = 'https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media' % templateId %}
+
+    {% set templateId = '1389' %}
+    {% set refresh = 3 %}
+    {% set imagePrefix = 'mTransitionDatamosh' %}
+    
+    {% set media_prefix = 'mLut_Restyle_' %}
+    {% set mediaUrl = 'https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media' % (templateId) %}
 
     {% set data = {
         'header': {
-            'subtitle': 'Event <b>Graphic</b> Layout Toolbox for Final Cut Pro'
+            'subtitle': 'Powerful Typography Presets for DaVinci Resolve'
         },
         'trailer': {
             'title': 'Watch trailer',
-            'text': 'See how this plugin boosts your edit’s visuals and speaks to the audience!'
+            'text': 'See how these gradings evoke emotions and play with the aesthetic senses of the viewers.'
         },
         'tutorial': {
-            'subtitle': 'watch tutorial',
-            'title': 'Improve your editing skills',
-            'text': 'Learn how to draw more attention to your event with graphic design!'
+            'title': 'Watch tutorial',
+            'text': 'Get some helpful know-how on using the LUTs and tailoring them to your taste to get the best results.'
         },
         'promo': {
-            'subtitle': 'Create a successful campaign',
-            'title': 'Boost popularity and drive ticket sales',
-            'text': 'With mEvent plugin at your disposal, constructing the whole graphic design for any event is easy, fast, and lets you craft visuals that sell.'
+            'subtitle': 'CREATE THE MOOD AND SET THE OVERTONE',
+            'title': 'STARTLE THE SPECTATOR WITH UNIQUE LOOKS',
+            'text': 'Every preset is extraordinary in its own way, playing with the very definitions of colors and switching the focus of different tints in the whole composition.',
         },
-        'promobig': {
-            'subtitle': 'Introduce the VIPs with style',
-            'title': 'Use some name-dropping',
-            'text': 'The sheer number and versatility of mEvent presets let you illustrate any topic and inspire your audience to visit your event. Especially with some important guests announced!'
+        'promo-comp-0': {
+            'subtitle': 'BREAK THE RULES, TRANSGRESS THE PATTERNS',
+            'title': 'OUT-OF-THE-BOX GRADING TO RESTYLE YOUR EDIT',
         },
-        'promogridslider': {
-            'subtitle': 'Build an appealing layout',
-            'title': 'Spur excitement',
-            'text': 'These stylish graphics will help you build trust with your audience and pump up the hype to attract even more visitors!'
+        'prevs': {
+            'title': 'MLUT RESTYLE PREVIEW',
         },
-        'preset': {
-            'title': 'Let the visuals speak',
-            'subtitle': 'Any theme can be more expressive',
-            'text': 'This massive collection of ready-to-use presets gives you the creative freedom to make any gathering of people more tempting to attend.'
+        'promo-comp-1': {
+            'subtitle': 'GO CRAZY WITH CREATIVITY',
+            'title': 'OFFBEAT & OFF-THE-WALL QUALITY',
+            'text': 'This fantastic collection of out-there gradings will completely transform the character of your videos and make your edits exciting and entertaining.',
         },
         'footer': {
-            'title': "Increase the impact of your event",
-            'text': "Building a cohesive layout to advertise and promote your event has never been easier. With this massive amount of elements at your fingertips, you can highlight every aspect of what's coming and make the audience anticipate it even harder!"
+            'title': 'LUTS LIKE NO OTHER',
+            'text': 'Take your editing to the next level and have fun with the gradings that change your shots’ expression entirely. Move the senses, inspire and amaze the viewer with originality and freshness!'
         }
     } %}
 
-    {% macro picture_source(name, sizeset, media, sizes="100vw", ext=["webp", "jpeg"]) %}
-        <source media="{{media}}"
-            srcset="
-                {% for size in sizeset %}
-                    {{mediaUrl}}/{{name}}-{{size}}.webp {{size}}w,
-                {% endfor %}
-            "
-            type="image/{{ext[0]}}"
-            sizes="{{sizes}}"
-        >
-        <source media="{{media}}"
-            srcset="
-                {% for size in sizeset %}
-                    {{mediaUrl}}/{{name}}-{{size}}.webp {{size}}w,
-                {% endfor %}
-            "
-            type="image/{{ext[1]}}"
-            sizes="{{sizes}}"
-        >
-    {% endmacro %}
+    {% set placeholder = 'https://via.placeholder.com' %}
 
-    {% set image = {
-        "name": "header",
-        "ext": "jpg",
-        "lazy": True,
-        "size": {
-            "width": "2560",
-            "height": "850"
-        },
-        "alt": "",
-        "sizes": "100vw",
-        "srcsets": {
-            "mobile": {
-                "widths": srcsetSizesMobile,
-                "media": "(max-width: 640px)",
-                "sizes": ""
-            },
-            "desktop": {
-                "widths": srcsetSizesDesktop,
-                "media": "",
-                "sizes": "100vw"
-            }
+    {% macro picture(
+		media_url,
+		filename,
+		media_files={},
+		file_sizes=[360, 480, 640, 960],
+		formats=['webp','jpg'],
+		media_sizes='',
+		media='',
+		alt='',
+		img_class='',
+		img_style='',
+		picture_class='',
+		width='',
+		height='',
+        loading='',
+        data_src=False
+	) %}
+		<picture class="{{ picture_class }}">
+			{% for media in media_files %}
+				{% set m = media_files[media] %}
+				{% for format in formats %}
+					<source
+						srcset="
+							{% for size in m['file_sizes'] %}
+								{{ media_url }}/{{ m['filename'] }}-{{ size }}.{{ format }} {{size}}w,
+							{% endfor %}"
+						type="image/{{ format | replace('jpg', 'jpeg') }}"
+						sizes="{{ m['media_sizes'] | default(media_sizes) }}"
+						media="{{ media }}"
+					>
+				{% endfor %}
+			{% endfor %}
+			{% for format in formats %}
+				<source
+					srcset="
+						{% for size in file_sizes %}
+							{{ media_url }}/{{ filename }}-{{ size }}.{{ format }} {{size}}w,
+						{% endfor %}"
+					type="image/{{ format | replace('jpg', 'jpeg') }}"
+					sizes="{{ media_sizes }}"
+					media="{{ media }}">
+			{% endfor %}
+			<img
+                {% if data_src %}
+                    data-src="{{ media_url }}/{{ filename }}-{{ file_sizes[0] }}.{{ formats[-1] }}"
+                {% else %}
+                    src="{{ media_url }}/{{ filename }}-{{ file_sizes[0] }}.{{ formats[-1] }}"
+                {% endif %}
+				alt="{{alt}}"
+				class="{{img_class}}"
+				style="{{img_style}}"
+				width="{{width}}"
+				height="{{height}}"
+                loading="{{loading}}"
+                >
+
+		</picture>
+	{% endmacro %}
+
+    <style>
+        .promo-comp-0 .section__title > .word {
+            white-space: nowrap; 
         }
-    } %}
-
-    {% macro picture(image) %}
-        {% if image.srcsets.mobile %}
-            {{picture_source(
-                image.name + "_mobile",
-                image.srcsets.mobile.widths,
-                image.srcsets.mobile.media,
-                image.srcsets.mobile.sizes
-                ["webp", image.ext]
-            )}}
-        {% endif %}
-        {% if image.srcsets.desktop %}
-            {{picture_source(
-                image.name,
-                image.srcsets.desktop.widths,
-                image.srcsets.desktop.media,
-                image.srcsets.desktop.sizes
-                ["webp", image.ext]
-            )}}
-        {% endif %}
-
-        <img
-            width="{{image.size.width}}"
-            height="{{image.size.height}}"
-            src="{{mediaUrl}}/{{name}}-{{image.size.width}}.{{ext}}"
-            alt="{{image.alt}}"
-            sizes="{{image.srcsets.desktop.sizes}}"
-        >
-    {% endmacro %}
+    </style>
 
     <main>
-        {# <div class="overlay-countdown">
-            <img src="{{mediaUrl}}/loader.gif" width="400" height="311" alt="" />
-        </div> #}
         <section class="header text-center">
-            <div class="header__bg" style="opacity:0">
-                <picture>
-                    {{picture(image)}}
+            <div class="header__bg image__background" style="--h-index: 0;">
+                <picture class="on-mobile">
+                    <source media="(max-width: 960px)" srcset="{{mediaUrl}}/{{media_prefix}}top-m-raw.jpg">
+                    <img
+                        src=""
+                    >
                 </picture>
+                <div class="carousel slide carousel-fade fade-new" data-ride="carousel" data-interval="3000" >
+                    <div class="carousel-inner">
+                        {% for i in range(1, 6) %}
+                            {% set image_name = 'top_%s' % (i) %}
+                            {% set active = 'active' if loop.index==1 else '' %}
+                            
+                            {{picture(
+                                media_url=mediaUrl,
+                                filename=media_prefix + image_name,
+                                file_sizes=srcsetSizes,
+                                formats=['jpg', 'webp'],
+                                picture_class='carousel-item ' + active,
+                                width=2560,
+                                height=860
+                            )}}
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
             <div class="container-fluid">
                 <div class="header__content section__text__content">
-                    <div class="header__logo" style="--h-index: 0; opacity: 0">
-                        <h1><span>mEvent</span></h1>
-                        <svg width="100" height="6" viewBox="0 0 100 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M0 1H47L50.3941 4.40833L53.7882 1H100" stroke="#5736ED"/>
-                        </svg>
+                    <div class="header__logo" data-title="true" style="--h-index: 0;">
+                        <h2 class="logotype">
+                            <img src="{{mediaUrl}}/{{media_prefix}}logo-raw.png" alt="mLutRestyle" srcset=""
+                                width="984"
+                                height="750"
+                            >
+                        </h2>
                     </div>
                 </div>
-                <p class="header__subtitle" style="--h-index: 1; opacxity: 0">
-                    {{data.header.subtitle|safe}}
-                </p>
+                
+                <h1 class="header__subtitle section__text" style="--h-index: 1;">
+                    {% autoescape off %} {{product.head_info}} {% endautoescape %}
+                </h1>
             </div>
-            <div class="header__deco header__deco--2" style="--s-index: 6; opacity:0">
-                <div class="s-l-wrapper">
-                    {% for x in range(0,2) %}
-                        <span class="s-l" style="--i: {{loop.index}}">+</span>
-                    {% endfor %}
-                </div>
-                <div class="deco__content">
-                    <p onclick="scrollToAnchor('trailer');">scroll down</p>
-                    <!--<p>don't miss it!</p>-->
-                </div>
-                <div class="s-r-wrapper">
-                    {% for x in range(0,2) %}
-                        <span class="s-r" style="--i: {{loop.index}}">+</span>
-                    {% endfor %}
-                </div>
+
+        </section>
+        <section class="works-on center">
+            <div class="section__text secuence">
+                Works perfectly with any compositing app
             </div>
-            <div class="header__deco header__deco--1">
-                <div class="deco__content">
-                    <p class="secuence" style="--s-index: 0; opacity:0">Jarod<br>Fowler</p>
-                    <p class="secuence" style="--s-index: 2; opacity:0">Today's Guest</p>
-                    <p class="secuence" style="--s-index: 3; opacity:0">
-                        Economist<br>
-                        Analyst
-                    </p>
-                </div>
-                <img class="secuence" style="--s-index: 1; opacity:0" src="{{mediaUrl}}/x.png" alt="">
-            </div>
+            <picture>
+                <source media="(max-width: 800px)" srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1308/media/software_icons_mobile-770.png 768w">
+                <img class="secuence" src="https://s3.motionvfx.com/mvfxpublic/products/templates/1308/media/software_icons-1680.png" width="1341" height="77" alt="3D LUTs are supported by any compositing software.">
+            </picture>
         </section>
 
-        {% set items = ['a', 'b', 'c'] %}
-        <table>
-            {%- for row in items|batch(2, 'f') %}
-                <tr>
-                    {%- for column in row %}
-                        <td>{{ column }}</td>
-                    {%- endfor %}
-                </tr>
-            {%- endfor %}
-        </table>
-
-        <div>
-            {{1000000|filesizeformat()}}
-        </div>
-        <div>
-            {{items|join('|', attribute='username')}}
-        </div>        
-        {% set itesms_length = items|length %}
-        <div>
-            {{itesms_length}}
-        </div>
-        {% set unioner = [] %}
-        <div>
-            {{unioner|join('|')}}
-        </div>
-
-        <div>
-            {{items|pprint}}
-        </div>
-
-        <div>
-            {{'<b>1</b>'|safe}}
-        </div>
-
-        {% set sumi = [
-            dict(price=1),
-            dict(price=2)
-        ] %}
-jsum
-        <div>
-            sum: {{sumi|sum(attribute="price")}}
-        </div>
-
-        <div>
-            {{'hello wolrd or nope'|title}}
-        </div>
-
-        <div>
-            {{lipsum(1)}}
-        </div>
-
-        <div>
-            {%- if True -%}
-                yay
-            {%- endif -%}
-        </div>
-
-        <div>{{scrsetAll|pprint}}</div>
-
-        <pre>
-        __product: {{product|pprint}}
-        </pre>
-
         <script>
-            const onHeaderImagesLoaded = () => {
-            const header = document.querySelector('section.header')
-            const images = Array.from(header.querySelectorAll('.header__bg img, header__content img'));
-            const loadedImages = images.map(img => false);
+            const onHeaderImagesLoaded = (type) => {
+                let images
+                const isMobile = type === 'mobile'
+
+                const header = document.querySelector('section.header')
+                images = isMobile
+                    ? Array.from(header.querySelectorAll('.on-mobile img'))
+                    : Array.from(header.querySelectorAll('.carousel-item img'))
+                const loadedImages = images.map(img => false);
                 images.forEach((img, idx) => {
+                    loadedImages[idx] = img.complete;
+
+                    if (loadedImages.every(val => val)) {
+                        header.classList.add("loaded")
+                    }
                     img.onload = () => {
                         loadedImages[idx] = true
                         if (loadedImages.every(val => val)) {
@@ -266,29 +211,41 @@ jsum
                 })
             }
 
-            onHeaderImagesLoaded();
+            const mM = (x) => {
+                if (x.matches) {
+                    onHeaderImagesLoaded('mobile')
+                } else {
+                    onHeaderImagesLoaded('desktop')
+                }
+            }
+            const wMQ = window.matchMedia("(max-width: 960px)")
+            mM(wMQ);
+            wMQ.addListener(mM);
         </script>
 
-        <div class="scroll-prompt" style="--h-index: 2; opacity: 0">
+        <div class="scroll-prompt" style="--h-index: 2; opacity: 0;">
             <a class="scroll-to-btn" href="#" onclick="scrollToAnchor('trailer');" tabindex="-1"></a>
         </div>
 
         <a class="nav" name="trailer"></a>
 
-        {% set trailerUrl = 'https://www.youtube.com/embed/puOyNif8fUI?rel=0' %}
+        {% set trailerUrl = 'https://www.youtube.com/embed/o5YUZ38JEjE?rel=0' %}
 
         <section class="video trailer">
-            <img loading="lazy" class="arrow__deco" src="{{mediaUrl}}/arrows.png" alt="Decoration arrow">
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <div class="section__head">
-                            <h2 class="section__title">{{data.trailer.title}}</h2>
-                            <p class="section__text">
-                                {{data.trailer.text}}
-                            </p>
+                        <div class="section__content">
+                            <div class="section__head">
+                                <div class="section__title">
+                                    {% autoescape off %} {{data.trailer.title}} {% endautoescape %}
+                                </div>
+                                <p class="section__text secuence">
+                                    {% autoescape off %} {{data.trailer.text}} {% endautoescape %}
+                                </p>
+                            </div>
                         </div>
-                        <div class="yt embed-responsive embed-responsive-16by9 animated animated--fade--bottom">
+                        <div class="yt embed-responsive embed-responsive-16by9 animated animated--fade--bottom secuence">
                             <iframe loading="lazy" iframe src="{{trailerUrl}}"
                                 frameborder="0" allow="autoplay; encrypted-media" allowfullscreen="" title="Watch Trailer"
                                 style="background-color: #000"></iframe>
@@ -296,579 +253,535 @@ jsum
                     </div>
                 </div>
             </div>
-            <svg class="wave" viewBox="0 0 20 1" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M0.773589 0.787263C0.289119 0.810705 0 0.810705 0 0.810705V0H10H20V0.810705C20 0.810705 19.8496 0.810705 18.9998 0.798984C18.0573 0.785985 17.4472 0.380934 16.6517 0.380934C15.9914 0.380934 15.4561 0.49033 14.7177 0.558703C13.9793 0.627076 12.5825 0.63489 11.9984 0.685681C11.4143 0.736472 11.0253 0.775084 10.7736 0.787263C10.2891 0.810705 10 0.810705 10 0.810705C10 0.810705 9.84958 0.810705 8.9998 0.798984C8.05734 0.785985 7.44717 0.380934 6.65169 0.380934C5.9914 0.380934 5.45614 0.49033 4.71772 0.558703C3.97929 0.627076 2.58254 0.63489 1.99844 0.685681C1.41434 0.736472 1.0253 0.775084 0.773589 0.787263Z"
-                    fill="#000"
-                />
-            </svg>
         </section>
 
         <a class="nav" name="tutorial"></a>
+        {% set tutorialUrl1 = 'https://www.youtube.com/embed/kpg__zfHuxE?rel=0' %}
 
-        {% set tutorialUrl = 'https://www.youtube.com/embed/OnmlG4NuH3Y?rel=0' %}
+        <section class="video tutorial">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section__content">
+                            <div class="section__head">
+                                <p class="section__subtitle secuence" style="--s-index:0;">
+                                    {{data.tutorial.subtitle}}
+                                </p>
+                                <div class="section__title ">
+                                    {% autoescape off %} {{data.tutorial.title}} {% endautoescape %}
+                                </div>
+                                <p class="section__text secuence" style="--s-index:2;">
+                                    {% autoescape off %} {{data.tutorial.text}} {% endautoescape %}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="yt embed-responsive embed-responsive-16by9 animated animated--fade--bottom secuence">
+                            <iframe loading="lazy" src="{{tutorialUrl1}}" frameborder="0"
+                                allow="autoplay; encrypted-media" allowfullscreen="" title="Watch Tutorial"
+                                style="background-color: #000"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-            <section class="video tutorial bg--light">
-                <div class="image__background">
+        {% with slider_images=[
+            {
+                'src': 'oceanarium',
+                'alt': 'string',
+                'label': 'oceanarium 01'
+            },
+            {
+                'src': 'camel',
+                'alt': 'string',
+                'label': 'camel 07'
+            },
+            {
+                'src': 'isolator',
+                'alt': 'string',
+                'label': 'isolator 02'
+            },
+            {
+                'src': 'aquation',
+                'alt': 'string',
+                'label': 'aquation 02'
+            }
+        ] %}
+        <section class="promo promo-carousel">
+            <div id="carouselPromo" class="secuence carousel slide carousel-fade fade-new">
+                <div class="carousel-inner">
+                {% for slide_img in slider_images %}
+                    <div class="carousel-item {% if loop.index == 1 %}active{% endif %}">
+                    {% with slide_index = loop.index %}
                     <picture>
-                        <source media="(max-width: 640px)" srcset="
-                            {% for size in srcsetSizesMobile %}
-                                {{mediaUrl}}/tutorial_bg-{{size}}.webp {{size}}w,
-                            {% endfor %}
-                        "
-                        type="image/webp">
-                        <source media="(max-width: 640px)" srcset="
-                            {% for size in srcsetSizesMobile %}
-                                {{mediaUrl}}/tutorial_bg-{{size}}.jpg {{size}}w,
-                            {% endfor %}
-                        "
-                        type="image/jpeg">
-                        <source srcset="
-                            {% for size in srcsetSizesDesktop %}
-                                {{mediaUrl}}/tutorial_bg-{{size}}.webp {{size}}w,
-                            {% endfor %}
-                        "
-                        type="image/webp">
                         <img
+                            class="w-100 d-block lazy-show"
                             width="2560"
-                            height="850"
-                            src="{{mediaUrl}}/tutorial_bg-2560.jpg"
-                            alt=""
-                            srcset="
-                                {% for size in srcsetSizesDesktop %}
-                                    {{mediaUrl}}/tutorial_bg-{{size}}.jpg {{size}}w,
-                                {% endfor %}
-                            "
+                            height="1150"
+                            data-src="{{mediaUrl}}/{{media_prefix}}{{slide_img.src}}-2560.jpg?{{refresh}}"
+                            {# src="{{mediaUrl}}/{{media_prefix}}{{slide_img.src}}.jpg?{{refresh}}" #}
                             sizes="100vw">
                     </picture>
+                    {% endwith %}
+                    </div>
+                {% endfor %}
                 </div>
-                <div class="container text-center">
+            </div>
+
+            <div class="promo-carousel__content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="section__content">
+                                <div class="section__head">
+                                    <div class="section__subtitle section__text--inset secuence" style="--s-index:0">{{data.promo.subtitle}}</div>
+                                    <div class="section__title section__text--inset">{{data.promo.title}}</div>
+                                    <div class="section__text section__text--inset secuence">
+                                        {{data.promo.text}}
+                                    </div>
+                                    <div id="carouselPromoIndicators" class="carousel-indicators secuence" style="--s-index:2;">
+                                        {% for image in slider_images %}
+                                            <div class="carousel-indicators__item carousel-indicators__item--dash {% if loop.index == 1 %}active{% endif %}"></div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% endwith %}
+
+        <section class="promo promo-comp-0">
+            <div class="promo-comp-0__mosaic">
+                {% set sides = [
+                    [
+                        {
+                            'image': {
+                                'src': '0_1_a',
+                                'width' : '550',
+                                'height' : '550'
+                            }
+                        },
+                        {
+                            'image': {
+                                'src': '0_2',
+                                'src2': '0_2',
+                                'width' : '600',
+                                'height' : '600'
+                            }
+                        }
+                    ], [
+                        {
+                            'image': {
+                                'src': '0_3',
+                                'src2': '0_3',
+                                'width' : '500',
+                                'height' : '280'
+                            }
+                        }
+                    ]
+                ] %}
+                {% for side in sides %}
+                    {% set side_index = loop.index %}
+                    <div class="mosaic__side mosaic__side--{{side_index}}">
+                        {% for i in side %}
+                            {% if side_index == 2 %}
+                                <div class="section__head">
+                                    <div class="section__subtitle secuence" style="--s-index:0">
+                                        {{data['promo-comp-0'].subtitle}}
+                                    </div>
+                                    <div class="section__title">
+                                        {{data['promo-comp-0'].title}}
+                                    </div>
+                                </div>
+                            {% endif %}
+                            {% if i.image.src2 %}
+                                {% if side_index == 2 %}
+                                    <div class="carousel slide carousel-fade fade-new mosaic__item mosaic__item--{{side_index}}{{loop.index}}" data-ride="carousel" data-interval="3000">
+                                        <div class="carousel-inner">
+                                            {% for v in ['_a', '_b'] %}
+                                                {% set active = 'active' if loop.index==1 else '' %}
+                                                {{picture(
+                                                    media_url=mediaUrl,
+                                                    filename= media_prefix + i.image.src + v,
+                                                    file_sizes=[500, 1000],
+                                                    formats=['jpg', 'webp'],
+                                                    media_sizes='(max-width: 750px) 100v, 33v',
+                                                    img_class="lazy-show",
+                                                    picture_class='carousel-item ' + active,
+                                                    width=i.image.width,
+                                                    height=i.image.height,
+                                                    data_src=True
+                                                )}}
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+
+                                    {% else %}
+
+                                    <div class="ba-slider mosaic__item mosaic__item--{{side_index}}{{loop.index}}">
+                                        {% for v in ['_a', '_b'] %}
+                                            {% if v == '_b' %}
+                                                <div class="resize">
+                                            {% endif %}
+                                            {# mLut_Restyle_0_2_b-1200.jpg #}
+                                            {{picture(
+                                                media_url=mediaUrl,
+                                                filename= media_prefix + i.image.src + v,
+                                                file_sizes=[600, 1200],
+                                                formats=['jpg', 'webp'],
+                                                media_sizes='(max-width: 750px) 0v, 50v',
+                                                img_class="lazy-show",
+                                                width=i.image.width,
+                                                height=i.image.height,
+                                                data_src=True
+                                            )}}
+
+                                            {% if v == '_b' %}
+                                                </div>
+                                                <span class="handle"><span class="handle-control"></span></span>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            {% else %}
+                                {{picture(
+                                    media_url=mediaUrl,
+                                    filename= media_prefix + i.image.src,
+                                    file_sizes=[500, 1000],
+                                    formats=['jpg', 'webp'],
+                                    media_sizes='(max-width: 1400px) 0v, 40v',
+                                    img_class="lazy-show",
+                                    picture_class='mosaic__item mosaic__item--' + side_index|string + loop.index|string,
+                                    width=i.image.width,
+                                    height=i.image.height,
+                                    data_src=True
+                                )}}
+                            {% endif %}
+                            
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+
+            </div>
+        </section>
+
+        {% set luts = [
+            'Violaceous',
+            'Verdancy',
+            'Tranquillity',
+            'Thermovision',
+            'Temperatus',
+            'Synthesizer',
+            'Spirited',
+            'Souffle',
+            'Seladon',
+            'Sandstorm',
+            'Rubicund',
+            'Resplendent',
+            'Prominence',
+            'Permeation',
+            'Penumbra',
+            'Ochred',
+            'Oceanarium',
+            'Moonlighter',
+            'Magentor',
+            'Isolator',
+            'Infrared',
+            'Immersion',
+            'Ferroton',
+            'Etiolator',
+            'Elysium',
+            'Distinguisher',
+            'Dechromatic',
+            'Camel',
+            'Aquation',
+            'Aeration',
+        ]
+        %}
+
+        <section class="prevs center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section__content">
+                            <div class="section__head">
+                                <div class="section__title">
+                                    {{data.prevs.title}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="prevs__header">
+                            <div class="prev-pagination secuence" style="--s-index:0">
+                                <button class="button_prev" onclick="previousPage()">
+                                    <
+                                </button>
+                                <div id="prevSiteInfo2">Page <span class="page-indicator current">1</span>/<span class="page-indicator total">10</span></div>
+                                <button class="button_next" onclick="nextPage()">
+                                    >
+                                </button>
+                            </div>
+                        </div>
+                        <div class="prevs__content">
+                        {% for lut in luts %}
+                        {% set filenameBase = mediaUrl + '/' + lut|lower() %}
+                            <div class="prevs__item secuence" style="--s-index:{{loop.index}}">
+                                <div class="lut-name">{{ lut }}</div>
+                                <div class="prBeforeAfter">
+                                    <div class="ba-slider">
+                                        <img
+                                            data-src="{{ filenameBase }}_after-raw.jpg"
+                                            alt="" width="830"
+                                            height="500"
+                                        />
+                                        <div class="resize">
+                                            <img
+                                                data-src="{{ filenameBase }}_before-raw.jpg"
+                                                alt=""
+                                                width="830"
+                                                height="500"
+                                            />
+                                        </div>
+                                        <span class="handle"><span class="handle-control"></span></span>
+                                    </div>
+                                </div>
+                                <div class="lut-label">LOG FILE</div>
+                                <div class="lut-label right">WITH LUT</div>
+                            </div>
+                        {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="promo-comp-1">
+            <div class="section__head comp__item--0">
+                <div class="section__subtitle secuence" style="--s-index:0">
+                    {{data['promo-comp-1'].subtitle}}
+                </div>
+                <div class="section__title">
+                    {{data['promo-comp-1'].title}}
+                </div>
+                <div class="section__text secuence" style="--s-index:2">
+                    {{data['promo-comp-1'].text}}
+                </div>
+            </div>
+
+            <div class="carousel slide carousel-fade fade-new comp__item--1 secuence" style="--s-index:2" data-ride="carousel" data-interval="3000">
+                <div class="carousel-inner">
+                    {% for v in ['_a', '_b'] %}
+                        {% set active = 'active' if loop.index==1 else '' %}
+                        {{picture(
+                            media_url=mediaUrl,
+                            filename= media_prefix + '1_1_1' + v,
+                            file_sizes=[600, 1200],
+                            formats=['jpg', 'webp'],
+                            media_sizes='50v',
+                            img_class="lazy-show",
+                            picture_class='carousel-item ' + active,
+                            width=600,
+                            height=600,
+                            data_src=True
+                        )}}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="carousel slide carousel-fade fade-new comp__item--2 secuence" style="--s-index:1" data-ride="carousel" data-interval="3000">
+                <div class="carousel-inner">
+                    {% for v in ['_a', '_b'] %}
+                        {% set active = 'active' if loop.index==1 else '' %}
+                        {{picture(
+                            media_url=mediaUrl,
+                            filename= media_prefix + '1_2_1' + v,
+                            file_sizes=[500, 1000],
+                            formats=['jpg', 'webp'],
+                            media_sizes='(max-width: 1070px) 50v, 33v',
+                            img_class="lazy-show",
+                            picture_class='carousel-item ' + active,
+                            width=463,
+                            height=260,
+                            data_src=True
+                        )}}
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="carousel slide carousel-fade fade-new comp__item--3 secuence" style="--s-index:3" data-ride="carousel" data-interval="3000">
+                <div class="carousel-inner">
+                    
+                    {% for n in ['1', '2'] %}
+                        <div class="carousel-item {% if loop.index == 1 %}active{% endif %}">
+                            <div class="ba-slider">
+                                {% for v in ['_a', '_b'] %}
+                                    {% if v == '_b' %}
+                                        <div class="resize">
+                                    {% endif %}
+
+                                    {{picture(
+                                        media_url=mediaUrl,
+                                        filename= media_prefix + '1_3_' + n + v,
+                                        file_sizes=[575, 1150],
+                                        formats=['jpg', 'webp'],
+                                        media_sizes='(max-width: 680px) 100v, 50v',
+                                        img_class="lazy-show",
+                                        width=1150,
+                                        height=1150,
+                                        data_src=True
+                                    )}}
+
+                                    {% if v == '_b' %}
+                                        </div>
+                                        <span class="handle"><span class="handle-control"></span></span>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        <a class="nav" href="#" name="specs" rel="noopener noreferrer"></a>
+        <section class="ts-mi bg--light">
+
+            <div class="carousel slide carousel-fade fade-new deco" data-ride="carousel" data-interval="3000">
+                <div class="carousel-inner">
+                    {% set image_name = 'tm' %}
+                    {% set images = ['_a', "_b"] %}
+                    {% for i in images %}
+                    {% set active = 'active' if loop.index==1 else '' %}
+                    {{picture(
+                        media_url=mediaUrl,
+                        filename= media_prefix + image_name + i,
+                        file_sizes=[600, 1200],
+                        formats=['jpg', 'webp'],
+                        media_sizes='(max-width: 1700px) 600px, 1200px',
+                        picture_class='carousel-item ' + active,
+                        img_class="lazy-show",
+                        width=600,
+                        height=600,
+                        data_src=True
+                    )}}
+                    {% endfor %}
+                </div>
+            </div>
+
+            <section class="tech-spec">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="tech-spec-info">
+                                <div class="section__text__content">
+                                    <div class="section__head">
+                                        <div class="section__title tech-spec__title section__title">
+                                            Technical specifications
+                                        </div>
+                                    </div>
+                                    <div class="ttable tech-spec__table">
+                                        {# <div class="tcell tlabel">Supported software</div> #}
+                                        {# <div class="tcell tdata"> #}
+                                            {# <h3 class="section__text"> #}
+                                                {# {% autoescape off %} #}
+                                                    {# {{ product.productdetails.minimal_requirements.replace('FCP 10', 'FCP 10').replace('Motion 5', 'Motion 5').replace(', ', ',<br>') }} #}
+                                                {# {% endautoescape %} #}
+                                            {# </h3> #}
+                                        {# </div> #}
+                                        <div class="tcell tlabel">Includes</div>
+                                        <div class="tcell tdata">
+                                            <h3 class="section__text">
+                                                <span>30 Professional LUTs</span>
+                                            </h3>
+                                        </div>
+                                        <div class="tcell tlabel">Size</div>
+                                        <div class="tcell tdata">
+                                            {# {{ "%.0f MB"|format(product.productdetails.source_size / 1000) }} #}
+                                            145.46 MB
+                                        </div>
+                                        {% for kind in ['trailer', 'tutorial'] %}
+                                            {% with musics=product.productdetails.music.select_related('music_portal').all().filter(used_in_trailer=kind=='trailer') %}
+                                                {% if musics|length %}
+                                                    <div class="tcell tlabel">Music used in {{ kind }}</div>
+                                                    <div class="tcell tdata">
+                                                        {% include 'product/music_info.jinja2' %}
+                                                    </div>
+                                                {% endif %}
+                                            {% endwith %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </section>
+
+            <section class="minstaller__section">
+                <div class="container">
                     <div class="row">
                         <div class="col">
-                            <div class="section__head">
-                                <h2 class="section__subtitle">{{data.tutorial.subtitle}}</h2>
-                                <h2 class="section__title">{{data.tutorial.title}}</h2>
-                                <p class="section__text">{{data.tutorial.text}}</p>
-                            </div>
-                            <div class="yt embed-responsive embed-responsive-16by9 animated animated--fade--bottom">
-                                <iframe loading="lazy" src="{{tutorialUrl}}" frameborder="0"
-                                    allow="autoplay; encrypted-media" allowfullscreen="" title="Watch Tutorial"
-                                    style="background-color: #000"></iframe>
+                            <div class="minstaller">
+                                <div class="minstaller__title">mInstaller</div>
+                                <p class="minstaller__description">
+                                    After purchasing, the product is <b>instantly available </b>for download via <a href="https://www.motionvfx.com/page/minstaller.html" target="_blank" rel="noopener noreferrer">mInstaller</a>.
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-        {% set srcsetSizesDesktop1 = [
-            960,
-            1280,
-            1600,
-            1920,
-        ] %}
-
-        <section class="promo">
-            <div class="secuence" style="--s-index: 0; opacity: 0;">
-                <div id="demo" class="carousel slide carousel-fade fade-new">
-                    <div class="container-fluid">
-                        <div class="row align-items-center">
-                            <div class="col-lg-6 col-xl-8 carousel-inner__wrapper">
-                                <div class="carousel-inner">
-                                    {% for image in [{'src': 'slider_1'}, {'src': 'slider_2'}] %}
-                                        <div class="carousel-item {% if loop.index == 1 %}active{% endif %}">
-                                            <picture>
-                                                <source media="(max-width: 640px)" srcset="
-                                                    {% for size in srcsetSizesMobile %}
-                                                        {{mediaUrl}}/{{image.src}}-{{size}}.webp {{size}}w,
-                                                    {% endfor %}
-                                                "
-                                                type="image/webp">
-                                                <source media="(max-width: 640px)" srcset="
-                                                    {% for size in srcsetSizesMobile %}
-                                                        {{mediaUrl}}/{{image.src}}-{{size}}.jpg {{size}}w,
-                                                    {% endfor %}
-                                                "
-                                                type="image/jpeg">
-                                                <source srcset="
-                                                    {% for size in srcsetSizesDesktop1 %}
-                                                        {{mediaUrl}}/{{image.src}}-{{size}}.webp {{size}}w,
-                                                    {% endfor %}
-                                                "
-                                                type="image/webp">
-                                                <img
-                                                    width="1920"
-                                                    height="1080"
-                                                    src="{{mediaUrl}}/{{image.src}}-1920.jpg"
-                                                    alt=""
-                                                    srcset="
-                                                        {% for size in srcsetSizesDesktop1 %}
-                                                            {{mediaUrl}}/{{image.src}}-{{size}}.jpg {{size}}w,
-                                                        {% endfor %}
-                                                    "
-                                                    sizes="100vw">
-                                            </picture>
-                                        </div>
-                                    {% endfor %}
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-xl-4">
-                                <div class="carousel-content">
-                                    <div class="section__content">
-                                        <div class="section__head">
-                                            <p class="section__subtitle secuence" style="--s-index: 2; opacity: 0;">{{data.promo.subtitle}}</p>
-                                            <h2 class="section__title secuence" style="--s-index: 3; opacity: 0;">{{data.promo.title}}</h2>
-                                            <p class="section__text secuence" style="--s-index: 4; opacity: 0;">{{data.promo.text}}</p>
-                                        </div>
-                                        <ol class="carousel-indicators">
-                                            {% for number in range(0,2) %}
-                                                <li data-target="#demo" data-slide-to="{{loop.index - 1}}" class="{% if loop.index - 1 == 0 %}active{% endif %}"></li>
-                                            {% endfor %}
-                                        </ol>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </section>
-
-        <section class="promo-big">
-            <div class="image__background--static">
-                <picture>
-                    <source media="(max-width: 640px)" srcset="
-                        {% for size in srcsetSizesMobile %}
-                            {{mediaUrl}}/gradient_bg-{{size}}.webp {{size}}w,
-                        {% endfor %}
-                    "
-                    type="image/webp">
-                    <source media="(max-width: 640px)" srcset="
-                        {% for size in srcsetSizesMobile %}
-                            {{mediaUrl}}/gradient_bg-{{size}}.jpg {{size}}w,
-                        {% endfor %}
-                    "
-                    type="image/jpeg">
-                    <source srcset="
-                        {% for size in srcsetSizesDesktop %}
-                            {{mediaUrl}}/gradient_bg-{{size}}.webp {{size}}w,
-                        {% endfor %}
-                    "
-                    type="image/webp">
-                    <img
-                        loading="lazy"
-                        width="2560"
-                        height="850"
-                        src="{{mediaUrl}}/gradient_bg-2560.jpg"
-                        alt=""
-                        srcset="
-                            {% for size in srcsetSizesDesktop %}
-                                {{mediaUrl}}/gradient_bg-{{size}}.jpg {{size}}w,
-                            {% endfor %}
-                        "
-                        sizes="100vw">
-                </picture>
-            </div>
-            <div class="section__content">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-md-6">
-                            <div class="section__head">
-                                <p class="section__subtitle">{{data.promobig.subtitle}}</p>
-                                <h2 class="section__title">{{data.promobig.title}}</h2>
-                                <p class="section__text">{{data.promobig.text}}</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6 text-right">
-                            <div id="demo10" class="carousel slide carousel-fade">
-                                <div class="carousel-inner">
-                                    {% for r in range(1,4) %}
-                                        <div class="carousel-item {% if loop.index == 1 %}active{% endif %}">
-                                            <img src="{{mediaUrl}}/speaker_{{r}}.png" alt="" srcset="">
-                                        </div>
-                                    {% endfor %}
-                                </div>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="promo-grid-slider">
-            <div class="carousel slide">
-                {% for item in range(0,1) %}
-                    <div class="carousel-item {% if loop.index == 1 %}active{% endif %}">
-                        <div class="comp-grid">
-                            <video loading="lazy" class="" src="{{mediaUrl}}/mov2-o.mp4" alt="" srcset="" style="--s-index: 0; opacity: 1;" loop autoplay muted playsinline></video>
-                            {# <picture> #}
-                                {# <img
-                                    width="2560"
-                                    height="1050"
-                                    src="https://via.placeholder.com/2560x1500/{{loop.index * 2}}{{loop.index * 3}}EC9D"
-                                    alt="Editor recording voiceover for video production"
-                                    sizes="50vw"> #}
-                            {# </picture> #}
-                            {% set srcsetSizesDesktop2 = [
-                                960,
-                                1120
-                            ] %}
-                            <div id="demoa" class="carousel slide">
-                                <div class="carousel-inner">
-                                    {% for j in range(1,7) %}
-                                        <div class="carousel-item {% if loop.index == 1 %}active{% endif %}">
-                                            <picture>
-                                                <source media="(max-width: 640px)" srcset="
-                                                    {% for size in srcsetSizesMobile %}
-                                                        {{mediaUrl}}/square_{{j}}-{{size}}.webp {{size}}w,
-                                                    {% endfor %}
-                                                "
-                                                sizes="50vw"
-                                                type="image/webp">
-                                                <source media="(max-width: 640px)" srcset="
-                                                    {% for size in srcsetSizesMobile %}
-                                                        {{mediaUrl}}/square_{{j}}-{{size}}.jpg {{size}}w,
-                                                    {% endfor %}
-                                                "
-                                                sizes="50vw"
-                                                type="image/jpeg">
-                                                <source srcset="
-                                                    {% for size in srcsetSizesDesktop2 %}
-                                                        {{mediaUrl}}/square_{{j}}-{{size}}.webp {{size}}w,
-                                                    {% endfor %}
-                                                "
-                                                type="image/webp">
-                                                <img
-                                                    width="1120"
-                                                    height="1120"
-                                                    src="{{mediaUrl}}/square_{{j}}-{{size}}.jpg"
-                                                    alt=""
-                                                    srcset="
-                                                        {% for size in srcsetSizesDesktop2 %}
-                                                            {{mediaUrl}}/square_{{j}}-{{size}}.jpg {{size}}w,
-                                                        {% endfor %}
-                                                    "
-                                                    sizes="33vw">
-                                            </picture>
-                                            {# <picture>
-                                                <img
-                                                    width="1050"
-                                                    height="1050"
-                                                    src="{{mediaUrl}}/square_{{j}}.jpg"
-                                                    alt="Editor recording voiceover for video production"
-                                                    sizes="33vw">
-                                            </picture> #}
-                                        </div>
-                                    {% endfor %}
-                                </div>
-                            </div>
-                            <div id="demob" class="carousel slide">
-                                <div class="carousel-inner">
-                                    {% for j in range(1,7) %}
-                                        <div class="carousel-item {% if loop.index == 4 %}active{% endif %}">
-                                            <picture>
-                                                <source media="(max-width: 640px)" srcset="
-                                                    {% for size in srcsetSizesMobile %}
-                                                        {{mediaUrl}}/square_{{j}}-{{size}}.webp {{size}}w,
-                                                    {% endfor %}
-                                                "
-                                                sizes="50vw"
-                                                type="image/webp">
-                                                <source media="(max-width: 640px)" srcset="
-                                                    {% for size in srcsetSizesMobile %}
-                                                        {{mediaUrl}}/square_{{j}}-{{size}}.jpg {{size}}w,
-                                                    {% endfor %}
-                                                "
-                                                sizes="50vw"
-                                                type="image/jpeg">
-                                                <source srcset="
-                                                    {% for size in srcsetSizesDesktop2 %}
-                                                        {{mediaUrl}}/square_{{j}}-{{size}}.webp {{size}}w,
-                                                    {% endfor %}
-                                                "
-                                                type="image/webp">
-                                                <img
-                                                    width="1120"
-                                                    height="1120"
-                                                    src="{{mediaUrl}}/square_{{j}}-{{size}}.jpg"
-                                                    alt=""
-                                                    srcset="
-                                                        {% for size in srcsetSizesDesktop2 %}
-                                                            {{mediaUrl}}/square_{{j}}-{{size}}.jpg {{size}}w,
-                                                        {% endfor %}
-                                                    "
-                                                    sizes="33vw">
-                                            </picture>
-                                        </div>
-                                    {% endfor %}
-                                </div>
-                            </div>
-                            <div class="section__head">
-                                <p class="section__subtitle">{{data.promogridslider.subtitle}}</p>
-                                <h2 class="section__title">{{data.promogridslider.title}}</h2>
-                                <p class="section__text">{{data.promogridslider.text}}</p>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
-        </section>
-
-        <section class="prevs center">
-            {% set productPageTemplateId = templateId %} 
-            {% set collapseAfter = 8 %}
-            {% set namePrefix = '' %}
-            {% set categories = [
-                ]
-            %}
-
-            <div class="image__background">
-                <picture>
-                    <source media="(max-width: 640px)" srcset="
-                        {% for size in srcsetSizesMobile %}
-                            {{mediaUrl}}/hands_bg-{{size}}.webp {{size}}w,
-                        {% endfor %}
-                    "
-                    type="image/webp">
-                    <source media="(max-width: 640px)" srcset="
-                        {% for size in srcsetSizesMobile %}
-                            {{mediaUrl}}/hands_bg-{{size}}.jpg {{size}}w,
-                        {% endfor %}
-                    "
-                    type="image/jpeg">
-                    <source srcset="
-                        {% for size in srcsetSizesDesktop1 %}
-                            {{mediaUrl}}/hands_bg-{{size}}.webp {{size}}w,
-                        {% endfor %}
-                    "
-                    type="image/webp">
-                    <img
-                        width="1920"
-                        height="1080"
-                        src="{{mediaUrl}}/hands_bg-1920.jpg"
-                        alt=""
-                        srcset="
-                            {% for size in srcsetSizesDesktop1 %}
-                                {{mediaUrl}}/hands_bg-{{size}}.jpg {{size}}w,
-                            {% endfor %}
-                        "
-                        sizes="100vw">
-                </picture>
-                {# <picture>
-                    
-                    <source media="(max-width: 992px)" srcset="
-                        {% for size in srcsetSizesMobile %}
-                            {{mediaUrl}}/hands_bg.jpg {{size}}w,
-                        {% endfor %}
-                    ">
-                    <img
-                        loading="lazy"
-                        src="{{mediaUrl}}/hands_bg.jpg"
-                        alt="Editor recording voiceover for video production"
-                        srcset="
-                            {% for size in srcsetSizesDesktop %}
-                                {{mediaUrl}}/hands_bg.jpg {{size}}w,
-                            {% endfor %}
-                        "
-                        sizes="100vw">
-                </picture> #}
-            </div>
-            
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 text-center">
-                        <div class="lines__comp">
-                            <div class="section__head">
-                                <p class="section__display">
-                                    <span>140+</span>
-                                    <span class="pop">
-                                        <span>easy to use</span>
-                                    </span>
-                                </p>
-                                <h2 class="section__title">
-                                    astounding presets
-                                </h2>
-                                <p class="section__subtitle">
-                                    hover or tap to preview animations
-                                </p>
-                            </div>
-                            <div class="lines__wrapper">
-                                <div class="lines">
-                                    <div class="lines-v"></div>
-                                    <div class="lines-h"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="product-prev-grid" class="product-prev-grid container">
-    			{% for category in categories %}
-					{% set key = category.key %}
-					{% if categories|length > 1 %}
-                        <h3 class="{{ 'left' if loop.index % 2 != 0 else 'right' }}">{{ category.label }}
-                        </h3>
-                    {% endif %}
-					<div class="row {{ category.rowClass | default('') }} {% if category.count == 5 %}row-5{% endif %}">
-						{% for i in range(category.count) %}
-							{% set num = '%02d' % loop.index %}
-                            {# https://s3.motionvfx.com/mvfxpublic/products/templates/1297/media/Background_{{num}}.mp4 #}
-                            {# https://s3.motionvfx.com/mvfxpublic/products/templates/1297/media/mIntro_2_04.mp4 #}
-							{% set filename = 'https://s3.motionvfx.com/mvfxpublic/products/templates/' + productPageTemplateId + '/media/' + namePrefix + key +  '_' + num %}
-							<div class="product-prev-col col-6 col-lg-3 {% if loop.index > collapseAfter %}collapse prev-collapse-{{ key }}{% endif %}" id="prev-collapse-{{ key }}-{{ loop.index }}"
-								>
-								<div class="product-prev-cell" data-mp4-src="{{ filename }}.mp4?{{refresh}}">
-									<img loading="lazy" src="{{ filename }}.jpg?{{refresh}}" alt="" width="400" height="225" />
-									<div class="loading-spinner"></div>
-								</div>
-							</div>
-						{% endfor %}
-						{% if category.count > collapseAfter %}
-							<div class="col-btn-collapse">
-								<button class="btn-collapse" type="button" data-target=".prev-collapse-{{ key }}" aria-expanded="false" aria-controls="{% for j in range(collapseAfter, category.count) %} prev-collapse-{{ key }}-{{ j }} {% endfor %}">
-									<span><span class="label-collapsed">Show more</span><span class="label-expanded">Collapse</span> ({{ category.count - collapseAfter }})</span>
-									<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-											viewBox="0 0 36.6 61.5" style="enable-background:new 0 0 36.6 61.5;" xml:space="preserve" class="btn-collapse-arrow" height="20">
-										<style type="text/css">
-											.st0{fill:none;stroke:currentColor;stroke-width:8;stroke-miterlimit:10;}
-										</style>
-										<polyline class="st0" points="2.8,58.6 30.9,30.5 3.2,2.8 "/>
-									</svg>
-								</button>
-							</div>
-						{% endif %}
-					</div>
-				{% endfor %}
-                
-			</div>
-            <div class="section__content">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="section__head">
-                                <p class="section__subtitle">sub</p>
-                                <h2 class="section__title">title</h2>
-                                <p class="section__text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi vitae eum dicta fuga numquam. Corporis ab ad quasi, cum, qui soluta officia ipsa veritatis fugiat harum perferendis, iusto autem nam?</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <img src="{{mediaUrl}}/mon.png" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <a class="nav" href="#" name="specs" rel="noopener noreferrer"></a>
-        <div class="ts-mi">
-        <section class="tech-spec bg--light">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="tech-spec-info">
-                            <div class="section__text__content">
-                                <div class="section__head">
-                                    <h2 class="section__title tech-spec__title section__title">Technical specifications</h2>
-                                </div>
-                                <div class="ttable tech-spec__table">
-                                    <div class="tcell tlabel">Supported software</div>
-                                    <div class="tcell tdata">
-                                        {% autoescape off %}
-                                            {{ product.productdetails.minimal_requirements.replace('FCP 10', 'FCP 10').replace('Motion 5', 'Motion 5').replace(', ', ',<br>') }}
-                                        {% endautoescape %}
-                                    </div>
-                                    <div class="tcell tlabel">Includes</div>
-                                    <div class="tcell tdata">60 -------</div>
-                                    <div class="tcell tlabel">Size</div>
-                                    <div class="tcell tdata">
-                                        {{ "%.1f MB"|format(product.productdetails.source_size / 1000) }}
-                                    </div>
-                                    {% for kind in ['trailer', 'tutorial'] %}
-                                        {% with musics=product.productdetails.music.select_related('music_portal').all().filter(used_in_trailer=kind=='trailer') %}
-                                            {% if musics|length %}
-                                                <div class="tcell tlabel">Music used in {{ kind }}</div>
-                                                <div class="tcell tdata">
-                                                    {% include 'product/music_info.jinja2' %}
-                                                </div>
-                                            {% endif %}
-                                        {% endwith %}
-                                    {% endfor %}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        </section>
-
-        <section class="minstaller__section bg--light">
-
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <div class="minstaller">
-                            <h3 class="minstaller__title">mInstaller</h3>
-                            <p class="minstaller__description">
-                                After purchasing, the product is
-                                <b>instantly available </b>for download via
-                                <a href="https://www.motionvfx.com/page/minstaller.html" target="_blank"
-                                    rel="noopener noreferrer">mInstaller</a>.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        </div>
 
         <footer class="footer">
-            <div class="image__background">
-                <picture>
-                    <source media="(max-width: 640px)" srcset="
-                        {% for size in srcsetSizesMobile %}
-                            {{mediaUrl}}/footer_mobile-{{size}}.webp {{size}}w,
-                        {% endfor %}
-                    "
-                    type="image/webp">
-                    <source media="(max-width: 640px)" srcset="
-                        {% for size in srcsetSizesMobile %}
-                            {{mediaUrl}}/footer_mobile-{{size}}.jpg {{size}}w,
-                        {% endfor %}
-                    "
-                    type="image/jpeg">
-                    <source srcset="
-                        {% for size in srcsetSizesDesktop %}
-                            {{mediaUrl}}/footer-{{size}}.webp {{size}}w,
-                        {% endfor %}
-                    "
-                    type="image/webp">
-                    <img
-                        loading="lazy"
-                        width="2560"
-                        height="850"
-                        src="{{mediaUrl}}/footer-2560.jpg"
-                        alt=""
-                        srcset="
-                            {% for size in srcsetSizesDesktop %}
-                                {{mediaUrl}}/footer-{{size}}.jpg {{size}}w,
-                            {% endfor %}
-                        "
-                        sizes="100vw">
+            <div class="image__background--carousel secuence" style="--s-index:0">
+                {% set image_name = 'footer' %}
+                <picture class="on-mobile">
+                    <img data-src="{{mediaUrl}}/{{media_prefix}}{{image_name}}-m-raw.jpg">
                 </picture>
+
+                <div class="carousel slide carousel-fade fade-new" data-ride="carousel" data-interval="3000" data-pause="false">
+                    <div class="carousel-inner">
+                        {% for i in ['_a', '_b'] %}
+                            {% set active = 'active' if loop.index==1 else '' %}
+                            {{picture(
+                                media_url=mediaUrl,
+                                filename= media_prefix + image_name + i,
+                                file_sizes=srcsetSizes,
+                                formats=['jpg', 'webp'],
+                                picture_class='carousel-item ' + active,
+                                width=2560,
+                                height=860,
+                                data_src=True
+                            )}}
+                        {% endfor %}
+                    </div>
+                </div>
+
             </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="footer__content section__text__content">
-                            <div class="section__head">
-                                <!-- <h2 class="section__subtitle">{{ data.footer.subtitle }}</h2> -->
-                                <h2 class="footer__title section__title">{{ data.footer.title }}</h2>
-                                <p class="footer__text section__text">{{ data.footer.text }}</p>
-                            </div>
-                            <div class="button-buy">
-                                {% with discount_text="INTRO", version=2 %}
-                                    {# {% include "product/buy_button.jinja2" %} #}
-                                {% endwith %}
+            <div class="section__content footer__content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="section__text__content">
+                                <div class="section__head">
+                                    <div class="footer__title section__title">
+                                        {{data.footer.title}}
+                                    </div>
+                                    <p class="footer__text section__text secuence">
+                                        {{ data.footer.text }}
+                                    </p>
+                                </div>
+                                <div class="button-buy">
+                                    {% with discount_text="INTRO", version=2 %}
+                                        {% include "product/buy_button.jinja2" %}
+                                    {% endwith %}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -877,6 +790,7 @@ jsum
         </footer>
     </main>
 
+    {# {% include './components/popup-left.jinja' %} #}
     {% include './components/submenu.jinja' %}
 
     <script src="dist/scripts.js"></script>

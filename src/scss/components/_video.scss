@@ -32,7 +32,7 @@
 
   &.trailer,
   .tutorial {
-    // padding-bottom: 0;
+    padding-bottom: 0;
   }
   
   &.trailer {
@@ -46,7 +46,7 @@
     //   bottom: 5vw;
     // }
     @media screen and (max-width: 970px) {
-      padding-top: 7rem;
+      // padding-top: 7rem;
     }
   }
 
