@@ -1,0 +1,17 @@
+.video {
+  text-align: center;
+  z-index: 1;
+  padding-bottom: 0;
+
+  &.trailer,
+  .tutorial {
+  }
+  
+  &.trailer {
+    padding-top: 3rem;
+  }
+
+  &.tutorial {
+    // padding-top: 6rem;
+  }
+}

@@ -1,0 +1,33 @@
+
+$dr-gradient: linear-gradient(to right, #89dda4, #fde92d, #f1565b, #3fd5ef);
+$dr-gradient-overlay: linear-gradient(to top, #000 0%, transparent 500%);
+$dr-gradient-overlay2: radial-gradient(circle at 60% 100px, #00000090, #00000000 40%);
+
+.dr-gradient {
+    // margin-bottom: -1px;
+    // top: 0px;
+    // bottom: 0px;
+    left: 0px;
+    right: 0px;
+    // top: unset;
+    // bottom: 0px;
+    // background-color: #000;
+    height: 2px;
+    background: white $dr-gradient;
+    position: absolute;
+    z-index: 13;
+    &::after {
+        content: '';
+        height: 50px;
+        top: 2px;
+        position: absolute;
+        background:
+          $dr-gradient-overlay2 no-repeat,
+          $dr-gradient-overlay no-repeat,
+          $dr-gradient no-repeat;
+        width: 100%;
+        z-index: 0;
+        background-size: contain, 100% 100%, 100% 99%;
+        // background-position: 0 50%;
+    }
+}

@@ -7,7 +7,19 @@ $animation-duration: 1s;
 //   }
 // }
 
+.section {
+  &__title,
+  &__dispaly {
+    perspective: 500px;
+  }
+}
+
 .word {
+  transform-style: preserve-3d;
+  display: inline-block;
+}
+
+.char {
   display: inline-block;
   opacity: 0;
   // transform: translateY(-1rem);
@@ -19,12 +31,15 @@ $animation-duration: 1s;
   //   transform: translateX(1rem);
   // }
 
-  transition: transform $animation-duration cubic-bezier(0.3, 0, 0.3, 1),
+  transform: rotateY(90deg) translateX(20px);
+  transform-origin: left;
+
+  transition: transform $animation-duration cubic-bezier(0.175, 0.885, 0.32, 1.275),
     opacity $animation-duration linear;
-  transition-delay: calc(10ms + (100ms * var(--word-index)));
+  transition-delay: calc(10ms + (50ms * var(--char-index)));
   [data-visible="true"] & {
     opacity: 1 !important;
-    // transform: translateX(0);
+    transform: rotateY(0deg);
   }
 }
 

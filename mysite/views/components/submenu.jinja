@@ -1,11 +1,43 @@
-<div class="submenu-plugins" id="submenu-plugins" style="z-index: 100">
-    <div class="submenu-plugins-left-arrow" onclick="clickOnMenuArrow()" ;>
-        <img loading="lazy" src="https://s3.motionvfx.com/mvfxpublic/products/templates/1227/media/arrow_submenu_left.svg" loading="lazy" />
+<div class="submenu-plugins" id="submenu-plugins" style="z-index: 90">
+    <div class="submenu-plugins-left-arrow" onclick="clickOnMenuArrow()">
+        <img src="https://s3.motionvfx.com/mvfxpublic/products/templates/1227/media/arrow_submenu_left.svg"
+            loading="lazy"
+            width="300"
+            height="150",
+            alt="Unfold icon"
+        />
     </div>
+    {% set links = [
+        {
+            'anchor': 'trailer',
+            'class': 'trailer',
+            'title': 'Watch trailer',
+            'src': 'play_menu.svg'
+        },
+        {
+            'anchor': 'tutorial',
+            'class': 'tutorial',
+            'title': 'Watch tutorial',
+            'src': 'play_menu.svg',
+        },
+        {
+            'anchor': 'specs',
+            'class': 'tech-sec',
+            'title': 'Technical Specifications',
+            'src': 'play_menu.svg',
+        }
+    ] %}
     <div class="submenu-plugins-left">
-        <a id="trailer-menu" onclick="clickOnMenuItem('trailer');">Watch trailer <img loading="lazy" src="https://s3.motionvfx.com/mvfxpublic/products/templates/1227/media/play_menu.svg" /></a>
-        <a id="tutorial-menu" onclick="clickOnMenuItem('tutorial');">Watch tutorial <img loading="lazy" src="https://s3.motionvfx.com/mvfxpublic/products/templates/1227/media/play_menu.svg" /></a>
-        <a id="tech-sec-menu" onclick="clickOnMenuItem('specs');">Technical Specifications <img loading="lazy" src="https://s3.motionvfx.com/mvfxpublic/products/templates/1227/media/gear_menu.svg" /></a>
+        {% for link in links %}
+            <a id="{{link.class}}-menu" onclick="clickOnMenuItem('{{link.anchor}}');">{{link.title}} 
+                <img loading="lazy"
+                    src="https://s3.motionvfx.com/mvfxpublic/products/templates/1227/media/{{link.src}}"
+                    width="12"
+                    height="12"
+                    alt="{{link.title}} icon"
+                />
+            </a>
+        {% endfor %}
     </div>
     <div class="submenu-plugins-right">
         {% with discount_text='INTRO', version=1 %}

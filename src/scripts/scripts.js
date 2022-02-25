@@ -1,46 +1,21 @@
-import YTPlayer from "yt-player";
-
-const player = new YTPlayer("#vc");
-
-player.load("OGU-FWLqdMg");
-player.setVolume(100);
-
-player.on("playing", () => {
-  console.log(player.getDuration()); // => 351.521
-});
-
 import { doOnVisible } from "./libs/do-on-visible";
-// import initPrevs from "./utils/prevs";
+import initPrevs from "./utils/prevs";
 import Splitting from "splitting";
 import { handleTouchEvents } from "./utils/utils";
-// import scroller, { gui } from "./libs/scroller";
-// import { animSignsPrevs } from "./libs/anim-sign";
-import "./vendor/beforeafter";
-// import Matrix from "./libs/matrix";
-// import { randomString } from './libs/random-string';
-// import "./vendor/popup-tech-spec";
+import './vendor/menu';
+import YTPlayer from "yt-player";
 
-const callBASlider = function () {
-    $(".ba-slider").each(function () {
-        $(this).beforeAfter(".img-lazy");
-    });
-
-    const baseOffset = 12;
-    const isAfter = (e) => e.classList.contains("right");
-
-    $(".prev__label").each(function (i, e) {
-        $(e).on("click", function () {
-            const parent = this.closest(".prBeforeAfter");
-            const resize = $(parent).find(".resize");
-            const handle = $(parent).find(".handle");
-
-            const newOffset = `${isAfter(e) ? baseOffset : 100 - baseOffset}%`;
-
-            resize.css("width", newOffset);
-            handle.css("left", newOffset);
-        });
-    });
+const makePlayer = (id, elementId) => {
+    const player = new YTPlayer(elementId);
+    player.load(id);
+    player.setVolume(100);
 };
+
+const ytTopVideos = [
+    document.getElementById('videoTrailer'),
+    document.getElementById('videoTutorial')
+]
+
 const lazyShow = () => {
     const imagesDocument = Array.from(document.querySelectorAll(".lazy-show"));
 
@@ -56,68 +31,41 @@ const lazyShow = () => {
 };
 
 const loadOnVisibleImages = (section) => {
-    const images = Array.from(section.querySelectorAll("img"));
+    const images = Array.from(section.querySelectorAll("picture"));
 
-    images.forEach((img) => {
-        if (img.src) return;
-        if (img.dataset.src) {
-            img.src = img.dataset.src
-        }
+    images.forEach((picture) => {
+        const sources = [
+            ...Array.from(picture.querySelectorAll('[data-src]')),
+            ...Array.from(picture.querySelectorAll('[data-srcset]'))
+        ]
+        sources.forEach(s => {
+            if (s.src || s.srcset) return;
+            if (s.dataset.srcset) {
+                s.srcset = s.dataset.srcset
+            }
+            if (s.dataset.src) {
+                s.src = s.dataset.src;
+            }
+        })
     });
 };
-
-function initLutPrevs() {
-    let c;
-    function e() {
-        var e = window.innerWidth < 800 ? 2 : 4;
-        if (e !== c) {
-            c = e;
-            const i = document.querySelector("section.prevs"),
-                o = i.querySelector(".prevs__content"),
-                a = Array.from(i.querySelectorAll(".prevs__item")),
-                r = i.querySelector(".page-indicator.current"),
-                s = i.querySelector(".page-indicator.total"),
-                l = Math.ceil(a.length / c);
-            s.innerText = l;
-            let t = 0;
-            function n(e) {
-                (t = (t + e + l) % l),
-                    a.forEach((e) => e.classList.add("hidden"));
-                e = t * c;
-                a.slice(e, e + c).forEach((e) => e.classList.remove("hidden")),
-                    (r.innerText = t + 1);
-            }
-            n(0),
-                (window.nextPage = () => {
-                    n(1);
-                }),
-                (window.previousPage = () => {
-                    n(-1);
-                }),
-                o.classList.add("ready");
-        }
-    }
-    e(), window.addEventListener("resize", e);
-}
 
 (() => {
     document.body.classList.add("initialized");
 
     const titles = [
         ...Array.from(document.querySelectorAll(".section__title")),
+        ...Array.from(document.querySelectorAll(".section__display")),
     ];
 
     titles.forEach((title) => {
         title.style.opacity = 1;
-        title.dataset.title = false;
     });
 
     Splitting({
-        target: ".section__title, .left",
-        by: "words",
+        target: ".section__title, .section__display, .left",
+        by: "chars",
     });
-
-    // animateTitle();
 
     window.addEventListener("load", () => {
         document.body.classList.add("ready");
@@ -136,11 +84,9 @@ function initLutPrevs() {
             sectionSelector: sections,
             cbIn: (target) => {
                 target.dataset.visible = true;
-                loadOnVisibleImages(target)
-
+                loadOnVisibleImages(target);
             },
             cbOut: () => {
-                // target.dataset.visible = false;
             },
             rootMargin: "-150px",
         });
@@ -153,9 +99,12 @@ function initLutPrevs() {
                 target.dataset.rowvisible = true;
             },
             cbOut: () => {
-                // target.dataset.visible = false;
             },
             rootMargin: "-150px",
+        });
+
+        ytTopVideos.forEach(v => {
+            makePlayer(v.dataset.id, v);
         });
     });
 
@@ -172,8 +121,6 @@ function initLutPrevs() {
         handleTouchEvents(carousel, {
             onLeftSwipe,
             onRightSwipe,
-            // onTopSwipe: (val) => console.log({top: val}),
-            // onDownSwipe: (val) => console.log({down: val})
         }).init();
     };
 
@@ -188,10 +135,13 @@ function initLutPrevs() {
         return slider;
     };
 
-    const handleSliding = (options) => (id, index) => {
-        makeSlider(id, options);
+    const initSlider = () => {
+        const id = "#carouselFlat";
+        const id2 = "#carouselFlatText";
+        makeSlider(id);
+        makeSlider(id2);
 
-        const indicators = $(`${id}Indicators > div`);
+        const indicators = $(`${id}Indicators > li`);
 
         if (indicators) {
             const carousel = $(id);
@@ -200,6 +150,7 @@ function initLutPrevs() {
                     el.classList.remove("active");
                     if (e.to === i) {
                         el.classList.add("active");
+                        $(id2).carousel(i);
                     }
                 });
             });
@@ -210,43 +161,9 @@ function initLutPrevs() {
                 });
             });
         }
-
-        setTimeout(() => {
-            $(id).carousel("cycle");
-        }, 250 * index);
     };
 
-    const carouselsPromo = ["#carouselPromo"];
-    const carouselsMosaics = [
-        "#carouselMosaic11",
-        "#carouselMosaic12",
-        "#carouselMosaic21",
-    ];
-
-    carouselsPromo.forEach(handleSliding());
-    // carouselsMosaics.forEach(handleSliding({ pause: "hover" }));
-
-    const carouselControls = document.querySelector(".mosaic-controls");
-    // const [prev, next] = carouselControls.querySelectorAll("div");
-
-    const slideCarousel =
-        (direction = "next") =>
-        () => {
-            carouselsMosaics.forEach((id, idx) => {
-                setTimeout(() => {
-                    $(id).carousel(direction);
-                }, 250 * idx);
-            });
-        };
-
-    // prev.addEventListener("click", slideCarousel("prev"));
-    // next.addEventListener("click", slideCarousel("next"));
-    // scroller().init();
-
-    callBASlider();
-    // initPrevs();
-
-    // gui();
-    initLutPrevs();
+    initSlider();
+    initPrevs();
     lazyShow();
 })();

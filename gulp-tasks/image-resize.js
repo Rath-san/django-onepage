@@ -10,14 +10,36 @@ const {
     RESPONSIVE_SIZES,
 } = require("./constants");
 
-const FORMATS = ["jpg", "webp"];
-const IMAGE_QUALITY = 50;
+const FORMATS = ["jpg"];
+const IMAGE_QUALITY = 90;
 
 const CONFIGS = [
     // {
-    //     type: "mobile",
-    //     directory: "_mobile",
-    //     sizes: RESPONSIVE_SIZES_MOBILE,
+    //     directory: '_basic',
+    //     sizes: [
+    //         {w: 500},
+    //         {w: 250}
+    //     ],
+    // }
+    // {
+    //     directory: '_footer',
+    //     sizes: [
+    //         ...RESPONSIVE_SIZES_MOBILE,
+    //         ...RESPONSIVE_SIZES_DESKTOP
+    //     ],
+    // },
+
+    {
+        directory: '_mobile',
+        sizes: RESPONSIVE_SIZES_MOBILE
+    }
+
+    // {
+    //     directory: "_head",
+    //     sizes: [
+    //         ...RESPONSIVE_SIZES_MOBILE,
+    //         ...RESPONSIVE_SIZES_DESKTOP
+    //     ]
     // },
     // {
     //     type: 'desktop',
@@ -31,14 +53,38 @@ const CONFIGS = [
     // {
     //     directory: "_slider",
     //     sizes: [
-    //         ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ ...size, h: 400 })),
+    //         ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ ...size, h: 300 })),
     //         ...RESPONSIVE_SIZES_DESKTOP
     //     ],
     // },
     // {
-    //     directory: "_footer",
+    //     directory: '_fcp',
     //     sizes: [
-    //         ...RESPONSIVE_SIZES_DESKTOP.map(size => ({...size, h: 1200 })),
+    //         {w: 152}
+    //     ]
+    // },
+    // {
+    //     directory: '_imac',
+    //     sizes: [
+    //         {w: 1540},
+    //         {w: 770},
+    //         {w: 385}
+    //     ]
+    // }
+
+    // {
+    //     directory: "_phones",
+    //     sizes: [
+    //         {w: 400},
+    //     ],
+    // },
+    // {
+    //     directory: "_show",
+    //     sizes: [
+    //         {w: 2000},
+    //         {w: 1500},
+    //         {w: 1000},
+    //         {w: 500}
     //     ],
     // },
     // {
@@ -77,27 +123,35 @@ const CONFIGS = [
     //     ],
     // },
 
-    {
-        directory: "_s3",
-        sizes: [
-            {w: 1000},
-            {w: 500}
-        ],
-    },
-    {
-        directory: "_s2",
-        sizes: [
-            {w: 1200},
-            {w: 600}
-        ],
-    },
-    {
-        directory: "_s1",
-        sizes: [
-            {w: 1000},
-            {w: 500}
-        ],
-    },
+    // {
+    //     directory: "_s3",
+    //     sizes: [
+    //         {w: 1000},
+    //         {w: 500}
+    //     ],
+    // },
+    // {
+    //     directory: "_s2",
+    //     sizes: [
+    //         {w: 1200},
+    //         {w: 600}
+    //     ],
+    // },
+    // {
+    //     directory: "_prev",
+    //     sizes: [
+    //         {w: 640},
+    //         // {w: 320}
+    //     ],
+    // },
+    // {
+    //     directory: "_bg",
+    //     sizes: [
+    //         {w: 640},
+    //         // {w: 320}
+    //     ],
+    // },
+    
 
 
 
@@ -158,12 +212,10 @@ function resizeTask(
                             const imageClone = img.clone();
 
                             if (format === 'jpg' || format === 'jpeg') {
-                                imageClone.flatten({ background: { r: 255, g: 255, b: 255 } })
+                                imageClone.flatten({ background: { r: 0, g: 0, b: 0 } })
                             }
 
                             imageClone.resize(width, height, {});
-
-
                             imageClone.toFormat(format, {
                                 quality,
                             });

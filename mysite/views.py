@@ -20,7 +20,7 @@ def index(request, **kwargs):
 
     context = {
         'product' : {
-            'head_info': "Exceptional Color Remapping LUTs",
+            'head_info': "Animated mockups collection for Final Cut Pro",
             'title': product.title,
             'productdetails' : {
                 'meta_title': "This is title",

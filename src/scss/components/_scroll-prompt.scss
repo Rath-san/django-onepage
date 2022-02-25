@@ -1,0 +1,19 @@
+.scroll-prompt {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    // top: 100%; /* will hang over the next section, make sure to provide sufficient padding */
+    color: #000;
+    // margin-top: 34px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    // font-size: 12px;
+    text-transform: uppercase;
+    z-index: 14;
+
+    @include respond-below(lg) {
+        display: none;
+    }
+}

@@ -1,0 +1,211 @@
+.header {
+    img {
+        transition: opacity 0.5s ease-in-out;
+        opacity: 0;
+    }
+    color: #fff;
+    text-align: center;
+    overflow: visible;
+    padding-bottom: 100px;
+    .section {
+        &__content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            // opacity: ;
+        }
+        &__text {
+            opacity: 0;
+        }
+    }
+    &__logo {
+        font-size: clamp(3.5rem, 16vw, 106px);
+        font-family: $font-family-title;
+        display: flex;
+        flex-direction: column;
+        font-weight: 600;
+        align-items: center;
+
+        img {
+            width: clamp(200px, 50vw, 340px);
+            height: auto;
+        }
+    }
+
+    .image__background {
+        img {
+            top: unset;
+            bottom: unset;
+            left: unset;
+            right: unset;
+            height: auto;
+            object-fit: initial;
+        }
+        .screens {
+            left: 9%;
+            max-width: 1720px;
+            top: 16%;
+        }
+        .isometric {
+            left: unset;
+            max-width: 1590px;
+            right: -20%;
+            top: -8%;
+        }
+    }
+
+    .fcp {
+        position: absolute;
+        bottom: 1rem;
+    }
+}
+
+section.header {
+    position: relative;
+
+    $min-height: 650px;
+    $max-height: 860px;
+
+    $min-content-height: 160px; /* set to height of the portion of the first section within which content is comfortably visible */
+    $scroll-prompt-height: 34px;
+    $scroll-prompt-margin: 0px;
+    $scroll-prompt-margin-min: 10px;
+    $scroll-prompt-height-total: $scroll-prompt-height + 2 *
+        $scroll-prompt-margin-min;
+
+    min-height: $min-height; /* might adjust per plugin */
+    max-height: $max-height;
+    height: calc(100vh - #{$min-content-height});
+
+    // .scroll-prompt {
+    //   margin-top: $scroll-prompt-margin;
+    // }
+
+    @media (max-height: ($min-height + $min-content-height)) {
+        // height: calc(100vh - #{$scroll-prompt-height-total}); /* accomodate scroll prompt */
+        max-height: unset;
+    }
+    $break1: $min-height + $scroll-prompt-height + 2 * $scroll-prompt-margin;
+    $break2: $min-height + $scroll-prompt-height + 2 * $scroll-prompt-margin-min;
+
+    @media (max-height: $break1) {
+        .scroll-prompt {
+            margin-top: calc(0.5 * 100vh - 342px);
+        }
+    }
+    @media (max-height: $break2) {
+        height: 100vh;
+        max-height: unset;
+        .scroll-prompt {
+            display: none;
+        }
+    }
+    @media (min-height: $max-height + $min-content-height) {
+        .scroll-prompt {
+            display: none;
+        }
+    }
+
+    @media (max-width: 480px) {
+        height: 13 / 9 * 100vw;
+        /* not 100vh to avoid content jump on scroll on mobile Chrome and Firefox */
+    }
+}
+
+section.header {
+    position: relative;
+    .container-fluid {
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0 10vw;
+    }
+}
+
+// .image-background {
+//     background-color: #000;
+//     position: absolute;
+//     top: 0;
+//     bottom: 0;
+//     left: 0;
+//     right: 0;
+//     .img {
+//         width: 100%;
+//         height: 100%;
+//         object-fit: cover;
+//     }
+// }
+
+$animation-duration: 0.5s;
+$animation-delay-offset: 200ms;
+
+.dr-gradient,
+.header__deco,
+.header__bg {
+    // opacity: 0;
+    will-change: opacity;
+    transition: opacity $animation-duration linear;
+    transition-delay: calc(0ms + (#{$animation-delay-offset} * var(--h-index)));
+}
+
+.header__logo,
+.header__subtitle,
+.header__deco {
+    // opacity: 0;
+    transform: translateY(-10px) scale(1.1);
+    will-change: opacity, transform;
+    transition: transform $animation-duration cubic-bezier(0.3, 0, 0.3, 1),
+        opacity $animation-duration linear;
+    transition-delay: calc(0ms + (#{$animation-delay-offset} * var(--h-index)));
+}
+
+.dr-gradient {
+    &::after {
+        // transform: translateY(-20px);
+        // opacity: 0;
+    }
+}
+
+.header.loaded {
+    &-primary {
+        .header__logo {
+            img {
+                opacity: 1 !important;
+            }
+        }
+    
+        .fcp {
+            opacity: 1;
+        }
+    }
+
+    &-secondary {
+        .image__background {
+            img {
+                opacity: 1;
+            }
+        }
+    }
+
+    .header__logo,
+    .header__subtitle,
+    .header__deco,
+    .header__bg {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    + .dr-gradient {
+        opacity: 1;
+        &::after {
+            opacity: 1;
+        }
+    }
+
+    .comp-img {
+        opacity: 1;
+    }
+}

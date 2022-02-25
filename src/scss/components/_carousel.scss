@@ -1,0 +1,122 @@
+.fade-new {
+    .carousel {
+        &-inner {
+            height: 100%;
+            padding: 0;
+        }
+        &-item {
+            height: 100%;
+            // transition-duration: 1s !important;
+            &.active {
+                &.carousel-item-left {
+                }
+            }
+            &-left,
+            &-right {
+                opacity: 1 !important;
+            }
+
+            &-next,
+            &-prev {
+                z-index: 2;
+            }
+        }
+    }
+}
+
+.slide-new {
+    .carousel {
+        &-inner {
+            perspective: 500px;
+            height: 100%;
+            padding: 0;
+        }
+
+        &-item {
+            transform-style: preserve-3d;
+            height: 100%;
+            transition-duration: 1s !important;
+            transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1);
+
+            // forward
+            
+            &-next {
+                // opacity: .5;
+                z-index: 1;
+            }
+
+            // .carousel-item-next.carousel-item-left,
+            // .carousel-item-prev.carousel-item-right
+
+            &-right {
+                &.active {
+                    transform: translate3d(100%,0,-100px);
+                    // transform: translate3d(100%,0,0px) rotate3d(0, 1, 0, 5deg);
+                    // transform-origin: left;
+                    // opacity: .5;
+                }
+            }
+
+            &-prev {
+                // opacity: .5;
+                z-index: 1;
+                
+            }
+
+            &-left {
+                &.active {
+                    transform: translate3d(-100%,0,-100px);
+                    // transform: translate3d(-100%,0,0px) rotate3d(0, 1, 0, -5deg);
+                    // transform-origin: right;
+                }
+            }
+
+            &.active {
+                // opacity: 1;
+                // transition: all .5s ease-in-out;
+                // transform: rotate3d(0, 1, 0, -5deg);
+                // transform-origin: right;
+                // transform-origin: left;
+                &:hover {
+                    // opacity: .5;
+
+                }
+            }
+
+        }
+    }
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    z-index: 3;
+}
+
+.carousel-indicators {
+    display: flex;
+    left: unset;
+    margin: 0;
+    position: static;
+    margin: 1rem;
+    li {
+        // transform: rotate(15deg);
+        border-radius: 2px;
+        height: 4px;
+        width: 15px;
+        background-color: #ffffff50;
+        transition: width .15s ease-in-out;
+        margin: 0 4px;
+        // border: 1px solid #fff;
+
+        &.active {
+            width: 30px;
+        }
+
+        &:before {
+        }
+        &::after {
+        }
+        &.active {
+        }
+    }
+}
