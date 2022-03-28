@@ -1,86 +1,14 @@
 body,
 main {
-    // color: #fff;
 }
 
 body {
-    background-color: #0B122D;
+    background-color: #fff;
     overflow-x: hidden;
 }
 
-main {
-    $pink: #de367f;
-    $teal: #09d7ac;
-    $blue: #100ECD;
-    $purple: #6702B7;
-    
-    background:
-        radial-gradient(
-            circle at 90% 2%, #{$pink} -5%, transparent 5%
-        ) no-repeat,
-        radial-gradient(
-            circle at 95% 11%, #{$teal} -20%, transparent 7%
-        ) no-repeat,
-        radial-gradient(
-            circle at 90% 24%, #{$blue} 0%, transparent 10%
-        ) no-repeat,
-        radial-gradient(
-            circle at 10% 28%, #{$purple} 0%, transparent 12%
-        ) no-repeat,
-        radial-gradient(
-            circle at 50% 85.5%, #{$teal} -5%, transparent 4%
-        ) no-repeat,
-        #0B122E;
-    // background-color: #0B122D;
-    color: #fff;
-    overflow-x: hidden;
-    position: relative;
-    width: 100%;
-
-    @media screen and (max-width: 1000px) {
-        background:
-        radial-gradient(
-            circle at 90% 2%, #{$pink} -5%, transparent 5%
-        ) no-repeat,
-        radial-gradient(
-            circle at 95% 11%, #{$teal} -20%, transparent 7%
-        ) no-repeat,
-        radial-gradient(
-            circle at 90% 24%, #{$blue} 0%, transparent 10%
-        ) no-repeat,
-        radial-gradient(
-            circle at 10% 28%, #{$purple} 0%, transparent 12%
-        ) no-repeat,
-        radial-gradient(
-            circle at 50% 90%, #{$teal} -5%, transparent 3%
-        ) no-repeat,
-        #0B122E;
-    }
-
-    @media screen and (max-width: 420px) {
-        background:
-        radial-gradient(
-            circle at 90% 2%, #{$pink} -5%, transparent 5%
-        ) no-repeat,
-        radial-gradient(
-            circle at 95% 11%, #{$teal} -20%, transparent 7%
-        ) no-repeat,
-        radial-gradient(
-            circle at 90% 24%, #{$blue} 0%, transparent 10%
-        ) no-repeat,
-        radial-gradient(
-            circle at 10% 28%, #{$purple} 0%, transparent 12%
-        ) no-repeat,
-        radial-gradient(
-            circle at 50% 87.5%, #{$teal} -5%, transparent 3%
-        ) no-repeat,
-        #0B122E;
-    }
-
-    // margin-left: -1px;
-
-    // $pink: #ff398f;
-    
+main {    
+    color: #000;
 }
 
 section {
@@ -105,22 +33,4 @@ section {
 }
 
 .section {
-    &__content {
-        // .promo-carousel-flat &,
-        .video & {
-            margin-bottom: 5rem;
-        }
-    }
-    &__head {
-    }
-    &__title {
-        @include respond-below(sm) {
-            // font-size: 34px;
-        }
-    }
-    &__content {
-        @media screen and (max-width: 1920px) {
-            padding: 0 calc(10% - 15px);
-        }
-    }
 }

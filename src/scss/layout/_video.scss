@@ -3,15 +3,40 @@
   z-index: 1;
   padding-bottom: 0;
 
-  &.trailer,
-  .tutorial {
+  .section__content {
+    margin-bottom: 4rem;
   }
   
   &.trailer {
-    padding-top: 3rem;
+    // color: #fff;
+    .section__content {
+      color: #fff;
+
+    }
+    // padding-top: 3rem;
+    &::before {
+      position: absolute;
+      content: '';
+      bottom: 40%;
+      left: 0;
+      right: 0;
+      top: 0;
+      background-color: currentColor;
+      z-index: -1;
+    }
   }
 
   &.tutorial {
     // padding-top: 6rem;
+    &::after {
+      position: absolute;
+      content: '';
+      bottom: 0;
+      left: 0;
+      right: 0;
+      top: 60%;
+      background-color: currentColor;
+      z-index: -1;
+    }
   }
 }

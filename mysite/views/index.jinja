@@ -10,7 +10,13 @@
     {% macro picture(
 		media_url,
 		filename,
-		media_files={},
+		media_files={
+            '(max-width: 1024px)': {
+                'filename': "",
+                'formats':['webp','jpg'],
+                'file_sizes': [640, 960, 1024],
+            }
+        },
 		file_sizes=[360, 480, 640, 960],
 		formats=['webp','jpg'],
 		media_sizes='',
@@ -93,10 +99,10 @@
 
      {% set srcsetSizes = srcsetSizesMobile + srcsetSizesDesktop %}
 
-    {% set template_id = '1393' %}
+    {% set template_id = '1401' %}
     {% set file_version = 3 %}
     
-    {% set media_prefix = 'mMockup' %}
+    {% set media_prefix = 'mCounter' %}
     {% set media_url = 'https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media' % (template_id) %}
     {% set placeholder_url = 'https://via.placeholder.com' %}
 
@@ -105,42 +111,33 @@
             'subtitle': 'Animated mockups collection for Final Cut Pro'
         },
         'trailer': {
+            'subtitle': 'SEE THEM AT WORK!',
             'title': 'Watch trailer',
-            'text': 'See how big a bang you’ll make… whatever you need to present.'
+            'text': 'View the presets in action and watch them create a unique visual form of the ideas you want to realize.'
         },
         'tutorial': {
+            'subtitle': 'LEARN THE WORKFLOW!',
             'title': 'Watch tutorial',
-            'text': 'Understand the creative power mMockup puts in your hands.'
+            'text': 'Check our full guide that will make you benefit from what mTutorial has to offer!'
         },
-        'promo-phone': {
-            'title': 'Make any content stand <br>out with <span class="big">energy and style</span>',
-            'text': 'Getting your point across - that’s what it’s all about. Get noticed, leave your mark!',
+        'counters': {
+            'subtitle': 'ILLUSTRATE DIVERSE CONCEPTS & BRING YOUR IDEAS TO LIFE',
+            'title': 'Support your favorite artists',
+            'text': 'This collection of handy, pre-animated elements lets you build a whole layout to illustrate your videos and enrich your edits. Attract donators, supporters, and clients, and raise enough money to accomplish the goal.'
         },
-        'promo-laptop': {
-            'title': 'Don’t just show it. <span class="big">Show it off!</span>',
-            'text1': 'Present apps, interfaces or functionalities with lightness and style!',
-            'text2': 'Business owner? Make your offers and promos close deals!',
-            'text3': 'Data or diagrams? <br>Get your viewers unmatched clarity!',
-        },
-        'promo-carousel-flat': {
-            'titles': [
-                'Stunning galleries',
-                'Engaging web presentations',
-                'Your product on display',
-            ],
-            'text': 'Fill in your timeline with entertaining movement choosing from a wide variety of ready-made presets',
-        },
-        'prevs': {
-            'title': 'Animated mockups collection for Final Cut Pro',
-            'w': '',
-            'e': '',
-        },
-        'prevs-after': {
-            'title': 'Present anything!',
+        'slider': {
+            'subtitle': 'ILLUSTRATE DIVERSE',
+            'title': 'Establish a successful donation campaign',
+            'texts': [
+                "Illustrate your project with astonishing design and animation.",
+                "Tell your story in a cinematic way and stun your clients.",
+                "Customize every detail to perfectly fit your company’s character."
+            ]
         },
         'footer': {
-            'title': 'Show it like it’s </br><span class="big">never been shown before!</span>',
-            'text': 'Make anything you present leave a lasting mark on your audience.'
+            'subtitle': 'ILLUSTRATE DIVERSE',
+            'title': 'Turn your ideas into reality!',
+            'text': 'Modern times give us many opportunities to carry out various projects and realize our dreams and ideas. The well-crafted design of mDonate gives your campaign a unique look and makes it stand out to help you get where you want to be and make a lasting impression on your patrons.'
         }
     } %}
 
@@ -152,45 +149,35 @@
             <div class="image__background">
                 {{picture(
                     media_url=media_url,
-                    filename= media_prefix + '_screensa' ,
+                    filename= media_prefix + '_top' ,
                     file_sizes=srcsetSizes,
-                    formats=['webp','png'],
+                    media_files={},
+                    formats=['webp','jpg'],
                     width=2560,
-                    height=1440,
-                    img_class='screens ',
+                    height=960,
                     alt="Header image",
-                )}}
-                {{picture(
-                    media_url=media_url,
-                    filename= media_prefix + '_isometrica' ,
-                    file_sizes=srcsetSizes,
-                    formats=['webp', 'png'],
-                    width=2560,
-                    height=1420,
-                    img_class='isometric',
                 )}}
             </div>
             <div class="container-fluid">
                 <div class="section__content">
                     <div class="header__logo">
-                        <img src="{{media_url}}/{{media_prefix}}_logo.png?{{file_version}}"
-                            alt=""
-                            srcset=""
-                            width="500"
-                            height="269">
+                        {{picture(
+                            media_url=media_url,
+                            filename= media_prefix + '_logo' ,
+                            file_sizes=[1200,600,300],
+                            media_files={},
+                            formats=['webp','png'],
+                            width=1200,
+                            height=603,
+                            img_class='',
+                            alt="Logo",
+                        )}}
                         <h2 hidden class="">mMockup</h2>
                     </div>
 
                     <h1 class="section__text">
                         {% autoescape off %} {{product.head_info}} {% endautoescape %}
                     </h1>
-
-                    <img class="fcp"
-                        src="{{media_url}}/fcp-152.png?{{file_version}}"
-                        alt="Final Cup Pro icon"
-                        width="76"
-                        height="76"
-                    >
                 </div>
             </div>
         </section>
@@ -216,7 +203,6 @@
             const header = document.querySelector('section.header')
             const items1 = [
                 header.querySelector('.header__logo img'),
-                header.querySelector('.fcp')
             ]
 
             const items2 = Array.from(header.querySelectorAll('.image__background img'));
@@ -237,11 +223,14 @@
                     <div class="col">
                         <div class="section__content">
                             <div class="section__head">
+                                <p class="section__subtitle">
+                                    {{data.trailer.subtitle|safe}}
+                                </p>
                                 <div class="section__title">
-                                    {% autoescape off %} {{data.trailer.title}} {% endautoescape %}
+                                    {{data.trailer.title|safe}}
                                 </div>
                                 <p class="section__text">
-                                    {% autoescape off %} {{data.trailer.text}} {% endautoescape %}
+                                    {{data.trailer.text|safe}}
                                 </p>
                             </div>
                         </div>
@@ -256,19 +245,6 @@
 
         <a class="nav" name="tutorial"></a>
 
-        {{picture(
-            media_url=media_url,
-            filename= media_prefix + '_imac' ,
-            file_sizes=[385, 770],
-            formats=['webp','png'],
-            width=770,
-            height=690,
-            data_src=True,
-            alt="",
-            picture_class="deco deco--video",
-            img_class="lazy-show"
-        )}}
-
         <section class="video tutorial">
             <div class="container text-center">
                 <div class="row">
@@ -276,13 +252,13 @@
                         <div class="section__content">
                             <div class="section__head">
                                 <p class="section__subtitle " style="--s-index:0;">
-                                    {{data.tutorial.subtitle}}
+                                    {{data.tutorial.subtitle|safe}}
                                 </p>
                                 <div class="section__title ">
-                                    {% autoescape off %} {{data.tutorial.title}} {% endautoescape %}
+                                    {{data.tutorial.title|safe}}
                                 </div>
                                 <p class="section__text " style="--s-index:2;">
-                                    {% autoescape off %} {{data.tutorial.text}} {% endautoescape %}
+                                    {{data.tutorial.text|safe}}
                                 </p>
                             </div>
                         </div>
@@ -296,172 +272,132 @@
             </div>
         </section>
 
-        <section class="promo promo-phone">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="phone-comp">
-                            {{picture(
-                                picture_class="phone-comp__image",
-                                media_url=media_url,
-                                filename= media_prefix + '_mobile_1' ,
-                                file_sizes=[400],
-                                formats=['webp', 'png'],
-                                width=400,
-                                height=630,
-                                data_src=True,
-                                img_class='lazy-show',
-                                alt=""
-                            )}}
-                            {{picture(
-                                picture_class="phone-comp__image",
-                                media_url=media_url,
-                                filename= media_prefix + '_mobileman' ,
-                                file_sizes=[400],
-                                formats=['webp', 'png'],
-                                width=400,
-                                height=605,
-                                data_src=True,
-                                img_class='lazy-show',
-                                alt=""
-                            )}}
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="section__content">
-                            <div class="section__head">
-                                <div class="section__title">{{data['promo-phone'].title|safe}}</div>
-                                <div class="section__text">{{data['promo-phone'].text}}</div>
-                            </div>
-                        </div>
-                    </div>
+        <section class="counters bg--dark">
+            {% set counters = [
+                {
+                    "src": "_18"
+                },
+                {
+                    "src": "_07"
+                },
+                {
+                    "src": "_08"
+                },
+                
+            ] %}
+            <div class="comp ">
+                {% for c in counters %}
+                    <video autoplay playsinline loop muted src="{{ media_url }}/{{ media_prefix + c.src }}.mp4"></video>
+                {% endfor %}
+            </div>
+            <div class="section__content">
+                <div class="section__head">
+                    <p class="section__subtitle">
+                        {{ data.counters.subtitle }}
+                    </p>
+                    <h2 class="section__title">
+                        {{ data.counters.title }}
+                    </h2>
+                    <p class="section__text section__text--inset">
+                        {{ data.counters.text }}
+                    </p>
                 </div>
             </div>
         </section>
 
-        <section class="promo promo-laptop">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="promo-laptop-comp">
-                            {{picture(
-                                picture_class="promo-laptop__image",
-                                media_url=media_url,
-                                filename= media_prefix + '_macbook_1' ,
-                                file_sizes=[500, 1000, 1500, 2000],
-                                formats=['webp', 'png'],
-                                width=2000,
-                                height=1587,
-                                data_src=True,
-                                img_class='lazy-show mac',
-                                alt=""
-                            )}}
-                            {{picture(
-                                picture_class="promo-laptop__image",
-                                media_url=media_url,
-                                filename= media_prefix + '_macbook_ziom_1' ,
-                                file_sizes=[500, 1000, 1500],
-                                formats=['webp', 'png'],
-                                width=1500,
-                                height=1251,
-                                data_src=True,
-                                img_class='lazy-show man',
-                                alt=""
-                            )}}
-                            <div class="bauble bauble-1"></div>
-                            <div class="bauble bauble-2"></div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="section__content">
-                            <div class="section__head">
-                                <div class="section__title">{{data['promo-laptop'].title|safe}}</div>
-                                <div class="section__text">{{data['promo-laptop'].text1}}</div>
-                                <div class="section__text">{{data['promo-laptop'].text2}}</div>
-                                <div class="section__text">{{data['promo-laptop'].text3|safe}}</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="promo promo-carousel-flat">
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <div class="section__content">
-                            <div class="section__head">
-                                <div id="carouselFlatText" class="carousel slide carousel-fade">
-                                    <div class="carousel-inner">
-                                        {% for title in data['promo-carousel-flat'].titles %}
-                                            <div class="carousel-item {% if loop.index == 1 %} active {% endif %}">
-                                                <span class="section__title">{{title}}</span>
-                                            </div>
-                                        {% endfor %}
-                                    </div>
-                                </div>
-                                <div class="section__text">{{data['promo-carousel-flat'].text}}</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {% set slides = [
+        <section class="slider">
+            {% set magicSlides = [
                 {
-                    'src': '_slidera_2',
-                    'alt': ''
+                    "src": "_s2",
+                    "alt": "",
                 },
                 {
-                    'src': '_slidera_1',
-                    'alt': ''
+                    "src": "_s3",
+                    "alt": "",
                 },
                 {
-                    'src': '_slidera_3',
-                    'alt': ''
+                    "src": "_s4",
+                    "alt": "",
+                },
+                {
+                    "src": "_s5",
+                    "alt": "",
+                },
+                {
+                    "src": "_s6",
+                    "alt": "",
+                },
+                {
+                    "src": "_s7",
+                    "alt": "",
+                },
+                {
+                    "src": "_s8",
+                    "alt": "",
+                },
+                {
+                    "src": "_s9",
+                    "alt": "",
+                },
+                {
+                    "src": "_s10",
+                    "alt": "",
                 }
             ] %}
-            <ol id="carouselFlatIndicators" class="carousel-indicators">
-                {% for indicator in slides %}
-                    <li class="{% if loop.index == 1 %} active {% endif %}"></li>
-                {% endfor %}
-            </ol>
-            <div id="carouselFlat" class="carousel slide slide-new">
-                <div class="carousel-inner">
-                    {% for img in slides %}
-                        <div class="carousel-item {% if loop.index == 1 %} active {% endif %}">
-                            {{picture(
+            <div class="magicSlider">
+				<div class="slides">
+                    {% for ms in magicSlides %}
+                        <div class="slide">
+                            {{ picture(
                                 media_url=media_url,
-                                filename= media_prefix + img.src ,
-                                file_sizes=srcsetSizes,
-                                formats=['jpg'],
-                                width=2560,
-                                height=960,
-                                data_src=True,
-                                img_class='d-block w-100 h-auto lazy-show',
-                                alt=""
+                                filename= media_prefix + ms.src ,
+                                file_sizes=[450, 900, 1800],
+                                media_files={},
+                                formats=['webp','jpg'],
+                                width=1000,
+                                height=1000,
+                                media_sizes="50w",
+                                alt=ms.alt,
                             )}}
                         </div>
                     {% endfor %}
+				</div>
+				<div class="scroll-area scroll-area-left"></div>
+				<div class="scroll-area scroll-area-right"></div>
+			</div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 section__content">
+                        <div class="section__head">
+                            <p class="section__subtitle">
+                                {{ data.slider.subtitle }}
+                            </p>
+                            <h2 class="section__title">
+                                {{ data.slider.title }}
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="col-10 offset-1 texts">
+                        {% for t in data.slider.texts %}
+                            <p class="section__text">{{ t }}</p>
+                        {% endfor %}
+                    </div>
                 </div>
-                <a class="carousel-control-prev" href="#carouselFlat" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselFlat" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
             </div>
+            
         </section>
 
-        <section class="prevs center">
-            {% set productPageTemplateId = template_id %} 
+        <section class="prevs center bg--dark">
+            {% set productPageTemplateId = '1393' %} 
             {% set collapseAfter = 8 %}
             {% set namePrefix = '' %}
             {% set categories = [
                     { 'key':'effect', 'label': 'Effects', 'count': 4},
-                    { 'key':'basic', 'label': 'Basic', 'count': 25},
+                    
+                ]
+            %}
+
+            {# { 'key':'basic', 'label': 'Basic', 'count': 25},
                     { 'key':'box', 'label': 'Box', 'count': 6},
                     { 'key':'computer', 'label': 'Computer', 'count': 15},
                     { 'key':'custom', 'label': 'Custom', 'count': 9},
@@ -469,20 +405,16 @@
                     { 'key':'laptop', 'label': 'Laptop', 'count': 11},
                     { 'key':'smartphone', 'label': 'Smartphone', 'count': 14},
                     { 'key':'typography', 'label': 'Typography', 'count': 5},
-                    { 'key':'background', 'label': 'Backgrounds', 'count': 12},
-                ]
-            %}
+                    { 'key':'background', 'label': 'Backgrounds', 'count': 12}, #}
             
             <div class="container">
                 <div class="row">
                     <div class="col-12 text-center">
                         <div class="section__content">
                             <div class="section__head">
-                                <p class="section__display">
-                                    114
-                                </p>
                                 <h2 class="section__title">
-                                    fully animated, customizable elements
+                                    <span class="deco"></span>
+                                    <span>A collection of</span><span class="section__display"> 20 </span><span>useful counters</span>
                                 </h2>
                                 <p class="section__subtitle">
                                     hover or tap to preview animations
@@ -539,79 +471,45 @@
             </div>
         </section>
 
-        <section class="prevs-after">
+        <section class="prevs-after bg--dark">
+            <div class="comp">
+                {{picture(
+                    media_url=media_url,
+                    filename= media_prefix + '_rowers' ,
+                    file_sizes=[325,750,1500],
+                    media_files={},
+                    formats=['webp','jpg'],
+                    width=535,
+                    height=803,
+                    alt="Rowers on water",
+                    img_class="rowers"
+                )}}
 
-            {# <div class="image__background"> #}
-                <div class="section__content">
-                    <div class="section__head">
-                        <div class="section__title">
-                            {{data['prevs-after'].title|safe}}
-                        </div>
-                    </div>
+                {{picture(
+                    media_url=media_url,
+                    filename= media_prefix + '_20' ,
+                    file_sizes=[250, 500],
+                    media_files={},
+                    formats=['webp','png'],
+                    width=357,
+                    height=137,
+                    alt="Counter 20",
+                    img_class="counter"
+                )}}
+            </div>
+            <div class="section__content">
+                <div class="section__head">
+                    <p class="section__subtitle">
+                        ILLUSTRATE DIVERSE
+                    </p>
+                    <h2 class="section__title">
+                        Establish a successful donation campaign
+                    </h2>
+                    <p class="section__text section__text--inset">
+                        Check our full guide that will make you benefit from what mTutorial has to offer!
+                    </p>
                 </div>
-                <div class="container">
-                    <div class="comp">
-                        {% for m in [
-                            {
-                                'src': '',
-                                'alt': '',
-                                'index': '1'
-                            },
-                            {
-                                'src': '',
-                                'alt': '',
-                                'index': '2'
-                            },
-                            {
-                                'src': '',
-                                'alt': '',
-                                'index': '3'
-                            },
-                            {
-                                'src': '',
-                                'alt': '',
-                                'index': '5'
-                            },
-                            {
-                                'src': '',
-                                'alt': '',
-                                'index': '4'
-                            }
-                        ] %}
-                        {{picture(
-                            media_url=media_url,
-                            filename= media_prefix + '_s' + loop.index|string,
-                            file_sizes=[250, 500],
-                            formats=['jpg'],
-                            width=400,
-                            height=650,
-                            img_class='comp__item comp__item--' + loop.index|string,
-                            img_style="--s-index: " + m.index|string,
-                            alt="",
-                            loading="lazy"
-                        )}}
-                        {% endfor %}
-                    </div>
-                </div>
-                {# <picture>
-                    
-                    <source media="(max-width: 992px)" srcset="
-                        {% for size in srcsetSizesMobile %}
-                            {{mediaUrl}}/hands_bg.jpg {{size}}w,
-                        {% endfor %}
-                    ">
-                    <img
-                        loading="lazy"
-                        src="{{mediaUrl}}/hands_bg.jpg"
-                        alt="Editor recording voiceover for video production"
-                        srcset="
-                            {% for size in srcsetSizesDesktop %}
-                                {{mediaUrl}}/hands_bg.jpg {{size}}w,
-                            {% endfor %}
-                        "
-                        sizes="100vw">
-                </picture> #}
-            {# </div> #}
+            </div>
         </section>
 
         <a class="nav" href="#" name="specs" rel="noopener noreferrer"></a>
@@ -680,20 +578,22 @@
             </section>
         </div>
 
-        <footer class="footer">
-            <div class="image__background " style="--s-index:0">
-                {{picture(
-                    media_url=media_url,
-                    filename= media_prefix + '_footer_3' ,
-                    file_sizes=srcsetSizes,
-                    media_files={
+        {# media_files={
                         '(max-width: 960px)': {
                             'filename': media_prefix + '_footer_mobile',
                             'formats':['jpg'],
                             'file_sizes': [640, 960],
                         }
-                    },
-                    formats=['jpg'],
+                    }, #}
+
+        <footer class="footer">
+            <div class="image__background " style="--s-index:0">
+                {{picture(
+                    media_url=media_url,
+                    filename= media_prefix + '_footer',
+                    file_sizes=srcsetSizes,
+                    media_files={},
+                    formats=['webp','jpg'],
                     width=2560,
                     height=1100,
                     data_src=True,
@@ -706,7 +606,10 @@
                     <div class="col-12">
                         <div class="section__text__content">
                             <div class="section__head">
-                                <div class="footer__title section__title">
+                                <p class="section__subtitle">
+                                    {{data.footer.subtitle|safe}}
+                                </p>
+                                <div class="section__title">
                                     {{data.footer.title|safe}}
                                 </div>
                                 <p class="footer__text section__text ">
@@ -727,7 +630,10 @@
 
     {# {% include './components/popup-left.jinja' %} #}
     {% include './components/submenu.jinja' %}
-
+    
+    <script src="https://s3.motionvfx.com/mvfxpublic/products/templates/1329/js/gsap.min.js"></script>
+    <script src="https://s3.motionvfx.com/mvfxpublic/products/templates/1329/js/morpher.min.js"></script>
+    
     <script src="dist/scripts.js"></script>
     <script src="scripts/vendor/menu.js" defer></script>
     <script src="scripts/vendor/scroll_to_anchor.js" defer></script>

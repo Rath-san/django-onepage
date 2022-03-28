@@ -4,7 +4,7 @@ $font-size-title: $rem * 2;
 $font-size-sub-title: $rem * 1.2;
 $font-size-body: $rem * 0.9;
 
-$font-family-text: 'Lato', sans-serif;
+$font-family-text: 'Mulish', sans-serif;
 $font-family-subtitle: $font-family-text;
 $font-family-title: $font-family-text;
 $font-family-title--big: $font-family-text;
@@ -40,7 +40,7 @@ main,
 .section {
   &__title {
     // font-size: 1.8rem;
-    font-size: 34px;
+    font-size: 36px;
     font-weight: 600;
     line-height: 1.2;
     font-family: $font-family-title;
@@ -48,6 +48,10 @@ main,
     // letter-spacing: 1px;
 
     opacity: 0;
+
+    .footer & {
+      margin-bottom: 40px;
+    }
 
     .big {
       font-size: 50px;
@@ -71,8 +75,7 @@ main,
   &__text {
     font-family: $font-family-text;
     font-weight: 400;
-    font-size: 0.9rem;
-    font-size: 16px;
+    font-size: 18px;
 
     opacity: 0;
     transform: translateY(20px);

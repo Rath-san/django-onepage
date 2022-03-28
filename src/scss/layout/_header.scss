@@ -16,6 +16,7 @@
         }
         &__text {
             opacity: 0;
+            padding: 0 2rem;
         }
     }
     &__logo {
@@ -27,31 +28,12 @@
         align-items: center;
 
         img {
-            width: clamp(200px, 50vw, 340px);
+            width: clamp(350px, 70vw, 500px);
             height: auto;
         }
     }
 
     .image__background {
-        img {
-            top: unset;
-            bottom: unset;
-            left: unset;
-            right: unset;
-            height: auto;
-            object-fit: initial;
-        }
-        .screens {
-            left: 9%;
-            max-width: 1720px;
-            top: 16%;
-        }
-        .isometric {
-            left: unset;
-            max-width: 1590px;
-            right: -20%;
-            top: -8%;
-        }
     }
 
     .fcp {
