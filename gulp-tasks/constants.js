@@ -1,6 +1,7 @@
 const RESPONSIVE_SIZES_MOBILE = [
     {w: 640},
-    {w: 960}
+    {w: 960},
+    {w: 1024}
 ];
 
 const RESPONSIVE_SIZES_DESKTOP = [
@@ -48,7 +49,7 @@ const STATICS = [
     },
     {
         route: "/images",
-        dir: "dist/images",
+        dir: "src/_images/otp",
     },
     {
         route: "/css",

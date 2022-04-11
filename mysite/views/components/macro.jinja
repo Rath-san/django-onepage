@@ -185,3 +185,76 @@ jsum
 			height="{{height}}">
 	</picture>
 {% endmacro %}
+
+{% macro picture(
+		media_url,
+		filename,
+		media_files={},
+		file_sizes=[360, 480, 640, 960],
+		formats=['webp','jpg'],
+		media_sizes='',
+		media='',
+		alt='',
+		img_class='',
+		img_style='',
+		picture_class='',
+		width='',
+		height='',
+        loading='',
+        data_src=False
+	) %}
+		<picture class="{{ picture_class }}">
+			{% for media in media_files %}
+				{% set m = media_files[media] %}
+				{% for format in formats %}
+					<source
+                        {% if data_src %}
+                            data-srcset="
+                                {% for size in m['file_sizes'] %}
+                                    {{ media_url }}/{{ m['filename'] }}-{{ size }}.{{ format }} {{size}}w,
+                                {% endfor %}"
+                        {% else %}
+                            srcset="
+                                {% for size in m['file_sizes'] %}
+                                    {{ media_url }}/{{ m['filename'] }}-{{ size }}.{{ format }} {{size}}w,
+                                {% endfor %}"
+                        {% endif %}
+						type="image/{{ format | replace('jpg', 'jpeg') }}"
+						sizes="{{ m['media_sizes'] | default(media_sizes) }}"
+						media="{{ media }}"
+					>
+				{% endfor %}
+			{% endfor %}
+			{% for format in formats %}
+				<source
+                    {% if data_src %}
+                    data-srcset="
+						{% for size in file_sizes %}
+							{{ media_url }}/{{ filename }}-{{ size }}.{{ format }} {{size}}w,
+						{% endfor %}"
+                    {% else %}
+                    srcset="
+						{% for size in file_sizes %}
+							{{ media_url }}/{{ filename }}-{{ size }}.{{ format }} {{size}}w,
+						{% endfor %}"
+                    {% endif %}
+					type="image/{{ format | replace('jpg', 'jpeg') }}"
+					sizes="{{ media_sizes }}"
+					media="{{ media }}">
+			{% endfor %}
+			<img
+                {% if data_src %}
+                    data-src="{{ media_url }}/{{ filename }}-{{ file_sizes[0] }}.{{ formats[-1] }}?{{file_version}}"
+                {% else %}
+                    src="{{ media_url }}/{{ filename }}-{{ file_sizes[0] }}.{{ formats[-1] }}?{{file_version}}"
+                {% endif %}
+				alt="{{alt}}"
+				class="{{img_class}}"
+				style="{{img_style}}"
+				width="{{width}}"
+				height="{{height}}"
+                loading="{{loading}}"
+                >
+
+		</picture>
+	{% endmacro %}

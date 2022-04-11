@@ -7,22 +7,22 @@ const shell = require('any-shell-escape')
 const {exec} = require('child_process')
 
 const FORMATS = ["mp4"];
-const VIDEO_QUALITY = 28; // this is not deterministic lower = uglier
+const VIDEO_QUALITY = 27; // this is not deterministic lower = uglier
 
 const CONFIGS = [
-    {
-        directory: "_prevs",
-    },
+    // {
+    //     directory: "_prevs",
+    // },
     // {
     //     directory: "_promo",
     // },
-    // {
-    //     directory: 'filmlook'
-    // }
+    {
+        directory: '_60'
+    }
 ];
 
 function resizeTask(
-    managedFormats = ["mov", "mp4"],
+    managedFormats = ["mov", "mp4", "m4v"],
     videoDist = "src/_videos/otp/"
 ) {
     CONFIGS.forEach(({ directory }) => {
