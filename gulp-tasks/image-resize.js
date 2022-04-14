@@ -13,26 +13,52 @@ const {
 const FORMATS = ["jpg", "webp"];
 const IMAGE_QUALITY = 50;
 
-640,820,1024
+// 640,820,1024
 
 const CONFIGS = [
     // {
-    //     directory: "_box",
+    //     directory: "_head",
+    //     targetFormat: ["jpg", "webp"],
+    //     quality: 50,
     //     sizes: [
-    //         {w: 512},
-    //         {w: 360},
-    //         {w: 180}
+    //         ...RESPONSIVE_SIZES.map((e) => ({ ...e, h: 800 })),
     //     ],
     // },
     // {
-    //     directory: "_head",
+    //     directory: "_big-slider",
+    //     targetFormat: ["jpg", "webp"],
+    //     quality: 50,
+    //     sizes: RESPONSIVE_SIZES_DESKTOP,
+    // },
+     {
+        directory: "_mobile",
+        targetFormat: ["jpg", "webp"],
+        quality: 70,
+        sizes: [
+            {w: 1024},
+            {w: 820},
+            {w: 640}
+        ],
+    },
+    // {
+    //     directory: "_footer",
+    //     targetFormat: ["jpg", "webp"],
+    //     quality: 70,
     //     sizes: [
     //         ...RESPONSIVE_SIZES_DESKTOP,
     //         ...RESPONSIVE_SIZES_MOBILE.map((e) => ({ ...e, h: 600 })),
     //     ],
     // },
     // {
-    //     directory: "_footer",
+    //     directory: "_abstract",
+    //     targetFormat: ["jpg", "webp"],
+    //     quality: 90,
+    //     sizes: [{ w: 320 }, { w: 640 }],
+    // },
+    // {
+    //     directory: "_prevs-after",
+    //     targetFormat: ["jpg", "webp"],
+    //     quality: 50,
     //     sizes: [
     //         ...RESPONSIVE_SIZES_DESKTOP,
     //         ...RESPONSIVE_SIZES_MOBILE.map((e) => ({ ...e, h: 600 })),
@@ -55,24 +81,24 @@ const CONFIGS = [
     //     ],
     // },
     // {
-    //     directory: "_big-slider",
-    //     sizes: RESPONSIVE_SIZES_DESKTOP,
-    // },
-    // {
     //     directory: "_abstract",
     //     sizes: [{ w: 320 }, { w: 640 }, { w: 1200 }],
     // },
     // {
     //     directory: "_prevs-bg",
+    //     targetFormat: ["jpg", "webp"],
+    //     quality: 50,
     //     sizes: [{ w: 480 }, { w: 640 }, { w: 1240 }],
     // },
-    {
-        directory: "_prevs-after",
-        sizes: [
-            ...RESPONSIVE_SIZES_DESKTOP,
-            ...RESPONSIVE_SIZES_MOBILE.map((e) => ({ ...e, h: 600 })),
-        ],
-    },
+    // {
+    //     directory: "_prevs-after",
+    //     targetFormat: ["jpg", "webp"],
+    //     quality: 50,_
+    //     sizes: [
+    //         ...RESPONSIVE_SIZES_DESKTOP,
+    //         ...RESPONSIVE_SIZES_MOBILE.map((e) => ({ ...e, h: 600 })),
+    //     ],
+    // },
     // {
     //     directory: "_prevs-after-mobile",
     //     sizes: [
@@ -81,11 +107,11 @@ const CONFIGS = [
     //         {w: 1024}
     //     ],
     // },
-    // {
-    //     directory: "_logo",
-    //     sizes: [{ w: 510 }, { w: 800 }],
-    // },
-
+    {
+        directory: "_logo",
+        targetFormat: ["png", "webp"],
+        sizes: [{ w: 510 }, { w: 800 }],
+    },
     // {
     //     directory: "_prevs",
     //     sizes: [{ w: 480 }, { w: 640 }],

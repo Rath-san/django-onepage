@@ -7,7 +7,7 @@ const shell = require('any-shell-escape')
 const {exec} = require('child_process')
 
 const FORMATS = ["mp4"];
-const VIDEO_QUALITY = 27; // this is not deterministic lower = uglier
+const VIDEO_QUALITY = 5; // this is not deterministic lower = uglier
 
 const CONFIGS = [
     // {
@@ -17,7 +17,7 @@ const CONFIGS = [
     //     directory: "_promo",
     // },
     {
-        directory: '_60'
+        directory: '_mov'
     }
 ];
 
@@ -46,7 +46,7 @@ function resizeTask(
                     '-color_trc', 1,
                     '-colorspace', 1,
                     '-an',
-                    resolve(videoDist, `${file.basename}`)
+                    resolve(videoDist, `${file.stem}.mp4`)
                     ])
 
                 exec(convert, (err) => {

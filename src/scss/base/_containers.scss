@@ -4,7 +4,7 @@ main {
 }
 
 body {
-    background-color: #0B122D;
+    // background-color: #0B122D;
     overflow-x: hidden;
 }
 
@@ -14,25 +14,25 @@ main {
     $blue: #100ECD;
     $purple: #6702B7;
     
-    background:
-        radial-gradient(
-            circle at 90% 2%, #{$pink} -5%, transparent 5%
-        ) no-repeat,
-        radial-gradient(
-            circle at 95% 11%, #{$teal} -20%, transparent 7%
-        ) no-repeat,
-        radial-gradient(
-            circle at 90% 24%, #{$blue} 0%, transparent 10%
-        ) no-repeat,
-        radial-gradient(
-            circle at 10% 28%, #{$purple} 0%, transparent 12%
-        ) no-repeat,
-        radial-gradient(
-            circle at 50% 85.5%, #{$teal} -5%, transparent 4%
-        ) no-repeat,
-        #0B122E;
+    // background:
+    //     radial-gradient(
+    //         circle at 90% 2%, #{$pink} -5%, transparent 5%
+    //     ) no-repeat,
+    //     radial-gradient(
+    //         circle at 95% 11%, #{$teal} -20%, transparent 7%
+    //     ) no-repeat,
+    //     radial-gradient(
+    //         circle at 90% 24%, #{$blue} 0%, transparent 10%
+    //     ) no-repeat,
+    //     radial-gradient(
+    //         circle at 10% 28%, #{$purple} 0%, transparent 12%
+    //     ) no-repeat,
+    //     radial-gradient(
+    //         circle at 50% 85.5%, #{$teal} -5%, transparent 4%
+    //     ) no-repeat,
+    //     #0B122E;
     // background-color: #0B122D;
-    color: #fff;
+    // color: #fff;
     overflow-x: hidden;
     position: relative;
     width: 100%;

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     {% include './components/head.jinja' %}
-    <body style="background: #000">
+    <body>
         {% include './components/nav.jinja' %}
         {# {% include './components/macro.jinja' %} #}
         {# {% include './components/bundle-popup.jinja' %} #}
@@ -80,9 +80,9 @@
 2560
 ] %}
 {% set srcsetSizes = srcsetSizesMobile + srcsetSizesDesktop %}
-{% set template_id = '1395' %}
+{% set template_id = '1403' %}
 {% set file_version = 3 %}
-{% set media_prefix = 'mTrackerHUDPack' %}
+{% set media_prefix = 'mMeasurements' %}
 {% set media_url = 'https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media' % (template_id) %}
 {% set placeholder_url = 'https://via.placeholder.com' %}
 {# {% set pay_version = get_pay_version(request, product.id) %} #}
@@ -107,30 +107,27 @@
 'subtitle': 'Animated mockups collection for Final Cut Pro'
 },
 'trailer': {
+    'subtitle': "SEE THE VALUE",
 'title': 'Watch trailer',
-'text': 'See how easy it can be to create stunning, sci-fi-like imagery... and take your audience for a ride they will not want to stop!'
+'text': 'Check the multitude of applications brought to you with this pack.'
 },
 'tutorial': {
+    'subtitle': "GET STARTED IN NO TIME",
 'title': 'Watch tutorial',
-'text': 'Aim for the thrill? Better learn the skill! Get 100% actionable guidelines on how to make the most of this most impressive HUD pack!'
+'text': 'Enjoy our tutorial and let your questions be answered before you even ask them.'
 },
 'slider': {
-'title': 'TAKE THEM FOR A RIDE',
-'text': 'Immerse your audience in captivating, futuristic visions with HUDs that will plunge them into your narrative!',
+'title': 'Measure and display!',
+'text': 'Choose any animated, customizable preset to present values and units in a clear, appealing way.',
+},
+'setps-head': {
+    'subtitle': "FEED YOUR AUDIENCE!",
+    "title": "People just love comparing!",
 },
 'steps': [
-    {
-        'title': 'TRACK',
-        'subtitle': 'One-click action to get the movement data'
-    },
-    {
-        'title': 'PICK POSITION',
-        'subtitle': 'Precisely locate the effect on your scene'
-    },
-    {
-        'title': 'CUSTOMIZE',
-        'subtitle': 'Easily adjust shape, colors and lighting'
-    },
+    'Give your viewers a clear point of reference to compliment your edit.',
+    'Put your shots in meaningful context with all kinds of values and measurements.',
+    "Match your edit's visual tone thanks to the simplistic, elegant design."
 ],
 'slider2': {
 'title': 'REALITY or SIMULATION?',
@@ -140,39 +137,101 @@
 'title': 'Animated mockups collection for Final Cut Pro',
 },
 'prevs-after': {
-'title': 'OWN PERCEPTION',
-'text': 'Seize attention and hold on to it with a collection of gripping, customizable HUDs'
+    'subtitle': 'MEASURING MATTERS',
+'title': 'Show the value',
+'text': 'Use the wide range of on-screen controls to adjust parameters and excite your viewers with values and numbers.'
 },
 'footer': {
-'title': 'EYES FIXED!',
-'text': "You got them to look, don't make them look away. Display any information in a dynamic way!"
+    "subtitle": 'COMPARE AND MEASURE',
+'title': 'Give meaningful context',
+'text': "Add meaning to your shots with clean-cut, precise measurements and value displays designed to match any edit!"
 }
 } %}
 
-{% set trailer_id = 'HVSjGgDfiM4' %}
-{% set tutorial_id = 'MVBnWiHLec8' %}
+
+{% set trailer_id = '5QLRhNbZstk' %}
+{% set tutorial_id = 'aS315jj4UhA' %}
 <main class="mtracker-3d" id="mainPage">
+    <div class="header__wrapper">
     <section class="header">
         <div class="bg-img">
-            {{ picture(media_url, media_prefix + '_head', file_sizes=[1280,1920,2560], media_sizes="(max-width: 440px) 20px,100vw", width=2560, height=860, img_class="h-100 w-100 of-c",
-            media_files={'(max-width: 800px)': { 'filename': media_prefix + '_head_mobile', 'file_sizes': [640,820,1024] } }) }}
+            {{ picture(
+                media_url,
+                media_prefix + '_top_empty',
+                file_sizes=[1280,1920,2560],
+                media_sizes="(max-width: 440px) 20px,100vw",
+                width=2560,
+                height=860,
+                img_class="h-100 w-100 of-c",
+                media_files={
+                    '(max-width: 800px)': {
+                        'filename': media_prefix + '_top_mobile',
+                        'file_sizes': [640,820,1024]
+                    }
+                }
+            ) }}
+
+            <img class="deco counter" alt="Counter decoration grafik" src="{{ media_url }}/gfx.png" width="180" height="120">
+
+            {% for pointer in [
+                'Central Building',
+                'Research Institute'
+            ] %}
+                <div class="pointer pointer-{{loop.index}} deco">
+                    <div class="text">{{ pointer }}</div>
+                    <div class="leg"></div>
+                    <div class="dot"></div>
+                    </div>
+
+                    <div class="trip deco">
+                    <svg
+                        width="439"
+                        height="454"
+                        viewBox="0 0 439 454"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                        class="line"
+                        d="M111.691 438.57L71.7105 414.35L80.8706 340.81L0.560547 330.21L11.4105 239.91L94.3006 249.46L126.181 0.990234L209.631 73.1602L194.381 216.14L315.791 282.77L340.071 242.68L436.641 305.36L360.401 424.52L267.791 367.48L218.101 452.19L146.941 409.27L130.991 436.35"
+                        stroke-width="2"
+                        stroke-miterlimit="10"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        />
+                    </svg>
+                    <div class="text">118 miles</div>
+                </div>
+            {% endfor %}
         </div>
         <div class="container">
             <div class="header-box">
                 <h1 class="m-0 p-0">
                     <div class="logo">
-                        {{ picture(media_url, media_prefix + '_logo', file_sizes=[800,510], media_sizes="(max-width: 360px) 20px, 80vw", formats=['webp', 'png'], width=800, height=381, alt="mTracker 3D Neon Pack") }}
+                        {# <div class="circle"></div> #}
+                        {{ picture(
+                            media_url,
+                            media_prefix + '_logo',
+                            file_sizes=[800,510],
+                            media_sizes="(max-width: 360px) 20px, 80vw", 
+                            formats=['webp', 'png'],
+                            width=800,
+                            height=381,
+                            alt="mTracker 3D Neon Pack"
+                        ) }}
+                        {# mMeasurements #}
                     </div>
                     <div class="subtitle">
-                        <div style="position: absolute; opacity: 0; pointer-events: none">—</div>
+                        {# <div style="position: absolute; opacity: 0; pointer-events: none">—</div> #}
                         <div>{{ product.head_info.replace('for mTracker 3D', 'for mTracker 3D') }}</div>
                     </div>
                 </h1>
             </div>
         </div>
     </section>
+    </div>
     
-    {% if has_mTracker3D %}
+    {# {% if has_mTracker3D %}
         <a class="nav" name="whats-new"></a>
         <section class="whats-new text-center text-lg-left">
             <div class="container">
@@ -237,13 +296,14 @@
                 </div>
             </div>
         </section>
-    {% endif %}
+    {% endif %} #}
     
     <a class="nav" name="trailer"></a>
-    <section class="trailers text-center pt-6 pb-6">
+    <section class="trailers text-center pt-6 pb-6 trailer1">
         <div class="container">
+            <div class="subtitle">OPEN YOUR EYES!</div>
             <div class="h2 anim anim1">{{ data.trailer.title }}</div>
-            <div class="p mx-auto pb-4" style="width: Min(100%, 32em)">{{ data.trailer.text }}</div>
+            <div class="p mx-auto pb-5">{{ data.trailer.text }}</div>
             <div class="position-relative">
                 <div class="yt embed-responsive embed-responsive-16by9">
                     <iframe id="ytTutorial"
@@ -256,10 +316,11 @@
         </div>
     </section>
     <a class="nav" name="tutorial"></a>
-    <section class="trailers text-center pt-5 pb-6">
+    <section class="trailers text-center pb-6 trailer2">
         <div class="container">
+            <div class="subtitle">PURE KNOW-HOW</div>
             <div class="h2 anim anim2">{{ data.tutorial.title }}</div>
-            <p class="p mx-auto pb-4" style="width: Min(100%, 28em)">
+            <p class="p mx-auto pb-5">
                 {{ data.tutorial.text }}
             </p>
             <div class="position-relative">
@@ -274,18 +335,16 @@
         </div>
     </section>
     {% set slides = [
-    { "src": '_s1' },
-    { "src": '_s2' },
-    { "src": '_s3' },
-    { "src": '_s4' },
-    { "src": '_s5' }
+    { "src": 'composition_1' },
+    { "src": 'composition_2' },
+    { "src": 'composition_3' },
     ]%}
     <section class="slider slider1 position-relative pt-6">
-        <div class="container overlay-1300 d-flex align-items-end pb-slider">
-            <div>
+        <div class="container overlay-1300 d-flex align-items-end justify-end pb-slider">
+            <div class="slider__content">
                 <div>
                     <h2 class="h2">{{ data.slider.title }}</h2>
-                    <p class="p mb-3" style="width: Min(100%, 23em)">{{ data.slider.text }}</p>
+                    <p class="p mb-3">{{ data.slider.text }}</p>
                 </div>
                 <div class="slider-nav d-flex">
                     {% for nav in slides %}<div class="nav-btn"></div>{% endfor %}
@@ -296,21 +355,32 @@
             {% with sizes=[1280,1920,2560] %}
                 {% for img in slides %}
                     <div class="slide">
-                        {{ picture(media_url, media_prefix + img.src, file_sizes=sizes, media_sizes="(max-width: 440px) 20px,100vw", width=2560, height=920, img_class="lazy-show", data_src=True) }}
+                        {{ picture(media_url,
+                            img.src,
+                            file_sizes=sizes,
+                            media_sizes="(max-width: 440px) 20px,100vw",
+                            width=2560, height=920, img_class="lazy-show",
+                            data_src=True
+                        ) }}
                     </div>
                 {% endfor %}
             {% endwith %}
         </div>
     </section>
     <section class="steps py-8">
-        <div class="container text-center">
+        <div class="container">
             <div class="row">
-                {% for step in data.steps %}
-                    <div class="col col-lg-4 col-md-4 col-12">
-                        <h2 class="h2 anim anim3" style="--del: 1">{{ step.title }}</h2>
-                        <h3 class="p mb-0">{{ step.subtitle }}</h3>
-                    </div>
-                {% endfor %}
+                <div class="col col-12">
+                    <p class="subtitle">{{ data["setps-head"].subtitle }}</p>
+                    <h2 class="h2 anim anim3" style="--del: 1">{{ data["setps-head"].title }}</h2>
+                </div>
+                <div class="steps__wrapper col-12">
+                    {% for step in data.steps %}
+                        <div class="step">
+                            {{step}}
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </section>
@@ -319,50 +389,43 @@
             {% for slider in range(4) %}
                 <div class="opacity-slider slider p-0 m-0 slider2-{{ slider }}"
                      style="--del: {{ loop.index }}">
-                    {% for slide in [ '3', '2', '4', '6', '8', '9'] %}
+                    {% for slide in [ '1', '2', '4', '3', '5', '7'] %}
                         <div class="slide">
-                            {{ picture(media_url, 'vertical_' + slide, file_sizes=[320, 640, 1200], media_sizes="(max-width:576px) 20px, (max-width: 1200px) 33vw, 25vw", width=660, height=960, img_class="lazy-show", data_src=True) }}
+                            {{ picture(media_url,
+                                media_prefix + '_s_' + slide,
+                                file_sizes=[320, 640],
+                                media_sizes="(max-width:576px) 20px, (max-width: 1200px) 33vw, 25vw",
+                                width=660, height=960,
+                                img_class="lazy-show",
+                                data_src=True
+                            ) }}
                         </div>
                     {% endfor %}
                 </div>
             {% endfor %}
         </div>
-        <div class="text-box">
-        
-            <div class="h2 mw-100">{{ data.slider2.title }}</div>
-            <p class="p mb-3" style="width: Min(100%, 23em)">{{ data.slider2.text }}</p>
-        </div>
     </section>
     <section class="prevs text-center py-8">
         <div class="container header-box center">
             <div class="text-box">
-                <video class="prevs-bg" src="{{ media_url }}/prevs_60.mp4" autoplay muted playsinline loop loading="lazy"></video>
+                <video class="prevs-bg" src="{{ media_url }}/vector.mp4" autoplay muted playsinline loop loading="lazy"></video>
                 {# {{ picture(media_url, 'prevs_bg', picture_class="prevs-bg", file_sizes=[480,640,1240], media_sizes="(max-width: 440px) 20px,100vw", width=1240, height=700) }} #}
                 <h2 class="h2">
-                    <div class="h2-number centeranim plus">60</div>
-                    <span class="h2-text">HUD elements</span>
+                    A handy set of 22 measurements meant to add value!
                 </h2>
             </div>
             <div class="hover-or-tap">
                 Hover or tap to view animations
             </div>
         </div>
-        {% set prev_sizes = [ 480, 640 ] %}
+        {% set prev_sizes = [ 480 ] %}
         {% set refresh = '7' %}
-        {% set productPageTemplateId = 1385 %}
+        {% set productPageTemplateId = template_id %}
         {% set collapseAfter = 4 %}
         {% set namePrefix = '' %}
         {% set sep = '_' %}
         {% set categories = [
-        { 'key':'typography', 'count': 9 },
-        { 'key':'cube', 'label': 'Cubes', 'count': 14 },
-        { 'key':'drop_zone', 'label': 'Drop zones', 'count': 5 },
-        { 'key':'numbers', 'label': 'Numbers', 'count': 3 },
-        { 'key':'pyramid', 'label': 'Pyramids', 'count': 3 },
-        { 'key':'radar', 'label': 'Radars', 'count': 6 },
-        { 'key':'scale', 'label': 'Scales', 'count': 9 },
-        { 'key':'surface', 'label': 'Surfaces', 'count': 9 },
-        { 'key':'tube', 'label': 'Tubes', 'count': 4 },
+        { 'key':'', 'count': 22 },
         ]
         %}
         <div id="product-prev-grid" class="product-prev-grid container center">
@@ -381,7 +444,7 @@
                             {% endif %}">
                     {% for i in range(category.count) %}
                         {% set num = '%02d' % loop.index %}
-                        {% set filename = namePrefix + key + sep + num %}
+                        {% set filename =  num %}
                         <div class="product-prev-col col-6 col-lg-{{ 12 // cols }}
                                     {% if large in category and loop.index in category.large %}
                                         large
@@ -435,10 +498,31 @@
         </div>
     </section>
     <section class="prevs-after">
-        {{ picture(media_url, media_prefix + '_under_prev', file_sizes=[640, 960, 1280,1920,2560], media_sizes="100vw", width=2560, height=960, img_class="h-100 w-100 of-c", media_files={'(max-width: 800px)': { 'filename': media_prefix + '_under_prev_mobile', 'file_sizes': [640,820,1024] }}) }}
+        <div class="bordered">
+        <div class="text">
+            32 768
+        </div>
+        <div class="sub">
+            seats taken
+        </div>
+        </div>
+
+        <div class="scale">
+        <div class="track"></div>
+        <div class="indicator">
+            112 dB
+        </div>
+        </div>
+        {{ picture(media_url,
+            'composition_under_prev_empty',
+            file_sizes=srcsetSizes,
+            media_sizes="100vw", width=2560, height=960,
+            img_class="h-100 w-100 of-c",
+        )}}
         <div class="text-box">
+            <div class="subtitle">{{ data["prevs-after"].subtitle }}</div>
             <div class="h2">{{ data["prevs-after"].title }}</div>
-            <p class="p mb-3">{{ data["prevs-after"].text }}</p>
+            <p class="p mb-3 ml-5">{{ data["prevs-after"].text }}</p>
         </div>
     </section>
     <a class="nav" name="specs"></a>
@@ -452,25 +536,20 @@
                     Supported software
                 </div>
                 <div class="cell data">
-                    <!-- {% set suppported_software = (product.productdetails.minimal_requirements or '').replace('FCP 10', 'FCP\xa010').replace('Motion 5', 'Motion\xa05').replace(', ', ',<br>') %}
-						{% autoescape off %} -->
-                    {{ suppported_software }}
-                    <!-- {% endautoescape %} -->
-                    <div style="margin-top: .8em;">
-                        Please note that <a href="https://www.motionvfx.com/store,mtracker-3d,p3506.html">mTracker 3D plugin</a> is required.
-                    </div>
+                    {% set suppported_software = (product.productdetails.minimal_requirements or '').replace('FCP 10', 'FCP\xa010').replace('Motion 5', 'Motion\xa05').replace(', ', ',<br>') %}
+                    {{ suppported_software|safe }}
                 </div>
                 <div class="cell label">
                     Includes
                 </div>
                 <div class="cell data">
-                    60+ Titles for Final Cut Pro
+                    22 Fully Customizable Titles for Final Cut Pro
                 </div>
                 <div class="cell label">
                     Size
                 </div>
-                <!-- {% set download_size = ((product.productdetails.source_size * 1000) | filesizeformat).replace('.0 ', ' ') %} -->
                 <div class="cell data">
+                    {% set download_size = ((product.productdetails.source_size * 1000) | filesizeformat).replace('.0 ', ' ') %}
                     {{ download_size }}
                 </div>
                 {#
@@ -503,7 +582,25 @@
         </div>
     </section>
     <section class="footer text-md-center">
-        {{ picture(media_url, 'mTrackerHUDPack_footer_web', file_sizes=[960,1280,1920,2560], media_sizes="(max-width: 440px) 20px,100vw", width=2560, height=860, img_class="bg-img", media_files={'(max-width: 800px)': { 'filename': 'mTrackerHUDPack_footer_web_mobile', 'formats':['webp', 'jpg'], 'file_sizes': [640,820,1024], 'media_sizes': '(max-width: 440px) 20px,100vw' }}) }}
+        {{ picture(media_url,
+            media_prefix + '_footer',
+            file_sizes=srcsetSizes,
+            media_sizes="(max-width: 440px) 20px,100vw",
+            width=2560, height=860, img_class="bg-img",
+            media_files={
+                '(max-width: 800px)': {
+                    'filename': media_prefix + '_footer_mobile',
+                    'file_sizes': [640,820,1024]
+                }
+            }
+        )}}
+        <div class="size deco">
+            <div class="line"></div>
+            <div class="text">135m</div>
+        </div>
+        <div class="bordered-arrow deco">
+            <div class="text">60 km/h</div>
+        </div>
         <div class="container">
             <div class="text-box">
                 <h2 class="h2 anim anim1 mx-md-auto">
@@ -516,22 +613,6 @@
                     {% with discount_text='INTRO', version=2 %}
                         {% include 'product/buy_button.jinja2' %}
                     {% endwith %}
-                    {#
-                    <div id="btn-buy-container" class="version2">
-                        <div class="inner-container center">
-                            <a href="#"
-                               class="buy-button"
-                               data-add-to-cart="{ &quot;productId&quot;: &quot;3726&quot;, &quot;productTitle&quot;: &quot;mTracker 3D Neon Pack&quot; }">
-                                buy now <del class="price-crossed"> $59</del> <span class="price">$49</span></a>
-                                <div class="promo-container">
-                                    <span class="promo-label mr-10"> INTRO</span>
-                                    <div class="promo-info promo-info-inline" style="color:#fff">
-                                        <span> Hurry up!</span> Valid till February 28, 2022
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        #}
                     </div>
                 </div>
             </div>

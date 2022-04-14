@@ -606,11 +606,6 @@
                     n();
             })([
                 {
-                    trigger: ".whats-new .row-packs",
-                    addClass: "show",
-                    minTop: 0.1,
-                },
-                {
                     trigger: l.root,
                     visibleCallback: () => {
                         setTimeout(() => {
