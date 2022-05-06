@@ -5,7 +5,7 @@ const path = require("path");
 const { DIRS } = require("./constants");
 
 function hashTask(cb) {
-    return src(["dist/scripts.js", "dist/styles.css"])
+    return src(["dist/scripts.js", "dist/styles.css", "dist/all.js"])
         .pipe(
             hash({
                 hashLength: 4,

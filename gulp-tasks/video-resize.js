@@ -7,18 +7,18 @@ const shell = require('any-shell-escape')
 const {exec} = require('child_process')
 
 const FORMATS = ["mp4"];
-const VIDEO_QUALITY = 27; // this is not deterministic lower = uglier
+const VIDEO_QUALITY = 25; // this is not deterministic lower = uglier
 
 const CONFIGS = [
     // {
     //     directory: "_prevs",
     // },
-    // {
-    //     directory: "_promo",
-    // },
     {
-        directory: '_60'
-    }
+        directory: "_bg",
+    },
+    // {
+    //     directory: '_logo'
+    // }
 ];
 
 function resizeTask(
@@ -38,6 +38,8 @@ function resizeTask(
                     '-c:v', 'libx264',
 
                     // '-c:v', 'libvpx',
+                    '-b:v', '500k',
+                    // '-tag:v', 'hvc1',
 
                     '-crf', VIDEO_QUALITY,
                     '-profile:v', 'high',
@@ -45,8 +47,8 @@ function resizeTask(
                     '-color_primaries', 1,
                     '-color_trc', 1,
                     '-colorspace', 1,
-                    '-an',
-                    resolve(videoDist, `${file.basename}`)
+                    '-movflags', '+faststart',
+                    '-an', resolve(videoDist, `${file.basename}`)
                     ])
 
                 exec(convert, (err) => {
@@ -72,3 +74,17 @@ function resizeVideos(cb) {
 module.exports = {
     resizeVideos,
 };
+
+
+
+// ffmpeg
+// -i input.mp4
+// -c:v libx265
+// -crf 23
+// -tag:v hvc1
+// -pix_fmt yuv420p
+// -color_primaries 1
+// -color_trc 1
+// -colorspace 1
+// -movflags +faststart
+// -an output.mp4

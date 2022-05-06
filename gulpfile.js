@@ -7,7 +7,7 @@ const {
   resizeVideos,
 } = require("./gulp-tasks/video-resize");
 const scssTask = require("./gulp-tasks/styles");
-const jsTask = require("./gulp-tasks/scripts");
+const {jsTask, jsConcat } = require("./gulp-tasks/scripts");
 const {
   browsersyncReload,
   browserSyncTask,
@@ -20,7 +20,7 @@ const { DIRS } = require("./gulp-tasks/constants");
 function watchTask() {
   watch(DIRS.templates, browsersyncReload);
   watch(DIRS.styles.src, series(scssTask, hashTask));
-  watch(DIRS.scripts.src, series(jsTask, browsersyncReload, hashTask));
+  watch(DIRS.scripts.src, series(jsConcat, browsersyncReload, hashTask));
 }
 
 module.exports = {
@@ -29,8 +29,9 @@ module.exports = {
   resizeCustom: resizeImagesCustom,
   dev: series(
     scssTask,
-    jsTask,
+    jsConcat,
     browserSyncTask,
     watchTask,
   ),
+  concat: series(jsConcat, hashTask),
 };

@@ -149,3 +149,5 @@ spa-db-journal
 
 */migrations/*
 !*/migrations/__init__.py
+_data
+src/_images/*

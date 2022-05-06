@@ -1,4 +1,4 @@
-const { dest } = require("gulp");
+const { dest, src } = require("gulp");
 const sourcemaps = require("gulp-sourcemaps");
 const source = require("vinyl-source-stream");
 const buffer = require("vinyl-buffer");
@@ -35,7 +35,7 @@ function jsTask() {
             output: {
                 // Output bundle is intended for use in browsers
                 // (iife = "Immediately Invoked Function Expression")
-                format: "iife",
+                // format: "iife",
 
                 globals: { jquery: '$'},
 
@@ -61,4 +61,22 @@ function jsTask() {
     );
 }
 
-module.exports = jsTask;
+var concat = require('gulp-concat');
+var uglify = require('gulp-uglify');
+
+function jsConcat(cb) {
+
+    src([
+        'src/scripts/mflare2/**.*js',
+        'src/scripts/scripts.js'
+    ])
+    .pipe(concat('all.js'))
+    .pipe(uglify())
+    .pipe(dest('./dist/'))
+    return cb()
+}
+
+module.exports = {
+    jsTask,
+    jsConcat
+};
