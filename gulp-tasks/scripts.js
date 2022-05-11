@@ -35,7 +35,7 @@ function jsTask() {
             output: {
                 // Output bundle is intended for use in browsers
                 // (iife = "Immediately Invoked Function Expression")
-                // format: "iife",
+                format: "iife",
 
                 globals: { jquery: '$'},
 

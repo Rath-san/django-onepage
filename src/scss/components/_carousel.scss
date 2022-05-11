@@ -101,15 +101,15 @@
     li {
         // transform: rotate(15deg);
         border-radius: 2px;
-        height: 4px;
-        width: 15px;
+        height: .175em;
+        width: 1.5em;
         background-color: #ffffff50;
         transition: width .15s ease-in-out;
         margin: 0 4px;
         // border: 1px solid #fff;
 
         &.active {
-            width: 30px;
+            width: 3em;
         }
 
         &:before {

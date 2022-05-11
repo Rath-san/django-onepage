@@ -13,28 +13,72 @@ const {
 const FORMATS = ["jpg", "webp"];
 const IMAGE_QUALITY = 50;
 
-640,820,1024
+640, 820, 1024;
 
 const CONFIGS = [
-    // {
-    //     directory: "_bg",
-    //     sizes: [
-    //         {w: 2560}
-    //     ],
-    //     quality: 50,
-    //     targetFormat: ["jpg"],
-    // },
     {
-        directory: "_gradient",
+        directory: "_bg",
         sizes: [
-            {w: 2560}
+            ...RESPONSIVE_SIZES_DESKTOP.map((size) => ({ ...size, h: 960 })),
+            ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ ...size, h: 560 }))
         ],
-        quality: 50,
+        quality: 75,
         targetFormat: ["jpg"],
-        outputOptions: {
-            mozjpeg: true
-        }
+        // outputOptions: {
+        //     mozjpeg: true,
+        // },
     },
+    // {
+    //     directory: "_slides",
+    //     sizes: [
+    //         ...RESPONSIVE_SIZES_DESKTOP,
+    //         ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ ...size, h: 400 }))
+    //     ],
+    //     quality: 75,
+    //     targetFormat: ["jpg"],
+    //     // outputOptions: {
+    //     //     mozjpeg: true,
+    //     // },
+    // },
+    // {
+    //     directory: "_logo",
+    //     sizes: [{w: 800}, {w: 400}],
+    //     quality: 75,
+    //     targetFormat: ["png", "webp"],
+    //     // outputOptions: {
+    //     //     mozjpeg: true,
+    //     // },
+    // },
+    // {
+    //     directory: "_promo",
+    //     sizes: [...RESPONSIVE_SIZES],
+    //     quality: 75,
+    //     targetFormat: ["jpg"],
+    //     // outputOptions: {
+    //     //     mozjpeg: true,
+    //     // },
+    // },
+
+    // {
+    //     directory: "_squares",
+    //     sizes: [
+    //         {w: 800},
+    //         {w: 400}
+    //     ],
+    //     quality: 75,
+    //     targetFormat: ["jpg"],
+    //     outputOptions: {
+    //         mozjpeg: true,
+    //     },
+    // },
+    // {
+    //     directory: "_box",
+    //     sizes: [{ w: 512 }, { w: 256 }],
+    //     quality: 75,
+    //     targetFormat: ["webp", "png"],
+    // },
+
+
     // {
     //     directory: "_presets",
     //     sizes: [
@@ -153,7 +197,7 @@ function resizeTask(
                                 imageClone.resize(width, height, {});
                                 imageClone.toFormat(format, {
                                     quality,
-                                    ...outputOptions
+                                    ...outputOptions,
                                 });
 
                                 await imageClone.toFile(

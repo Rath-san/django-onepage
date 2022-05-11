@@ -1,1 +1,70 @@
-{{test}}
+{% if version == 1 %}
+<div id="btn-buy-container" class="version1">
+    <div class="inner-container">
+        <span class="promo-label mr-10">INTRO</span>
+        <div class="buy-button-column">
+            <a href="#"
+               class="buy-button"
+               data-add-to-cart="{ &quot;productId&quot;: &quot;3753&quot;, &quot;productTitle&quot;: &quot;mTutorial DV&quot; }">
+                Buy now <del class="price-crossed"> $99</del> <span class="price">$75</span></a>
+                <div class="promo-info" style="color:#fff">
+                    <span>Hurry up!</span> Valid till March 28, 2022
+                </div>
+        </div>
+    </div>
+</div>
+{% else %}
+
+
+<div id="btn-buy-container" class="version4">
+    <div class="inner-container">
+        <span class="promo-label mr-10">SALE</span>
+        <div class="buy-list" style="height: 47px;">
+            <a href="#" class="buy-button" id="buy-btn-slide">
+                <span>Buy now</span>
+                <span id="buy-list-img" class="buy-list-img arrow-icon d-block">
+                    <svg class="i-caron-down-small"
+                            width="20"
+                            height="20"
+                            version="1.1"
+                            viewBox="0 0 30 30"
+                            xmlns="http://www.w3.org/2000/svg">
+                        <defs> <style>.i-caron-down-small .cls-1{fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:2.4px;}</style> </defs>
+                        <path class="stroke cls-1" d="m8.1665 11.871 6.89 6.89 6.777-6.777"></path>
+                    </svg>
+                </span>
+            </a>
+            <div class="promo-info" style="color:#fff;">
+                <span>Hurry up!</span> Valid till May 2, 2022
+            </div>
+            <a href="#"
+                class="buy-button"
+                data-add-to-cart="{ &quot;productId&quot;: &quot;3596&quot;, &quot;productTitle&quot;: &quot;mTransition Fade&quot; }"
+                style="display: inline-block;">
+                mTransition Fade FCP <del class="price-crossed"> $79</del> <span class="price">$59</span>
+            </a>
+            <a href="#"
+                class="buy-button"
+                data-add-to-cart="{ &quot;productId&quot;: &quot;3777&quot;, &quot;productTitle&quot;: &quot;mTransition Fade DV&quot; }"
+                style="display: inline-block;">
+                mTransition Fade DV <del class="price-crossed"> $79</del> <span class="price">$59</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+    (() => {
+        const button = document.getElementById('buy-btn-slide')
+        const parent = button.parentElement
+        const open = () => {
+            parent.style.height = button.parentElement.scrollHeight + 'px';
+        }
+        const close = () => {
+            parent.style.height = button.offsetHeight + 'px';
+        }
+        parent.addEventListener('mouseover', open)
+        parent.addEventListener('mouseleave', close)
+    })()
+</script>
+{% endif %}

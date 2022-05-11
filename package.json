@@ -15,7 +15,7 @@
   "license": "ISC",
   "devDependencies": {
     "@rollup/plugin-commonjs": "^20.0.0",
-    "@rollup/plugin-node-resolve": "^13.0.4",
+    "@rollup/plugin-node-resolve": "^13.0.6",
     "@rollup/stream": "^2.0.0",
     "any-shell-escape": "^0.1.1",
     "babel-core": "^6.26.3",
@@ -30,7 +30,6 @@
     "gulp-imagemin": "^7.1.0",
     "gulp-postcss": "^9.0.0",
     "gulp-rename": "^2.0.0",
-    "gulp-rollup": "^2.17.0",
     "gulp-sass": "^5.0.0",
     "gulp-sourcemaps": "^3.0.0",
     "gulp-style-aliases": "^1.1.11",
@@ -52,6 +51,7 @@
   },
   "dependencies": {
     "bootstrap": "^5.1.0",
+    "rollup": "^2.68.0",
     "splitting": "^1.0.6",
     "yt-player": "^3.5.0"
   }

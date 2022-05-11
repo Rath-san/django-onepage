@@ -1,512 +1,670 @@
 <!DOCTYPE html>
 <html lang="en">
     {% include './components/head.jinja' %}
-    <body style="background: #000">
+    <body>
         {% include './components/nav.jinja' %}
         {# {% include './components/macro.jinja' %} #}
         {# {% include './components/bundle-popup.jinja' %} #}
         {# {% include './components/macro.jinja' %} #}
 
-		{% macro picture(media_url, filename, media_files={}, file_sizes=[360, 480, 640, 960], default_size=none, formats=['webp','jpg'], media_sizes="", media="", alt="", img_class="", picture_class="", width="", height="", loading="", data_src=False, img_style="") %}
-			<picture class="{{ picture_class }}">
-				{% for media in media_files %}
-					{% set m = media_files[media] %}
-					{% for format in (m['formats'] | default(formats)) %}
-						<source {% if data_srcset %}data-src{% else %}srcset{% endif %}="
-								{%- for size in m['file_sizes'] -%}
-								{{ media_url }}{{ m['filename'] }}-{{ size }}.{{ format }} {{ size }}w,
-								{%- endfor -%}
-								"
-								type="image/{{ format | replace('jpg', 'jpeg') }}"
-								sizes="{{ m['media_sizes'] | default(media_sizes) }}"
-								media="{{ media }}"/>
-					{% endfor %}
-				{% endfor %}
+		{% macro picture(
+		media_url, filename, media_files={}, file_sizes=[360, 480, 640, 960], formats=['webp','jpg'], media_sizes='', media='', alt='', img_class='', img_style='', picture_class='', width='', height='', loading='', data_src=False
+	) %}
+		<picture class="{{ picture_class }}">
+			{% for media in media_files %}
+				{% set m = media_files[media] %}
 				{% for format in formats %}
-					<source {% if data_srcset %}data-src{% else %}srcset{% endif %}="
-							{%- for size in file_sizes -%}
-							{{ media_url }}{{ filename }}-{{ size }}.{{ format }} {{ size }}w,
-							{%- endfor -%}
-							"
-							type="image/{{ format | replace('jpg', 'jpeg') }}"
-							sizes="{{ media_sizes }}"
-							media="{{ media }}"/>
+					<source {% if data_src %} data-srcset=" {% for size in m['file_sizes'] %} {{ media_url }}/{{ m['filename'] }}-{{ size }}.{{ format }} {{size}}w, {% endfor %}" {% else %} srcset=" {% for size in m['file_sizes'] %} {{ media_url }}/{{ m['filename'] }}-{{ size }}.{{ format }} {{size}}w, {% endfor %}" {% endif %} type="image/{{ format | replace('jpg', 'jpeg') }}" sizes="{{ m['media_sizes'] | default(media_sizes) }}" media="{{ media }}" >
 				{% endfor %}
-				<img {% if data_src %}data-src{% else %}src{% endif %}="{{ media_url }}{{ filename }}-{{ default_size or file_sizes[0] }}.{{ formats[-1] }}"
-					alt="{{ alt }}"
-					class="{{ img_class }}"
-					width="{{ width }}"
-					height="{{ height }}"
-					loading="{{ loading }}"
-					style="{{ img_style }}"/>
-			</picture>
-		{% endmacro %}
+			{% endfor %}
+			{% for format in formats %}
+				<source {% if data_src %} data-srcset=" {% for size in file_sizes %} {{ media_url }}/{{ filename }}-{{ size }}.{{ format }} {{size}}w, {% endfor %}" {% else %} srcset=" {% for size in file_sizes %} {{ media_url }}/{{ filename }}-{{ size }}.{{ format }} {{size}}w, {% endfor %}" {% endif %} type="image/{{ format | replace('jpg', 'jpeg') }}" sizes="{{ media_sizes }}" media="{{ media }}">
+			{% endfor %}
+			<img {% if data_src %} data-src="{{ media_url }}/{{ filename }}-{{ file_sizes[0] }}.{{ formats[-1] }}?{{file_version}}" {% else %} src="{{ media_url }}/{{ filename }}-{{ file_sizes[0] }}.{{ formats[-1] }}?{{file_version}}" {% endif %} alt="{{alt}}" class="{{img_class}}" style="{{img_style}}" width="{{width}}" height="{{height}}" loading="{{loading}}" >
+		</picture>
+	{% endmacro %}
+    {% macro buy_btn_free() %}
+    <div class="button-buy">
+        <div id="btn-buy-container" class="version1">
+            <div class="inner-container">
+                <a href="#" class="buy-button" data-add-to-cart='{ "productId": {{  product.id }}, "productTitle": "{{  product.title }}" }'>
+                    Get it free for FCP / DVR
+                </a>
+            </div>
+        </div>
+    </div>
+{% endmacro %}
 
-		{% set srcsetSizesMobile = [
-			640,
-			960
-		] %}
-		{% set srcsetSizesDesktop = [
-			1280,
-			1920,
-			2560
-		] %}
+		{% set srcsetSizesMobile = [ 640, 960 ] %}
+		{% set srcsetSizesDesktop = [ 1280, 1920, 2560 ] %}
 		{% set srcsetSizes = srcsetSizesMobile + srcsetSizesDesktop %}
 
-		{% set template_id = "mflare2" %}
-		{% set template_id_s3 = "200" %}
-		{% set media_prefix = "https://s3.motionvfx.com/mvfxpublic/images/%s" % template_id %}
-		{% set media_prefix_s3 = "https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media" % template_id_s3 %}
-		{% set media_prefix_presets = media_prefix + "/presets" %}
+		{% set template_id = "1417" %}
+		{# {% set template_id_s3 = "200" %} #}
+        {% set media_prefix = "mVertical" %}
+		{% set media_url = "https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media" % template_id %}
+		{# {% set media_prefix_s3 = "https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media" % template_id_s3 %} #}
+		{# {% set media_prefix_presets = media_prefix + "/presets" %} #}
 		{% set version = "v=0" %}
-		{% set placeholder_url = 'https://via.placeholder.com' %}
 
-<div class="mFlare2" id="mPlugsPage">
-	<div class="loadingPage" id="mFlare2loading">
-		<video class="bg" id="video2" loop autoplay muted playsinline style="min-width: unset; max-width: 120px;">
-			<source src="{{ media_prefix_s3 }}/logo_animation-a.mp4??1.0.5" type="video/mp4">
-			Your browser does not support the video tag
-		</video>
-		{# <img src="https://s3.motionvfx.com/mvfxpublic/images/mflare2/images/logo_animation.gif?1.0.5" alt="" /> #}
-	</div>
-	<div class="pluginPage" id="mFlare2page">
-		<div id="fullpage">
-			<div class="section secBg" id="section0" style="background-image:url('{{ media_prefix_s3 }}/bg_01-2560.jpg?1.0.5');">
-				<div class="logo">
-					<img src="https://s3.motionvfx.com/mvfxpublic/images/mflare2/images/Logo.png?1.0.5" alt="" />
-					<p>Revolution in light effects. <span>Revived.</span></p>
-				</div>
-				<img class="mocha1" src="https://s3.motionvfx.com/mvfxpublic/products/templates/200/media/mocha_mflare.png" alt="" style="width:160px; margin-left:-80px; bottom:175px;" />
-				<p class="fcpx">FCPX 10.3.4 or Motion 5.3.2 Required</p>
-			</div>
-			<div class="section secBg" id="section1">
-				<div class="overflow">
-					<div id="trailerDiv" class="vimeo">
-						<iframe id="trailerVid" src="https://www.youtube.com/embed/G1uvvlpb24Q?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-					</div>
-				</div>
-			</div>
-			<div class="section secBg" id="section2" style="background-image:url('{{ media_prefix_s3 }}/bg_02-2560.jpg?1.0.5');">
-				<div class="overflow">
-					<div class="sec2">
-						<h4>	
-							Real-time<br />
-							organic flare effects
-						</h4>
-						<h3>
-							Lens flares are used to drastically change the atmosphere of the scene, match the mood between clips and even add that missing bit of realism to CG shots. mFlare 2 allows you to add realistic lens flare effects to live action footage directly inside Apple's Final Cut Pro X and Motion 5 apps.
-						</h3>
-						<a href="#" title="{{ demo.title }}" data-add-to-cart='{ "productId": "{{ demo.id }}", "productTitle": "{{ demo.title }}" }'>   
-						TRY DEMO VERSION
-						</a>
-					</div>
-				</div>
-			</div>
-			<div class="section secBg" id="section3" style="background-image:url('{{ media_prefix_s3 }}/bg_03-2560.jpg?1.0.5');">
-				<video class="bg" id="video1" loop autoplay muted>
-					<source src="{{ media_prefix_s3 }}/Video1-a.mp4??1.0.5" type="video/mp4">
-					Your browser does not support the video tag
-				</video>
-				{# <img id="widescreen1" class="widescreen" src="https://s3.motionvfx.com/mvfxpublic/images/mflare2/images/Widescreen.png" alt="" /> #}
-				<div class="slide">
-					<div id="sec3" class="sec3">
-						<h4>Tested in real-world production environments</h4>
-						<h3><span>#1</span> lens flare tool in the world</h3>
-					</div>
-				</div>
-				<div class="slide">
-					<div id="darken1" class="darken"></div>
-					<div id="sec3b" class="sec3b">
-						<div class="box left">
-							<h4>PROVEN</h4>
-							<h3>
-								A production-proven tool used by professionals around the world.
-							</h3>
-						</div>
-						<div class="box middle">
-							<h4>PROFESSIONAL</h4>
-							<h3>
-								Its exceptional quality has also been noticed by Apple itself
-								<a href="https://www.apple.com/final-cut-pro/resources/ecosystem.html" target="_blank">
-									<div class="arrow right"></div>
-								</a>
-							</h3>
-						</div>
-						<div class="box right">
-							<h4>EFFICIENT</h4>
-							<h3>
-								Easy and flexible workflow and blazing-fast rendering.
-							</h3>
-						</div>
-					</div>
-				</div>
-				<div id="navBottom" class="navBottom">
-					<a role="button" onclick="setActiveSection(4, 0);" onmouseover="hoverOnDots(1, '40');" onmouseout="hoverOnDots(0, '40');">
-						<li>
-							<span class="main">
-							<span id="span40" class="sec"></span>
-							</span>
-						</li>
-					</a>
-					<a role="button" onclick="setActiveSection(4, 1);" onmouseover="hoverOnDots(1, '41');" onmouseout="hoverOnDots(0, '41');">
-						<li>
-							<span class="main">
-							<span id="span41" class="sec"></span>
-							</span>
-						</li>
-					</a>
-				</div>
-			</div>
-			<div class="section secBg" id="section4" style="background-image:url('{{ media_prefix_s3 }}/bg_04-2560.jpg?1.0.5');">
-				<div class="overflow">
-					<div class="sec4">
-						<div id="divUI" class="topDiv">
-							{{
-								picture(
-									media_url=media_prefix_s3 + "/",
-									filename="ui",
-									file_sizes=[500, 1000, 2000],
-									formats=['webp','png'],
-									img_class="",
-									loading="lazy",
-									img_style="max-width: 1000px",
-								)
-							}}
-							{# <img loading="lazy" src="https://s3.motionvfx.com/mvfxpublic/images/mflare2/images/UI.png?1.0.5" style="max-width: 1000px;" alt="" /> #}
-						</div>
-						<div class="bottomDiv">
-							<div class="content">
-								<h4>Completely</h4>
-								<h3>Redesigned UI</h3>
-								<h2>
-									We took everything that was best about mFlare and cranked it up even further. The interface loads instantly and provides quick access to all necessary tools making your workflow more intuitive and effortless.
-								</h2>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="section secBg" id="section5" style="background-image:url('{{ media_prefix_s3 }}/bg_05-2560.jpg?1.0.5');">
-				<div class="overflow">
-					<div class="sec5">
-						<h4>
-							Interactive<br />
-							Component<br />
-							Editing
-						</h4>
-						<h3>
-							mFlare 2 is packed with 10 base elements conveniently customizable with handy on-screen controls and a set of essential parameters.
-						</h3>
-					</div>
-				</div>
-			</div>
-			<div class="section secBg" id="section6" style="background-image:url('{{ media_prefix_s3 }}/bg_06-2560.jpg?1.0.5');">
-				<div class="overflow">
-					<div class="sec6">
-						<div id="divColorPalette" class="topDiv">
-							{{
-								picture(
-									media_url=media_prefix_s3 + "/",
-									filename="palette",
-									file_sizes=[300, 600, 1200],
-									formats=['webp','png'],
-									img_class="",
-									loading="lazy",
-									img_style="max-width: 600px",
-								)
-							}}
-						</div>
-						<div class="bottomDiv">
-							<div class="content">
-								<h4>
-									Innovative Colorization System
-								</h4>
-								<h3>
-									mFlare 2 includes a brand new tool for finding a perfect color palette for your lens effects. As in real life, it uses values from the light spectrum and automatically matches the secondary colors based on the picked conditions.
-								</h3>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="section secBg" id="section7">
-				<div class="overflow withBg" id="textureBg" style="background-image:url('{{ media_prefix_s3 }}/bg_07-2560.jpg?1.0.5');"></div>
-				<div class="overflow">
-					<div class="sec7">
-						<h4>Detailed by REALITY</h4>
-						<h3>
-							Dozens of textures captured from real imperfections of the camera's lens will bring your flare effects to the next level of realism.
-						</h3>
-					</div>
-				</div>
-			</div>
-			<div class="section secBg" id="section8">
-				<div class="overflow">
-					<div class="sec8">
-						<h4><span>100</span> Realistic Presets</h4>
-						<h3>
-							A huge library of ready-made presets based on real-life anamorphic flares. Diverse, organic and at your fingertips.
-						</h3>
-						<h3>Scroll to preview presets <img loading="lazy" class="arrow" src="https://s3.motionvfx.com/mvfxpublic/images/mflare2/images/Arrow.png?1.0.5" alt="" /></h3>
-						<!-- preven fullPage scrolling when mouse over presets -->
-						<div id="canScroll" style="display:none">1</div>
-						<div onmouseover="setCanScroll(0);" onmouseout="setCanScroll(1);" id="presetsDiv" class="presetsScroll mCustomScrollbar" data-mcs-theme="light-thick">
-							{% set presets = [
-								"05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "01", "02", "03", "04", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100",
-							] %}
-							{% for p in presets %}
-								<img loading="lazy" src="{{ media_prefix_s3 }}/{{ p }}-399.jpg?{{ version }}" alt="" width="270" height="163"/>
-							{% endfor %}
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="section secBg" id="section9" style="background-image:url('{{ media_prefix_s3 }}/bg_09-2560.jpg?1.0.5');">
-				<div class="slide">
-					<div id="sec9" class="sec9">
-						<h4>Built-In</h4>
-						<h3>Automatic Tracker Powered by</h3>
-						<img loading="lazy" src="https://s3.motionvfx.com/mvfxpublic/images/mflare2/images/Mocha2.png?1.0.5" alt="" />
-					</div>
-				</div>
-				<div class="slide">
-					<div id="darken2" class="darken"></div>
-					<div id="sec9b" class="sec9b">
-						<h4>
-							Forget keyframes
-						</h4>
-						<div class="box">
-							<h3>
-								Remember trying to animate your lens flare frame by frame to match your clip? No more! Just select a region, hit Track and the built-in Mocha tracker will do the rest. You can even combine your existing animation with the Track Brightness feature, which automatically dims the entire effect based on your clip's content.
-							</h3>
-						</div>
-						<div class="box">
-							<h3>
-								You can also spice up your Motion 5 compositions by switching to the Lights in Group mode, which will instantly place a new flare in each of your 3D lights positions.
-							</h3>
-						</div>
-					</div>
-				</div>
-				<div id="navBottom" class="navBottom">
-					<a role="button" onclick="setActiveSection(10, 0);" onmouseover="hoverOnDots(1, '100');" onmouseout="hoverOnDots(0, '100');">
-						<li>
-							<span class="main">
-							<span id="span100" class="sec"></span>
-							</span>
-						</li>
-					</a>
-					<a role="button" onclick="setActiveSection(10, 1);" onmouseover="hoverOnDots(1, '101');" onmouseout="hoverOnDots(0, '101');">
-						<li>
-							<span class="main">
-							<span id="span101" class="sec"></span>
-							</span>
-						</li>
-					</a>
-				</div>
-			</div>
-			<div class="section secBg" id="section10" style="background-image:url('{{ media_prefix_s3 }}/bg_10-2560.jpg?1.0.5');">
-				<video class="bg" id="video2" loop autoplay muted>
-					<source src="{{ media_prefix_s3 }}/Video2-a.mp4??1.0.5" type="video/mp4">
-					Your browser does not support the video tag
-				</video>
-				<img loading="lazy" id="widescreen2" class="widescreen" src="https://s3.motionvfx.com/mvfxpublic/images/mflare2/images/Widescreen.png" alt="" />
-				<div class="overflow">
-					<div id="sec10" class="sec10">
-						<h4>INSTANT RESULTS</h4>
-						<h3>
-							mFlare 2 leverages the full computational performance of your Mac so now you can do more and faster than ever.
-						</h3>
-					</div>
-				</div>
-			</div>
-			<div class="section secBg" id="section11">
-				<div class="overflow">
-					<div id="tuts_from_script"></div>
-				</div>
-			</div>
-			<div class="section secBg" id="section12" style="background-image:url('{{ media_prefix_s3 }}/bg_12-2560.jpg?1.0.5');">
-				<div class="overflow">
-					<div class="specs">
-						<p><span>Technical specifications</span></p>
-						<div class="info">
-							<p class="snd left">Supported software</p>
-							<p class="snd right">FCPX 10.3.4, Motion 5.3.2 (or later)</p>
-							<div style="clear: both;"></div>
-							<p class="snd left">Includes</p>
-							<p class="snd right">mFlare 2 plugin + 100 lens flare presets</p>
-							<div style="clear: both;"></div>
-							<p class="snd left">Size</p>
-							<p class="snd right">128.7 MB</p>
-							<div style="clear: both;"></div>
-							<p class="snd left">Music used in trailer</p>
-							<p class="snd right">
-								<a class="snd" href="https://www.premiumbeat.com/royalty_free_music/songs/massive-hybrid-trailer " target="_blank">
-								> Premiumbeat.com - Massive Hybrid Trailer
-								</a><br />
-								<a href="https://www.premiumbeat.com/royalty_free_music/songs/huge-hybrid-trailer?utm_source=partners&utm_medium=link&utm_campaign=2019-partnerships&utm_content=SM-19171" target="_blank">
-								> Premiumbeat.com - Huge Hybrid Trailer
-								</a>
-							</p>
-							<div style="clear: both;"></div>
-							{# <p class="snd left"></p>
-							<p class="snd right">
-								<a href="https://www.premiumbeat.com/royalty_free_music/songs/huge-hybrid-trailer?utm_source=partners&utm_medium=link&utm_campaign=2019-partnerships&utm_content=SM-19171" target="_blank">
-								> Premiumbeat.com - Huge Hybrid Trailer
-								</a>
-							</p> #}
-							<div style="clear: both;"></div>
-							<p class="snd left"></p>
-							<p class="snd right"></p>
-							<div style="clear: both;"></div>
-						</div>
-						<p class="bottom">Intel Graphics Not Recommended</p>
-					</div>
-				</div>
-			</div>
-			<div class="section secBg" id="section13" style="background-image:url('{{ media_prefix_s3 }}/bg_13-2560.jpg?1.0.5');">
-				<div class="overflow">
-					<div class="sec13">
-						<h4>LOVE the light</h4>
-						<h3>
-							Experience how easy it is to create authentic lens flare effects using mFlare 2. You'll fall in love with it!
-						</h3>
-						<a href="#" title="{{ full.title }}" data-add-to-cart='{ "productId": "{{ full.id }}", "productTitle": "{{ full.title }}" }'>   
-						{# BUY NOW <span id="mainPrice">${{ price(full.get_price(request.user)) }}</span> #}
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div id="nav" class="navMF2">
-			{% set nav_side_links = [
-				"Introduction",
-				"Trailer",
-				"Overview",
-				"Characteristics",
-				"Interface",
-				"Components",
-				"Colorization",
-				"Textures",
-				"Presets",
-				"Tracking",
-				"Performance",
-				"Tutorials",
-				"Specification",
-				"Experience"
-			] %}
 
-			{% for l in nav_side_links %}
-				<a role="button" onclick="setActiveSection({{ loop.index }},0);" onmouseover="hoverOnDots(1, '{{ loop.index }}');" onmouseout="hoverOnDots(0, '{{ loop.index }}');">
-					<li>
-						<p id="p{{ loop.index }}">{{ l }}</p>
-						<span class="main">
-						<span id="span{{ loop.index }}" class="sec"></span>
-						</span>
-					</li>
-				</a>
-			{% endfor %}
+    {% set product_name = 'mVertical' %}
+    {% set shared_media_template_id = '1408' %}
+    {% set shared_media_url = 'https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media' % (shared_media_template_id) %}
+    {% set product_id_fcp = 3698 %}
+    {% set product_id_dvr = 3727 %}
+    {% set twin_product_id = product_id_fcp %}
+    {# {% set product_fcp, product_dvr = get_products([product_id_fcp, product_id_dvr]) %} #}
+	{% set product_fcp, product_dvr = [product, product] %}
+    {% set software_versions = [
+        {
+            'type': 'dvr',
+            'name': ['DV', 'DaVinci Resolve'],
+            'product': product_dvr,
+            'product_url': 'https://www.motionvfx.com/store,%s,p%s.html' % (product_dvr.slug, product_dvr.id),
+            'images': ["box_dvr", "dvr_icon"],
+            'box_media_url': 'https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media' % ('1415'),
+        },
+        {
+            'type': 'fcp',
+            'name': ['FCP', 'Final Cut Pro'],
+            'product': product_fcp,
+            'product_url': 'https://www.motionvfx.com/store,%s,p%s.html' % (product_fcp.slug, product_fcp.id),
+            'images': ["box_fcp", "fcp_icon"],
+            'box_media_url': 'https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media' % ('1415')
+        },
+    ] %}
+    {#{% for sv in software_versions %}
+        {{ sv.product.set_btn_title("%s for %s" % (product_name, sv.name[0]))|default("", True) }}
+    {% endfor %}#}
+    {% set products = software_versions|map(attribute="product") %}
+    {% set live = True %}
+
+
+    {% set data = {
+        'header': {
+            'subtitle': 'Free Vertical Video Adjustment Plugin for DaVinci Resolve'
+        },
+        'trailer': {
+            'subtitle': 'See how it works!',
+            'title': 'Watch trailer',
+            'text': 'Get a picture of how excellent your vertical footage can fit in your edits!'
+        },
+        'tutorial': {
+            'subtitle': 'Use it to the fullest!',
+            'title': 'Watch tutorial',
+            'text': 'Learn to put all the available features to good use and refine your workflow.'
+        },
+        'promo': {
+            'subtitle': 'Shot, edit, enjoy!',
+            'title': 'Incorporate vertical footage into your edits',
+            'text': 'mVertical is a universal plugin that helps you deal with vertical videos in several ways. Add a background copy, mirror the source footage, use blurring and adjust brightness.'
+        },
+        'promo-cards': {
+            'title': 'Consistent compositions',
+            'text': 'Consistency matters, as you don’t want to jolt your audience with some upsetting change of setting… Make sure you’re on the safe side there!',
+        },
+        'promo-carousel-flat': {
+            'subtitle': 'The simplest solution',
+            'title': 'Handy & easy to use',
+            'text': 'We made sure this plugin removes things from your trouble list, so it’s both handy and easy to use. Enjoy!',
+        },
+        'footer': {
+            'subtitle': 'Level up your toolbox!',
+            'title': 'A must-have tool',
+            'text': 'This vertical video adjustment plugin will come in handy when you’ll want to make things work regardless of how the recording went… and it’s free!'
+        }
+    } %}
+
+	{% set trailer_id = 'pm7sNLEFTbs' %}
+    {% set tutorial_id = 'ipxULvIptkU' %}
+    {% set tutorial_id1 = 'VE1M4ReO7T8' %}
+
+<main class="mVertical">
+
+	<section class="header">
+            <div class="image__background">
+                {{picture(
+                    media_url=media_url,
+                    filename= media_prefix + '_web_top_2' ,
+                    file_sizes=srcsetSizes,
+                    formats=['jpg'],
+                    width=2560,
+                    height=960,
+                    alt="Header image",
+                )}}
+            </div>
+            <div class="container-fluid">
+                <div class="section__content">
+                    <div class="header__logo">
+                        {{picture(
+                            media_url=media_url,
+                            filename= media_prefix + '_logo' ,
+                            file_sizes=[400, 800],
+                            formats=['webp','png'],
+                            width=800,
+                            height=200,
+                            alt="Logo",
+                        )}}
+                        <h2 hidden class="">mVertical</h2>
+                    </div>
+                    <h1 class="section__text">
+                        {{ data.header.subtitle }}
+                        {# {{product.head_info|safe}} #}
+                    </h1>
+                </div>
 		</div>
-		<div id="topNav" class="topNav">
-			<img loading="lazy" id="logoSmall" src="https://s3.motionvfx.com/mvfxpublic/images/mflare2/images/Logo_small2.png?1.0.6" alt="" />
-			<a href="#" title="{{ demo.title }}" class="demo" data-add-to-cart='{ "productId": "{{ demo.id }}", "productTitle": "{{ demo.title }}" }'>TRY DEMO VERSION</a>
-			<div class="borderDiv">
-				<div class="borderDiv__nav">
-					<img src="https://s3.motionvfx.com/mvfxpublic/products/templates/1227/media/arrow_submenu_left.svg" alt="" width="20" height="20">
-				</div>
-				{% set nav_top_links = [
-					{
-						"id": 2,
-						"text": "trailer",
-					},
-					{
-						"id": 3,
-						"text": "overview",
-					},
-					{
-						"id": 5,
-						"text": "interface",
-					},
-					{
-						"id": 10,
-						"text": "tracking",
-					},
-					{
-						"id": 12,
-						"text": "tutorials",
-					},
-					{
-						"id": 13,
-						"text": "specification"
-					}
-				] %}
-				<div class="borderDiv__links">
-					{% for l in nav_top_links %}
-						<a role="button" onclick="setActiveSection({{ l.id }},0);">{{ l.text }}</a>
-					{% endfor %}
-				</div>
-			</div>
-			<a id="navBuyNow" role="button" title="{{ full.title }}" class="buy" data-add-to-cart='{ "productId": "{{ full.id }}", "productTitle": "{{ full.title }}" }'>
-			{# BUY NOW <span>${{ price(full.get_price(request.user)) }}</span> #}
+            </div>
+				{# SOFTWARE ICONS #}
+		<div id="software-icons" class="software-icons text-center" style="width: 100%; left: 0;">
+			{% for si in software_versions %}
+			<a
+				{% if si.product.id == twin_product_id %}
+					href="{{si.product_url}}"
+				{% else %}
+					role="button"
+				{% endif %}
+                name="product link {{ si.name[1] }}"
+                aria-label="Product link {{ si.name[1] }}"
+				target="_blank"
+				class="d-inline-block mx-1"
+				style="--i: {{ loop.index }}; --d: {{ loop.index }}">
+				{{ picture(shared_media_url, si.images[1], formats=["webp","png"], file_sizes=[180], width=60, height=60, img_class='software-icon', data_src=False) }}
 			</a>
-			<img style="opacity: 0!important" loading="lazy" id="logoSmall" src="https://s3.motionvfx.com/mvfxpublic/images/mflare2/images/Logo_small2.png?1.0.6" alt="" />
-		</div>
-		<div id="topNav2" class="topNav2" style="background-image:url('https://s3.motionvfx.com/mvfxpublic/images/mflare2/images/Gradient.png?1.0.5');">
-			<div class="contentNav">
-				<a href="#" title="{{ demo.title }}" class="demo" data-add-to-cart='{ "productId": "{{ demo.id }}", "productTitle": "{{ demo.title }}" }'>TRY DEMO VERSION</a>
-				<img loading="lazy" src="https://s3.motionvfx.com/mvfxpublic/images/mflare2/images/Logo_small2.png?1.0.5" alt="" />
-				<a href="#" title="{{ full.title }}" id="buyNowFrame" class="buy" data-add-to-cart='{ "productId": "{{ full.id }}", "productTitle": "{{ full.title }}" }'>
-				{# BUY NOW <span>${{ price(full.get_price(request.user)) }}</span> #}
-				</a>
-				<p>
-					<span class="white" id="regularPrice"></span>
-				</p>
-			</div>
-		</div>
-		<script type="text/javascript">
-			//global variables
-			var currentChecked = 0;
-			var currentCheckedSlide = 0;
-			var sectionCount = 14;
-			var sections = [
-				'introduction',
-				'trailer',
-				'overview',
-				'characteristics',
-				'interface',
-				'components',
-				'colorization',
-				'textures',
-				'presets',
-				'tracking',
-				'performance',
-				'tutorials',
-				'specification',
-				'experience'
-			];
-			
-			$(document).ready(function() {
-				$('#fullpage').fullpage({
-					sectionsColor: ['#000', '#000', '#000', '#000', '#000', '#000', '#000', '#000', '#000', '#000', '#000', '#000', '#000', '#000'],
-					anchors: sections,
-					menu: '#menu',
-					scrollingSpeed: 1000,
-					controlArrows: false
-				});
-			});
-		</script>
-	</div>
-</div>
-    {# {% include './components/popup-left.jinja' %} #}
-    {# {% include './components/submenu.jinja' %} #}
+			{% endfor %}
+        </section>
 
-	{# <script src="scripts/mflare2/jquery.fullPage.js"></script> #}
-	{# <script src="scripts/mflare2/jquery.mCustomScrollbar.concat.min.js"></script> #}
-	{# <script src="scripts/mflare2/mflare-yt.js"></script> #}
-	{# <script src="scripts/mflare2/pace.js"></script> #}
-	{# <script src="scripts/mflare2/scrolloverflow.js"></script> #}
+	<script>
+            const onHeaderImagesLoaded = (images, type= 'primary') => {
+                const loadedImages = images.map(img => false);
+                images.forEach((img, idx) => {
+                    loadedImages[idx] = img.complete;
 
-    <script src="dist/all.js"></script>
+                    if (loadedImages.every(val => val)) {
+                        header.classList.add(`loaded-${type}`)
+                    }
+                    img.onload = () => {
+                        loadedImages[idx] = true
+                        if (loadedImages.every(val => val)) {
+                            header.classList.add(`loaded-${type}`)
+                        }
+                    }
+                })
+            }
+
+            const header = document.querySelector('section.header')
+            const items1 = [
+                header.querySelector('.image__background img'),
+            ]
+
+            const items2 = Array.from(header.querySelectorAll('.image__background img'));
+
+            onHeaderImagesLoaded(items1);
+            onHeaderImagesLoaded(items2, 'secondary');
+        </script>
+
+		<a class="nav" name="trailer"></a>
+		{# TRAILER #}
+        <section class="video trailer">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="section__content">
+                            <div class="section__head">
+                                <p class="section__subtitle " style="--s-index:0;">
+                                    {{data.trailer.subtitle}}
+                                </p>
+                                <div class="section__title">
+                                    {{ data.trailer.title|safe }}
+                                </div>
+                                <p class="section__text mx-auto" style="max-width: 400px">
+                                    {{ data.trailer.text|safe }}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="yt embed-responsive embed-responsive-16by9">
+                            <div class="video-iframe" data-id="{{trailer_id}}" style="background-color: #000"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <a class="nav" name="tutorial"></a>
+		{# TUTORIAL #}
+        <section class="video tutorial">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section__content">
+                            <div class="section__head">
+                                <p class="section__subtitle " style="--s-index:0;">
+                                    {{data.tutorial.subtitle}}
+                                </p>
+                                <div class="section__title ">
+                                    {% autoescape off %} {{data.tutorial.title}} {% endautoescape %}
+                                </div>
+                                <p class="section__text mx-auto" style="max-width: 400px">
+                                    {% autoescape off %} {{data.tutorial.text}} {% endautoescape %}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3 mb-md-0">
+                        <div class="yt embed-responsive embed-responsive-16by9">
+                            <div class="video-iframe" data-id="{{tutorial_id}}" style="background-color: #000"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="yt embed-responsive embed-responsive-16by9">
+                            <div class="video-iframe" data-id="{{tutorial_id1}}" style="background-color: #000"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+		{# BOXES #}
+		<!--<section id="buy-boxes" class="text-center pt-0">
+            <div class="container pb-5">
+				<div class="section__title">Get it for your app of choice</div>
+                <p class="mx-auto section__text" style="width: Min(90%, 26em)">
+                    Now our top-quality editing tools are available for both Final Cut Pro and DaVinci Resolve!
+                </p>
+        
+                {% macro buy_btn_custom(btn_class, product_0) %}
+                    {# {% set info = get_promo_valid_info( product_0).replace('April ', 'April ') if live else 'Valid till April 21, 2022' %} #}
+                    {% set is_promo = not live or ( product_0.is_promo and  product_0.promo_date) %}
+                    <div class="button-buy">
+                        <div id="btn-buy-container" class="version2">
+                            <div class="inner-container center">
+                                <a href="#" class="buy-button" data-add-to-cart='{ "productId": {{  product_0.id }}, "productTitle": "{{  product_0.title }}" }'>
+                                    {# Buy now {% if is_promo %}<del class="price-crossed"> ${{ price( product_0.price) }}</del>{% endif %} <span class="price">${{ price( product_0.get_price(request.user)) if live else 89 }}</span> #}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% if is_promo %}
+                    {# <div class="promo-info">{{ ('<strong>Sale price</strong> ' + (info[0] | lower + info[1:])) | safe if info.startswith('Valid') else info }}</div> #}
+                    {% endif %}
+                {% endmacro %}
+        
+                <div class="row pt-5" style="max-width: 840px; margin-left: auto; margin-right: auto;">
+                    <div class="row" style="max-width: 840px; margin-left: auto; margin-right: auto;">
+                    {% for b in software_versions %}
+                        <div class="col-12 col-md-6 mb-4 pb-md-0 mb-md-0">
+                            <a  
+                                {% if b.product.id == twin_product_id %}
+                                    href="{{ b.product_url }}"
+                                    target="_blank"
+                                {% else %}
+                                    role="button"
+                                {% endif %}
+                                name="product link {{ b.name[1] }}"
+                                class="box-wrapper position-relative"
+                            >
+                                {{ picture(
+                                    b.box_media_url,
+                                    b.images[0],
+                                    file_sizes=[512, 256],
+                                    media_sizes='100vw',
+                                    formats=['webp', 'png'],
+                                    width=276,
+                                    height=276,
+                                    img_class='box h-auto mx-auto'
+                                ) }}
+                                {{ picture(
+                                    shared_media_url,
+                                    b.images[1],
+                                    file_sizes=[180],
+                                    formats=['webp', 'png'],
+                                    media_sizes='100vw',
+                                    width=80,
+                                    height=80,
+                                    img_class='icon h-auto position-absolute'
+                                ) }}
+                            </a>
+                            {% if b.text %}
+                                <p class="mt-2 mt-md-2 pb-2 pb-md-4 mx-auto" style="width: Min(100%, 18em)">{{ b.text }}</p>
+                            {% endif %}
+                            <div class="core-site-styles">
+                                {{ buy_btn_custom(b.type, b.product) }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </section>-->
+        {# PROMO #}
+        <section class="promo">
+            {# <div class="image__background"> #}
+            {# </div> #}
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section__content">
+                            <div class="section__head">
+                                <div class="section__subtitle">{{ data['promo'].subtitle }}</div>
+                                <div class="section__title mx-auto" style="max-width: 520px">{{ data['promo'].title }}</div>
+                                <p class="section__text mx-auto" style="max-width: 530px">{{ data['promo'].text }}</p>
+                            </div>
+                            {# {{picture(
+                                media_url=media_url,
+                                filename= media_prefix + '_screensa' ,
+                                file_sizes=srcsetSizes,
+                                formats=['webp','png'],
+                                width=540,
+                                height=720,
+                                img_class='screens ',
+                                alt="Header image",
+                            )}} #}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{picture(
+                media_url=media_url,
+                filename= media_prefix + '_phone' ,
+                file_sizes=srcsetSizes,
+                formats=['jpg'],
+                width=2560,
+                height=960,
+                alt="Hand holding phone",
+                data_src=True,
+                img_class='lazy-show',
+            )}}
+        </section>
+{# PROMO CARDS #}
+        <section class="promo-cards__section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section__content">
+                            <div class="section__head">
+                                <div class="section__title">{{ data['promo-cards'].title }}</div>
+                                <p class="section__text mx-auto" style="max-width: 530px">{{ data['promo-cards'].text }}</p>
+                            </div>
+                        </div>
+                        {% set cards = [
+                            {
+                                'img': {
+                                    'src': 'square_1',
+                                    'alt': ''
+                                },
+                                'title': 'Drag & Drop',
+                                'text': 'Place mVertical plugin over your footage',
+                                'color': '#E9A52E',
+                            },
+                            {
+                                'img': {
+                                    'src': 'square_2',
+                                    'alt': ''
+                                },
+                                'title': 'Customize',
+                                'text': 'Easily create a look you’re satisfied with',
+                                'color': '#F850A3',
+                            },
+                            {
+                                'img': {
+                                    'src': 'square_3',
+                                    'alt': ''
+                                },
+                                'title': 'Enjoy!',
+                                'text': 'Now your vertical footage is a fitting part of your edit',
+                                'color': '#63D04E',
+                            }
+                        ] %}
+
+                        <div class="promo-cards">
+                            {% for c in cards %}
+                            <div class="promo-card">
+                                {{picture(
+                                    media_url=media_url,
+                                    filename=c.img.src,
+                                    file_sizes=[400, 800],
+                                    formats=['jpg'],
+                                    width=800,
+                                    height=800,
+                                    alt=c.img.alt,
+                                    loading="lazy"
+                                )}}
+                                <div class="promo-card__body">
+                                    <div class="promo-card__number" style="--border-color: {{ c.color }}">{{ loop.index }}</div>
+                                    <div class="section__title promo-card__title">{{ c.title }}</div>
+                                    <div class="section__text promo-card__text mx-auto" style="max-width: 230px">{{ c.text }}</div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+{# PROMO SLIDER #}
+{% set slides = [
+    {
+        'src': 'gfx_1',
+        'alt': ''
+    },
+    {
+        'src': 'gfx_2',
+        'alt': ''
+    },
+    {
+        'src': 'gfx_3',
+        'alt': ''
+    }
+] %}
+    <section class="promo-carousel-flat">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="section__content">
+                            <div class="section__subtitle">{{ data['promo-carousel-flat'].subtitle }}</div>
+                            <div class="section__title" style="max-width: 480px">{{ data['promo-carousel-flat'].title }}</div>
+                            <div class="section__text" style="max-width: 510px">{{ data['promo-carousel-flat'].text }}</div>
+                            <ol id="carouselFlatIndicators" class="carousel-indicators">
+                                {% for indicator in slides %}
+                                    <li class="{% if loop.index == 1 %} active {% endif %}"></li>
+                                {% endfor %}
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="carouselFlat" class="carousel slide slide-new">
+                <div class="carousel-inner">
+                    {% for img in slides %}
+                        <div class="carousel-item {% if loop.index == 1 %} active {% endif %}">
+                            {{picture(
+                                media_url=media_url,
+                                filename= img.src,
+                                file_sizes=srcsetSizes,
+                                formats=['jpg'],
+                                width=2560,
+                                height=960,
+                                data_src=True,
+                                img_class='d-block w-100 h-auto lazy-show',
+                                alt=img.alt
+                            )}}
+                        </div>
+                    {% endfor %}
+                </div>
+                {# <a class="carousel-control-prev" href="#carouselFlat" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselFlat" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a> #}
+            </div>
+        </section>
+{# TECHSPEC #}
+        <a class="nav" href="#" name="specs" rel="noopener noreferrer"></a>
+        <div class="ts-mi">
+        <section class="tech-spec bg--light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="tech-spec-info">
+                            <div class="section__text__content">
+                                <div class="section__head">
+                                    <h2 class="section__title tech-spec__title section__title">Technical specifications</h2>
+                                </div>
+                                <div class="ttable tech-spec__table">
+                                    <div class="tcell tlabel">Supported software</div>
+                                    <div class="tcell tdata">
+                                        {% autoescape off %}
+                                            {{ product.productdetails.minimal_requirements.replace('FCP 10', 'FCP 10').replace('Motion 5', 'Motion 5').replace(', ', ',<br>') }}
+                                        {% endautoescape %}
+                                    </div>
+                                    <div class="tcell tlabel">Includes</div>
+                                    <div class="tcell tdata">1 FCP title / 1 DVR</div>
+                                    <div class="tcell tlabel">Size</div>
+                                    <div class="tcell tdata">
+                                        {{ "%.1f MB"|format(product.productdetails.source_size / 1000) }}
+                                    </div>
+                                    {% for kind in ['trailer', 'tutorial'] %}
+                                        {% with musics=product.productdetails.music.select_related('music_portal').all().filter(used_in_trailer=kind=='trailer') %}
+                                            {% if musics|length %}
+                                                <div class="tcell tlabel">Music used in {{ kind }}</div>
+                                                <div class="tcell tdata">
+                                                    {% include 'product/music_info.jinja2' %}
+                                                </div>
+                                            {% endif %}
+                                        {% endwith %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </section>
+
+        <section class="minstaller__section bg--light">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="minstaller">
+                            <h3 class="minstaller__title">mInstaller</h3>
+                            <p class="minstaller__description">
+                                After purchasing, the product is <b>instantly available </b>for download via <a href="https://www.motionvfx.com/page/minstaller.html" target="_blank" rel="noopener noreferrer">mInstaller</a>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        </div>
+
+		{# FOOTER #}
+        {# media_files={
+                        '(max-width: 960px)': {
+                            'filename': media_prefix + '_footer_mobile',
+                            'formats':['jpg'],
+                            'file_sizes': [640, 960],
+                        }
+                    }, #}
+	<footer class="footer">
+            <div class="image__background " style="--s-index:0">
+                {{picture(
+                    media_url=media_url,
+                    filename= media_prefix + '_footer' ,
+                    file_sizes=srcsetSizes,
+                    formats=['jpg'],
+                    width=2560,
+                    height=1100,
+                    data_src=True,
+                    img_class='lazy-show',
+                    alt="Footer"
+                )}}
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section__text__content">
+                            <div class="section__head">
+                                <div class="footer__subtitle section__subtitle">
+                                    {{data.footer.subtitle|safe}}
+                                </div>
+                                <div class="footer__title section__title">
+                                    {{data.footer.title|safe}}
+                                </div>
+                                <p class="footer__text section__text mx-auto" style="max-width: 500px">
+                                    {{ data.footer.text|safe }}
+                                </p>
+                            </div>
+                            <div class="button-buy">
+                                {{buy_btn_free()}}
+                                {# {% with discount_text="INTRO", version=2 %} #}
+                                    {# {% include "product/buy_button.jinja2" %} #}
+                                {# {% endwith %} #}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+	</main>
+{# 
+    {% macro popup_tech_spec(
+        url,
+        media_url,
+        box_name,
+        name,
+        version,
+        type
+    ) %}
+    <div class="popup-left" id="popup-tech-spec">
+    <div class="close dismiss-button" id="popup-close-button"></div>
+    <div class="promo-img">
+        <a href="{{ url }}" target="_blank" rel="noopener noreferrer" aria-label="{{ name }} for {{ version[1] }}">
+            <picture>
+                <source media=""
+                    srcset="
+                        {{ media_url }}/{{ box_name }}-256.webp 256w,
+                        {{ media_url }}/{{ box_name }}-512.webp 512w,
+                    "
+                    type="image/webp"
+                >
+                <img class=""
+                    src="{{ media_url }}/{{ box_name }}-512.jpg"
+                    alt=""
+                    width="360"
+                    height="360"
+                    srcset="{{media_url}}/{{ box_name }}-256.jpg 256w,"
+                />
+            </picture>
+        </a>
+    </div>
+    <p class="popup-left-title">
+        <span>We also have {{ product_name }} for {{ type|upper }}</span>
+    </p>
+    <p class="popup-left-subtitle">
+        <a href="{{ url }}" target="_blank" rel="noopener noreferrer" href="{{product_url}}">Check it out</a>
+    </p>
+    </div>
+    {% endmacro %}
+    
+    {% set popup_product = software_versions[1] %}
+        {{ popup_tech_spec(
+        media_url=popup_product.box_media_url,
+        url=popup_product.product_url,
+        box_name=popup_product.images[0],
+        version=popup_product.name,
+        type=popup_product.type
+    ) }} #}
+    {% include './components/submenu.jinja' %}
+
+	<script src="dist/scripts.js"></script>
     <script src="scripts/vendor/menu.js" defer></script>
     <script src="scripts/vendor/scroll_to_anchor.js" defer></script>
+
+	{# <link href="css/vendor/popup-left.css" rel="stylesheet" /> #}
+	{# <script src="scripts/vendor/popup-tech-spec.js" defer></script> #}
 </body>
 </html>

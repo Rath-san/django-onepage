@@ -3,15 +3,22 @@
   z-index: 1;
   padding-bottom: 0;
 
+  .section__text {
+    margin-bottom: clamp(3rem, 10vw, 5rem);
+    // margin-bottom: 2rem;
+  }
+
   &.trailer,
   .tutorial {
   }
   
   &.trailer {
-    padding-top: 3rem;
+    // margin-bottom: clamp(3rem, 20vw, 6rem);
   }
 
   &.tutorial {
-    // padding-top: 6rem;
+    // padding-top: 3rem;
+    margin-bottom: clamp(3rem, 10vw, 5rem);
+    // margin-bottom: 2rem;
   }
 }

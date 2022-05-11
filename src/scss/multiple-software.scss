@@ -1,0 +1,14 @@
+@import "./multiple-software/buy-boxes";
+@import "./multiple-software/software-icons";
+
+.yt {
+    width: Min(100%, calc(177vh - 9rem));
+    @media (min-height: 450px) {
+      width: Min(100%, calc(150vh - 14rem));
+    }
+    margin-inline: auto;
+}
+
+.submenu-plugins {
+    z-index: 10000;
+}

@@ -1,42 +1,41 @@
-<div class="submenu-plugins" id="submenu-plugins" style="z-index: 90">
-    <div class="submenu-plugins-left-arrow" onclick="clickOnMenuArrow()">
+<div class="submenu-plugins show" id="submenu-plugins" style="z-index: 90">
+    <div class="submenu-plugins-left-arrow" onclick="clickOnMenuArrow()" role="button">
         <img src="https://s3.motionvfx.com/mvfxpublic/products/templates/1227/media/arrow_submenu_left.svg"
-             loading="lazy"
-             width="300"
-             height="150"
-             alt="Unfold icon"
-             role="button"/>
+            loading="lazy"
+            width="300"
+            height="150",
+            alt="Unfold icon"
+        />
     </div>
-    {% set links =[
-    {
-    'anchor': 'trailer',
-    'class': 'trailer',
-    'title': 'Watch trailer',
-    'src': 'play_menu.svg'
-    },
-    {
-    'anchor': 'tutorial',
-    'class': 'tutorial',
-    'title': 'Watch tutorial',
-    'src': 'play_menu.svg',
-    },
-    {
-    'anchor': 'specs',
-    'class': 'tech-sec',
-    'title': 'Technical Specifications',
-    'src': 'play_menu.svg',
-    }
+    {% set links = [
+        {
+            'anchor': 'trailer',
+            'class': 'trailer',
+            'title': 'Watch trailer',
+            'src': 'play_menu.svg'
+        },
+        {
+            'anchor': 'tutorial',
+            'class': 'tutorial',
+            'title': 'Watch tutorial',
+            'src': 'play_menu.svg',
+        },
+        {
+            'anchor': 'specs',
+            'class': 'tech-sec',
+            'title': 'Technical Specifications',
+            'src': 'play_menu.svg',
+        }
     ] %}
     <div class="submenu-plugins-left">
         {% for link in links %}
-            <a id="{{ link.class }}-menu"
-               onclick="clickOnMenuItem('{{ link.anchor }}');"
-               role="button">{{ link.title }}
+            <a id="{{link.class}}-menu" onclick="clickOnMenuItem('{{link.anchor}}');">{{link.title}} 
                 <img loading="lazy"
-                     src="https://s3.motionvfx.com/mvfxpublic/products/templates/1227/media/{{ link.src }}"
-                     width="12"
-                     height="12"
-                     alt="{{ link.title }} icon"/>
+                    src="https://s3.motionvfx.com/mvfxpublic/products/templates/1227/media/{{link.src}}"
+                    width="12"
+                    height="12"
+                    alt="{{link.title}} icon"
+                />
             </a>
         {% endfor %}
     </div>

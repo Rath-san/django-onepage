@@ -1,0 +1,117 @@
+#buy-boxes {
+    background: transparent;
+    position: relative;
+    padding: 3rem 0 3rem 0;
+    @media screen and (max-width: 768px) {
+        // padding-bottom: 0;
+    }
+
+    .bg {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
+    }
+
+    .container {
+        position: relative;
+    }
+
+    p {
+        line-height: 1.44;
+    }
+    small {
+        color: #6f6f6f;
+        font-size: 0.6rem;
+    }
+    .box-wrapper {
+        display: inline-block;
+        max-width: Max(220px, 40vw);
+    }
+
+    .box {
+        display: block;
+        position: static;
+        margin-bottom: 1.25rem;
+        max-width: 350px;
+        width: 100%;
+    }
+
+    .icon {
+        right: 2%;
+        top: -0.8rem;
+        width: Min(25%, 80px);
+    }
+
+    p {
+        width: Min(100%, 18em);
+    }
+
+    .core-site-styles {
+        position: relative;
+        @media screen and (max-width: 786px) {
+            margin-bottom: Min(6rem, calc(1rem + 10vw));
+        }
+    }
+
+    .row > div {
+        &:last-child {
+            .core-site-styles {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    .promo-info {
+        font-size: 0.6rem;
+        width: 100%;
+        // left: 50%;
+        letter-spacing: 0.012em;
+        margin-top: 0.5rem;
+        position: absolute;
+        // transform: translateX(-59%);
+    }
+
+    .fcp:before {
+        background: var(--mkbhd-red, #ff3c35);
+    }
+
+    .fcp:hover:before {
+        background: var(--mkbhd-red-glow, #ff3c35);
+    }
+
+    .pr:before {
+        background: #06005d;
+    }
+
+    .pr:hover:before {
+        background: #080262;
+    }
+
+    @media (min-width: 2200px) {
+        .three .container {
+            padding-inline: 2rem;
+        }
+    }
+
+    .col-12 {
+        a:not([role="button"]) {
+            img {
+                transition: transform .65s cubic-bezier(.1,.1,.1,1)
+            }
+        }
+
+        &:hover {
+            a:not([role="button"]) {
+                img {
+                    transform: scale(1.05);
+                }
+            }
+        }
+    }
+}

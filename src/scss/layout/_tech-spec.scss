@@ -1,10 +1,13 @@
 .tech-spec {
-    padding: 0 5%;
+    padding-top: 0;
+    padding-left: 5%;
+    padding-right: 5%;
     font-weight: 400;
 
     &__title {
         margin-bottom: 3rem;
         @media screen and (max-width: 450px) {
+            text-align: left;
             align-items: flex-start;
 
             margin-bottom: 1.8rem;
@@ -49,7 +52,7 @@
     }
     &label {
         text-align: right;
-        color: #9a9a9a;
+        color: #757575;
         @media screen and (max-width: 450px) {
             text-transform: uppercase;
             font-weight: 600;
@@ -89,37 +92,33 @@
     position: relative;
   }
 
-  .deco {
-    position: absolute;
-    left: 70%;
-    bottom: -180px;
+  // .deco {
+  //   position: absolute;
+  //   left: 70%;
+  //   bottom: -180px;
 
-    @media screen and (max-width: 1300px) {
-      display: none;
-    }
+  //   @media screen and (max-width: 1300px) {
+  //     display: none;
+  //   }
 
-    img {
-      max-width: 600px;
-      width: 50vw;
-      height: auto;
-    }
-    @media screen and (min-width: 2000px) {
-      left: unset;
-      right: 6vw;
-    }
-    @media screen and (max-width: 1700px) {
-      left: 70%;
-      right: unset;
-      bottom: 0px;
-      img {
-        max-width: 400px;
-      }
-    }
-  }
-
-  .tech-spec {
-    margin-bottom: 5rem;
-  }
+  //   img {
+  //     max-width: 600px;
+  //     width: 50vw;
+  //     height: auto;
+  //   }
+  //   @media screen and (min-width: 2000px) {
+  //     left: unset;
+  //     right: 6vw;
+  //   }
+  //   @media screen and (max-width: 1700px) {
+  //     left: 70%;
+  //     right: unset;
+  //     bottom: 0px;
+  //     img {
+  //       max-width: 400px;
+  //     }
+  //   }
+  // }
 
   @include respond-below(md) {
     padding-top: 2rem;

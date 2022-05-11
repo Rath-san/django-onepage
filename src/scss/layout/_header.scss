@@ -1,7 +1,8 @@
 .header {
+    position: relative;
     img {
         transition: opacity 0.5s ease-in-out;
-        opacity: 0;
+        // opacity: 0;
     }
     color: #fff;
     text-align: center;
@@ -12,14 +13,15 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            margin-bottom: -4rem;
             // opacity: ;
         }
         &__text {
-            opacity: 0;
+            // opacity: 0;
         }
     }
     &__logo {
-        font-size: clamp(3.5rem, 16vw, 106px);
+        // font-size: clamp(3.5rem, 16vw, 106px);
         font-family: $font-family-title;
         display: flex;
         flex-direction: column;
@@ -27,19 +29,18 @@
         align-items: center;
 
         img {
-            width: clamp(200px, 50vw, 340px);
+            width: clamp(200px, 75vw, 400px);
             height: auto;
         }
     }
 
     .image__background {
         img {
-            top: unset;
-            bottom: unset;
-            left: unset;
-            right: unset;
-            height: auto;
-            object-fit: initial;
+            top: 100px;
+            object-position: bottom;
+            @media screen and (max-width: 768px) {
+                top: 50px;
+            }
         }
         .screens {
             left: 9%;
@@ -63,7 +64,7 @@
 section.header {
     position: relative;
 
-    $min-height: 650px;
+    $min-height: 800px;
     $max-height: 860px;
 
     $min-content-height: 160px; /* set to height of the portion of the first section within which content is comfortably visible */
@@ -74,6 +75,9 @@ section.header {
         $scroll-prompt-margin-min;
 
     min-height: $min-height; /* might adjust per plugin */
+    @media screen and (max-width: 768px) {
+        min-height: 560px
+    }
     max-height: $max-height;
     height: calc(100vh - #{$min-content-height});
 
@@ -155,7 +159,7 @@ $animation-delay-offset: 200ms;
 .header__logo,
 .header__subtitle,
 .header__deco {
-    // opacity: 0;
+    opacity: 0;
     transform: translateY(-10px) scale(1.1);
     will-change: opacity, transform;
     transition: transform $animation-duration cubic-bezier(0.3, 0, 0.3, 1),
@@ -171,41 +175,54 @@ $animation-delay-offset: 200ms;
 }
 
 .header.loaded {
-    &-primary {
-        .header__logo {
-            img {
-                opacity: 1 !important;
-            }
-        }
+    // &-primary {
+    //     .header__logo {
+    //         img {
+    //             opacity: 1 !important;
+    //         }
+    //     }
     
-        .fcp {
+    //     .fcp {
+    //         opacity: 1;
+    //     }
+    // }
+
+    
+    &-secondary {
+        #software-icons>* {
             opacity: 1;
         }
-    }
-
-    &-secondary {
-        .image__background {
-            img {
+        .section {
+            &__text {
                 opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        .header {
+            
+            &__logo {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                // transform: scale(1);
             }
         }
     }
 
-    .header__logo,
-    .header__subtitle,
-    .header__deco,
-    .header__bg {
-        transform: translateY(0) scale(1);
-        opacity: 1;
-    }
-    + .dr-gradient {
-        opacity: 1;
-        &::after {
-            opacity: 1;
-        }
-    }
+    // .header__logo,
+    // .header__subtitle,
+    // .header__deco,
+    // .header__bg {
+    //     transform: translateY(0) scale(1);
+    //     opacity: 1;
+    // }
+    // + .dr-gradient {
+    //     opacity: 1;
+    //     &::after {
+    //         opacity: 1;
+    //     }
+    // }
 
-    .comp-img {
-        opacity: 1;
-    }
+    // .comp-img {
+    //     opacity: 1;
+    // }
 }
