@@ -16,18 +16,38 @@ const IMAGE_QUALITY = 50;
 640, 820, 1024;
 
 const CONFIGS = [
+    // {
+    //     directory: "_bg",
+    //     sizes: [
+    //         ...RESPONSIVE_SIZES_DESKTOP.map((size) => ({ ...size, h: 960 })),
+    //         ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ ...size, h: 560 }))
+    //     ],
+    //     quality: 75,
+    //     targetFormat: ["jpg"],
+    //     // outputOptions: {
+    //     //     mozjpeg: true,
+    //     // },
+    // },
     {
-        directory: "_bg",
-        sizes: [
-            ...RESPONSIVE_SIZES_DESKTOP.map((size) => ({ ...size, h: 960 })),
-            ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ ...size, h: 560 }))
-        ],
-        quality: 75,
+        directory: '_box_under',
         targetFormat: ["jpg"],
-        // outputOptions: {
-        //     mozjpeg: true,
-        // },
+        quality: 90,
+        sizes: [
+            ...RESPONSIVE_SIZES.map((size) => ({ ...size, h: 860 })),
+        ],
+        outputOptions: {
+            mozjpeg: true,
+        },
     },
+    // {
+    //     directory: '_box',
+    //     targetFormat: ["webp", "png"],
+    //     quality: 50,
+    //     sizes: [
+    //         {w: 256},
+    //         {w: 512}
+    //     ],
+    // },
     // {
     //     directory: "_slides",
     //     sizes: [
