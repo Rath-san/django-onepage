@@ -20,6 +20,7 @@ def index(request, **kwargs):
 
     context = {
         'product' : {
+            'id': '3727',
             'head_info': "Animated mockups collection for Final Cut Pro",
             'title': product.title,
             'productdetails' : {

@@ -53,7 +53,6 @@
     {% set shared_media_url = 'https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media' % (shared_media_template_id) %}
     {% set product_id_fcp = 3698 %}
     {% set product_id_dvr = 3727 %}
-    {% set twin_product_id = product_id_fcp %}
     {# {% set product_fcp, product_dvr = get_products([product_id_fcp, product_id_dvr]) %} #}
 	{% set product_fcp, product_dvr = [product, product] %}
     {% set software_versions = [
@@ -152,7 +151,7 @@
 			<div id="software-icons" class="software-icons text-center" style="width: 100%; left: 0;">
 				{% for si in software_versions %}
 				<a
-					{% if si.product.id == twin_product_id %}
+					{% if si.product.id != product.id %}
 						href="{{si.product_url}}"
 					{% else %}
 						role="button"
@@ -284,7 +283,7 @@
                     {% for b in software_versions %}
                         <div class="col-12 col-md-6 mb-4 pb-md-0 mb-md-0">
                             <a  
-                                {% if b.product.id == twin_product_id %}
+                                {% if b.product.id != product.id %}
                                     href="{{ b.product_url }}"
                                     target="_blank"
                                 {% else %}
