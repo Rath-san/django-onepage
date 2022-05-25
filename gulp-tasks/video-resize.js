@@ -1,4 +1,4 @@
-const { src /*dest*/ } = require("gulp");
+const { src } = require("gulp");
 const through2 = require("through2");
 const {resolve} = require("path");
 const pathToFfmpeg = require('ffmpeg-static');
@@ -6,19 +6,13 @@ const pathToFfmpeg = require('ffmpeg-static');
 const shell = require('any-shell-escape')
 const {exec} = require('child_process')
 
-const FORMATS = ".mp4";
+const TARGET_FORMAT = ".mp4";
 const VIDEO_QUALITY = 28; // this is not deterministic lower = uglier
 
 const CONFIGS = [
-    // {
-    //     directory: "_prevs",
-    // },
     {
-        directory: "_mov",
+        directory: "_prevs",
     },
-    // {
-    //     directory: 'filmlook'
-    // }
 ];
 
 function resizeTask(
@@ -39,6 +33,8 @@ function resizeTask(
                     '-c:v', 'libx264',
 
                     // '-c:v', 'libvpx',
+                    '-b:v', '500k',
+                    // '-tag:v', 'hvc1',
 
                     '-crf', VIDEO_QUALITY,
                     '-profile:v', 'high',
@@ -46,8 +42,8 @@ function resizeTask(
                     '-color_primaries', 1,
                     '-color_trc', 1,
                     '-colorspace', 1,
-                    '-an',
-                    resolve(videoDist, `${file.stem}${FORMATS}`)
+                    '-movflags', '+faststart',
+                    '-an', resolve(videoDist, `${file.stem}${TARGET_FORMAT}`)
                     ])
 
                 exec(convert, (err) => {
