@@ -26,14 +26,7 @@ Make sure you have installed docker on your work machine.
 ```
 docker-compose up -d
 ```
-> ##### _in `docker-compose.yml` file there is a setup for **djangno** container, also migrations._
-<br>
-
-Attach shell to docker container and create admin for django backend.
-```
-manage.py createsuperuser
-```
-> ##### _go with instructions prompts_
+> ##### _in `docker-compose.yml` file there is a setup for **`djangno`** container, also migrations: default entries for `Product`, `Music` and `MusicPortal` models. Also **`superuser`** is created (credentials in environment variables)._
 <br>
 
 On [localhost:8000](http://localhost:8000) it should look like mess, but thats good.
