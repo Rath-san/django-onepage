@@ -3,60 +3,85 @@
     margin-right: auto;
 }
 
-section {
-    &.trailer {
-        .section {
-            &__text {
-                @extend %ma;
-                max-width: 440px;
-            }
-        }
+.section {
+    &__content {
     }
+    // &__head {
+    //     .video & {
+    //         @extend %ma;
+    //         max-width: 460px;
+    //     }
 
-    &.tutorial {
-        .section {
-            &__text {
-                @extend %ma;
-                max-width: 400px;
-            }
-        }
-    }
+    //     .promo & {
+    //         // max-width: 500px;
+    //     }
 
-    &.counters {
+    //     .promo-phone & {
+    //         @extend %ma;
+    //         // max-width: 430px;
+    //     }
 
-    }
+    //     .promo-carousel-flat & {
+    //         // @extend %ma;
+    //         // max-width: 500px;
+    //     }
 
-    &.slider {
-        .section {
-            &__content {
-                padding-top: 3rem;
-            }
-            &__title {
-                max-width: 500px;
-                margin-bottom: 2rem;
-            }
-        }
-    }
+    //     .footer & {
+    //         @extend %ma;
+    //         max-width: 600px;
+    //     }
+    // }
+    // &__title {
+    //     .promo-phone & {
+    //         @extend %ma;
+    //         // max-width: 400px;
+    //     }
 
-    &.prevs {
-    }
-    &.prevs-after {
-        .section {
-            &__title {
-                max-width: 500px;
-            }
-            &__text {
-                max-width: 432px;
-            }
-        }
-    }
+    //     .promo-laptop & {
+    //         // @extend %ma;
+    //         max-width: 300px;
+    //         margin-bottom: 3rem;
+    //     }
+
+
+    //     .promo-carousel-flat & {
+    //         @extend %ma;
+    //         // max-width: 350px;
+    //     }
+    // }
+
+    // &__text {
+    //     .trailer & {
+    //         @extend %ma;
+    //         max-width: 290px;
+    //     }
+    //     .tutorial & {
+    //         @extend %ma;
+    //         max-width: 300px;
+    //     }
+    //     .promo-phone & {
+    //         max-width: 370px;
+    //     }
+    //     .promo-laptop & {
+    //         &:nth-of-type(2) {
+    //             max-width: 300px;
+    //         }
+    //         &:nth-of-type(3) {
+    //             max-width: 250px;
+    //         }
+    //         &:nth-of-type(4) {
+    //         }
+    //     }
+    //     .promo-carousel-flat & {
+    //         max-width: 420px;
+    //     }
+
+    //     .footer & {
+    //         @extend %ma;
+    //         max-width: 230px;
+    //     }
+    // }
 }
 
-.footer {
-    .section {
-        &__text {
-            @extend %ma;
-            max-width: 612px;
-        }
-    }
+footer.footer {
 }

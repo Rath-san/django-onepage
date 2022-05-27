@@ -8,151 +8,126 @@
     {# {% include './components/bundle-popup.jinja' %} #}
 
     {% macro picture(
-		media_url,
-		filename,
-		media_files={
-            '(max-width: 1024px)': {
-                'filename': "",
-                'formats':['webp','jpg'],
-                'file_sizes': [640, 960, 1024],
-            }
-        },
-		file_sizes=[360, 480, 640, 960],
-		formats=['webp','jpg'],
-		media_sizes='',
-		media='',
-		alt='',
-		img_class='',
-		img_style='',
-		picture_class='',
-		width='',
-		height='',
-        loading='',
-        data_src=False
+		media_url, filename, media_files={}, file_sizes=[360, 480, 640, 960], formats=['webp','jpg'], media_sizes='', media='', alt='', img_class='', img_style='', picture_class='', width='', height='', loading='', data_src=False
 	) %}
 		<picture class="{{ picture_class }}">
 			{% for media in media_files %}
 				{% set m = media_files[media] %}
 				{% for format in formats %}
-					<source
-                        {% if data_src %}
-                            data-srcset="
-                                {% for size in m['file_sizes'] %}
-                                    {{ media_url }}/{{ m['filename'] }}-{{ size }}.{{ format }} {{size}}w,
-                                {% endfor %}"
-                        {% else %}
-                            srcset="
-                                {% for size in m['file_sizes'] %}
-                                    {{ media_url }}/{{ m['filename'] }}-{{ size }}.{{ format }} {{size}}w,
-                                {% endfor %}"
-                        {% endif %}
-						type="image/{{ format | replace('jpg', 'jpeg') }}"
-						sizes="{{ m['media_sizes'] | default(media_sizes) }}"
-						media="{{ media }}"
-					>
+					<source {% if data_src %} data-srcset=" {% for size in m['file_sizes'] %} {{ media_url }}/{{ m['filename'] }}-{{ size }}.{{ format }} {{size}}w, {% endfor %}" {% else %} srcset=" {% for size in m['file_sizes'] %} {{ media_url }}/{{ m['filename'] }}-{{ size }}.{{ format }} {{size}}w, {% endfor %}" {% endif %} type="image/{{ format | replace('jpg', 'jpeg') }}" sizes="{{ m['media_sizes'] | default(media_sizes) }}" media="{{ media }}" >
 				{% endfor %}
 			{% endfor %}
 			{% for format in formats %}
-				<source
-                    {% if data_src %}
-                    data-srcset="
-						{% for size in file_sizes %}
-							{{ media_url }}/{{ filename }}-{{ size }}.{{ format }} {{size}}w,
-						{% endfor %}"
-                    {% else %}
-                    srcset="
-						{% for size in file_sizes %}
-							{{ media_url }}/{{ filename }}-{{ size }}.{{ format }} {{size}}w,
-						{% endfor %}"
-                    {% endif %}
-					type="image/{{ format | replace('jpg', 'jpeg') }}"
-					sizes="{{ media_sizes }}"
-					media="{{ media }}">
+				<source {% if data_src %} data-srcset=" {% for size in file_sizes %} {{ media_url }}/{{ filename }}-{{ size }}.{{ format }} {{size}}w, {% endfor %}" {% else %} srcset=" {% for size in file_sizes %} {{ media_url }}/{{ filename }}-{{ size }}.{{ format }} {{size}}w, {% endfor %}" {% endif %} type="image/{{ format | replace('jpg', 'jpeg') }}" sizes="{{ media_sizes }}" media="{{ media }}">
 			{% endfor %}
-			<img
-                {% if data_src %}
-                    data-src="{{ media_url }}/{{ filename }}-{{ file_sizes[0] }}.{{ formats[-1] }}?{{file_version}}"
-                {% else %}
-                    src="{{ media_url }}/{{ filename }}-{{ file_sizes[0] }}.{{ formats[-1] }}?{{file_version}}"
-                {% endif %}
-				alt="{{alt}}"
-				class="{{img_class}}"
-				style="{{img_style}}"
-				width="{{width}}"
-				height="{{height}}"
-                loading="{{loading}}"
-                >
-
+			<img {% if data_src %} data-src="{{ media_url }}/{{ filename }}-{{ file_sizes[0] }}.{{ formats[-1] }}?{{file_version}}" {% else %} src="{{ media_url }}/{{ filename }}-{{ file_sizes[0] }}.{{ formats[-1] }}?{{file_version}}" {% endif %} alt="{{alt}}" class="{{img_class}}" style="{{img_style}}" width="{{width}}" height="{{height}}" loading="{{loading}}" >
 		</picture>
 	{% endmacro %}
+    {% macro buy_btn_free() %}
+    <div class="button-buy">
+        <div id="btn-buy-container" class="version1">
+            <div class="inner-container">
+                <a href="#" class="buy-button" data-add-to-cart='{ "productId": {{  product.id }}, "productTitle": "{{  product.title }}" }'>
+                    Get it free for FCP / DVR
+                </a>
+            </div>
+        </div>
+    </div>
+{% endmacro %}
 
-    {% set srcsetSizesMobile = [
-        640,
-        960
+		{% set srcsetSizesMobile = [ 640, 960 ] %}
+		{% set srcsetSizesDesktop = [ 1280, 1920, 2560 ] %}
+		{% set srcsetSizes = srcsetSizesMobile + srcsetSizesDesktop %}
+
+		{% set template_id = "1417" %}
+		{# {% set template_id_s3 = "200" %} #}
+        {% set media_prefix = "mVertical" %}
+		{% set media_url = "https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media" % template_id %}
+		{# {% set media_prefix_s3 = "https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media" % template_id_s3 %} #}
+		{# {% set media_prefix_presets = media_prefix + "/presets" %} #}
+		{% set version = "v=0" %}
+
+
+    {% set product_name = 'mVertical' %}
+    {% set shared_media_template_id = '1408' %}
+    {% set shared_media_url = 'https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media' % (shared_media_template_id) %}
+    {% set product_id_fcp = 3698 %}
+    {% set product_id_dvr = 3727 %}
+    {% set twin_product_id = product_id_fcp %}
+    {# {% set product_fcp, product_dvr = get_products([product_id_fcp, product_id_dvr]) %} #}
+	{% set product_fcp, product_dvr = [product, product] %}
+    {% set software_versions = [
+        {
+            'type': 'dvr',
+            'name': ['DV', 'DaVinci Resolve'],
+            'product': product_dvr,
+            'product_url': 'https://www.motionvfx.com/store,%s,p%s.html' % (product_dvr.slug, product_dvr.id),
+            'images': ["box_dvr", "dvr_icon"],
+            'box_media_url': 'https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media' % ('1415'),
+        },
+        {
+            'type': 'fcp',
+            'name': ['FCP', 'Final Cut Pro'],
+            'product': product_fcp,
+            'product_url': 'https://www.motionvfx.com/store,%s,p%s.html' % (product_fcp.slug, product_fcp.id),
+            'images': ["box_fcp", "fcp_icon"],
+            'box_media_url': 'https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media' % ('1415')
+        },
     ] %}
+    {#{% for sv in software_versions %}
+        {{ sv.product.set_btn_title("%s for %s" % (product_name, sv.name[0]))|default("", True) }}
+    {% endfor %}#}
+    {% set products = software_versions|map(attribute="product") %}
+    {% set live = True %}
 
-    {% set srcsetSizesDesktop = [
-        1280,
-        1920,
-        2560
-     ] %}
-
-     {% set srcsetSizes = srcsetSizesMobile + srcsetSizesDesktop %}
-
-    {% set template_id = '1401' %}
-    {% set file_version = 3 %}
-    
-    {% set media_prefix = 'mCounter' %}
-    {% set media_url = 'https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media' % (template_id) %}
-    {% set placeholder_url = 'https://via.placeholder.com' %}
 
     {% set data = {
         'header': {
-            'subtitle': 'Animated mockups collection for Final Cut Pro'
+            'subtitle': 'Free Vertical Video Adjustment Plugin for DaVinci Resolve'
         },
         'trailer': {
-            'subtitle': 'SEE THEM AT WORK!',
+            'subtitle': 'See how it works!',
             'title': 'Watch trailer',
-            'text': 'View the presets in action and watch them create a unique visual form of the ideas you want to realize.'
+            'text': 'Get a picture of how excellent your vertical footage can fit in your edits!'
         },
         'tutorial': {
-            'subtitle': 'LEARN THE WORKFLOW!',
+            'subtitle': 'Use it to the fullest!',
             'title': 'Watch tutorial',
-            'text': 'Check our full guide that will make you benefit from what mTutorial has to offer!'
+            'text': 'Learn to put all the available features to good use and refine your workflow.'
         },
-        'counters': {
-            'subtitle': 'ILLUSTRATE DIVERSE CONCEPTS & BRING YOUR IDEAS TO LIFE',
-            'title': 'Support your favorite artists',
-            'text': 'This collection of handy, pre-animated elements lets you build a whole layout to illustrate your videos and enrich your edits. Attract donators, supporters, and clients, and raise enough money to accomplish the goal.'
+        'promo': {
+            'subtitle': 'Shot, edit, enjoy!',
+            'title': 'Incorporate vertical footage into your edits',
+            'text': 'mVertical is a universal plugin that helps you deal with vertical videos in several ways. Add a background copy, mirror the source footage, use blurring and adjust brightness.'
         },
-        'slider': {
-            'subtitle': 'ILLUSTRATE DIVERSE',
-            'title': 'Establish a successful donation campaign',
-            'texts': [
-                "Illustrate your project with astonishing design and animation.",
-                "Tell your story in a cinematic way and stun your clients.",
-                "Customize every detail to perfectly fit your company’s character."
-            ]
+        'promo-cards': {
+            'title': 'Consistent compositions',
+            'text': 'Consistency matters, as you don’t want to jolt your audience with some upsetting change of setting… Make sure you’re on the safe side there!',
+        },
+        'promo-carousel-flat': {
+            'subtitle': 'The simplest solution',
+            'title': 'Handy & easy to use',
+            'text': 'We made sure this plugin removes things from your trouble list, so it’s both handy and easy to use. Enjoy!',
         },
         'footer': {
-            'subtitle': 'ILLUSTRATE DIVERSE',
-            'title': 'Turn your ideas into reality!',
-            'text': 'Modern times give us many opportunities to carry out various projects and realize our dreams and ideas. The well-crafted design of mDonate gives your campaign a unique look and makes it stand out to help you get where you want to be and make a lasting impression on your patrons.'
+            'subtitle': 'Level up your toolbox!',
+            'title': 'A must-have tool',
+            'text': 'This vertical video adjustment plugin will come in handy when you’ll want to make things work regardless of how the recording went… and it’s free!'
         }
     } %}
 
-    {% set trailer_id = 'o5YUZ38JEjE' %}
-    {% set tutorial_id = '8lZ_cwQ-XHU' %}
+	{% set trailer_id = 'pm7sNLEFTbs' %}
+    {% set tutorial_id = 'ipxULvIptkU' %}
+    {% set tutorial_id1 = 'VE1M4ReO7T8' %}
 
-    <main>
-        <section class="header">
+<main class="mVertical">
+	<section class="header">
             <div class="image__background">
                 {{picture(
                     media_url=media_url,
-                    filename= media_prefix + '_top' ,
+                    filename= media_prefix + '_web_top_2' ,
                     file_sizes=srcsetSizes,
-                    media_files={},
-                    formats=['webp','jpg'],
+                    formats=['jpg'],
                     width=2560,
                     height=960,
                     alt="Header image",
@@ -164,25 +139,41 @@
                         {{picture(
                             media_url=media_url,
                             filename= media_prefix + '_logo' ,
-                            file_sizes=[1200,600,300],
-                            media_files={},
+                            file_sizes=[400, 800],
                             formats=['webp','png'],
-                            width=1200,
-                            height=603,
-                            img_class='',
+                            width=800,
+                            height=200,
                             alt="Logo",
                         )}}
-                        <h2 hidden class="">mMockup</h2>
+                        <h2 hidden class="">mVertical</h2>
                     </div>
-
                     <h1 class="section__text">
-                        {% autoescape off %} {{product.head_info}} {% endautoescape %}
+                        {{ data.header.subtitle }}
+                        {# {{product.head_info|safe}} #}
                     </h1>
                 </div>
+		</div>
             </div>
+        {# SOFTWARE ICONS #}
+		<div id="software-icons" class="software-icons text-center" style="width: 100%; left: 0;">
+			{% for si in software_versions %}
+			<a
+				{% if si.product.id == twin_product_id %}
+					href="{{si.product_url}}"
+				{% else %}
+					role="button"
+				{% endif %}
+                name="product link {{ si.name[1] }}"
+                aria-label="Product link {{ si.name[1] }}"
+				target="_blank"
+				class="d-inline-block mx-1"
+				style="--i: {{ loop.index }}; --d: {{ loop.index }}">
+				{{ picture(shared_media_url, si.images[1], formats=["webp","png"], file_sizes=[180], width=60, height=60, img_class='software-icon', data_src=False) }}
+			</a>
+			{% endfor %}
         </section>
 
-        <script>
+	<script>
             const onHeaderImagesLoaded = (images, type= 'primary') => {
                 const loadedImages = images.map(img => false);
                 images.forEach((img, idx) => {
@@ -202,7 +193,7 @@
 
             const header = document.querySelector('section.header')
             const items1 = [
-                header.querySelector('.header__logo img'),
+                header.querySelector('.image__background img'),
             ]
 
             const items2 = Array.from(header.querySelectorAll('.image__background img'));
@@ -211,32 +202,27 @@
             onHeaderImagesLoaded(items2, 'secondary');
         </script>
 
-        <div class="scroll-prompt" style="--h-index: 2; opacity: 0;">
-            <a class="scroll-to-btn" href="#" onclick="scrollToAnchor('trailer');" tabindex="-1"></a>
-        </div>
-
-        <a class="nav" name="trailer"></a>
-
+		<a class="nav" name="trailer"></a>
+		{# TRAILER #}
         <section class="video trailer">
             <div class="container">
                 <div class="row">
                     <div class="col">
                         <div class="section__content">
                             <div class="section__head">
-                                <p class="section__subtitle">
-                                    {{data.trailer.subtitle|safe}}
+                                <p class="section__subtitle " style="--s-index:0;">
+                                    {{data.trailer.subtitle}}
                                 </p>
                                 <div class="section__title">
-                                    {{data.trailer.title|safe}}
+                                    {{ data.trailer.title|safe }}
                                 </div>
-                                <p class="section__text">
-                                    {{data.trailer.text|safe}}
+                                <p class="section__text mx-auto" style="max-width: 400px">
+                                    {{ data.trailer.text|safe }}
                                 </p>
                             </div>
                         </div>
-                        
                         <div class="yt embed-responsive embed-responsive-16by9">
-                            <div id="videoTrailer" data-id="{{trailer_id}}" style="background-color: #000"></div>
+                            <div class="video-iframe" data-id="{{trailer_id}}" style="background-color: #000"></div>
                         </div>
                     </div>
                 </div>
@@ -244,7 +230,7 @@
         </section>
 
         <a class="nav" name="tutorial"></a>
-
+		{# TUTORIAL #}
         <section class="video tutorial">
             <div class="container text-center">
                 <div class="row">
@@ -252,332 +238,328 @@
                         <div class="section__content">
                             <div class="section__head">
                                 <p class="section__subtitle " style="--s-index:0;">
-                                    {{data.tutorial.subtitle|safe}}
+                                    {{data.tutorial.subtitle}}
                                 </p>
                                 <div class="section__title ">
-                                    {{data.tutorial.title|safe}}
+                                    {% autoescape off %} {{data.tutorial.title}} {% endautoescape %}
                                 </div>
-                                <p class="section__text " style="--s-index:2;">
-                                    {{data.tutorial.text|safe}}
+                                <p class="section__text mx-auto" style="max-width: 400px">
+                                    {% autoescape off %} {{data.tutorial.text}} {% endautoescape %}
                                 </p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-6 mb-3 mb-md-0">
                         <div class="yt embed-responsive embed-responsive-16by9">
-                            <div id="videoTutorial" data-id="{{tutorial_id}}" style="background-color: #000"></div>
+                            <div class="video-iframe" data-id="{{tutorial_id}}" style="background-color: #000"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="yt embed-responsive embed-responsive-16by9">
+                            <div class="video-iframe" data-id="{{tutorial_id1}}" style="background-color: #000"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="counters bg--dark">
-            {% set counters = [
-                {
-                    "src": "_18"
-                },
-                {
-                    "src": "_07"
-                },
-                {
-                    "src": "_08"
-                },
-                
-            ] %}
-            <div class="comp ">
-                {% for c in counters %}
-                    <video autoplay playsinline loop muted src="{{ media_url }}/{{ media_prefix + c.src }}.mp4"></video>
-                {% endfor %}
+		{# BOXES #}
+		<!--<section id="buy-boxes" class="text-center pt-0">
+            <div class="container pb-5">
+				<div class="section__title">Get it for your app of choice</div>
+                <p class="mx-auto section__text" style="width: Min(90%, 26em)">
+                    Now our top-quality editing tools are available for both Final Cut Pro and DaVinci Resolve!
+                </p>
+        
+                {% macro buy_btn_custom(btn_class, product_0) %}
+                    {# {% set info = get_promo_valid_info( product_0).replace('April ', 'April ') if live else 'Valid till April 21, 2022' %} #}
+                    {% set is_promo = not live or ( product_0.is_promo and  product_0.promo_date) %}
+                    <div class="button-buy">
+                        <div id="btn-buy-container" class="version2">
+                            <div class="inner-container center">
+                                <a href="#" class="buy-button" data-add-to-cart='{ "productId": {{  product_0.id }}, "productTitle": "{{  product_0.title }}" }'>
+                                    {# Buy now {% if is_promo %}<del class="price-crossed"> ${{ price( product_0.price) }}</del>{% endif %} <span class="price">${{ price( product_0.get_price(request.user)) if live else 89 }}</span> #}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% if is_promo %}
+                    {# <div class="promo-info">{{ ('<strong>Sale price</strong> ' + (info[0] | lower + info[1:])) | safe if info.startswith('Valid') else info }}</div> #}
+                    {% endif %}
+                {% endmacro %}
+        
+                <div class="row pt-5" style="max-width: 840px; margin-left: auto; margin-right: auto;">
+                    <div class="row" style="max-width: 840px; margin-left: auto; margin-right: auto;">
+                    {% for b in software_versions %}
+                        <div class="col-12 col-md-6 mb-4 pb-md-0 mb-md-0">
+                            <a  
+                                {% if b.product.id == twin_product_id %}
+                                    href="{{ b.product_url }}"
+                                    target="_blank"
+                                {% else %}
+                                    role="button"
+                                {% endif %}
+                                name="product link {{ b.name[1] }}"
+                                class="box-wrapper position-relative"
+                            >
+                                {{ picture(
+                                    b.box_media_url,
+                                    b.images[0],
+                                    file_sizes=[512, 256],
+                                    media_sizes='100vw',
+                                    formats=['webp', 'png'],
+                                    width=276,
+                                    height=276,
+                                    img_class='box h-auto mx-auto'
+                                ) }}
+                                {{ picture(
+                                    shared_media_url,
+                                    b.images[1],
+                                    file_sizes=[180],
+                                    formats=['webp', 'png'],
+                                    media_sizes='100vw',
+                                    width=80,
+                                    height=80,
+                                    img_class='icon h-auto position-absolute'
+                                ) }}
+                            </a>
+                            {% if b.text %}
+                                <p class="mt-2 mt-md-2 pb-2 pb-md-4 mx-auto" style="width: Min(100%, 18em)">{{ b.text }}</p>
+                            {% endif %}
+                            <div class="core-site-styles">
+                                {{ buy_btn_custom(b.type, b.product) }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </div>
+                </div>
             </div>
-            <div class="section__content">
-                <div class="section__head">
-                    <p class="section__subtitle">
-                        {{ data.counters.subtitle }}
-                    </p>
-                    <h2 class="section__title">
-                        {{ data.counters.title }}
-                    </h2>
-                    <p class="section__text section__text--inset">
-                        {{ data.counters.text }}
-                    </p>
+        </section>-->
+        {# PROMO #}
+        <section class="promo">
+            {# <div class="image__background"> #}
+            {# </div> #}
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section__content">
+                            <div class="section__head">
+                                <div class="section__subtitle">{{ data['promo'].subtitle }}</div>
+                                <div class="section__title mx-auto" style="max-width: 520px">{{ data['promo'].title }}</div>
+                                <p class="section__text mx-auto" style="max-width: 530px">{{ data['promo'].text }}</p>
+                            </div>
+                            {# {{picture(
+                                media_url=media_url,
+                                filename= media_prefix + '_screensa' ,
+                                file_sizes=srcsetSizes,
+                                formats=['webp','png'],
+                                width=540,
+                                height=720,
+                                img_class='screens ',
+                                alt="Header image",
+                            )}} #}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{picture(
+                media_url=media_url,
+                filename= media_prefix + '_phone' ,
+                file_sizes=srcsetSizes,
+                formats=['jpg'],
+                width=2560,
+                height=960,
+                alt="Hand holding phone",
+                data_src=True,
+                img_class='lazy-show',
+            )}}
+        </section>
+{# PROMO CARDS #}
+        <section class="promo-cards__section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section__content">
+                            <div class="section__head">
+                                <div class="section__title">{{ data['promo-cards'].title }}</div>
+                                <p class="section__text mx-auto" style="max-width: 530px">{{ data['promo-cards'].text }}</p>
+                            </div>
+                        </div>
+                        {% set cards = [
+                            {
+                                'img': {
+                                    'src': 'square_1',
+                                    'alt': ''
+                                },
+                                'title': 'Drag & Drop',
+                                'text': 'Place mVertical plugin over your footage',
+                                'color': '#E9A52E',
+                            },
+                            {
+                                'img': {
+                                    'src': 'square_2',
+                                    'alt': ''
+                                },
+                                'title': 'Customize',
+                                'text': 'Easily create a look you’re satisfied with',
+                                'color': '#F850A3',
+                            },
+                            {
+                                'img': {
+                                    'src': 'square_3',
+                                    'alt': ''
+                                },
+                                'title': 'Enjoy!',
+                                'text': 'Now your vertical footage is a fitting part of your edit',
+                                'color': '#63D04E',
+                            }
+                        ] %}
+
+                        <div class="promo-cards">
+                            {% for c in cards %}
+                            <div class="promo-card">
+                                {{picture(
+                                    media_url=media_url,
+                                    filename=c.img.src,
+                                    file_sizes=[400, 800],
+                                    formats=['jpg'],
+                                    width=800,
+                                    height=800,
+                                    alt=c.img.alt,
+                                    loading="lazy"
+                                )}}
+                                <div class="promo-card__body">
+                                    <div class="promo-card__number" style="--border-color: {{ c.color }}">{{ loop.index }}</div>
+                                    <div class="section__title promo-card__title">{{ c.title }}</div>
+                                    <div class="section__text promo-card__text mx-auto" style="max-width: 230px">{{ c.text }}</div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
-
-        <section class="slider">
-            {% set magicSlides = [
-                {
-                    "src": "_s2",
-                    "alt": "",
-                },
-                {
-                    "src": "_s3",
-                    "alt": "",
-                },
-                {
-                    "src": "_s4",
-                    "alt": "",
-                },
-                {
-                    "src": "_s5",
-                    "alt": "",
-                },
-                {
-                    "src": "_s6",
-                    "alt": "",
-                },
-                {
-                    "src": "_s7",
-                    "alt": "",
-                },
-                {
-                    "src": "_s8",
-                    "alt": "",
-                },
-                {
-                    "src": "_s9",
-                    "alt": "",
-                },
-                {
-                    "src": "_s10",
-                    "alt": "",
-                }
-            ] %}
-            <div class="magicSlider">
-				<div class="slides">
-                    {% for ms in magicSlides %}
-                        <div class="slide">
-                            {{ picture(
+{# PROMO SLIDER #}
+{% set slides = [
+    {
+        'src': 'gfx_1',
+        'alt': ''
+    },
+    {
+        'src': 'gfx_2',
+        'alt': ''
+    },
+    {
+        'src': 'gfx_3',
+        'alt': ''
+    }
+] %}
+    <section class="promo-carousel-flat">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="section__content">
+                            <div class="section__subtitle">{{ data['promo-carousel-flat'].subtitle }}</div>
+                            <div class="section__title" style="max-width: 480px">{{ data['promo-carousel-flat'].title }}</div>
+                            <div class="section__text" style="max-width: 510px">{{ data['promo-carousel-flat'].text }}</div>
+                            <ol id="carouselFlatIndicators" class="carousel-indicators">
+                                {% for indicator in slides %}
+                                    <li class="{% if loop.index == 1 %} active {% endif %}"></li>
+                                {% endfor %}
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="carouselFlat" class="carousel slide slide-new">
+                <div class="carousel-inner">
+                    {% for img in slides %}
+                        <div class="carousel-item {% if loop.index == 1 %} active {% endif %}">
+                            {{picture(
                                 media_url=media_url,
-                                filename= media_prefix + ms.src ,
-                                file_sizes=[450, 900, 1800],
-                                media_files={},
-                                formats=['webp','jpg'],
-                                width=1000,
-                                height=1000,
-                                media_sizes="50w",
-                                alt=ms.alt,
+                                filename= img.src,
+                                file_sizes=srcsetSizes,
+                                formats=['jpg'],
+                                width=2560,
+                                height=960,
+                                data_src=True,
+                                img_class='d-block w-100 h-auto lazy-show',
+                                alt=img.alt
                             )}}
                         </div>
                     {% endfor %}
-				</div>
-				<div class="scroll-area scroll-area-left"></div>
-				<div class="scroll-area scroll-area-right"></div>
-			</div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 section__content">
-                        <div class="section__head">
-                            <p class="section__subtitle">
-                                {{ data.slider.subtitle }}
-                            </p>
-                            <h2 class="section__title">
-                                {{ data.slider.title }}
-                            </h2>
-                        </div>
-                    </div>
-                    <div class="col-10 offset-1 texts">
-                        {% for t in data.slider.texts %}
-                            <p class="section__text">{{ t }}</p>
-                        {% endfor %}
-                    </div>
                 </div>
-            </div>
-            
-        </section>
-
-        <section class="prevs center bg--dark">
-            {% set productPageTemplateId = '1393' %} 
-            {% set collapseAfter = 8 %}
-            {% set namePrefix = '' %}
-            {% set categories = [
-                    { 'key':'effect', 'label': 'Effects', 'count': 4},
-                    
-                ]
-            %}
-
-            {# { 'key':'basic', 'label': 'Basic', 'count': 25},
-                    { 'key':'box', 'label': 'Box', 'count': 6},
-                    { 'key':'computer', 'label': 'Computer', 'count': 15},
-                    { 'key':'custom', 'label': 'Custom', 'count': 9},
-                    { 'key':'isometric', 'label': 'Isometric', 'count': 13},
-                    { 'key':'laptop', 'label': 'Laptop', 'count': 11},
-                    { 'key':'smartphone', 'label': 'Smartphone', 'count': 14},
-                    { 'key':'typography', 'label': 'Typography', 'count': 5},
-                    { 'key':'background', 'label': 'Backgrounds', 'count': 12}, #}
-            
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 text-center">
-                        <div class="section__content">
-                            <div class="section__head">
-                                <h2 class="section__title">
-                                    <span class="deco"></span>
-                                    <span>A collection of</span><span class="section__display"> 20 </span><span>useful counters</span>
-                                </h2>
-                                <p class="section__subtitle">
-                                    hover or tap to preview animations
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="product-prev-grid" class="product-prev-grid container">
-    			{% for category in categories %}
-					{% set key = category.key %}
-					{% if categories|length > 1 %}
-                        <p class="h3 prevs__title text-center">{{ category.label }}</p>
-                    {% endif %}
-					<div class=" row {{ category.rowClass | default('') }} {% if category.count == 5 %}row-5{% endif %}" >
-						{% for i in range(category.count) %}
-							{% set num = '%02d' % loop.index %}
-							{% set filename = 'https://s3.motionvfx.com/mvfxpublic/products/templates/' + productPageTemplateId + '/media/' + namePrefix + key +  '_' + num %}
-							<div class="
-                                prev-card
-                                product-prev-col
-                                col-6
-                                {# {% if key == 'subtitles' or key == 'typography' %}col-lg-4{% else %}col-lg-3{% endif %} #}
-                                col-lg-3
-                                {% if loop.index > collapseAfter %}collapse prev-collapse-{{ key }}{% endif %}
-                            " id="prev-collapse-{{ key }}-{{ loop.index }}">
-								<div class="product-prev-cell" data-mp4-src="{{ filename }}.mp4?{{file_version}}" style="--s-index: {{loop.index % 5}}" >
-									<img loading="lazy"
-                                        src="{{ filename }}-640.jpg?{{file_version}}"
-                                        {# src="{{placeholder_url}}/400x225/eeaaff" #}
-                                        alt="" width="400" height="225" />
-									<div class="loading-spinner"></div>
-								</div>
-							</div>
-						{% endfor %}
-						{% if category.count > collapseAfter %}
-							<div class="col-btn-collapse">
-								<button class="btn-collapse" type="button" data-target=".prev-collapse-{{ key }}" aria-expanded="false" aria-controls="{% for j in range(collapseAfter, category.count) %} prev-collapse-{{ key }}-{{ j }} {% endfor %}">
-									<span><span class="label-collapsed">Show more</span><span class="label-expanded">Collapse</span> ({{ category.count - collapseAfter }})</span>
-									<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-											viewBox="0 0 36.6 61.5" style="enable-background:new 0 0 36.6 61.5;" xml:space="preserve" class="btn-collapse-arrow" height="20">
-										<style type="text/css">
-											.st0{fill:none;stroke:currentColor;stroke-width:8;stroke-miterlimit:10;}
-										</style>
-										<polyline class="st0" points="2.8,58.6 30.9,30.5 3.2,2.8 "/>
-									</svg>
-								</button>
-							</div>
-						{% endif %}
-					</div>
-				{% endfor %}
+                {# <a class="carousel-control-prev" href="#carouselFlat" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselFlat" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a> #}
             </div>
         </section>
-
-        <section class="prevs-after bg--dark">
-            <div class="comp">
-                {{picture(
-                    media_url=media_url,
-                    filename= media_prefix + '_rowers' ,
-                    file_sizes=[325,750,1500],
-                    media_files={},
-                    formats=['webp','jpg'],
-                    width=535,
-                    height=803,
-                    alt="Rowers on water",
-                    img_class="rowers"
-                )}}
-
-                {{picture(
-                    media_url=media_url,
-                    filename= media_prefix + '_20' ,
-                    file_sizes=[250, 500],
-                    media_files={},
-                    formats=['webp','png'],
-                    width=357,
-                    height=137,
-                    alt="Counter 20",
-                    img_class="counter"
-                )}}
-            </div>
-            <div class="section__content">
-                <div class="section__head">
-                    <p class="section__subtitle">
-                        ILLUSTRATE DIVERSE
-                    </p>
-                    <h2 class="section__title">
-                        Establish a successful donation campaign
-                    </h2>
-                    <p class="section__text section__text--inset">
-                        Check our full guide that will make you benefit from what mTutorial has to offer!
-                    </p>
-                </div>
-            </div>
-        </section>
-
+{# TECHSPEC #}
         <a class="nav" href="#" name="specs" rel="noopener noreferrer"></a>
-
         <div class="ts-mi">
-            <section class="tech-spec">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="tech-spec-info">
-                                <div class="section__text__content">
-                                    <div class="section__head">
-                                        <div class="section__title tech-spec__title section__title">
-                                            Technical specifications
-                                        </div>
+        <section class="tech-spec bg--light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="tech-spec-info">
+                            <div class="section__text__content">
+                                <div class="section__head">
+                                    <h2 class="section__title tech-spec__title section__title">Technical specifications</h2>
+                                </div>
+                                <div class="ttable tech-spec__table">
+                                    <div class="tcell tlabel">Supported software</div>
+                                    <div class="tcell tdata">
+                                        {% autoescape off %}
+                                            {{ product.productdetails.minimal_requirements.replace('FCP 10', 'FCP 10').replace('Motion 5', 'Motion 5').replace(', ', ',<br>') }}
+                                        {% endautoescape %}
                                     </div>
-                                    <div class="ttable tech-spec__table">
-                                        <div class="tcell tlabel">Supported software</div>
-                                        <div class="tcell tdata">
-                                            <h3 class="p">
-                                                {% autoescape off %}
-                                                    {{ product.productdetails.minimal_requirements.replace('FCP 10', 'FCP 10').replace('Motion 5', 'Motion 5').replace(', ', ',<br>') }}
-                                                {% endautoescape %}
-                                            </h3>
-                                        </div>
-                                        <div class="tcell tlabel">Includes</div>
-                                        <div class="tcell tdata">
-                                            <h3 class="p">
-                                                <span>114 titles</span>
-                                            </h3>
-                                        </div>
-                                        <div class="tcell tlabel">Size</div>
-                                        <div class="tcell tdata">
-                                            {{ "%.0f MB"|format(product.productdetails.source_size / 1000) }}
-                                        </div>
-                                        {% for kind in ['trailer', 'tutorial'] %}
-                                            {% with musics=product.productdetails.music.select_related('music_portal').all().filter(used_in_trailer=kind=='trailer') %}
-                                                {% if musics|length %}
-                                                    <div class="tcell tlabel">Music used in {{ kind }}</div>
-                                                    <div class="tcell tdata">
-                                                        {% include 'product/music_info.jinja2' %}
-                                                    </div>
-                                                {% endif %}
-                                            {% endwith %}
-                                        {% endfor %}
+                                    <div class="tcell tlabel">Includes</div>
+                                    <div class="tcell tdata">1 FCP title / 1 DVR</div>
+                                    <div class="tcell tlabel">Size</div>
+                                    <div class="tcell tdata">
+                                        {{ "%.1f MB"|format(product.productdetails.source_size / 1000) }}
                                     </div>
+                                    {% for kind in ['trailer', 'tutorial'] %}
+                                        {% with musics=product.productdetails.music.select_related('music_portal').all().filter(used_in_trailer=kind=='trailer') %}
+                                            {% if musics|length %}
+                                                <div class="tcell tlabel">Music used in {{ kind }}</div>
+                                                <div class="tcell tdata">
+                                                    {% include 'product/music_info.jinja2' %}
+                                                </div>
+                                            {% endif %}
+                                        {% endwith %}
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>
                     </div>
-            </section>
+                </div>
+        </section>
 
-            <section class="minstaller__section">
-                <div class="container">
-                    <div class="row">
-                        <div class="col">
-                            <div class="minstaller">
-                                <div class="minstaller__title">mInstaller</div>
-                                <p class="minstaller__description">
-                                    After purchasing, the product is <b>instantly available </b>for download via <a href="https://www.motionvfx.com/page/minstaller.html" target="_blank" rel="noopener noreferrer">mInstaller</a>.
-                                </p>
-                            </div>
+        <section class="minstaller__section bg--light">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="minstaller">
+                            <h3 class="minstaller__title">mInstaller</h3>
+                            <p class="minstaller__description">
+                                After purchasing, the product is <b>instantly available </b>for download via <a href="https://www.motionvfx.com/page/minstaller.html" target="_blank" rel="noopener noreferrer">mInstaller</a>.
+                            </p>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
         </div>
 
+		{# FOOTER #}
         {# media_files={
                         '(max-width: 960px)': {
                             'filename': media_prefix + '_footer_mobile',
@@ -585,15 +567,13 @@
                             'file_sizes': [640, 960],
                         }
                     }, #}
-
-        <footer class="footer">
+	<footer class="footer">
             <div class="image__background " style="--s-index:0">
                 {{picture(
                     media_url=media_url,
-                    filename= media_prefix + '_footer',
+                    filename= media_prefix + '_footer' ,
                     file_sizes=srcsetSizes,
-                    media_files={},
-                    formats=['webp','jpg'],
+                    formats=['jpg'],
                     width=2560,
                     height=1100,
                     data_src=True,
@@ -606,20 +586,21 @@
                     <div class="col-12">
                         <div class="section__text__content">
                             <div class="section__head">
-                                <p class="section__subtitle">
+                                <div class="footer__subtitle section__subtitle">
                                     {{data.footer.subtitle|safe}}
-                                </p>
-                                <div class="section__title">
+                                </div>
+                                <div class="footer__title section__title">
                                     {{data.footer.title|safe}}
                                 </div>
-                                <p class="footer__text section__text ">
-                                    {{ data.footer.text }}
+                                <p class="footer__text section__text mx-auto" style="max-width: 500px">
+                                    {{ data.footer.text|safe }}
                                 </p>
                             </div>
                             <div class="button-buy">
-                                {% with discount_text="INTRO", version=2 %}
-                                    {% include "product/buy_button.jinja2" %}
-                                {% endwith %}
+                                {{buy_btn_free()}}
+                                {# {% with discount_text="INTRO", version=2 %} #}
+                                    {# {% include "product/buy_button.jinja2" %} #}
+                                {# {% endwith %} #}
                             </div>
                         </div>
                     </div>

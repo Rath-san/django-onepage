@@ -3,40 +3,22 @@
   z-index: 1;
   padding-bottom: 0;
 
-  .section__content {
-    margin-bottom: 4rem;
+  .section__text {
+    margin-bottom: clamp(3rem, 10vw, 5rem);
+    // margin-bottom: 2rem;
+  }
+
+  &.trailer,
+  .tutorial {
   }
   
   &.trailer {
-    // color: #fff;
-    .section__content {
-      color: #fff;
-
-    }
-    // padding-top: 3rem;
-    &::before {
-      position: absolute;
-      content: '';
-      bottom: 40%;
-      left: 0;
-      right: 0;
-      top: 0;
-      background-color: currentColor;
-      z-index: -1;
-    }
+    // margin-bottom: clamp(3rem, 20vw, 6rem);
   }
 
   &.tutorial {
-    // padding-top: 6rem;
-    &::after {
-      position: absolute;
-      content: '';
-      bottom: 0;
-      left: 0;
-      right: 0;
-      top: 60%;
-      background-color: currentColor;
-      z-index: -1;
-    }
+    // padding-top: 3rem;
+    margin-bottom: clamp(3rem, 10vw, 5rem);
+    // margin-bottom: 2rem;
   }
 }

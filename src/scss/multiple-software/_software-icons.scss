@@ -1,0 +1,19 @@
+#software-icons {
+    position: absolute;
+    bottom: clamp(0px, 20vh, 15%);
+
+    > * {
+        opacity: 0;
+        transition: opacity .5s ease-in;
+        transition-delay: calc( 500ms + var(--i) * 200ms);
+        .ready & {
+            opacity: 1;
+        }
+    }
+
+    .animated-in & {
+        > * {
+            opacity: 1;
+        }
+    }
+}

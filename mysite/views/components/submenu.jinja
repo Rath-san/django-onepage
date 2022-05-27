@@ -29,7 +29,7 @@
     ] %}
     <div class="submenu-plugins-left">
         {% for link in links %}
-            <a id="{{link.class}}-menu" onclick="clickOnMenuItem('{{link.anchor}}');">{{link.title}} 
+            <a id="{{link.class}}-menu" role="button" onclick="clickOnMenuItem('{{link.anchor}}');">{{link.title}}
                 <img loading="lazy"
                     src="https://s3.motionvfx.com/mvfxpublic/products/templates/1227/media/{{link.src}}"
                     width="12"

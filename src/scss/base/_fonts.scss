@@ -4,9 +4,9 @@ $font-size-title: $rem * 2;
 $font-size-sub-title: $rem * 1.2;
 $font-size-body: $rem * 0.9;
 
-$font-family-text: 'Mulish', sans-serif;
-$font-family-subtitle: $font-family-text;
-$font-family-title: $font-family-text;
+$font-family-text: 'Open sans', sans-serif;
+$font-family-title: 'Montserrat';
+$font-family-subtitle: $font-family-title;
 $font-family-title--big: $font-family-text;
 
 @for $var from 1 to 6 {
@@ -41,17 +41,13 @@ main,
   &__title {
     // font-size: 1.8rem;
     font-size: 36px;
-    font-weight: 600;
+    font-weight: 700;
     line-height: 1.2;
     font-family: $font-family-title;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     // letter-spacing: 1px;
 
     opacity: 0;
-
-    .footer & {
-      margin-bottom: 40px;
-    }
 
     .big {
       font-size: 50px;
@@ -59,10 +55,22 @@ main,
   }
 
   &__subtitle {
+    opacity: 0;
     font-size: 0.6rem;
     font-weight: 00;
     text-transform: uppercase;
     font-family: $font-family-subtitle;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+    transition:
+      opacity .5s ease-in-out,
+      transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    [data-visible="true"] &,
+    .loaded & {
+      opacity: 1 !important;
+      transform: translateY(0px);
+    }
   }
 
   &__display {
@@ -75,6 +83,7 @@ main,
   &__text {
     font-family: $font-family-text;
     font-weight: 400;
+    font-size: 0.9rem;
     font-size: 18px;
 
     opacity: 0;
