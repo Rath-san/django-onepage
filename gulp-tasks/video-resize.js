@@ -17,11 +17,11 @@ const CONFIGS = [
 
 function resizeTask(
     managedFormats = ["mov", "mp4", "m4v"],
-    videoDist = "src/_videos/otp/"
+    videoDist = "src/mtransition_noise/_videos/otp/"
 ) {
     CONFIGS.forEach(({ directory }) => {
         const fileSrcs = managedFormats.map(
-            (format) => `src/_videos/${directory}/*.${format}`
+            (format) => `src/mtransition_noise/_videos/${directory}/*.${format}`
         );
 
         return src(fileSrcs).pipe(

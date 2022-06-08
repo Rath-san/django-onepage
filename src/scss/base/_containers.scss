@@ -3,18 +3,23 @@ main {
     // color: #fff;
 }
 
-body {
+body,
+main {
     overflow-x: hidden;
+    background: #000;
 }
 
 main {
     overflow-x: hidden;
     position: relative;
     width: 100%;
+    color: #fff;
 }
 
+$section-padding-y: clamp(3rem, 10vw, 5rem);
+
 section {
-    padding: clamp(3rem, 10vw, 5rem) 0;
+    padding: $section-padding-y 0;
     position: relative;
 }
 

@@ -33,4 +33,4 @@ def index(request, **kwargs):
         'test': 'test12'
     }
 
-    return render(request, "index.jinja", context)
+    return render(request, "mtransition_noise.jinja", context)

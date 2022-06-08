@@ -6,6 +6,8 @@ NAME = 'DJANGO_SUPERUSER_USERNAME'
 EMAIL = 'DJANGO_SUPERUSER_PASSWORD'
 PASS = 'DJANGO_SUPERUSER_EMAIL'
 
+print(os.environ[NAME])
+
 class Command(BaseCommand):
     help = "Creates an admin user non-interactively if it doesn't exist"
 

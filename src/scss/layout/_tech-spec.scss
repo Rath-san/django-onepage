@@ -3,6 +3,7 @@
     padding-left: 5%;
     padding-right: 5%;
     font-weight: 400;
+    margin-bottom: $section-padding-y;
 
     &__title {
         margin-bottom: 3rem;
@@ -77,59 +78,14 @@
 
 .ts-mi {
   position: relative;
-  // background-color: #9aa9ae;
-  // max-height: 1050px;
+  padding: clamp(4rem, 10%, 8rem) 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   z-index: 2;
   position: relative;
-  // @media screen and (max-width: 960px) {
-  //   padding-bottom: 0;
-  // }
 
   .container {
     position: relative;
-  }
-
-  // .deco {
-  //   position: absolute;
-  //   left: 70%;
-  //   bottom: -180px;
-
-  //   @media screen and (max-width: 1300px) {
-  //     display: none;
-  //   }
-
-  //   img {
-  //     max-width: 600px;
-  //     width: 50vw;
-  //     height: auto;
-  //   }
-  //   @media screen and (min-width: 2000px) {
-  //     left: unset;
-  //     right: 6vw;
-  //   }
-  //   @media screen and (max-width: 1700px) {
-  //     left: 70%;
-  //     right: unset;
-  //     bottom: 0px;
-  //     img {
-  //       max-width: 400px;
-  //     }
-  //   }
-  // }
-
-  @include respond-below(md) {
-    padding-top: 2rem;
-    padding-bottom: 0;
-
-    .tech-spec {
-      margin-bottom: 2rem;
-    }
-
-    .minstaller {
-      margin-bottom: 1rem;
-    }
   }
 }

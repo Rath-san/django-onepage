@@ -13,77 +13,103 @@ const {
 const FORMATS = ["jpg", "webp"];
 const IMAGE_QUALITY = 50;
 
-640, 820, 1024;
+// 640, 820, 1024;
 
 const CONFIGS = [
     // {
-    //     directory: "_bg",
-    //     sizes: [
-    //         ...RESPONSIVE_SIZES_DESKTOP.map((size) => ({ ...size, h: 960 })),
-    //         ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ ...size, h: 560 }))
-    //     ],
-    //     quality: 75,
+    //     directory: '_footer',
     //     targetFormat: ["jpg"],
-    //     // outputOptions: {
-    //     //     mozjpeg: true,
-    //     // },
+    //     quality: 50,
+    //     sizes: [
+    //         ...RESPONSIVE_SIZES_DESKTOP.map((size) => ({ ...size, h: 860 })),
+    //         ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ ...size, h: 740 })),
+    //     ],
+    //     outputOptions: {
+    //         mozjpeg: true,
+    //     },
+    // },
+    // {
+    //     directory: '_top',
+    //     targetFormat: ["jpg"],
+    //     quality: 50,
+    //     sizes: [
+    //         ...RESPONSIVE_SIZES_DESKTOP.map((size) => ({ ...size, h: 860 })),
+    //         {w: 640, h: 860},
+    //         {w: 960, h: 690}
+    //     ],
+    //     outputOptions: {
+    //         mozjpeg: true,
+    //     },
+    // },
+    // {
+    //     directory: '_prevs',
+    //     targetFormat: ["jpg"],
+    //     quality: 90,
+    //     sizes: [
+    //         {w: 825},
+    //         {w: 410}
+
+    //     ],
+    //     outputOptions: {
+    //         mozjpeg: true,
+    //     },
+    // },
+
+    // {
+    //     directory: '_mobile',
+    //     targetFormat: ["jpg"],
+    //     quality: 75,
+    //     sizes: [
+    //         {w: 1024},
+    //         {w: 960},
+    //         {w: 640}
+    //     ],
+    //     outputOptions: {
+    //         mozjpeg: true,
+    //     },
+    // },
+    // {
+    //     directory: '_prev',
+    //     targetFormat: ["jpg"],
+    //     quality: 90,
+    //     sizes: [
+    //         ...RESPONSIVE_SIZES.map((size) => ({ ...size, h: 860 })),
+    //     ],
+    //     outputOptions: {
+    //         mozjpeg: true,
+    //     },
     // },
     {
-        directory: '_box_under',
+        directory: '_wide',
         targetFormat: ["jpg"],
-        quality: 90,
+        quality: 50,
         sizes: [
-            ...RESPONSIVE_SIZES.map((size) => ({ ...size, h: 860 })),
+            ...RESPONSIVE_SIZES_DESKTOP.map((size) => ({ ...size })),
+            ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ ...size, hmin:400 }))
         ],
         outputOptions: {
             mozjpeg: true,
         },
     },
     // {
-    //     directory: '_box',
-    //     targetFormat: ["webp", "png"],
+    //     directory: '_slider',
+    //     targetFormat: ["jpg"],
     //     quality: 50,
     //     sizes: [
-    //         {w: 256},
-    //         {w: 512}
+    //         ...RESPONSIVE_SIZES_DESKTOP.map((size) => ({ ...size })),
+    //         ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ ...size, hmin:400 }))
     //     ],
-    // },
-    // {
-    //     directory: "_slides",
-    //     sizes: [
-    //         ...RESPONSIVE_SIZES_DESKTOP,
-    //         ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ ...size, h: 400 }))
-    //     ],
-    //     quality: 75,
-    //     targetFormat: ["jpg"],
-    //     // outputOptions: {
-    //     //     mozjpeg: true,
-    //     // },
-    // },
-    // {
-    //     directory: "_logo",
-    //     sizes: [{w: 800}, {w: 400}],
-    //     quality: 75,
-    //     targetFormat: ["png", "webp"],
-    //     // outputOptions: {
-    //     //     mozjpeg: true,
-    //     // },
-    // },
-    // {
-    //     directory: "_promo",
-    //     sizes: [...RESPONSIVE_SIZES],
-    //     quality: 75,
-    //     targetFormat: ["jpg"],
-    //     // outputOptions: {
-    //     //     mozjpeg: true,
-    //     // },
+    //     outputOptions: {
+    //         mozjpeg: true,
+    //     },
     // },
 
     // {
-    //     directory: "_squares",
+    //     directory: "_deco_comp",
     //     sizes: [
-    //         {w: 800},
-    //         {w: 400}
+    //         {w: 1080},
+    //         {w: 540},
+    //         {w: 270}
     //     ],
     //     quality: 75,
     //     targetFormat: ["jpg"],
@@ -92,63 +118,47 @@ const CONFIGS = [
     //     },
     // },
     // {
+    //     directory: '_end',
+    //     targetFormat: ["jpg"],
+    //     quality: 75,
+    //     sizes: [
+    //         {w: 900},
+    //         {w: 450},
+    //         {w: 225}
+    //     ],
+    //     outputOptions: {
+    //         mozjpeg: true,
+    //     },
+    // },
+    // {
+    //     directory: '_scribble',
+    //     targetFormat: ["jpg"],
+    //     quality: 75,
+    //     sizes: [
+    //         {w: 2100},
+    //         {w: 1050},
+    //         {w: 525},
+    //         {w: 260},
+    //     ],
+    //     outputOptions: {
+    //         mozjpeg: true,
+    //     },
+    // },
+    // {
     //     directory: "_box",
-    //     sizes: [{ w: 512 }, { w: 256 }],
-    //     quality: 75,
     //     targetFormat: ["webp", "png"],
-    // },
-
-
-    // {
-    //     directory: "_presets",
-    //     sizes: [
-    //         {w: 399},
-    //     ],
     //     quality: 75,
-    //     targetFormat: ["jpg"],
-    // },
-    // {
-    //     directory: "_tuts",
-    //     sizes: [
-    //         {w: 1000},
-    //         {w: 500},
-    //         {w: 250},
-    //     ],
-    //     quality: 75,
-    //     targetFormat: ["jpg"],
-    // },
-    // {
-    //     directory: "_palette",
-    //     sizes: [
-    //         {w: 1200},
-    //         {w: 600},
-    //         {w: 300},
-    //     ],
-    //     quality: 75,
-    //     targetFormat: ["png", "webp"],
-    // },
-    // {
-    //     directory: "_ui",
-    //     sizes: [
-    //         {w: 2000},
-    //         {w: 1000},
-    //         {w: 500},
-    //     ],
-    //     quality: 75,
-    //     targetFormat: ["png", "webp"],
-    // },
-    // {
-    //     directory: "_head",
-    //     sizes: [
-    //         ...RESPONSIVE_SIZES_DESKTOP,
-    //         ...RESPONSIVE_SIZES_MOBILE.map((e) => ({ ...e, h: 600 })),
-    //     ],
+    //     sizes: [{ w: 256 }, { w: 512 }],
+    //     outputOptions: {
+    //         mozjpeg: true,
+    //     },
     // },
 ];
 
 function resizeTask(
     managedFormats = ["jpg", "jpeg", "png"],
-    imgDist = "src/_images/otp/"
+    imgDist = "src/mtransition_noise/_images/otp/",
+    imgInput = "src/mtransition_noise/_images/",
 ) {
     CONFIGS.forEach(
         ({
@@ -160,7 +170,7 @@ function resizeTask(
             targetFormat = FORMATS,
         }) => {
             const fileSrcs = managedFormats.map(
-                (format) => `src/_images/${directory}/*.${format}`
+                (format) => `${imgInput}${directory}/*.${format}`
             );
             return src(fileSrcs).pipe(
                 through2.obj(async function (file, _, cb) {
@@ -178,6 +188,7 @@ function resizeTask(
                     sizes.forEach((size) => {
                         const width = size.w;
                         const height = size.h;
+                        const heightMin = size.hmin;
 
                         const generateName = (customExt) => {
                             const fileExt = customExt
@@ -191,7 +202,6 @@ function resizeTask(
                                 : "";
 
                             const fName = name.split(".")[0];
-
                             return `${fName
                                 .split(" ")
                                 .join(
@@ -206,7 +216,20 @@ function resizeTask(
                             });
 
                             const saveFile = async (format = file.extname) => {
-                                const imageClone = img.clone();
+                                const imageClone = await (async () => {
+                                    // minheight
+                                    const clone = img.clone();
+                                    let cloneResized = clone.resize(width, height, {});
+                                    if (heightMin) {
+                                        const {info} = await cloneResized.toBuffer({ resolveWithObject: true })
+
+                                        // console.log(cloneResized);
+                                        if (info?.height < heightMin) {
+                                            cloneResized = clone.resize(width, heightMin, {})
+                                        }
+                                    }
+                                    return cloneResized;
+                                })();
 
                                 // if (format === "jpg" || format === "jpeg") {
                                 //     imageClone.flatten({
@@ -214,7 +237,6 @@ function resizeTask(
                                 //     });
                                 // }
 
-                                imageClone.resize(width, height, {});
                                 imageClone.toFormat(format, {
                                     quality,
                                     ...outputOptions,

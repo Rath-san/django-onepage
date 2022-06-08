@@ -1,0 +1,185 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700);
+
+$bg-color: #111;
+$txt-color: #fff;
+
+$color-c1: red;
+$color-c2: blue;
+
+$offset-c1: 3;
+$offset-c2: 2;
+
+$lay-c1: 2;
+$lay-c2: 2;
+
+*,
+*:before,
+*:after {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+[data-glitch] {
+    transform: skewX(0deg) scaleY(1);
+    animation: tr-bag 8s linear infinite;
+    // mix-blend-mode: lighten;
+    [data-glitch-text] {
+        position: relative;
+        &:before,
+        &:after {
+            display: block;
+            content: attr(data-glitch-text);
+            position: absolute;
+            top: 0;
+            // color: $txt-color;
+            // background: $bg-color;
+            overflow: hidden;
+            width: 100%;
+        }
+        &:before {
+            top: 0;
+            left: 0;
+            text-shadow: 3px 0 #7ad4c6;
+            animation: c2 8s infinite linear alternate-reverse;
+        }
+        &:after {
+            top: 0;
+            left: 0;
+            text-shadow: -3px 0 #232f63;
+            animation: c1 8s infinite linear alternate-reverse;
+        }
+    }
+}
+
+@keyframes is-off {
+    0% {
+        opacity: 1;
+    }
+    55% {
+        opacity: 1;
+    }
+    56% {
+        opacity: 0;
+    }
+    57% {
+        opacity: 0;
+    }
+    58% {
+        opacity: 1;
+    }
+    71% {
+        transform: scaleY(1) skewX(0deg);
+    }
+    72% {
+        transform: scaleY(3) skewX(-60deg);
+    }
+    73% {
+        transform: scaleY(1) skewX(0deg);
+    }
+    80% {
+        opacity: 1;
+    }
+    81% {
+        opacity: 0;
+    }
+    82% {
+        opacity: 0;
+    }
+    83% {
+        opacity: 1;
+    }
+    91% {
+        transform: scaleX(1) scaleY(1) skewX(0deg);
+        color: $txt-color;
+    }
+    92% {
+        transform: scaleX(1.5) scaleY(0.2) skewX(80deg);
+        color: green;
+    }
+    93% {
+        transform: scaleX(1) scaleY(1) skewX(0deg);
+        color: $txt-color;
+    }
+}
+
+@keyframes c1 {
+    @for $i from 0 through 10 {
+        #{$i * (1 / 20) * 10 * 10%} {
+            clip: rect(random(100)+px, 9999px, random(100)+px, 0);
+            $x: 10 - random(20) * 1px;
+            $y: 5 - random(10) * 1px;
+            transform: translate($x, $y);
+        }
+    }
+}
+
+@keyframes c2 {
+    @for $i from 0 through 10 {
+        #{$i * (1 / 20) * 10 * 10%} {
+            clip: rect(random(100)+px, 9999px, random(100)+px, 0);
+        }
+    }
+    13% {
+        transform: scaleX(0.8);
+    }
+}
+
+@keyframes clock-bag {
+    @for $i from 0 through 50 {
+        #{$i * (1 / 50) * 10 * 10%} {
+            transform: translate(random(5)+px, random(5)+px);
+        }
+    }
+    1% {
+        transform: scaleY(1) skewX(0deg);
+    }
+    1.5% {
+        transform: scaleY(3) skewX(-60deg);
+    }
+    2% {
+        transform: scaleY(1) skewX(0deg);
+    }
+    51% {
+        transform: scaleX(1) scaleY(1) skewX(0deg);
+    }
+    52% {
+        transform: scaleX(1.5) scaleY(0.2) skewX(80deg);
+    }
+    53% {
+        transform: scaleX(1) scaleY(1) skewX(0deg);
+    }
+}
+
+$step: 20%;
+
+@keyframes tr-bag {
+    // for i in (0..50)
+    @for $i from 0 through 20 {
+        #{$i * (1 / 50) * 10 * 10%} {
+            // transform: translate(random(2)+px, random(1)+px);
+            // opacity: (random() + .6);
+        }
+    }
+    1% {
+        transform: scaleY(1) skewX(0deg);
+    }
+    1.5% {
+        transform: scaleY(3) skewX(-20deg);
+    }
+    2% {
+        transform: scaleY(1) skewX(0deg);
+    }
+    #{$step + 1%} {
+        transform: scaleX(1) scaleY(1) skewX(0deg);
+    }
+    #{$step + 1.5%} {
+        transform: scaleX(1.1) scaleY(0.2) skewX(20deg);
+    }
+    #{$step + 2%} {
+        transform: scaleX(1) scaleY(1) skewX(0deg);
+    }
+}

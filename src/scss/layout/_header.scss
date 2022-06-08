@@ -27,10 +27,14 @@
         flex-direction: column;
         font-weight: 600;
         align-items: center;
-
-        img {
-            width: clamp(200px, 75vw, 400px);
-            height: auto;
+        font-size: clamp(4rem, 25vw, 7rem);
+        letter-spacing: .05ch;
+        line-height: 1;
+        span {
+            font-family: $font-family-text;
+            font-size: .24em;
+            letter-spacing: 0.36ch;
+            margin-left: 0.25ch;
         }
     }
 
@@ -38,9 +42,11 @@
         img {
             top: 100px;
             object-position: bottom;
-            @media screen and (max-width: 768px) {
-                top: 50px;
-            }
+            max-height: 760px;
+            object-position: center;
+            // @media screen and (max-width: 768px) {
+            //     top: 50px;
+            // }
         }
         .screens {
             left: 9%;
@@ -160,7 +166,7 @@ $animation-delay-offset: 200ms;
 .header__subtitle,
 .header__deco {
     opacity: 0;
-    transform: translateY(-10px) scale(1.1);
+    // transform: translateY(-10px) scale(1.1);
     will-change: opacity, transform;
     transition: transform $animation-duration cubic-bezier(0.3, 0, 0.3, 1),
         opacity $animation-duration linear;

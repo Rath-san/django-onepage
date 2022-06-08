@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include './components/head.jinja' %}
+
+<body>
+    {% include './components/nav.jinja' %}
+    {# {% include './components/macro.jinja' %} #}
+    {# {% include './components/bundle-popup.jinja' %} #}
+
+    {% macro picture(
+		media_url, filename, media_files={}, file_sizes=[360, 480, 640, 960], formats=['webp','jpg'], media_sizes='', media='', alt='', img_class='', img_style='', picture_class='', width='', height='', loading='', data_src=False
+	) %}
+		<picture class="{{ picture_class }}">
+			{% for media in media_files %}
+				{% set m = media_files[media] %}
+				{% for format in formats %}
+					<source {% if data_src %} data-srcset=" {% for size in m['file_sizes'] %} {{ media_url }}/{{ m['filename'] }}-{{ size }}.{{ format }} {{size}}w, {% endfor %}" {% else %} srcset=" {% for size in m['file_sizes'] %} {{ media_url }}/{{ m['filename'] }}-{{ size }}.{{ format }} {{size}}w, {% endfor %}" {% endif %} type="image/{{ format | replace('jpg', 'jpeg') }}" sizes="{{ m['media_sizes'] | default(media_sizes) }}" media="{{ media }}" >
+				{% endfor %}
+			{% endfor %}
+			{% for format in formats %}
+				<source {% if data_src %} data-srcset=" {% for size in file_sizes %} {{ media_url }}/{{ filename }}-{{ size }}.{{ format }} {{size}}w, {% endfor %}" {% else %} srcset=" {% for size in file_sizes %} {{ media_url }}/{{ filename }}-{{ size }}.{{ format }} {{size}}w, {% endfor %}" {% endif %} type="image/{{ format | replace('jpg', 'jpeg') }}" sizes="{{ media_sizes }}" media="{{ media }}">
+			{% endfor %}
+			<img {% if data_src %} data-src="{{ media_url }}/{{ filename }}-{{ file_sizes[0] }}.{{ formats[-1] }}?{{file_version}}" {% else %} src="{{ media_url }}/{{ filename }}-{{ file_sizes[0] }}.{{ formats[-1] }}?{{file_version}}" {% endif %} alt="{{alt}}" class="{{img_class}}" style="{{img_style}}" width="{{width}}" height="{{height}}" loading="{{loading}}" >
+		</picture>
+	{% endmacro %}
+    {% macro buy_btn_free() %}
+    <div class="button-buy">
+        <div id="btn-buy-container" class="version1">
+            <div class="inner-container">
+                <a href="#" class="buy-button" data-add-to-cart='{ "productId": {{  product.id }}, "productTitle": "{{  product.title }}" }'>
+                    Get it free for FCP / DVR
+                </a>
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+
+		{% set srcsetSizesMobile = [ 640, 960 ] %}
+		{% set srcsetSizesDesktop = [ 1280, 1920, 2560 ] %}
+		{% set srcsetSizes = srcsetSizesMobile + srcsetSizesDesktop %}
+
+		{% set template_id = "1431" %}
+		{# {% set template_id_s3 = "200" %} #}
+        {% set media_prefix = "mVertical" %}
+		{% set media_url = "https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media" % template_id %}
+		{# {% set media_prefix_s3 = "https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media" % template_id_s3 %} #}
+		{# {% set media_prefix_presets = media_prefix + "/presets" %} #}
+		{% set version = "v=0" %}
+
+
+    {% set product_name = 'mVertical' %}
+    {% set shared_media_template_id = '1408' %}
+    {% set shared_media_url = 'https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media' % (shared_media_template_id) %}
+    {% set product_id_fcp = 3698 %}
+    {% set product_id_dvr = 3727 %}
+    {% set twin_product_id = product_id_fcp %}
+    {# {% set product_fcp, product_dvr = get_products([product_id_fcp, product_id_dvr]) %} #}
+	{% set product_fcp, product_dvr = [product, product] %}
+        {# {
+            'type': 'dvr',
+            'name': ['DV', 'DaVinci Resolve'],
+            'product': product_dvr,
+            'product_url': 'https://www.motionvfx.com/store,%s,p%s.html' % (product_dvr.slug, product_dvr.id),
+            'images': ["box_dvr", "dvr_icon"],
+            'box_media_url': 'https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media' % ('1415'),
+        }, #}
+            {# 'product': product_fcp, #}
+    {% set software_versions = [
+        {
+            'type': 'fcp',
+            'name': ['FCP', 'Final Cut Pro'],
+            'product_url': 'https://www.motionvfx.com/store,%s,p%s.html' % (product_fcp.slug, product_fcp.id),
+            'images': ["box_fcp", "fcp_icon"],
+            'box_media_url': 'https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media' % ('1415')
+        },
+    ] %}
+    {#{% for sv in software_versions %}
+        {{ sv.product.set_btn_title("%s for %s" % (product_name, sv.name[0]))|default("", True) }}
+    {% endfor %}#}
+    {% set products = software_versions|map(attribute="product") %}
+    {% set live = True %}
+
+
+    {% set data = {
+        'header': {
+            'subtitle': '70 Filmic Transition Effects for Final Cut Pro'
+        },
+        'trailer': {
+            'subtitle': 'CURTAINS UP',
+            'title': '<span class="glitch-anim-2">WATCH TRAILER</span>',
+            'text': 'See how versatile and impactful these cinematic effects are'
+        },
+        'tutorial': {
+            'subtitle': 'KNOW HOW!',
+            'title': '<span class="glitch-anim-2">VIEW TUTORIAL</span>',
+            'text': "Get 100% ready to use the full potential you're offereda"
+        },
+        'promo-wide': {
+            'title': '<span class="glitch-anim-2">REFINED </span><span class="front front--inline">visual metamorphoses</span>',
+            'text': 'A complete inventory of transition effects that will turn your  narative into a real journey. Choose your vibe!',
+        },
+        'presets': {
+            'title': 'Meaningful Transitions',
+            'title2': '<span class="front">ADJUST THE DYNAMICS </span><b class="glitch-anim-2">ACTION </b><span class="front front--inline">and life in your edit</span>',
+            'text': 'Want to give your audience a time to reflect or plunge them into a new, dynamic scene? All options are on the table!'
+        },
+        'footer': {
+            'title': '<span class="front front--inline" style="vertical-align: top; display: inline-block; padding-top: 0.6em;">Shift </span> <b class="glitch-anim-2"> MOODS & TONES</b>',
+            'text': "Evoke and shape your viewers' emotions, immerse them in your story and not once lose their focus... Get busy creating!"
+        }
+    } %}
+
+	{% set trailer_id = '_M9Nr7Clw3A' %}
+    {% set tutorial_id = 'qMM1W0aR-O4' %}
+
+<main class="mtransition-noise">
+	<section class="header" data-visible="true">
+            <div class="image__background">
+                {{picture(
+                    media_url=media_url,
+                    filename='top' ,
+                    file_sizes=srcsetSizes,
+                    formats=['jpg'],
+                    width=2560,
+                    height=860,
+                    alt="Header image",
+                    media_files={
+						'(max-width: 1024px)': {
+							'filename': 'top_m', 'file_sizes': [640, 960, 1024]
+						}
+					}
+                )}}
+            </div>
+            <div class="container-fluid">
+                <div class="section__content">
+                    <div class="header__logo glitch-anim-2--visible">
+                        <span class="word" data-word="mTRANSITION">mTRANSITION</span>
+                        <b class="word" data-word="NOISE">NOISE</b>
+                    </div>
+                    <h1 class="section__text">
+                        {# {{ data.header.subtitle }} #}
+                        {{product.head_info|safe}}
+                    </h1>
+                </div>
+		</div>
+        {# SOFTWARE ICONS #}
+		<div id="software-icons" class="software-icons text-center" style="width: 100%; left: 0; z-index: 1;">
+			{% for si in software_versions %}
+			<a
+                role="button"
+                name="product link {{ si.name[1] }}"
+                aria-label="Product link {{ si.name[1] }}"
+				target="_blank"
+				class="d-inline-block mx-1"
+				style="--i: {{ loop.index }}; --d: {{ loop.index }}">
+				{{ picture(shared_media_url, si.images[1], formats=["webp","png"], file_sizes=[180], width=60, height=60, img_class='software-icon', data_src=False) }}
+			</a>
+			{% endfor %}
+        </div>
+        </section>
+
+        <script>
+            const onHeaderImagesLoaded = (images, type= 'primary') => {
+                const loadedImages = images.map(img => false);
+                images.forEach((img, idx) => {
+                    loadedImages[idx] = img.complete;
+
+                    if (loadedImages.every(val => val)) {
+                        header.classList.add(`loaded-${type}`)
+                    }
+                    img.onload = () => {
+                        loadedImages[idx] = true
+                        if (loadedImages.every(val => val)) {
+                            header.classList.add(`loaded-${type}`)
+                        }
+                    }
+                })
+            }
+
+            const header = document.querySelector('section.header')
+            const items1 = [
+                header.querySelector('.image__background img'),
+            ]
+
+            const items2 = Array.from(header.querySelectorAll('.image__background img'));
+
+            onHeaderImagesLoaded(items1);
+            onHeaderImagesLoaded(items2, 'secondary');
+        </script>
+
+		<a class="nav" name="trailer"></a>
+		{# TRAILER #}
+        <section class="video trailer">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="section__content">
+                            <div class="section__head">
+                                <p class="section__subtitle " style="--s-index:0;">
+                                    {{data.trailer.subtitle}}
+                                </p>
+                                <div class="section__title">
+                                    {{ data.trailer.title|safe }}
+                                </div>
+                                <p class="section__text mx-auto" style="max-width: 18em;">
+                                    {{ data.trailer.text|safe }}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="yt embed-responsive embed-responsive-16by9">
+                            <div class="video-iframe" data-id="{{trailer_id}}" style="background-color: #000"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <a class="nav" name="tutorial"></a>
+		{# TUTORIAL #}
+        <section class="video tutorial">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section__content">
+                            <div class="section__head">
+                                <p class="section__subtitle " style="--s-index:0;">
+                                    {{ data.tutorial.subtitle }}
+                                </p>
+                                <div class="section__title ">
+                                    {{ data.tutorial.title|safe }}
+                                </div>
+                                <p class="section__text mx-auto" style="max-width: 18em;">
+                                    {{ data.tutorial.text|safe }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="yt embed-responsive embed-responsive-16by9">
+                            <div class="video-iframe" data-id="{{tutorial_id}}" style="background-color: #000"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {# PROMO SLIDER #}
+        {% with slider_images=[
+            {
+                'src': '1',
+                'alt': 'string'
+            },
+            {
+                'src': '2',
+                'alt': 'string'
+            },
+            {
+                'src': '3',
+                'alt': 'string'
+            }
+        ] %}
+        <section class="promo promo-carousel">
+            <div id="carouselMain" class="carousel slide carousel-fade fade-new">
+                <div class="carousel-inner">
+                {% for slide_img in slider_images %}
+                    <div class="carousel-item {% if loop.index == 1 %}active{% endif %}">
+                    {% with slide_index = loop.index %}
+                    {{ picture(
+                        media_url=media_url,
+                        filename='s_' + slide_img.src,
+                        file_sizes=srcsetSizes,
+                        formats=['jpg'],
+                        width=2560,
+                        height=960,
+                        alt=slide_img.alt,
+                        img_class="d-block w-100"
+                    ) }}
+                    {% endwith %}
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
+
+            <div class="promo-carousel__content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="section__content">
+                                <div class="section__head">
+                                    {% for heading in ['
+                                        <span class="front">CREATE </span><b class="glitch-anim-2">IMPRESSIONS</b>',
+                                        '<span class="front">BUILD </span><b class="glitch-anim-2">ATMOPSHERE</b>',
+                                        '<span class="front">PACE </span><b class="glitch-anim-2">ACTION</b>'] %}
+                                        <div class="section__title ">
+                                            {{ heading|safe }}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <ul id="carouselMainIndicators" class="carousel-indicators secuence" style="--s-index:2;">
+                {% for slideName in slider_images %}
+                    <li class="carousel-indicators__item {% if loop.index == 1 %}active{% endif %}"></li>
+                {% endfor %}
+            </ul>
+        </section>
+        {% endwith %}
+
+        {# SUGESTED PRODUCT #}
+        <section class="suggested-product">
+            {% macro buy_btn_suggested_product(product, product_name) %}
+            {# {% set info = get_promo_valid_info( product).replace('April ', 'April ') if live else 'Valid till April 21, 2022' %} #}
+            {% set info = 'April Valid till April 21, 2022' %}
+            {% set live = False %}
+            {% set is_promo = not live or ( product.is_promo and  product.promo_date) %}
+            <div class="button-buy">
+                <div id="btn-buy-container" class="version2" style="min-width: max-content">
+                    <div class="inner-container">
+                        <a href="#" class="buy-button" data-add-to-cart='{ "productId": {{  product.id }}, "productTitle": "{{  product.title }}" }'>
+                            {# {{ product_name }} {% if is_promo %}<del class="price-crossed"> ${{ price( product.price) }}</del>{% endif %} <span class="price">${{ price( product.get_price(request.user)) if live else 89 }}</span> #}
+                            {{ product_name }} <del class="price-crossed"> $79</del> <span class="price">$89</span>
+                        </a>
+                    </div>
+                    {% if is_promo %}
+                    <div class="promo-info">{{ ('<strong>Promo price</strong> ' + (info[0] | lower + info[1:])) | safe if info.startswith('Valid') else info }}</div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endmacro %}
+
+            <div class="container">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-12 col-lg-6">
+                        <div class="suggested-product__boxes mb-5 mb-lg-0 mx-auto justify-content-center">
+                        {# {% set product_external = get_product('3698') %} #}
+                        {% set product_external = product %}
+                        {% set suggested_product = {
+                            'raw': product_external,
+                            'name': 'mMusic Video',
+                            'url': 'https://www.motionvfx.com/store,%s,p%s.html' % (product_external.slug, product_external.id),
+                        } %}
+                        {% for b in [
+                            {
+                                'box': {
+                                    'media_url': 'https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media' % ('1431'),
+                                    'src': 'box_fcp',
+                                    'alt': 'mTransition Noise box',
+                                }
+                            },
+                            {
+                                'suggested': True,
+                                'box': {
+                                    'media_url': 'https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media' % ('1415'),
+                                    'src': 'box_fcp',
+                                    'alt': suggested_product.name + 'box',
+                                }
+                            }
+                        ] %}
+                            {% if b.suggested %}
+                            <a href="{{ suggested_product.url }}" aria-alabel="{{ suggested_product.name }} link" target="_blank" rel="noopener noreferrer">
+                            <div class="suggested-product__discount">-15%</div>
+                            {% endif %}
+                            {{ picture(
+                                b.box.media_url,
+                                b.box.src,
+                                file_sizes=[512, 256],
+                                media_sizes='100vw',
+                                formats=['webp', 'png'],
+                                width=276,
+                                height=276,
+                                alt=b.alt,
+                                img_class='suggested-product__box ' + ('suggested-product__box--external' if b.suggested else ''),
+                                loading="lazy"
+                            ) }}
+                            {% if b.suggested %}
+                            </a>
+                            {% endif %}
+                        {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="section__content suggested-product__content text-center text-lg-left">
+                            <div class="section__title suggested-product__title glitch-anim-2">
+                                <span class="front">A TRULY IDEAL</span> CREATIVE MATCH
+                            </div>
+                            <div class="section__text suggested-product__text mb-5 mx-auto ml-md-0" style="max-width: 20em;">
+                                <span class="discount__text">15% OFF!</span> Pair them up, get the set and watch your creative prospects explode!
+                            </div>
+                            <div class="suggested-product__action">
+                                {{ buy_btn_suggested_product(suggested_product.raw, suggested_product.name) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {# PROMO WIDE #}
+        {% macro deco_comp(images=[], class="deco__comp--1") %}
+            <div class="deco__comp {{ class }}">
+                {% for img in images %}
+                    {{ picture(
+                        media_url=media_url,
+                        filename=img.src,
+                        file_sizes=img.sizes or [1080, 540, 270],
+                        formats=img.formats or ['jpg'],
+                        width=327,
+                        height=590,
+                        alt=img.alt,
+                        img_class= img.class or '' + ' deco__' + (loop.index|string or ''),
+                        img_style="--i:" + (loop.index|string or '0')
+                        
+                    ) }}
+                {% endfor %}
+            </div>
+        {% endmacro %}
+
+        <section class="promo promo-wide">
+            <div class="image__background--static">
+                {{ picture(
+                    media_url=media_url,
+                    filename='gfx_1',
+                    file_sizes=srcsetSizes,
+                    formats=['jpg'],
+                    width=2560,
+                    height=960,
+                    alt="",
+                ) }}
+            </div>
+            {{ deco_comp([
+                    {
+                        'src': 'gfx_m_3',
+                        'alt': '',
+                        
+                    },
+                    {
+                        'src': 'gfx_m_1',
+                        'alt': '',
+                    },
+                    {
+                        'src': 'gfx_m_4',
+                        'alt': '',
+                    }
+            ]) }}
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section__content">
+                            <div class="section__title">
+                                {{ data["promo-wide"].title|safe }}
+                            </div>
+                            <div class="section__text" style="max-width: 21em;">{{ data["promo-wide"].text|safe }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {# PREVS #}
+        <section class="prevs center">
+            {% set prev_sizes = [ 825 ] %}
+            {% set collapseAfter = 6 %}
+            {% set sep = '_' %}
+            {% set prevsMediaUrl = media_url %}
+            {% set categories = [
+                { 'label': 'Pre-Animated', 'key':'animated', 'count': 64, 'class': '' },
+                { 'label': 'Custom', 'key':'custom', 'count': 5, 'class': None },
+            ]
+            %}
+            {% set presets_count = categories|sum(attribute="count") %}
+
+            <div class="container prevs__top">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <div class="section__content" data-title="true">
+                            <div class="image__background">
+                                {{ picture(
+                                    media_url=media_url,
+                                    filename='scribble',
+                                    file_sizes=[260, 525, 1050, 2100],
+                                    formats=['jpg'],
+                                    width=2100,
+                                    height=960,
+                                    alt='',
+                                ) }}
+                            </div>
+                            <div class="section__display glitch-anim-2 infinite" style="--word-index: 0;">
+                                <div class="word" style="--word-index: 1;" data-word="{{presets_count}}">
+                                    {{presets_count}}
+                                </div>
+                            </div>
+                            <div class="section__head">
+                                {# <div class="video__wrapper">
+                                    <video autoplay muted playsinline loading="lazy" src="{{mediaUrl}}/20.mp4"></video>
+                                </div> #}
+                                <h2 class="section__title ">
+                                    <b class="glitch-anim-2">{{data.presets.title}}</b>
+                                </h2>
+                                {# <h2 class="section__text">
+                                    {{data.presets.text}}
+                                </h2> #}
+                                <p class="section__subtitle" style="--s-index:0;">
+                                    hover or tap to preview animations
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+			<div id="product-prev-grid" class="product-prev-grid container center">
+				{% for category in categories %}
+				{% set key = category.key.replace(' ', '_') %}
+				{% set label = category.label | default (category.key + '') %}
+				{% set cols = category.cols | default(4) %}
+				{% if label and categories|length > 1 %}
+					<h3 class="h4 text-center mt-5 mb-3 {{ 'left' if loop.index % 2 != 0 else 'right' }}">{{ label }}
+					</h3>
+				{% endif %}
+				<div
+					class="row {{ category.class | default('') }} {{ 'grid' if 'large' in category and category.large | length else '' }} {{ category.key }} {% if category.count == 5 %}row-5{% endif %}">
+					{# {% for i in range(category.count) %} #}
+					{% for i in category.order or range(1, category.count + 1) %}
+					{% set num = '%02d' % i %}
+					{% set filename = key + sep + num %}
+					<div class="product-prev-col col-6 col-lg-{{ 12 // cols }} {% if 'large' in category and loop.index in category.large %}large{% endif %} {% if loop.index > collapseAfter %}collapse prev-collapse-{{ key }}{% endif %} {% if loop.index % 6 > 3 %}even{% endif %}"
+						id="prev-{{ key }}-{{ loop.index }}" style="--i: {{ loop.index }};">
+						<div class="product-prev-cell" {% if not ('novideo' in category and i in category.novideo) %} data-mp4-src="{{prevsMediaUrl}}/{{ filename }}.mp4" {% endif %}>
+							{{ picture(prevsMediaUrl, filename, file_sizes=prev_sizes, formats=['jpg'], media_sizes='(max-width: 991px) 49vw, (max-width: 1600px) {{ 100 // cols }}vw, {{ prev_sizes[0] }}px', width=640, height=360, img_class='') }}
+							<div class="loading-spinner"></div>
+						</div>
+					</div>
+					{% endfor %}
+					{% if category.count > collapseAfter %}
+					<div class="col-btn-collapse">
+						<button class="btn-collapse" type="button" data-target=".prev-collapse-{{ key }}"
+							aria-expanded="false"
+							aria-controls="{% for j in range(collapseAfter, category.count) %} prev-{{ key }}-{{ j }} {% endfor %}">
+							<span><span class="label-collapsed">Show more</span><span
+									class="label-expanded">Collapse</span> ({{ category.count - collapseAfter }})</span>
+							<svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+								xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 36.6 61.5"
+								style="enable-background:new 0 0 36.6 61.5;" xml:space="preserve"
+								class="prevs-more-btn btn-collapse-arrow" height="20">
+								<style type="text/css">
+									.prevs-more-btn .st0 {
+										fill: none;
+										stroke: currentColor;
+										stroke-width: 8;
+										stroke-miterlimit: 10;
+									}
+								</style>
+								<polyline class="st0" points="2.8,58.6 30.9,30.5 3.2,2.8 " />
+							</svg>
+						</button>
+					</div>
+					{% endif %}
+				</div>
+				{% endfor %}
+			</div>
+		</section>
+            
+        <section class="prevs__bottom">
+            <div class="image__background--static">
+                {{ picture(
+                    media_url=media_url,
+                    filename='prev',
+                    file_sizes=srcsetSizes,
+                    formats=['jpg'],
+                    width=2560,
+                    height=960,
+                    alt='',
+                ) }}
+            </div>
+            {{ picture(
+                media_url=media_url,
+                filename='end',
+                file_sizes=[225, 450, 900],
+                formats=['jpg'],
+                width=900,
+                height=800,
+                alt='end',
+                img_class="end",
+            ) }}
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section__content">
+                            <div class="section__head">
+                                <div class="section__title ">
+                                    {{ data.presets.title2|safe }}
+                                </div>
+                                <h2 class="section__text secuence" style="--s-index:0; max-width: 20em">
+                                    {{ data.presets.text }}
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {# TECHSPEC #}
+        <a class="nav" href="#" name="specs" rel="noopener noreferrer"></a>
+        <section class="ts-mi">
+            {{ deco_comp([
+                    {
+                        'src': 'gfx_m_5',
+                        'alt': ''
+                    },
+                    {
+                        'src': 'gfx_m_2',
+                        'alt': ''
+                    }
+            ], class="deco__comp--2") }}
+            <div class="tech-spec">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="tech-spec-info">
+                                <div class="section__text__content">
+                                    <div class="section__head">
+                                        <h2 class="section__title tech-spec__title section__title glitch-anim-2">Technical specifications</h2>
+                                    </div>
+                                    <div class="ttable tech-spec__table">
+                                        <div class="tcell tlabel">Supported software</div>
+                                        <div class="tcell tdata">
+                                            {% autoescape off %}
+                                                {{ product.productdetails.minimal_requirements.replace('FCP 10', 'FCP 10').replace('Motion 5', 'Motion 5').replace(', ', ',<br>') }}
+                                            {% endautoescape %}
+                                        </div>
+                                        <div class="tcell tlabel">Includes</div>
+                                        <div class="tcell tdata">69 FCP transitions</div>
+                                        <div class="tcell tlabel">Size</div>
+                                        <div class="tcell tdata">
+                                            {{ "%.1f MB"|format(product.productdetails.source_size / 1000) }}
+                                        </div>
+                                        {% for kind in ['trailer', 'tutorial'] %}
+                                            {% with musics=product.productdetails.music.select_related('music_portal').all().filter(used_in_trailer=kind=='trailer') %}
+                                                {% if musics|length %}
+                                                    <div class="tcell tlabel">Music used in {{ kind }}</div>
+                                                    <div class="tcell tdata">
+                                                        {% include 'product/music_info.jinja2' %}
+                                                    </div>
+                                                {% endif %}
+                                            {% endwith %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="minstaller__section">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="minstaller">
+                                <h3 class="minstaller__title">mInstaller</h3>
+                                <p class="minstaller__description">
+                                    After purchasing, the product is <b>instantly available </b>for download via <a href="https://www.motionvfx.com/page/minstaller.html" target="_blank" rel="noopener noreferrer">mInstaller</a>.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+		{# FOOTER #}
+        {# media_files={
+            '(max-width: 960px)': {
+                'filename': media_prefix + '_footer_mobile',
+                'formats':['jpg'],
+                'file_sizes': [640, 960],
+            }
+        }, #}
+        <footer class="footer">
+            <div class="image__background " style="--s-index:0">
+                {{picture(
+                    media_url=media_url,
+                    filename= 'footer' ,
+                    file_sizes=srcsetSizes,
+                    formats=['jpg'],
+                    width=2560,
+                    height=860,
+                    data_src=True,
+                    img_class='lazy-show',
+                    alt="Footer",
+                    media_files={
+						'(max-width: 1024px)': {
+							'filename': 'footer_m', 'file_sizes': [640, 960, 1024]
+						}
+					}
+                )}}
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section__text__content">
+                            <div class="section__head">
+                                <div class="footer__subtitle section__subtitle">
+                                    {{data.footer.subtitle|safe}}
+                                </div>
+                                <div class="footer__title section__title">
+                                    {{data.footer.title|safe}}
+                                </div>
+                                <p class="footer__text section__text mx-auto" style="max-width: 23em">
+                                    {{ data.footer.text|safe }}
+                                </p>
+                            </div>
+                            <div class="button-buy">
+                                {# {{buy_btn_free()}} #}
+                                {% with discount_text="INTRO", version=2 %}
+                                    {% include "product/buy_button.jinja2" %}
+                                {% endwith %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    {# {% include './components/popup-left.jinja' %} #}
+    {% include './components/submenu.jinja' %}
+    
+    <script src="https://s3.motionvfx.com/mvfxpublic/products/templates/1329/js/gsap.min.js"></script>
+    <script src="https://s3.motionvfx.com/mvfxpublic/products/templates/1329/js/morpher.min.js"></script>
+    
+    <script src="dist/scripts.js"></script>
+    <script src="scripts/vendor/menu.js" defer></script>
+    <script src="scripts/vendor/scroll_to_anchor.js" defer></script>
+</body>
+
+</html>
