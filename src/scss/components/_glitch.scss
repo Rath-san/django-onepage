@@ -10,10 +10,10 @@
 
   @keyframes slidetounlock {
     0% {
-      background-position: 0% -100%;
+      background-position: 0% -100%, 0% 0%;
     }
     100% {
-      background-position: 0% 100%;
+      background-position: 0% 100%, 0% 0%;
     }
   }
 
@@ -24,7 +24,7 @@
       linear-gradient(0deg, rgba(255,255,255,0), rgba(255,255,255,1), rgba(255,255,255,0)),
     //   // linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab)
     //   // url("data:image/svg+xml,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='4.63' numOctaves='6' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-      url("data:image/svg+xml,%3Csvg viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='4.63' numOctaves='6' stitchTiles='stitch'%3E%3Canimate attributeName='seed' from='1' to='100' dur='10s' repeatCount='indefinite' /%3E%3C/feTurbulence%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='4.63' numOctaves='6' stitchTiles='stitch'%3E%3Canimate attributeName='seed' from='1' to='100' dur='.01s' repeatCount='1' /%3E%3C/feTurbulence%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     // background-clip: text;
     // -webkit-background-clip: text;
     // color: transparent;
@@ -35,11 +35,15 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
     color: transparent;
-    -webkit-animation: slidetounlock 5s infinite;
-    animation: slidetounlock 5s infinite;
-    -webkit-animation-direction: alternate;
+    will-change: background-position;
+    -webkit-animation: slidetounlock 5s;
+    animation: slidetounlock 5s;
+    -webkit-animation-direction: normal;
+
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
     animation-direction: alternate;
-    background-size: 200% 200%, 50%;
+    background-size: 200% 200%, 100%;
   }
 
   .word {
@@ -183,10 +187,10 @@
 
   &.infinite {
     .word {
-      animation-iteration-count: infinite;
+      // animation-iteration-count: infinite;
       &::before,
       &::after {
-        animation-iteration-count: infinite;
+        // animation-iteration-count: infinite;
       }
     }
   }

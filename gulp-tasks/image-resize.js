@@ -31,7 +31,7 @@ const CONFIGS = [
     // {
     //     directory: '_top',
     //     targetFormat: ["jpg"],
-    //     quality: 50,
+    //     quality: 65,
     //     sizes: [
     //         ...RESPONSIVE_SIZES_DESKTOP.map((size) => ({ ...size, h: 860 })),
     //         {w: 640, h: 860},
@@ -41,19 +41,19 @@ const CONFIGS = [
     //         mozjpeg: true,
     //     },
     // },
-    // {
-    //     directory: '_prevs',
-    //     targetFormat: ["jpg"],
-    //     quality: 90,
-    //     sizes: [
-    //         {w: 825},
-    //         {w: 410}
+    {
+        directory: '_prevs',
+        targetFormat: ["jpg"],
+        quality: 90,
+        sizes: [
+            {w: 825},
+            {w: 410}
 
-    //     ],
-    //     outputOptions: {
-    //         mozjpeg: true,
-    //     },
-    // },
+        ],
+        outputOptions: {
+            mozjpeg: true,
+        },
+    },
 
     // {
     //     directory: '_mobile',
@@ -79,18 +79,18 @@ const CONFIGS = [
     //         mozjpeg: true,
     //     },
     // },
-    {
-        directory: '_wide',
-        targetFormat: ["jpg"],
-        quality: 50,
-        sizes: [
-            ...RESPONSIVE_SIZES_DESKTOP.map((size) => ({ ...size })),
-            ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ ...size, hmin:400 }))
-        ],
-        outputOptions: {
-            mozjpeg: true,
-        },
-    },
+    // {
+    //     directory: '_wide',
+    //     targetFormat: ["jpg"],
+    //     quality: 50,
+    //     sizes: [
+    //         ...RESPONSIVE_SIZES_DESKTOP.map((size) => ({ ...size })),
+    //         ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ ...size, hmin:400 }))
+    //     ],
+    //     outputOptions: {
+    //         mozjpeg: true,
+    //     },
+    // },
     // {
     //     directory: '_slider',
     //     targetFormat: ["jpg"],
@@ -157,8 +157,8 @@ const CONFIGS = [
 
 function resizeTask(
     managedFormats = ["jpg", "jpeg", "png"],
-    imgDist = "src/mtransition_noise/_images/otp/",
-    imgInput = "src/mtransition_noise/_images/",
+    imgDist = "src/plugins/mtransition_noise/_images/otp/",
+    imgInput = "src/plugins/mtransition_noise/_images/",
 ) {
     CONFIGS.forEach(
         ({

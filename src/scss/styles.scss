@@ -65,6 +65,7 @@
     img {
         min-height: 400px;
         object-fit: cover;
+        width: 100vw;
     }
 
     & > * {
@@ -84,6 +85,7 @@
     }
 
     .carousel {
+        // height: calc(100%);
         grid-area: 2 / 1;
         @media screen and (min-width: 788px) {
             grid-area: 1 / 1;
@@ -133,6 +135,7 @@
             margin-bottom: 0;
         }
         img {
+            width: 100vw;
             min-height: 400px;
             @media screen and(min-width: 768px) {
                 min-height: 600px;
@@ -145,7 +148,7 @@
             margin-bottom: clamp(1rem, 5vw, 6rem);
         }
         &__title {
-            line-height: 0.5;
+            line-height: 1.5;
             margin-bottom: 1.5rem;
             @media screen and(min-width: 582px) {
                 line-height: 1.2;
@@ -165,6 +168,7 @@
         height: auto;
         transform: translateY(-10%);
         opacity: 0;
+        will-change: transform;
         transition: opacity 0.5s ease-in-out, transform 1s ease-in-out;
         transition-delay: calc(var(--i) * 150ms);
         object-fit: contain;

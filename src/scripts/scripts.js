@@ -2,16 +2,16 @@ import { doOnVisible } from "./libs/do-on-visible";
 import Splitting from "splitting";
 import { handleTouchEvents } from "./utils/utils";
 import "./vendor/menu";
-import YTPlayer from "yt-player";
+// import YTPlayer from "yt-player";
 import initPrevs from "./utils/prevs";
 
-const makePlayer = (id, elementId) => {
-    const player = new YTPlayer(elementId);
-    player.load(id);
-    player.setVolume(100);
-};
+// const makePlayer = (id, elementId) => {
+//     const player = new YTPlayer(elementId);
+//     player.load(id);
+//     player.setVolume(100);
+// };
 
-const ytTopVideos = Array.from(document.querySelectorAll(".video-iframe"));
+// const ytTopVideos = Array.from(document.querySelectorAll(".video-iframe"));
 
 const lazyShow = () => {
     const imagesDocument = Array.from(document.querySelectorAll(".lazy-show"));
@@ -58,27 +58,6 @@ const glitchLoopLogo = () => {
     }, 4000);
 };
 
-const turbulenceLoop = (filter = '#filter-music') => {
-    let r;
-    var start = Date.now();
-
-    var turbVal = () => ({ val: Math.random(1)});
-    var turbValX = () => ({ val: Math.random(1)});
-    var turb = document.querySelectorAll(`${filter} feTurbulence`)[0];
-
-    const _req = () => {
-
-        if (Date.now() - start < 1000) {
-            turb.setAttribute("baseFrequency", turbVal().val + " " + turbValX().val);
-        } else {
-            turb.setAttribute("baseFrequency", 0 + " " + 0);
-        }
-        r = window.requestAnimationFrame(_req);
-
-    }
-
-    r = window.requestAnimationFrame(_req);
-};
 
 (() => {
     document.body.classList.add("initialized");
@@ -166,9 +145,9 @@ const turbulenceLoop = (filter = '#filter-music') => {
             rootMargin: "-150px",
         });
 
-        ytTopVideos.forEach((v) => {
-            makePlayer(v.dataset.id, v);
-        });
+        // ytTopVideos.forEach((v) => {
+        //     makePlayer(v.dataset.id, v);
+        // });
     });
 
     const carouselSwiping = (carousel) => {

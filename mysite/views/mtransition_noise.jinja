@@ -53,9 +53,7 @@
     {% set shared_media_url = 'https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media' % (shared_media_template_id) %}
     {% set product_id_fcp = 3698 %}
     {% set product_id_dvr = 3727 %}
-    {% set twin_product_id = product_id_fcp %}
-    {# {% set product_fcp, product_dvr = get_products([product_id_fcp, product_id_dvr]) %} #}
-	{% set product_fcp, product_dvr = [product, product] %}
+    {% set product_fcp, product_dvr = get_products([product_id_fcp, product_id_dvr]) %}
         {# {
             'type': 'dvr',
             'name': ['DV', 'DaVinci Resolve'],
@@ -74,9 +72,9 @@
             'box_media_url': 'https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media' % ('1415')
         },
     ] %}
-    {#{% for sv in software_versions %}
+    {# {% for sv in software_versions %}
         {{ sv.product.set_btn_title("%s for %s" % (product_name, sv.name[0]))|default("", True) }}
-    {% endfor %}#}
+    {% endfor %} #}
     {% set products = software_versions|map(attribute="product") %}
     {% set live = True %}
 
@@ -86,26 +84,26 @@
             'subtitle': '70 Filmic Transition Effects for Final Cut Pro'
         },
         'trailer': {
-            'subtitle': 'CURTAINS UP',
+            'subtitle': 'CURTAIN’S UP',
             'title': '<span class="glitch-anim-2">WATCH TRAILER</span>',
             'text': 'See how versatile and impactful these cinematic effects are'
         },
         'tutorial': {
             'subtitle': 'KNOW HOW!',
             'title': '<span class="glitch-anim-2">VIEW TUTORIAL</span>',
-            'text': "Get 100% ready to use the full potential you're offereda"
+            'text': "Get 100% ready to use the full potential you're offered"
         },
         'promo-wide': {
             'title': '<span class="glitch-anim-2">REFINED </span><span class="front front--inline">visual metamorphoses</span>',
-            'text': 'A complete inventory of transition effects that will turn your  narative into a real journey. Choose your vibe!',
+            'text': 'A complete inventory of transition effects that will turn your  narrative into a real journey. Choose your vibe!',
         },
         'presets': {
             'title': 'Meaningful Transitions',
             'title2': '<span class="front">ADJUST THE DYNAMICS </span><b class="glitch-anim-2">ACTION </b><span class="front front--inline">and life in your edit</span>',
-            'text': 'Want to give your audience a time to reflect or plunge them into a new, dynamic scene? All options are on the table!'
+            'text': 'Want to give your audience time to reflect or plunge them into a new, dynamic scene? All options are on the table!'
         },
         'footer': {
-            'title': '<span class="front front--inline" style="vertical-align: top; display: inline-block; padding-top: 0.6em;">Shift </span> <b class="glitch-anim-2"> MOODS & TONES</b>',
+            'title': '<span class="front" style="vertical-align: top; display: padding-top: 0.6em;">Shift </span> <b class="glitch-anim-2"> MOODS & TONES</b>',
             'text': "Evoke and shape your viewers' emotions, immerse them in your story and not once lose their focus... Get busy creating!"
         }
     } %}
@@ -113,12 +111,13 @@
 	{% set trailer_id = '_M9Nr7Clw3A' %}
     {% set tutorial_id = 'qMM1W0aR-O4' %}
 
-<main class="mtransition-noise">
-	<section class="header" data-visible="true">
+
+    <main class="mtransition-noise">
+    <section class="header" data-visible="true">
             <div class="image__background">
                 {{picture(
                     media_url=media_url,
-                    filename='top' ,
+                    filename='top_a' ,
                     file_sizes=srcsetSizes,
                     formats=['jpg'],
                     width=2560,
@@ -199,7 +198,7 @@
                                 <p class="section__subtitle " style="--s-index:0;">
                                     {{data.trailer.subtitle}}
                                 </p>
-                                <div class="section__title">
+                                <div class="section__title-2 glitch-anim-2">
                                     {{ data.trailer.title|safe }}
                                 </div>
                                 <p class="section__text mx-auto" style="max-width: 18em;">
@@ -207,9 +206,12 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="yt embed-responsive embed-responsive-16by9">
-                            <div class="video-iframe" data-id="{{trailer_id}}" style="background-color: #000"></div>
-                        </div>
+                        <div class="yt embed-responsive embed-responsive-16by9 animated animated--fade--bottom">
+							<iframe src="https://www.youtube.com/embed/{{ trailer_id }}?rel=0" loading="lazy" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen title="mTransition Noise Trailer"></iframe>
+						</div>
+                        <!--<div class="yt embed-responsive embed-responsive-16by9">-->
+                        <!--    <div class="video-iframe" data-id="{{trailer_id}}" style="background-color: #000"></div>-->
+                        <!--</div>-->
                     </div>
                 </div>
             </div>
@@ -236,9 +238,12 @@
                         </div>
                     </div>
                     <div class="col-12">
-                        <div class="yt embed-responsive embed-responsive-16by9">
-                            <div class="video-iframe" data-id="{{tutorial_id}}" style="background-color: #000"></div>
-                        </div>
+                        <div class="yt embed-responsive embed-responsive-16by9 animated animated--fade--bottom">
+    						<iframe loading="lazy" src="https://www.youtube.com/embed/{{ tutorial_id }}?rel=0" loading="lazy" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen title="mTransition Noise Tutorial" loading="lazy"></iframe>
+						</div>
+                        <!--<div class="yt embed-responsive embed-responsive-16by9">-->
+                        <!--    <div class="video-iframe" data-id="{{tutorial_id}}" style="background-color: #000"></div>-->
+                        <!--</div>-->
                     </div>
                 </div>
             </div>
@@ -273,7 +278,8 @@
                         width=2560,
                         height=960,
                         alt=slide_img.alt,
-                        img_class="d-block w-100"
+                        img_class="d-block lazy-show",
+                        data_src=True,
                     ) }}
                     {% endwith %}
                     </div>
@@ -312,22 +318,20 @@
 
         {# SUGESTED PRODUCT #}
         <section class="suggested-product">
+            <a class="nav" id="match" name="suggested" style="position: absolute; padding-top: 150px; width: 100%; bottom: 100%;"></a>
             {% macro buy_btn_suggested_product(product, product_name) %}
-            {# {% set info = get_promo_valid_info( product).replace('April ', 'April ') if live else 'Valid till April 21, 2022' %} #}
-            {% set info = 'April Valid till April 21, 2022' %}
-            {% set live = False %}
+            {% set info = get_promo_valid_info( product).replace('April ', 'April ') if live else 'Valid till April 21, 2022' %}
             {% set is_promo = not live or ( product.is_promo and  product.promo_date) %}
             <div class="button-buy">
                 <div id="btn-buy-container" class="version2" style="min-width: max-content">
                     <div class="inner-container">
                         <a href="#" class="buy-button" data-add-to-cart='{ "productId": {{  product.id }}, "productTitle": "{{  product.title }}" }'>
-                            {# {{ product_name }} {% if is_promo %}<del class="price-crossed"> ${{ price( product.price) }}</del>{% endif %} <span class="price">${{ price( product.get_price(request.user)) if live else 89 }}</span> #}
-                            {{ product_name }} <del class="price-crossed"> $79</del> <span class="price">$89</span>
+                            {{ product_name }} {% if is_promo %}<del class="price-crossed"> ${{ price( product.price) }}</del>{% endif %} <span class="price">${{ price( product.get_price(request.user)) if live else 89 }}</span>
                         </a>
                     </div>
-                    {% if is_promo %}
+                    {#{% if is_promo %}
                     <div class="promo-info">{{ ('<strong>Promo price</strong> ' + (info[0] | lower + info[1:])) | safe if info.startswith('Valid') else info }}</div>
-                    {% endif %}
+                    {% endif %}#}
                 </div>
             </div>
             {% endmacro %}
@@ -336,8 +340,7 @@
                 <div class="row justify-content-center align-items-center">
                     <div class="col-12 col-lg-6">
                         <div class="suggested-product__boxes mb-5 mb-lg-0 mx-auto justify-content-center">
-                        {# {% set product_external = get_product('3698') %} #}
-                        {% set product_external = product %}
+                        {% set product_external = get_product('3698') %}
                         {% set suggested_product = {
                             'raw': product_external,
                             'name': 'mMusic Video',
@@ -361,7 +364,7 @@
                             }
                         ] %}
                             {% if b.suggested %}
-                            <a href="{{ suggested_product.url }}" aria-alabel="{{ suggested_product.name }} link" target="_blank" rel="noopener noreferrer">
+                            <a href="{{ suggested_product.url }}" aria-label="{{ suggested_product.name }} link" target="_blank" rel="noopener noreferrer">
                             <div class="suggested-product__discount">-15%</div>
                             {% endif %}
                             {{ picture(
@@ -385,7 +388,7 @@
                     <div class="col-12 col-md-6">
                         <div class="section__content suggested-product__content text-center text-lg-left">
                             <div class="section__title suggested-product__title glitch-anim-2">
-                                <span class="front">A TRULY IDEAL</span> CREATIVE MATCH
+                                <span class="front">THE PERFECT</span> CREATIVE MATCH
                             </div>
                             <div class="section__text suggested-product__text mb-5 mx-auto ml-md-0" style="max-width: 20em;">
                                 <span class="discount__text">15% OFF!</span> Pair them up, get the set and watch your creative prospects explode!
@@ -412,7 +415,8 @@
                         height=590,
                         alt=img.alt,
                         img_class= img.class or '' + ' deco__' + (loop.index|string or ''),
-                        img_style="--i:" + (loop.index|string or '0')
+                        img_style="--i:" + (loop.index|string or '0'),
+                        loading="lazy"
                         
                     ) }}
                 {% endfor %}
@@ -429,6 +433,7 @@
                     width=2560,
                     height=960,
                     alt="",
+                    loading="lazy",
                 ) }}
             </div>
             {{ deco_comp([
@@ -486,6 +491,7 @@
                                     width=2100,
                                     height=960,
                                     alt='',
+                                    loading="lazy",
                                 ) }}
                             </div>
                             <div class="section__display glitch-anim-2 infinite" style="--word-index: 0;">
@@ -494,15 +500,9 @@
                                 </div>
                             </div>
                             <div class="section__head">
-                                {# <div class="video__wrapper">
-                                    <video autoplay muted playsinline loading="lazy" src="{{mediaUrl}}/20.mp4"></video>
-                                </div> #}
                                 <h2 class="section__title ">
                                     <b class="glitch-anim-2">{{data.presets.title}}</b>
                                 </h2>
-                                {# <h2 class="section__text">
-                                    {{data.presets.text}}
-                                </h2> #}
                                 <p class="section__subtitle" style="--s-index:0;">
                                     hover or tap to preview animations
                                 </p>
@@ -530,7 +530,7 @@
 					<div class="product-prev-col col-6 col-lg-{{ 12 // cols }} {% if 'large' in category and loop.index in category.large %}large{% endif %} {% if loop.index > collapseAfter %}collapse prev-collapse-{{ key }}{% endif %} {% if loop.index % 6 > 3 %}even{% endif %}"
 						id="prev-{{ key }}-{{ loop.index }}" style="--i: {{ loop.index }};">
 						<div class="product-prev-cell" {% if not ('novideo' in category and i in category.novideo) %} data-mp4-src="{{prevsMediaUrl}}/{{ filename }}.mp4" {% endif %}>
-							{{ picture(prevsMediaUrl, filename, file_sizes=prev_sizes, formats=['jpg'], media_sizes='(max-width: 991px) 49vw, (max-width: 1600px) {{ 100 // cols }}vw, {{ prev_sizes[0] }}px', width=640, height=360, img_class='') }}
+							{{ picture(prevsMediaUrl, filename, file_sizes=prev_sizes, formats=['jpg'], media_sizes='(max-width: 991px) 49vw, (max-width: 1600px) {{ 100 // cols }}vw, {{ prev_sizes[0] }}px', width=640, height=360, img_class='', loading="lazy") }}
 							<div class="loading-spinner"></div>
 						</div>
 					</div>
@@ -574,6 +574,8 @@
                     width=2560,
                     height=960,
                     alt='',
+                    data_src=True,
+                    img_class='lazy-show',
                 ) }}
             </div>
             {{ picture(
@@ -585,6 +587,7 @@
                 height=800,
                 alt='end',
                 img_class="end",
+                loading="lazy",
             ) }}
             <div class="container">
                 <div class="row">
@@ -634,7 +637,7 @@
                                             {% endautoescape %}
                                         </div>
                                         <div class="tcell tlabel">Includes</div>
-                                        <div class="tcell tdata">69 FCP transitions</div>
+                                        <div class="tcell tdata">69 FCP Transitions</div>
                                         <div class="tcell tlabel">Size</div>
                                         <div class="tcell tdata">
                                             {{ "%.1f MB"|format(product.productdetails.source_size / 1000) }}
