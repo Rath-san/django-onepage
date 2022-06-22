@@ -2,7 +2,6 @@
     position: relative;
     img {
         transition: opacity 0.5s ease-in-out;
-        // opacity: 0;
     }
     color: #fff;
     text-align: center;
@@ -14,44 +13,50 @@
             flex-direction: column;
             align-items: center;
             margin-bottom: -4rem;
-            // opacity: ;
         }
         &__text {
-            // opacity: 0;
         }
     }
     &__logo {
-        // font-size: clamp(3.5rem, 16vw, 106px);
-        font-family: $font-family-title;
-        display: flex;
-        flex-direction: column;
-        font-weight: 600;
-        align-items: center;
-
-        img {
-            width: clamp(200px, 75vw, 400px);
-            height: auto;
+        &::after {
+            position: absolute;
+            content: '';
+            z-index: -1;
+            inset: -30%;
+            background: radial-gradient(
+                rgba(#000, .5) 15%,
+                transparent 50%
+            );
         }
+        h2 {
+            font-family: $font-family-title;
+            font-weight: 300;
+            line-height: 1;
+            font-size: clamp(1.65rem, 8vw, 2.25rem);
+            margin-bottom: 2rem;
+        }
+
+        .word:last-child() {
+            margin-left: .15em;
+            display: block;
+            font-size: 2.65em;
+            letter-spacing: .25em;
+        }
+
+    }
+
+    #software-icons {
+        bottom: 13%;
     }
 
     .image__background {
         img {
             top: 100px;
-            object-position: bottom;
+            object-position: top;
+            height: calc(100% - 100px);
             @media screen and (max-width: 768px) {
-                top: 50px;
+                top: 100px;
             }
-        }
-        .screens {
-            left: 9%;
-            max-width: 1720px;
-            top: 16%;
-        }
-        .isometric {
-            left: unset;
-            max-width: 1590px;
-            right: -20%;
-            top: -8%;
         }
     }
 
@@ -150,7 +155,7 @@ $animation-delay-offset: 200ms;
 .dr-gradient,
 .header__deco,
 .header__bg {
-    // opacity: 0;
+    opacity: 0;
     will-change: opacity;
     transition: opacity $animation-duration linear;
     transition-delay: calc(0ms + (#{$animation-delay-offset} * var(--h-index)));
@@ -188,7 +193,7 @@ $animation-delay-offset: 200ms;
     // }
 
     
-    &-secondary {
+    &-primary {
         #software-icons>* {
             opacity: 1;
         }
@@ -199,6 +204,9 @@ $animation-delay-offset: 200ms;
             }
         }
         .header {
+            &__bg {
+                opacity: 1;
+            }
             
             &__logo {
                 opacity: 1;

@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include './components/head.jinja' %}
+
+<body>
+    {% include './components/nav.jinja' %}
+    {# {% include './components/macro.jinja' %} #}
+    {# {% include './components/bundle-popup.jinja' %} #}
+
+    {% macro split(string="test some string", attrs="") %}
+        <div class="words chars splitting" {{ attrs }}>
+        {% set words = string.split(' ') %}
+        {%- for w in words -%}
+            <span class="word" data-word="{{ w }}" style="--word-index:{{ loop.index }};">
+                {%- for c in w|list() -%}
+                    <span class="char" data-char="{{ c }}" style="--char-index:{{ loop.index }};">{{ c }}</span>
+                {%- endfor -%}
+            </span>
+            {%- if not loop.last -%}<span class="whitespace"> </span>{%- endif -%}
+        {%- endfor -%}
+        </div>
+    {% endmacro %}
+
+    {% macro picture(
+		media_url, filename, media_files={}, file_sizes=[360, 480, 640, 960], formats=['webp','jpg'], media_sizes='', media='', alt='', img_class='', img_style='', picture_class='', width='', height='', loading='', data_src=False
+	) %}
+		<picture class="{{ picture_class }}">
+			{% for media in media_files %}
+				{% set m = media_files[media] %}
+				{% for format in formats %}
+					<source {% if data_src %} data-srcset=" {% for size in m['file_sizes'] %} {{ media_url }}/{{ m['filename'] }}-{{ size }}.{{ format }} {{size}}w, {% endfor %}" {% else %} srcset=" {% for size in m['file_sizes'] %} {{ media_url }}/{{ m['filename'] }}-{{ size }}.{{ format }} {{size}}w, {% endfor %}" {% endif %} type="image/{{ format | replace('jpg', 'jpeg') }}" sizes="{{ m['media_sizes'] | default(media_sizes) }}" media="{{ media }}" >
+				{% endfor %}
+			{% endfor %}
+			{% for format in formats %}
+				<source {% if data_src %} data-srcset=" {% for size in file_sizes %} {{ media_url }}/{{ filename }}-{{ size }}.{{ format }} {{size}}w, {% endfor %}" {% else %} srcset=" {% for size in file_sizes %} {{ media_url }}/{{ filename }}-{{ size }}.{{ format }} {{size}}w, {% endfor %}" {% endif %} type="image/{{ format | replace('jpg', 'jpeg') }}" sizes="{{ media_sizes }}" media="{{ media }}">
+			{% endfor %}
+			<img {% if data_src %} data-src="{{ media_url }}/{{ filename }}-{{ file_sizes[0] }}.{{ formats[-1] }}?{{file_version}}" {% else %} src="{{ media_url }}/{{ filename }}-{{ file_sizes[0] }}.{{ formats[-1] }}?{{file_version}}" {% endif %} alt="{{alt}}" class="{{img_class}}" style="{{img_style}}" width="{{width}}" height="{{height}}" loading="{{loading}}" >
+		</picture>
+	{% endmacro %}
+    {% macro buy_btn_free() %}
+    <div class="button-buy">
+        <div id="btn-buy-container" class="version1">
+            <div class="inner-container">
+                <a href="#" class="buy-button" data-add-to-cart='{ "productId": {{  product.id }}, "productTitle": "{{  product.title }}" }'>
+                    Get it free for FCP / DVR
+                </a>
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+
+		{% set srcsetSizesMobile = [ 640, 960 ] %}
+		{% set srcsetSizesDesktop = [ 1280, 1920, 2560 ] %}
+		{% set srcsetSizes = srcsetSizesMobile + srcsetSizesDesktop %}
+
+		{% set template_id = "1435" %}
+		{# {% set template_id_s3 = "200" %} #}
+        {% set media_prefix = "mVertical" %}
+		{% set media_url = "https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media" % template_id %}
+		{# {% set media_prefix_s3 = "https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media" % template_id_s3 %} #}
+		{# {% set media_prefix_presets = media_prefix + "/presets" %} #}
+		{% set version = "v=0" %}
+
+
+    {% set product_name = 'mVertical' %}
+    {% set shared_media_template_id = '1408' %}
+    {% set shared_media_url = 'https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media' % (shared_media_template_id) %}
+    {% set product_id_fcp = 3698 %}
+    {% set product_id_dvr = 3727 %}
+    {% set twin_product_id = product_id_fcp %}
+    {# {% set product_fcp, product_dvr = get_products([product_id_fcp, product_id_dvr]) %} #}
+	{% set product_fcp, product_dvr = [product, product] %}
+    {% set software_versions = [
+        {
+            'type': 'fcp',
+            'name': ['FCP', 'Final Cut Pro'],
+            'product': product_fcp,
+            'product_url': 'https://www.motionvfx.com/store,%s,p%s.html' % (product_fcp.slug, product_fcp.id),
+            'images': ["box_fcp", "fcp_icon"],
+            'box_media_url': 'https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media' % ('1415')
+        },
+        {
+            'type': 'dvr',
+            'name': ['DV', 'DaVinci Resolve'],
+            'product': product_dvr,
+            'product_url': 'https://www.motionvfx.com/store,%s,p%s.html' % (product_dvr.slug, product_dvr.id),
+            'images': ["box_dvr", "dvr_icon"],
+            'box_media_url': 'https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media' % ('1415'),
+        }
+    ] %}
+    {#{% for sv in software_versions %}
+        {{ sv.product.set_btn_title("%s for %s" % (product_name, sv.name[0]))|default("", True) }}
+    {% endfor %}#}
+    {% set products = software_versions|map(attribute="product") %}
+    {% set live = True %}
+
+
+    {% set data = {
+        'header': {
+            'subtitle': 'Free Vertical Video Adjustment Plugin for DaVinci Resolve'
+        },
+        'trailer': {
+            'subtitle': 'HAVE A LOOK',
+            'title': 'Watch trailer',
+            'text': 'See how much can be done with so little effort'
+        },
+        'tutorial': {
+            'subtitle': 'QUICK HOW-TO',
+            'title': 'Watch tutorial',
+            'text': 'Learn how to use the effect to achieve the results your viewers will love'
+        },
+        'promo-text': {
+            'subtitle': 'TRANSITIONS TIME!',
+            'title': "Thousands of editors can't be wrong",
+            'text': 'Explore your own ways of using one of the most popular editing effects!'
+        },
+        'promo': {
+            'subtitle': 'A HUNDRED IMPRESSIONS',
+            'title': 'Create atmosphere and invite emotions',
+            'text': "Combine the opportunities this plugin offers with your own creativity to achieve endlessly varied results!",
+        },
+        'promo-carousel-flat': {
+            'subtitle': 'LUMA DISSOLVE EFFECT',
+            'title': 'Guide your audience smoothly through your story',
+            'text': "Hold on tight to your viewers' attention as you take them on a journey of imagination!",
+        },
+        'footer': {
+            'subtitle': 'GIVE IT A GO!',
+            'title': 'A selection of creative options',
+            'text': 'Four different transition modes, adjustable parameters, smooth workflow — wait no longer, just get it!'
+        }
+    } %}
+
+	{% set trailer_id = 'ptIUmhJy21A' %}
+    {% set tutorial_id = '5LmtFS0fIzs' %}
+    {% set tutorial_id1 = 'ImGl3hFt6wk' %}
+
+    <main class="mTransition-luma">
+        <section class="header" data-visible="true">
+            <div class="image__background header__bg">
+                {{picture(
+                    media_url=media_url,
+                    filename= 'top',
+                    file_sizes=srcsetSizes,
+                    formats=['jpg'],
+                    width=2560,
+                    height=960,
+                    alt="Header image",
+                )}}
+            </div>
+            <div class="container-fluid">
+                <div class="section__content">
+                    <div class="header__logo"><h2>
+                        {{split('mTransition LUMA')}}
+                    </h2></div>
+                    <h1 class="section__text">
+                        {# {{ data.header.subtitle }} #}
+                        {{product.head_info|safe}}
+                    </h1>
+                </div>
+            </div>
+        {# SOFTWARE ICONS #}
+        <div id="software-icons" class="software-icons text-center" style="width: 100%; left: 0;">
+            {% for si in software_versions %}
+            <a
+                {# {% if si.product.id == twin_product_id %}
+                href="{{si.product_url}}"
+                {% else %} #}
+                role="button"
+                {# {% endif %} #}
+                name="product link {{ si.name[1] }}"
+                aria-label="Product link {{ si.name[1] }}"
+                target="_blank"
+                class="d-inline-block mx-1"
+                style="--i: {{ loop.index }}; --d: {{ loop.index }}">
+                {{ picture(shared_media_url, si.images[1], formats=["webp","png"], file_sizes=[180], width=60, height=60, img_class='software-icon', data_src=False) }}
+            </a>
+            {% endfor %}
+        </div>
+        </section>
+
+        <script>
+            const onHeaderImagesLoaded = (images, type= 'primary') => {
+                const loadedImages = images.map(img => false);
+                images.forEach((img, idx) => {
+                    loadedImages[idx] = img.complete;
+
+                    if (loadedImages.every(val => val)) {
+                        header.classList.add(`loaded-${type}`)
+                    }
+                    img.onload = () => {
+                        loadedImages[idx] = true
+                        if (loadedImages.every(val => val)) {
+                            header.classList.add(`loaded-${type}`)
+                        }
+                    }
+                })
+            }
+
+            const header = document.querySelector('section.header')
+            const items1 = [
+                header.querySelector('.image__background img'),
+            ]
+
+            const items2 = Array.from(header.querySelectorAll('.image__background img'));
+
+            onHeaderImagesLoaded(items1);
+            {# onHeaderImagesLoaded(items2, 'secondary'); #}
+        </script>
+
+		<a class="nav" name="trailer"></a>
+		{# TRAILER #}
+        <section class="video trailer" data-visible="true">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="section__content">
+                            <div class="section__head">
+                                <p class="section__subtitle " style="--s-index:0;">
+                                    {{data.trailer.subtitle}}
+                                </p>
+                                <div class="section__title">
+                                    {{ data.trailer.title|safe }}
+                                </div>
+                                <p class="section__text mx-auto" style="max-width: 400px">
+                                    {{ data.trailer.text|safe }}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="yt embed-responsive embed-responsive-16by9">
+                            <div class="video-iframe" data-id="{{trailer_id}}" style="background-color: #000"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <a class="nav" name="tutorial"></a>
+		{# TUTORIAL #}
+        <section class="video tutorial">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section__content">
+                            <div class="section__head">
+                                <p class="section__subtitle " style="--s-index:0;">
+                                    {{data.tutorial.subtitle}}
+                                </p>
+                                <div class="section__title ">
+                                    {% autoescape off %} {{data.tutorial.title}} {% endautoescape %}
+                                </div>
+                                <p class="section__text mx-auto" style="max-width: 460px">
+                                    {% autoescape off %} {{data.tutorial.text}} {% endautoescape %}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3 mb-md-0">
+                        <div class="yt embed-responsive embed-responsive-16by9">
+                            <div class="video-iframe" data-id="{{tutorial_id}}" style="background-color: #000"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="yt embed-responsive embed-responsive-16by9">
+                            <div class="video-iframe" data-id="{{tutorial_id1}}" style="background-color: #000"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="promo-text">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section__content">
+                            <p class="section__subtitle " style="--s-index:0;">
+                                {{ data['promo-text'].subtitle|safe }}
+                            </p>
+                            <div class="section__title mx-auto" style="max-width: 500px">
+                                {{ data['promo-text'].title|safe }}
+                            </div>
+                            <p class="section__text mx-auto" style="max-width: 530px">
+                                {{ data['promo-text'].text|safe }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {# PROMO SLIDER #}
+        {% set slides = [
+            {
+                'src': 'gfx_2',
+                'alt': ''
+            },
+            {
+                'src': 'gfx_3',
+                'alt': ''
+            },
+            {
+                'src': 'gfx_4',
+                'alt': ''
+            }
+        ] %}
+        <section class="promo-carousel-flat">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="section__content">
+                            <div class="section__subtitle">{{ data['promo-carousel-flat'].subtitle }}</div>
+                            <div class="section__title" style="max-width: 670px">{{ data['promo-carousel-flat'].title }}</div>
+                            <div class="section__text" style="max-width: 440px">{{ data['promo-carousel-flat'].text }}</div>
+                            <ol id="carouselFlatIndicators" class="carousel-indicators">
+                                {% for indicator in slides %}
+                                    <li class="{% if loop.index == 1 %} active {% endif %}"></li>
+                                {% endfor %}
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="carouselFlat" class="carousel slide slide-new">
+                <div class="carousel-inner">
+                    {% for img in slides %}
+                        <div class="carousel-item {% if loop.index == 1 %} active {% endif %}">
+                            {{picture(
+                                media_url=media_url,
+                                filename= img.src,
+                                file_sizes=srcsetSizes,
+                                formats=['jpg'],
+                                width=2560,
+                                height=960,
+                                data_src=True,
+                                img_class='d-block lazy-show',
+                                alt=img.alt
+                            )}}
+                        </div>
+                    {% endfor %}
+                </div>
+                <a class="carousel-control-prev" href="#carouselFlat" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselFlat" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </section>
+
+        {# PROMO #}
+        <section class="promo">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-6 promo-cards__container">
+                        <div class="promo-cards">
+                            {% for c in [
+                                {
+                                    'src': 'girl_1',
+                                    'alt': ''
+                                },
+                                {
+                                    'src': 'man_3',
+                                    'alt': ''
+                                },
+                                {
+                                    'src': 'girl_2',
+                                    'alt': ''
+                                }
+                            ] %}
+                            <div class="promo-cards__item">
+                                {{picture(
+                                    media_url=media_url,
+                                    filename=c.src,
+                                    file_sizes=[
+                                        310, 620
+                                    ],
+                                    formats=['jpg'],
+                                    width=620,
+                                    height=1102,
+                                    alt=c.atl,
+                                    data_src=True,
+                                    img_class='lazy-show promo-cards__image',
+                                )}}
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="section__content">
+                            <div class="section__head">
+                                <div class="section__subtitle">{{ data['promo'].subtitle }}</div>
+                                <div class="section__title" style="max-width: 450px">{{ data['promo'].title }}</div>
+                                <p class="section__text" style="max-width: 530px">{{ data['promo'].text }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="image__background--static">
+                {{picture(
+                    media_url=media_url,
+                    filename= 'gfx_1',
+                    file_sizes=srcsetSizes,
+                    formats=['jpg'],
+                    width=2560,
+                    height=960,
+                    alt="",
+                    data_src=True,
+                    img_class='lazy-show',
+                )}}
+            </div>
+        </section>
+
+        {# <div class="row">
+            {% for key, product in products_specs.items() %}
+            <div class="col-12 col-xl-6">
+                <div class="tech-spec-software__version">
+                    {{ picture(shared_media_url, key|lower + '_icon', formats=["webp","png"], file_sizes=[180], width=40, height=40, img_class='software-icon') }}
+                    <p class="mt-0 mb-0 ml-2" style="margin-right: unset">{{ key }} version</p>
+                </div>
+                <div class="table">
+                    <div class="cell label" class="td-right">Supported software</div>
+                    <div class="cell data" class="td-left">
+                        {% autoescape off %}
+                            {{ product.productdetails.minimal_requirements.replace('FCP 10', 'FCP\xa010').replace('Motion 5', 'Motion\xa05').replace(', ', ',<br>') }}
+                        {% endautoescape %}
+                    </div>
+                    <div class="cell label" class="td-right">Includes</div>
+                    <div class="cell data" class="td-left">{{ includes[key] }}</div>
+                    <div class="cell label" class="td-right">Size</div>
+                    <div class="cell data" class="td-left">{{ ((product.productdetails.source_size * 1000) | filesizeformat).replace('.0 ', ' ') }}</div>
+
+                    {% for kind in ['trailer', 'tutorial'] %}
+                        {% with musics=product_options[key]['music'][kind] %}
+                            {% if musics | length %}
+                                <div class="cell label" class="td-right">Music used in {{ kind }}</div>
+                                <div class="cell data" class="td-left">
+                                    {% include 'product/music_info.jinja2' %}
+                                </div>
+                            {% endif %}
+                        {% endwith %}
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div> #}
+
+        {# TECHSPEC #}
+        <a class="nav" href="#" name="specs" rel="noopener noreferrer"></a>
+        <div class="ts-mi">
+        <section class="tech-spec bg--light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="tech-spec-info">
+                            <div class="section__text__content">
+                                <div class="section__head">
+                                    <h2 class="section__title tech-spec__title section__title">Technical specifications</h2>
+                                </div>
+                                
+                                <div class="row">
+
+                                    <style>
+                                        .tech-spec-software__version {
+                                            transform: translateX(5%);
+                                            display: flex;
+                                            justify-content: center;
+                                            font-weight: 600;
+                                            align-items: center;
+                                            margin-bottom: 1rem;
+                                        }
+                                        @media screen and (max-width: 1200px) {
+                                            .tech-spec-software__version {
+                                                transform: translateX(0%);
+                                            }
+                                        }
+                                    </style>
+
+                                    {% set music_all = product.productdetails.music.select_related('music_portal').all() %}
+                                    {% set requirements_all = product.productdetails.minimal_requirements %}
+
+                                    {% set versions = {
+                                        'fcp': {
+                                            'minimal_requirements': requirements_all.replace(', DaVinci Resolve 17.4.6', '').replace('FCP 10', 'FCP 10').replace('Motion 5', 'Motion 5').replace(', ', ',<br>'),
+                                            'includes': '1 transition for Final Cut Pro',
+                                            'size': "%.1f MB" % (product.productdetails.source_size / 1000),
+                                            'music': {
+                                                'trailer': music_all.filter(used_in_trailer=True),
+                                                'tutorial': music_all.filter(used_in_trailer=False).filter(description='fcp')
+                                            }
+                                        },
+                                        'dvr': {
+                                            'minimal_requirements': requirements_all.replace(', Motion 5.4.2 or Final Cut Pro 10.4.4', ''),
+                                            'includes': '1 transition for DaVinci Resolve',
+                                            'size': "%.1f KB" % (21),
+                                            'music': {
+                                                'tutorial': music_all.filter(used_in_trailer=False).filter(description='dvr')
+                                            }
+                                        }
+                                    } %}
+
+                                    {% for key, p in versions.items() %}
+                                        <div class="col-12 col-xl-6 mb-5 mb-xl-5">
+                                            <div class="tech-spec-software__version mb-4">
+                                                {{ picture(shared_media_url, key|lower + '_icon', formats=["webp","png"], file_sizes=[180], width=40, height=40, img_class='software-icon') }}
+                                                <p class="mt-0 mb-0 ml-2" style="margin-right: unset">{{ key|upper }} version</p>
+                                            </div>
+                                            <div class="ttable tech-spec__table">
+                                                <div class="tcell tlabel">Supported software</div>
+                                                <div class="tcell tdata">
+                                                    {{ p.minimal_requirements|safe }}
+                                                </div>
+                                                <div class="tcell tlabel">Includes</div>
+                                                <div class="tcell tdata">{{ p.includes }}</div>
+                                                <div class="tcell tlabel">Size</div>
+                                                <div class="tcell tdata">{{ p.size }}</div>
+                                                {% for kind in ['trailer', 'tutorial'] %}
+                                                    {% with musics=p['music'][kind] %}
+                                                        {% if musics|length %}
+                                                            <div class="tcell tlabel">Music used in {{ kind }}</div>
+                                                            <div class="tcell tdata">
+                                                                {% include 'product/music_info.jinja2' %}
+                                                            </div>
+                                                        {% endif %}
+                                                    {% endwith %}
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                        
+                                    {% endfor %}
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </section>
+
+        <section class="minstaller__section bg--light">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="minstaller">
+                            <h3 class="minstaller__title">mInstaller</h3>
+                            <p class="minstaller__description">
+                                After purchasing, the product is <b>instantly available </b>for download via <a href="https://www.motionvfx.com/page/minstaller.html" target="_blank" rel="noopener noreferrer">mInstaller</a>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        </div>
+
+		{# FOOTER #}
+        {# media_files={
+                        '(max-width: 960px)': {
+                            'filename': media_prefix + '_footer_mobile',
+                            'formats':['jpg'],
+                            'file_sizes': [640, 960],
+                        }
+                    }, #}
+	<footer class="footer">
+            <div class="image__background " style="--s-index:0">
+                {{picture(
+                    media_url=media_url,
+                    filename='footer',
+                    file_sizes=srcsetSizes,
+                    formats=['jpg'],
+                    width=2560,
+                    height=960,
+                    data_src=True,
+                    img_class='lazy-show',
+                    alt="Footer"
+                )}}
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section__text__content">
+                            <div class="section__head">
+                                <div class="footer__subtitle section__subtitle">
+                                    {{data.footer.subtitle|safe}}
+                                </div>
+                                <div class="footer__title section__title">
+                                    {{data.footer.title|safe}}
+                                </div>
+                                <p class="footer__text section__text mx-auto" style="max-width: 500px">
+                                    {{ data.footer.text|safe }}
+                                </p>
+                            </div>
+                            <div class="button-buy">
+                                {{buy_btn_free()}}
+                                {# {% with discount_text="INTRO", version=2 %} #}
+                                    {# {% include "product/buy_button.jinja2" %} #}
+                                {# {% endwith %} #}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    {# {% include './components/popup-left.jinja' %} #}
+    {% include './components/submenu.jinja' %}
+    
+    <script src="https://s3.motionvfx.com/mvfxpublic/products/templates/1329/js/gsap.min.js"></script>
+    <script src="https://s3.motionvfx.com/mvfxpublic/products/templates/1329/js/morpher.min.js"></script>
+    
+    <script src="dist/scripts.js"></script>
+    <script src="scripts/vendor/menu.js" defer></script>
+    <script src="scripts/vendor/scroll_to_anchor.js" defer></script>
+</body>
+
+</html>

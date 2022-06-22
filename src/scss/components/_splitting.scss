@@ -10,18 +10,32 @@ $animation-duration: 1s;
 .section {
   &__title,
   &__dispaly {
-    perspective: 500px;
+    // perspective: 500px;
+    &:hover {
+      .char {
+        
+      }
+    }
   }
 }
 
 .word {
-  transform-style: preserve-3d;
+  // transform-style: preserve-3d;
   display: inline-block;
 }
 
 .char {
   display: inline-block;
   opacity: 0;
+  // transform: translateY(random(20) + px);
+  $base-translate: 10;
+  $base-rotate: 25;
+  @for $var from 1 to 20 {
+    &:nth-child(#{$var}) {
+      transform:
+        translate((random($base-translate * 2) - $base-translate) + px, (random($base-translate * 2) - $base-translate) + px);
+    }
+  }
   // transform: translateY(-1rem);
   // &:first-of-type {
   //   transform: translateX(-1rem);
@@ -31,15 +45,15 @@ $animation-duration: 1s;
   //   transform: translateX(1rem);
   // }
 
-  transform: rotateY(90deg) translateX(20px);
-  transform-origin: left;
+  // transform: rotateY(90deg) translateX(20px);
+  // transform-origin: left;
 
   transition: transform $animation-duration cubic-bezier(0.175, 0.885, 0.32, 1.275),
     opacity $animation-duration linear;
-  transition-delay: calc(10ms + (50ms * var(--char-index)));
-  [data-visible="true"] & {
+  transition-delay: calc((15ms * var(--char-index)));
+  body.initialized [data-visible="true"] & {
     opacity: 1 !important;
-    transform: rotateY(0deg);
+    transform: none;
   }
 }
 

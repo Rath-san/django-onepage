@@ -114,7 +114,7 @@ const loadOnVisibleImages = (section) => {
             carouselEntity.carousel("prev");
         };
 
-        handleTouchEvents(carousel, {
+        handleTouchEvents(document.querySelector('.promo-carousel-flat'), {
             onLeftSwipe,
             onRightSwipe,
         }).init();

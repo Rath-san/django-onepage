@@ -16,139 +16,72 @@ const IMAGE_QUALITY = 50;
 640, 820, 1024;
 
 const CONFIGS = [
-    // {
-    //     directory: "_bg",
-    //     sizes: [
-    //         ...RESPONSIVE_SIZES_DESKTOP.map((size) => ({ ...size, h: 960 })),
-    //         ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ ...size, h: 560 }))
-    //     ],
-    //     quality: 75,
-    //     targetFormat: ["jpg"],
-    //     // outputOptions: {
-    //     //     mozjpeg: true,
-    //     // },
-    // },
     {
-        directory: '_box_under',
-        targetFormat: ["jpg"],
-        quality: 90,
+        directory: "_top",
         sizes: [
-            ...RESPONSIVE_SIZES.map((size) => ({ ...size, h: 860 })),
+            ...RESPONSIVE_SIZES_DESKTOP.map((size) => ({ ...size, h: 960 })),
+            ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ ...size, h: 560 }))
         ],
+        quality: 75,
+        targetFormat: ["jpg"],
         outputOptions: {
             mozjpeg: true,
         },
     },
-    // {
-    //     directory: '_box',
-    //     targetFormat: ["webp", "png"],
-    //     quality: 50,
-    //     sizes: [
-    //         {w: 256},
-    //         {w: 512}
-    //     ],
-    // },
-    // {
-    //     directory: "_slides",
-    //     sizes: [
-    //         ...RESPONSIVE_SIZES_DESKTOP,
-    //         ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ ...size, h: 400 }))
-    //     ],
-    //     quality: 75,
-    //     targetFormat: ["jpg"],
-    //     // outputOptions: {
-    //     //     mozjpeg: true,
-    //     // },
-    // },
-    // {
-    //     directory: "_logo",
-    //     sizes: [{w: 800}, {w: 400}],
-    //     quality: 75,
-    //     targetFormat: ["png", "webp"],
-    //     // outputOptions: {
-    //     //     mozjpeg: true,
-    //     // },
-    // },
-    // {
-    //     directory: "_promo",
-    //     sizes: [...RESPONSIVE_SIZES],
-    //     quality: 75,
-    //     targetFormat: ["jpg"],
-    //     // outputOptions: {
-    //     //     mozjpeg: true,
-    //     // },
-    // },
+    {
+        directory: "_slider",
+        sizes: [
+            ...RESPONSIVE_SIZES_DESKTOP.map((size) => ({ ...size, h: 960 })),
+            ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ ...size, h: 560 }))
+        ],
+        quality: 75,
+        targetFormat: ["jpg"],
+        outputOptions: {
+            mozjpeg: true,
+        },
+    },
+    {
+        directory: "_wide",
+        sizes: [
+            ...RESPONSIVE_SIZES_DESKTOP.map((size) => ({ ...size, h: 960 })),
+            ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ ...size, h: 560 }))
+        ],
+        quality: 75,
+        targetFormat: ["jpg"],
+        outputOptions: {
+            mozjpeg: true,
+        },
+    },
+    {
+        directory: "_wide_vertical",
+        sizes: [
+            {w: 620},
+            {w: 310},
+        ],
+        quality: 75,
+        targetFormat: ["jpg"],
+        outputOptions: {
+            mozjpeg: true,
+        },
+    },
+    {
+        directory: "_footer",
+        sizes: [
+            ...RESPONSIVE_SIZES_DESKTOP.map((size) => ({ ...size, h: 960 })),
+            ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ ...size, h: 560 }))
+        ],
+        quality: 75,
+        targetFormat: ["jpg"],
+        outputOptions: {
+            mozjpeg: true,
+        },
+    },
 
-    // {
-    //     directory: "_squares",
-    //     sizes: [
-    //         {w: 800},
-    //         {w: 400}
-    //     ],
-    //     quality: 75,
-    //     targetFormat: ["jpg"],
-    //     outputOptions: {
-    //         mozjpeg: true,
-    //     },
-    // },
-    // {
-    //     directory: "_box",
-    //     sizes: [{ w: 512 }, { w: 256 }],
-    //     quality: 75,
-    //     targetFormat: ["webp", "png"],
-    // },
-
-
-    // {
-    //     directory: "_presets",
-    //     sizes: [
-    //         {w: 399},
-    //     ],
-    //     quality: 75,
-    //     targetFormat: ["jpg"],
-    // },
-    // {
-    //     directory: "_tuts",
-    //     sizes: [
-    //         {w: 1000},
-    //         {w: 500},
-    //         {w: 250},
-    //     ],
-    //     quality: 75,
-    //     targetFormat: ["jpg"],
-    // },
-    // {
-    //     directory: "_palette",
-    //     sizes: [
-    //         {w: 1200},
-    //         {w: 600},
-    //         {w: 300},
-    //     ],
-    //     quality: 75,
-    //     targetFormat: ["png", "webp"],
-    // },
-    // {
-    //     directory: "_ui",
-    //     sizes: [
-    //         {w: 2000},
-    //         {w: 1000},
-    //         {w: 500},
-    //     ],
-    //     quality: 75,
-    //     targetFormat: ["png", "webp"],
-    // },
-    // {
-    //     directory: "_head",
-    //     sizes: [
-    //         ...RESPONSIVE_SIZES_DESKTOP,
-    //         ...RESPONSIVE_SIZES_MOBILE.map((e) => ({ ...e, h: 600 })),
-    //     ],
-    // },
 ];
 
 function resizeTask(
     managedFormats = ["jpg", "jpeg", "png"],
-    imgDist = "src/_images/otp/"
+    imgDist = "src/plugins/luma/_images/otp/"
 ) {
     CONFIGS.forEach(
         ({
@@ -160,7 +93,7 @@ function resizeTask(
             targetFormat = FORMATS,
         }) => {
             const fileSrcs = managedFormats.map(
-                (format) => `src/_images/${directory}/*.${format}`
+                (format) => `src/plugins/luma/_images/${directory}/*.${format}`
             );
             return src(fileSrcs).pipe(
                 through2.obj(async function (file, _, cb) {

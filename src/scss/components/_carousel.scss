@@ -1,11 +1,11 @@
 .fade-new {
     .carousel {
         &-inner {
-            height: 100%;
+            // height: 100%;
             padding: 0;
         }
         &-item {
-            height: 100%;
+            // height: 100%;
             // transition-duration: 1s !important;
             &.active {
                 &.carousel-item-left {
@@ -27,14 +27,14 @@
 .slide-new {
     .carousel {
         &-inner {
-            perspective: 500px;
-            height: 100%;
+            // perspective: 500px;
+            // height: 100%;
             padding: 0;
         }
 
         &-item {
-            transform-style: preserve-3d;
-            height: 100%;
+            // transform-style: preserve-3d;
+            // height: 100%;
             transition-duration: 1s !important;
             transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1);
 
@@ -50,7 +50,7 @@
 
             &-right {
                 &.active {
-                    transform: translate3d(100%,0,-100px);
+                    // transform: translate3d(100%,0,-100px);
                     // transform: translate3d(100%,0,0px) rotate3d(0, 1, 0, 5deg);
                     // transform-origin: left;
                     // opacity: .5;
@@ -65,7 +65,7 @@
 
             &-left {
                 &.active {
-                    transform: translate3d(-100%,0,-100px);
+                    // transform: translate3d(-100%,0,-100px);
                     // transform: translate3d(-100%,0,0px) rotate3d(0, 1, 0, -5deg);
                     // transform-origin: right;
                 }

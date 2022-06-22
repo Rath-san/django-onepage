@@ -1,15 +1,12 @@
 .tech-spec {
-    padding-top: 0;
-    padding-left: 5%;
-    padding-right: 5%;
+    padding: 0 5% $section-padding-y;
     font-weight: 400;
 
     &__title {
         margin-bottom: 3rem;
         @media screen and (max-width: 450px) {
-            text-align: left;
+            // text-align: left;
             align-items: flex-start;
-
             margin-bottom: 1.8rem;
         }
     }
@@ -26,8 +23,6 @@
     .tech-spec-info {
         text-align: center;
         position: relative;
-        h2 {
-        }
     }
 }
 
@@ -54,10 +49,11 @@
         text-align: right;
         color: #757575;
         @media screen and (max-width: 450px) {
+            padding-right: 0;
             text-transform: uppercase;
             font-weight: 600;
             font-size: 14px;
-            text-align: left;
+            text-align: center;
             padding-bottom: 0;
         }
     }
@@ -71,65 +67,36 @@
         @include respond-below(md) {
             max-width: 100%;
         }
+        @media screen and (max-width: 450px) {
+            text-align: center;
+            padding-right: 0;
+        }
     }
 }
 
-
 .ts-mi {
-  position: relative;
-  // background-color: #9aa9ae;
-  // max-height: 1050px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  z-index: 2;
-  position: relative;
-  // @media screen and (max-width: 960px) {
-  //   padding-bottom: 0;
-  // }
-
-  .container {
+    padding: $section-padding-y 0;
     position: relative;
-  }
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 2;
+    position: relative;
 
-  // .deco {
-  //   position: absolute;
-  //   left: 70%;
-  //   bottom: -180px;
-
-  //   @media screen and (max-width: 1300px) {
-  //     display: none;
-  //   }
-
-  //   img {
-  //     max-width: 600px;
-  //     width: 50vw;
-  //     height: auto;
-  //   }
-  //   @media screen and (min-width: 2000px) {
-  //     left: unset;
-  //     right: 6vw;
-  //   }
-  //   @media screen and (max-width: 1700px) {
-  //     left: 70%;
-  //     right: unset;
-  //     bottom: 0px;
-  //     img {
-  //       max-width: 400px;
-  //     }
-  //   }
-  // }
-
-  @include respond-below(md) {
-    padding-top: 2rem;
-    padding-bottom: 0;
-
-    .tech-spec {
-      margin-bottom: 2rem;
+    .container {
+        position: relative;
     }
 
-    .minstaller {
-      margin-bottom: 1rem;
+    @include respond-below(md) {
+        padding-top: 2rem;
+        padding-bottom: 0;
+
+        .tech-spec {
+            margin-bottom: 2rem;
+        }
+
+        .minstaller {
+            margin-bottom: 1rem;
+        }
     }
-  }
 }

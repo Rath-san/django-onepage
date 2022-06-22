@@ -17,11 +17,11 @@ const CONFIGS = [
 
 function resizeTask(
     managedFormats = ["mov", "mp4", "m4v"],
-    videoDist = "src/_videos/otp/"
+    videoDist = "src/luma/_videos/otp/"
 ) {
     CONFIGS.forEach(({ directory }) => {
         const fileSrcs = managedFormats.map(
-            (format) => `src/_videos/${directory}/*.${format}`
+            (format) => `src/luma/_videos/${directory}/*.${format}`
         );
 
         return src(fileSrcs).pipe(

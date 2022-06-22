@@ -3,8 +3,8 @@ from django.contrib.auth import get_user_model
 from django.core.management.base import BaseCommand
 
 NAME = 'DJANGO_SUPERUSER_USERNAME'
-EMAIL = 'DJANGO_SUPERUSER_PASSWORD'
-PASS = 'DJANGO_SUPERUSER_EMAIL'
+EMAIL = 'DJANGO_SUPERUSER_EMAIL'
+PASS = 'DJANGO_SUPERUSER_PASSWORD'
 
 class Command(BaseCommand):
     help = "Creates an admin user non-interactively if it doesn't exist"

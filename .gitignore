@@ -135,15 +135,11 @@ dmypy.json
 node_modules
 
 # Local files
-src/_images/**/*.jpg
-src/_images/**/*.png
-src/_images/**/*.webp
-src/_images/**/*.svg
-src/_images/**/*.mp4
-src/_videos/**/*.jpg
-src/_videos/**/*.mp4
-src/_videos/**/*.webm
+src/plugins
 src/_data
+src/_images
+src/_videos
+src/_plugins
 spa-db
 spa-db-journal
 
