@@ -49,4 +49,4 @@ def index(request, **kwargs):
         'test': 'test12'
     }
 
-    return render(request, "camrig.jinja", context)
+    return render(request, "minstaller.jinja", context)

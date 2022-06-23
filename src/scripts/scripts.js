@@ -157,7 +157,7 @@ import './minstaller/lazy-images'
       fontSize: 20,
       textColor: 'rgba(70,252,232, 1)',
       bgColor: '#00000005',
-      speed: 100,
+      speed: 10,
       text: '01101101 01001001 01101110 01110011 01110100 01100001 01101100 01101100 01100101 01110010'
     })
 

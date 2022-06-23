@@ -1,3 +1,4 @@
+import { throttle } from './utils'
 export const paralax = ({
   selector,
   mouseContainer,
@@ -23,6 +24,9 @@ export const paralax = ({
   }
 
   const parallax = (e) => {
+
+
+
     let _w = window.innerWidth / 2
     let _h = window.innerHeight / 2
     let _mouseX = e.clientX
@@ -49,7 +53,7 @@ export const paralax = ({
   }
 
   // Add event listener
-  mouseContainer.addEventListener('mousemove', parallax)
+  mouseContainer.addEventListener('mousemove', throttle(parallax, 100))
   mouseContainer.addEventListener('mouseleave', () => {
     elementChildren.forEach((node) => {
       removeClass(node)

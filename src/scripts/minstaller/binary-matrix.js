@@ -64,11 +64,11 @@ export const glowingBinaryMatrix = ({
   }
 
   const run = () => {
-    // rain()
-    setInterval(rain, speed)
-    // window.requestAnimationFrame(run)
+    setTimeout(() => {
+      window.requestAnimationFrame(run)
+      rain()
+    }, 1000 / speed);
   }
 
   run()
-  // window.requestAnimationFrame(run)
 }
