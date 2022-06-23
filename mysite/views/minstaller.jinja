@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include './components/head.jinja' %}
+<body>
+    <style>
+    .shop__buttons .btn.loading {
+        transition: all 1s .4s;
+    }
+    .btn__outline--none {
+        box-shadow: none;
+        border-color: transparent;
+    }
+    .btn__outline--gray {
+        opacity: .7;
+        box-shadow: none;
+        border-color: transparent;
+        transition: all .25s;
+    }
+    
+    .btn__outline--gray:hover {
+        border-color: #ffffff;
+        box-shadow: 3px inset #ffffff;
+    }
+    @media (pointer: coarse) {
+        .btn__outline--gray {
+            border-color: #ffffff;
+            box-shadow: 3px inset #ffffff;
+        }
+    }
+    </style>
+    {% include './components/nav.jinja' %}
+        <!-- Main content -->
+    {% block content %}
+
+    {% macro picture_w_placeholder(
+		media_url, filename, media_files={}, file_sizes=[360, 480, 640, 960], formats=['webp','jpg'], media_sizes='', media='', alt='', placeholder='', img_class='', img_style='', picture_class='', width='', height='', loading='', data_src=False
+	) %}
+        {% if placeholder %}
+            <div class="placeholder"
+                style=" padding-bottom: calc({{ height }} / {{ width }} * 100%); background: url({{ placeholder }}) center no-repeat; background-size: cover; ">
+            </div>
+        {% endif %}
+		<picture class="{{ picture_class }}">
+			{% for media in media_files %}
+				{% set m = media_files[media] %}
+				{% for format in formats %}
+					<source {% if data_src %} data-srcset=" {% for size in m['file_sizes'] %} {{ media_url }}/{{ m['filename'] }}-{{ size }}.{{ format }} {{size}}w, {% endfor %}" {% else %} srcset=" {% for size in m['file_sizes'] %} {{ media_url }}/{{ m['filename'] }}-{{ size }}.{{ format }} {{size}}w, {% endfor %}" {% endif %} type="image/{{ format | replace('jpg', 'jpeg') }}" sizes="{{ m['media_sizes'] | default(media_sizes) }}" media="{{ media }}" >
+				{% endfor %}
+			{% endfor %}
+			{% for format in formats %}
+				<source {% if data_src %} data-srcset=" {% for size in file_sizes %} {{ media_url }}/{{ filename }}-{{ size }}.{{ format }} {{size}}w, {% endfor %}" {% else %} srcset=" {% for size in file_sizes %} {{ media_url }}/{{ filename }}-{{ size }}.{{ format }} {{size}}w, {% endfor %}" {% endif %} type="image/{{ format | replace('jpg', 'jpeg') }}" sizes="{{ media_sizes }}" media="{{ media }}">
+			{% endfor %}
+			<img {% if data_src %} data-src="{{ media_url }}/{{ filename }}-{{ file_sizes[0] }}.{{ formats[-1] }}?{{file_version}}" {% else %} src="{{ media_url }}/{{ filename }}-{{ file_sizes[0] }}.{{ formats[-1] }}?{{file_version}}" {% endif %} alt="{{alt}}" class="{{img_class}}" style="{{img_style}}" width="{{width}}" height="{{height}}" loading="{{loading}}" >
+		</picture>
+	{% endmacro %}
+
+    {% macro tile(tile = {
+        'name': 'ptl_01',
+        'width': '1060',
+        'height': '940',
+        'placeholder': 'data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAJAAoDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAgQHCP/EACUQAAECBQEJAAAAAAAAAAAAAAIBBAADBQYRBxIUFyExVXGU0f/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AbvPVChVPUa2qxTLnnt6KyEd7bKDqWs7BqWUAR2S5LjBRQePen3dnXpTfkYoLoPiBij//2Q==',
+    }) %}
+        <div class="tile__wrapper">
+            <div class="tile object">
+                <div class="mesh">
+                    <div class="face-front">
+                        <div class="img-lazy">
+                            {{ picture_w_placeholder(
+                                media_url,
+                                filename=tile.name,
+                                media_files={},
+                                file_sizes= tile.file_sizes or [320, 640, 960, 1060],
+                                formats=tile.fotmats or ['jpg'],
+                                media_sizes='(max-width: 1024px) 50vw, 100vw',
+                                alt='Floating image tile with plugin',
+                                placeholder=tile.placeholder,
+                                width=tile.width,
+                                height=tile.height,
+                                data_src=True
+                            ) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="shadow"></div>
+            </div>
+        </div>
+    {% endmacro %}
+
+    {% macro shop_buttons() %}
+        <div class="shop__buttons">
+            <a class="btn btn__outline--none loading"
+                id="btn-macos"
+                href="https://s3.motionvfx.com/mvfxpublic/mInstaller/mInstaller.dmg"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-os="{% if not magic_link %}mac{% endif %}">
+
+                <i class="button__icon icon--apple">
+                    <svg viewbox="0 0 23 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M22.2 19.3C21.3 18.8 19.5 17.7 19.5 14.8C19.5 12.4 21.1 11.2 22 10.5L22.6 10L22.2 9.40002C20.4 6.70002 17.3 6.40002 16.3 6.40002C15 6.40002 13.8 6.90002 12.9 7.20002C12.5 7.40002 12 7.60002 11.8 7.60002C11.5 7.60002 10.8 7.40002 10.2 7.10002C9.3 6.80002 8.3 6.40002 7.4 6.40002C5.4 6.40002 0 7.90002 0 15C0 19.5 3.5 28 7.6 28C8.6 28 9.6 27.7 10.4 27.4C11 27.2 11.6 27 12 27C12.9 27 13.4 27.2 14 27.5C14.6 27.8 15.3 28 16.3 28C20.3 28 23 20.7 23 20.3C23 19.7 22.6 19.5 22.2 19.3Z" fill="white"></path>
+                        <path d="M16.6998 0C14.0998 0 10.9998 3.2 11.4998 6.1C14.1998 6.3 16.7998 3.7 16.6998 0Z" fill="white"></path>
+                    </svg>
+                </i>
+                Get for Mac
+            </a>
+            <a class="btn btn__outline--none btn--windows loading"
+                id="btn-windows"
+                href="https://s3.motionvfx.com/mvfxpublic/mInstaller/win/mInstaller_setup.exe"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-os="{% if not magic_link %}win{% endif %}">
+                <i class="button__icon icon--windows">
+                    <svg viewbox="0 0 28 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 12.2H12.2V1.90002L0 3.50002V12.2Z" fill="white"></path>
+                        <path d="M14 1.7V12.2H28V0L14 1.7Z" fill="white"></path>
+                        <path d="M14 24.5L28 26.2V14H14V24.5Z" fill="white"></path>
+                        <path d="M0 22.7L12.2 24.3V14H0V22.7Z" fill="white"></path>
+                    </svg>
+                </i>
+                Get for Windows
+            </a>
+        </div>
+    {% endmacro %}
+
+    {% set template_id = '55' %}
+    {% set media_url = 'https://s3.motionvfx.com/mvfxpublic/pages/templates/%s/media' % (template_id)  %}
+
+    {% set src_set = [ 320, 640, 960, 1200, 1800, 2400 ] %}
+
+<main class="mInstaller">
+    <section class="header text--light text-center">
+        <div class="header__bg"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="header__content section__text__content">
+                        <div class="header__logo">
+                            <h1 class="header__title">mInstaller</h1>
+                            <p class="header__subtitle">
+                                Your MotionVFX cloud.
+                            </p>
+                        </div>
+                        <div class="header__buttons">
+                            {% if magic_link %}
+                            <div class="shop__buttons">
+                                <a class="btn btn__fill--primary"
+                                    id="btn-open-minstaller"
+                                    href="{{ magic_link }}"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    data-os="">Open mInstaller
+                                </a>
+                            </div>
+                            {% endif %}
+                            {{ shop_buttons() }}
+                        </div>
+                        <p class="header__text">
+                            Access your entire MotionVFX Plugins and Motion Templates collection with&nbsp;a&nbsp;click.
+                        </p>
+                        <a class="header__link link--yellow"
+                            href="#"
+                            rel="noopener noreferrer"
+                            onclick="scrollToAnchor('installation');">Watch more
+                        </a>
+                    </div>
+                    <div class="header__promo animated animation--fade animation--bottom">
+                        <div class="img-lazy">
+                            {{ picture_w_placeholder(
+                                media_url,
+                                filename='main_screen_o',
+                                media_files={},
+                                file_sizes=src_set,
+                                formats=['jpg'],
+                                media_sizes='200vw',
+                                media='',
+                                alt='Main interface of mInstaller aplication with available plugins',
+                                placeholder='data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAGAAoDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAEH/8QAIBAAAgAGAgMAAAAAAAAAAAAAAQIAAwQFESEGEhQxYf/EABUBAQEAAAAAAAAAAAAAAAAAAAID/8QAGREAAwADAAAAAAAAAAAAAAAAAAECESEy/9oADAMBAAIRAxEAPwDKpdi8LiHHb3dJNFc6SrbpKpmQymljsxIZ0wWzjG/WdRBPsKgBuG2piNFjVVAz900IRSVrAq5TP//Z',
+                                img_class='',
+                                img_style='',
+                                picture_class='',
+                                width='2560',
+                                height='1460',
+                                loading='',
+                                data_src=True
+                            ) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <a name="installation" href="#" rel="noopener noreferrer"></a>
+
+    <section class="installation bg--light text-center" style="margin-top: -1px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="installation__content section__text__content">
+                        <h2 class="installation__title section__title">Installation tutorial</h2>
+                        <p class="installation__text section__text">
+                            Learn how to download, install and use mInstaller to have the best experience with MotionVFX content.
+                        </p>
+                    </div>
+                    <div class="installation__promo">
+                        <iframe src="https://www.youtube.com/embed/hF4LqU98ADY?rel=0"
+                                frameborder="0"
+                                allow="autoplay; encrypted-media"
+                                allowfullscreen=""
+                                title="mInstaller"
+                                style="background-color: #000"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="purchases bg--dark">
+        <div class="purchases__shadow bg--full--absolute"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="purchases__image purchases__image--products scene">
+                    {% set tiles = [
+                        {
+                            'name': 'ptl_01',
+                            'width': '1060',
+                            'height': '940',
+                            'placeholder': 'data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAJAAoDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAgQHCP/EACUQAAECBQEJAAAAAAAAAAAAAAIBBAADBQYRBxIUFyExVXGU0f/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AbvPVChVPUa2qxTLnnt6KyEd7bKDqWs7BqWUAR2S5LjBRQePen3dnXpTfkYoLoPiBij//2Q==',
+                        },
+                        {
+                            'name': 'ptl_02',
+                            'width': '1060',
+                            'height': '940',
+                            'placeholder': 'data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAJAAoDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABQYI/8QAJRAAAQIEBAcAAAAAAAAAAAAAAQIEAAMFBgcREhchNFVylMHR/8QAFQEBAQAAAAAAAAAAAAAAAAAAAgP/xAAZEQACAwEAAAAAAAAAAAAAAAABAgADERL/2gAMAwEAAhEDEQA/AEr7xKpD6+rZqrO43tPozQoW4krbOZZcZL1EBITpUCk5cTFxv5h91Z14U35GQK9yzLt9CBYragRsEFbdLpn/2Q==',
+                        },
+                        {
+                            'name': 'ptl_03',
+                            'width': '1060',
+                            'height': '940',
+                            'file_sizes': [320, 640, 960, 1080],
+                            'placeholder': 'data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAJAAoDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAIEB//EACIQAAEDAwMFAAAAAAAAAAAAAAECAwQAERITITMUQWFxcv/EABUBAQEAAAAAAAAAAAAAAAAAAAID/8QAGBEBAAMBAAAAAAAAAAAAAAAAAgABESH/2gAMAwEAAhEDEQA/AMIclrlys5vUy3VnUUUJxUo97kbmpZAa13NJqQlvI4pWBcC+wPmkh86fk0O8q/Zq9HTsaVrqn//Z',
+                        },
+                        {
+                            'name': 'ptl_04',
+                            'width': '1060',
+                            'height': '940',
+                            'placeholder': 'data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAJAAoDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABgUI/8QAJhAAAAUCAwkAAAAAAAAAAAAAAQIDBAUABgcREhciNFVhcpTB0f/EABQBAQAAAAAAAAAAAAAAAAAAAAP/xAAYEQADAQEAAAAAAAAAAAAAAAABAgMSAP/aAAwDAQACEQMRAD8AR3Zi3Enu6CfR88q0hUwKLpJZm4KZYANmOkAJkO71ClW3rD3mznwlflZDuPg47s9BUGltMI2RxybS6Pf/2Q==',
+                        },
+                        {
+                            'name': 'ptl_05',
+                            'width': '1060',
+                            'height': '940',
+                            'placeholder': 'data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAJAAoDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABQQH/8QAIxAAAQMDAgcAAAAAAAAAAAAAAgEEEQADBSExBhQ0coGhwf/EABUBAQEAAAAAAAAAAAAAAAAAAAME/8QAHBEAAQMFAAAAAAAAAAAAAAAAAwABAhITFCEi/9oADAMBAAIRAxEAPwDM7D3D4XHNL7WzdbZE5K4TtoRASRsMyhbzMIqeaiPjUyMi5Nlqs6W49UDnOlZdvxKHpSRtypZQYQj9E2v/2Q=='
+                        },
+                        {
+                            'name': 'ptl_08',
+                            'width': '1060',
+                            'height': '940',
+                            'file_sizes': [320, 640, 960, 1080],
+                            'placeholder': 'data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAJAAoDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAIEB//EACIQAAEDAwMFAAAAAAAAAAAAAAECAwQAERITITMUQWFxcv/EABUBAQEAAAAAAAAAAAAAAAAAAAID/8QAGBEBAAMBAAAAAAAAAAAAAAAAAgABESH/2gAMAwEAAhEDEQA/AMIclrlys5vUy3VnUUUJxUo97kbmpZAa13NJqQlvI4pWBcC+wPmkh86fk0O8q/Zq9HTsaVrqn//Z'
+                        },
+                        {
+                            'name': 'ptl_07',
+                            'width': '1441',
+                            'height': '452',
+                            'file_sizes': [320, 640, 960, 1200, 1441],
+                            'placeholder': 'data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAADAAoDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAUI/8QAHBAAAgICAwAAAAAAAAAAAAAAAQIAAwQxESGB/8QAFAEBAAAAAAAAAAAAAAAAAAAAA//EABgRAQEAAwAAAAAAAAAAAAAAAAEAAgMR/9oADAMBAAIRAxEAPwDOte1HXB3KGTj1Lk2qtYChyAPYiPrBHsWaiX//2Q=='
+                        },
+                        {
+                            'name': 'ptl_06',
+                            'width': '1060',
+                            'height': '940',
+                            'placeholder': 'data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAJAAoDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABgUI/8QAJBAAAQIFAgcAAAAAAAAAAAAAAQIEAAMFBhEHQRc1VXKUwdL/xAAUAQEAAAAAAAAAAAAAAAAAAAAD/8QAGBEAAgMAAAAAAAAAAAAAAAAAAhIAAQP/2gAMAwEAAhEDEQA/ALF7apU11e1t1Kl3EtlRG5Qp3KnNHKFTwF5ISAnCgUnffENuPOn3WHHhTfmMi3Jy+m9noQehtgQlh5k9Nc//2Q=='
+                        }
+                    ] %}
+
+                    {% for t in tiles %}
+                        {{ tile(tile = t) }}
+                    {% endfor %}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="purchases__content section__text__content">
+                        <div class="section__header">
+                            <h2 class="purchases__title">
+                                Organized
+                                <br />
+                                <span>All purchases in one place</span>
+                            </h2>
+                        </div>
+                        <p class="purchases__text section__text">
+                            All your MotionVFX purchases in one place with super
+                            easy install and repair. Now it’s also easier to manage
+                            licenses across many devices and do basic troubleshooting.
+                        </p>
+                        <p class="purchases__text section__text">
+                            Conveniently switch licenses between <b>different
+                        machines</b>, uninstall plugins and templates,
+                        find tutorials and reach our support directly
+                        in connection with specific products.
+                    </p>
+                </div>
+                <div class="purchases__image purchases__image--projects scene">
+                    {% for t in [
+                        {
+                            'filename': 'ptr_01',
+                            'file_sizes': [ 320, 640, 960, 1200, 1750 ],
+                            'alt': 'Floating image tile with project options',
+                            'placeholder': 'data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAALAAoDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABgII/8QAHhAAAgEFAAMAAAAAAAAAAAAAAQIEAAMRITEFIlH/xAAUAQEAAAAAAAAAAAAAAAAAAAAD/8QAGBEBAQEBAQAAAAAAAAAAAAAAAQIDABH/2gAMAwEAAhEDEQA/AM8XPV0UaUgZH2kM6DFSbIVI6Kq3GAAHBmjvcE9FW/kJVx2d7zFmOSdbNPlpMCUe8WkVSI9//9k=',
+                            'width': '1750',
+                            'height': '1856',
+                        },
+                        {
+                            'filename': 'ptr_02',
+                            'file_sizes': [ 320, 640, 960, 1200, 1368 ],
+                            'alt': 'Floating image tile with project settings',
+                            'placeholder': 'data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAOAAoDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAECCP/EABwQAQADAAIDAAAAAAAAAAAAAAEAAhEhMUFRYf/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AzreoNMwHOmRYCyHuCmmVw8/YnN4OJR//2Q==',
+                            'width': '1368',
+                            'height': '1902',
+                        }
+                    ] %}
+                        <div class="tile__wrapper">
+                            <div class="tile object">
+                                <div class="mesh">
+                                    <div class="face-front">
+                                        <div class="img-lazy">
+                                            {{ picture_w_placeholder(
+                                                media_url,
+                                                filename=t.filename,
+                                                file_sizes=t.file_sizes,
+                                                formats=['jpg'],
+                                                media_sizes='(max-width: 1024px) 50vw, 100vw',
+                                                alt=t.alt,
+                                                placeholder=t.placeholder,
+                                                width=t.width,
+                                                height=t.height,
+                                                data_src=True
+                                            ) }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="shadow">
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+<!--<section class="store bg--dark">-->
+<!--  <div class="container">-->
+<!--    <div class="row">-->
+<!--      <div class="col-lg-6">-->
+<!--        <div class="store__content section__text__content">-->
+<!--          <div class="section__header">-->
+<!--            <h2 class="store__title">Built-in store <br /><span -->
+<!--                >The whole content at your fingertips.</span-->
+<!--              >-->
+<!--            </h2>-->
+<!--          </div>-->
+<!--          <p class="section__text store__text">Fast and secure payments for your convenience. Use your-->
+<!--            favorite method. ApplePay, Paypal - we've got you covered.-->
+<!--          </p>-->
+<!--          <ul class="store__payment__list payment__list">-->
+<!--            <li class="payment__list__item">-->
+<!--              <i class="payment__list__item__icon icon--apple-pay"-->
+<!--                ><svg -->
+<!--                  xmlns="http://www.w3.org/2000/svg"-->
+<!--                  xmlns:xlink="http://www.w3.org/1999/xlink"-->
+<!--                  version="1.1"-->
+<!--                  baseprofile="tiny"-->
+<!--                  x="0px"-->
+<!--                  y="0px"-->
+<!--                  viewbox="0 0 512 210.2"-->
+<!--                  xml:space="preserve"-->
+<!--                >-->
+<!--                  <path -->
+<!--                    d="M93.6,27.1C87.6,34.2,78,39.8,68.4,39c-1.2-9.6,3.5-19.8,9-26.1c6-7.3,16.5-12.5,25-12.9  C103.4,10,99.5,19.8,93.6,27.1 M102.3,40.9c-13.9-0.8-25.8,7.9-32.4,7.9c-6.7,0-16.8-7.5-27.8-7.3c-14.3,0.2-27.6,8.3-34.9,21.2  c-15,25.8-3.9,64,10.6,85c7.1,10.4,15.6,21.8,26.8,21.4c10.6-0.4,14.8-6.9,27.6-6.9c12.9,0,16.6,6.9,27.8,6.7  c11.6-0.2,18.9-10.4,26-20.8c8.1-11.8,11.4-23.3,11.6-23.9c-0.2-0.2-22.4-8.7-22.6-34.3c-0.2-21.4,17.5-31.6,18.3-32.2  C123.3,42.9,107.7,41.3,102.3,40.9 M182.6,11.9v155.9h24.2v-53.3h33.5c30.6,0,52.1-21,52.1-51.4c0-30.4-21.1-51.2-51.3-51.2H182.6z   M206.8,32.3h27.9c21,0,33,11.2,33,30.9c0,19.7-12,31-33.1,31h-27.8V32.3z M336.6,169c15.2,0,29.3-7.7,35.7-19.9h0.5v18.7h22.4V90.2  c0-22.5-18-37-45.7-37c-25.7,0-44.7,14.7-45.4,34.9h21.8c1.8-9.6,10.7-15.9,22.9-15.9c14.8,0,23.1,6.9,23.1,19.6v8.6l-30.2,1.8  c-28.1,1.7-43.3,13.2-43.3,33.2C298.4,155.6,314.1,169,336.6,169z M343.1,150.5c-12.9,0-21.1-6.2-21.1-15.7c0-9.8,7.9-15.5,23-16.4  l26.9-1.7v8.8C371.9,140.1,359.5,150.5,343.1,150.5z M425.1,210.2c23.6,0,34.7-9,44.4-36.3L512,54.7h-24.6l-28.5,92.1h-0.5  l-28.5-92.1h-25.3l41,113.5l-2.2,6.9c-3.7,11.7-9.7,16.2-20.4,16.2c-1.9,0-5.6-0.2-7.1-0.4v18.7C417.3,210,423.3,210.2,425.1,210.2z  "-->
+<!--                  ></path></svg-->
+<!--              ></i>-->
+<!--            </li>-->
+<!--            <li class="payment__list__item">-->
+<!--              <i class="payment__list__item__icon icon--paypal"-->
+<!--                ><svg -->
+<!--                  xmlns="http://www.w3.org/2000/svg"-->
+<!--                  version="1.1"-->
+<!--                  x="0"-->
+<!--                  y="0"-->
+<!--                  viewbox="0 0 520 156"-->
+<!--                >-->
+<!--                  <title>PayPal Logo</title>-->
+<!--                  <rect-->
+<!--                    x="110.248"-->
+<!--                    y="36.665"-->
+<!--                    fill="none"-->
+<!--                    width="305.446"-->
+<!--                    height="60.272"-->
+<!--                  ></rect>-->
+<!--                  <path -->
+<!--                    fill="#fff"-->
+<!--                    d="M461.864,10l-9.787,39.829c-2.322-4.806-6.188-8.762-11.5-11.584c-6.952-3.654-16.603-5.432-29.502-5.432l-17.706,1.28l-14.543,2.579c-0.522-1.411-1.114-2.763-1.827-4.015v-0.014c-2.69-4.831-6.645-8.834-11.695-11.838c-4.624-2.696-9.896-4.526-15.809-5.543c-0.02,0-17.672-1.333-17.672-1.333h-42.455l-5.071,20.684h-33.129c0,0-7.879,12.783-10.603,17.125c-0.213-1.766-2.39-17.125-2.39-17.125h-48.526c0,0,0.375,2.059,0.945,5.331c-0.884-0.589-1.816-1.162-2.797-1.699c-6.938-3.654-16.597-5.432-29.497-5.432l-17.708,1.28l-14.546,2.579c-0.517-1.391-1.104-2.735-1.821-4.015c-2.702-4.845-6.625-8.849-11.707-11.853c-4.621-2.696-9.899-4.526-15.814-5.543l-17.66-1.333H36.585L10,122.386h49.543c0,0,4.778-19.427,6.772-27.574c14.169-0.17,26.208-2.671,35.971-7.387c-0.671,2.746-1.084,5.596-1.084,8.658c0,8.203,3.321,15.358,9.625,20.608c5.918,4.976,13.384,7.521,22.224,7.521l11.257-1.059c0,0,1.392-0.45,2.406-0.769c4.545,0,41.026,0,41.026,0l10.14-41.346c2.135,11.98,3.984,22.383,4.499,25.322c-3.918,5.588-27.67,39.438-27.67,39.438h54.735l43.218-63.689l-9.874,40.275h49.551c0,0,4.742-19.427,6.754-27.574c14.182-0.17,26.216-2.671,35.95-7.387c-0.635,2.746-1.078,5.596-1.078,8.658c0,8.203,3.341,15.358,9.631,20.608c5.939,4.976,13.402,7.521,22.209,7.521l11.296-1.059c0,0,1.406-0.45,2.367-0.769h34.752c3.791,0,6.267,0,6.267,0h41.919L510.001,10H461.864"-->
+<!--                  ></path>-->
+<!--                  <path -->
+<!--                    fill="#000"-->
+<!--                    d="M84.74,62.756c-3.923,2.691-9.362,4.038-16.397,4.038h-8.329l6.202-25.219h9.329c4.987,0,8.746,0.785,11.291,2.369c2.518,1.59,3.806,4.029,3.806,7.281C90.641,56.227,88.676,60.055,84.74,62.756 M112.862,38.245c-1.641-2.939-4.052-5.354-7.187-7.194c-3.151-1.841-6.924-3.16-11.288-3.917c-4.369-0.751-9.474-1.123-15.344-1.123H46.806l-20.653,84.27h23.201l6.733-27.481h8.79c15.917,0,28.304-3.071,37.166-9.207c8.868-6.167,13.291-14.244,13.291-24.266C115.334,44.906,114.507,41.223,112.862,38.245z"-->
+<!--                  ></path>-->
+<!--                  <path -->
+<!--                    fill="#000"-->
+<!--                    d="M160.178,93.728c-2.112,1.441-4.378,2.612-6.792,3.56c-2.408,0.919-4.691,1.374-6.813,1.374c-3.218,0-5.677-0.41-7.387-1.324c-1.702-0.889-2.554-2.422-2.554-4.599c0-2.464,0.653-4.465,1.941-5.979c1.255-1.494,3.112-2.676,5.563-3.5c2.344-0.779,5.193-1.383,8.555-1.805c3.333-0.414,6.924-0.752,10.776-1.06L160.178,93.728 M156.11,110.28h21.428l10.625-43.251c0.243-0.902,0.425-1.961,0.567-3.16c0.126-1.21,0.221-2.196,0.221-2.954c0-5.476-2.489-9.5-7.426-12.118c-4.909-2.606-12.669-3.906-23.225-3.906c-5.258,0-10.494,0.386-15.764,1.131c-5.28,0.791-9.178,1.467-11.692,2.076l-3.163,15.208h1.964c2.144-0.732,5.37-1.685,9.646-2.822c4.303-1.137,8.197-1.685,11.76-1.685c5.228,0,9.156,0.517,11.776,1.573c2.644,1.059,3.951,2.906,3.951,5.532c0,0.634-0.07,1.202-0.182,1.729c-0.148,0.528-0.254,0.894-0.291,1.123c-7.451,0.411-14.372,1.04-20.765,1.925c-6.407,0.863-11.937,2.288-16.563,4.244c-4.937,2.064-8.672,4.873-11.184,8.371c-2.512,3.486-3.744,7.744-3.744,12.785c0,4.761,1.749,8.608,5.3,11.587c3.513,2.962,8.098,4.456,13.702,4.456c3.473,0,6.194-0.24,8.164-0.704c1.944-0.478,4.068-1.143,6.289-2.031c1.66-0.665,3.448-1.606,5.362-2.8c1.922-1.209,3.551-2.227,4.887-3.051L156.11,110.28z"-->
+<!--                  ></path>-->
+<!--                  <polyline-->
+<!--                    fill="#000"-->
+<!--                    points="222.406,133.712 198.562,133.712 215.882,109.064 204.795,46.688 226.915,46.688 232.744,88.38 258.547,46.688 281.435,46.688 222.406,133.712 "-->
+<!--                  ></polyline>-->
+<!--                  <path -->
+<!--                    fill="#000"-->
+<!--                    d="M337.511,62.756c-3.918,2.691-9.363,4.038-16.385,4.038h-8.334l6.194-25.219h9.332c4.976,0,8.759,0.785,11.299,2.369c2.537,1.59,3.791,4.029,3.791,7.281C343.408,56.227,341.473,60.055,337.511,62.756 M365.621,38.245c-1.641-2.939-4.032-5.354-7.142-7.194c-3.174-1.841-6.951-3.16-11.335-3.917c-4.359-0.751-9.436-1.123-15.322-1.123h-32.255l-20.645,84.27h23.216l6.733-27.481h8.793c15.908,0,28.3-3.071,37.154-9.207c8.859-6.167,13.291-14.244,13.291-24.266C368.111,44.906,367.278,41.223,365.621,38.245z"-->
+<!--                  ></path>-->
+<!--                  <path -->
+<!--                    fill="#000"-->
+<!--                    d="M412.968,93.728c-2.12,1.441-4.403,2.612-6.803,3.56c-2.406,0.919-4.686,1.374-6.781,1.374c-3.247,0-5.733-0.41-7.396-1.324c-1.725-0.889-2.573-2.422-2.573-4.599c0-2.464,0.64-4.465,1.925-5.979c1.271-1.494,3.102-2.676,5.56-3.5c2.37-0.779,5.2-1.383,8.556-1.805c3.361-0.414,6.969-0.752,10.782-1.06L412.968,93.728 M408.866,110.28h21.47l10.601-43.251c0.237-0.902,0.433-1.961,0.575-3.16c0.14-1.21,0.221-2.196,0.221-2.954c0-5.476-2.489-9.5-7.424-12.118c-4.909-2.606-12.674-3.906-23.234-3.906c-5.223,0-10.506,0.386-15.762,1.131c-5.286,0.791-9.172,1.467-11.712,2.076l-3.157,15.208h1.992c2.126-0.732,5.345-1.685,9.634-2.822c4.294-1.137,8.191-1.685,11.748-1.685c5.256,0,9.15,0.517,11.8,1.573c2.632,1.059,3.956,2.906,3.956,5.532c0,0.634-0.087,1.202-0.221,1.729c-0.146,0.528-0.204,0.894-0.263,1.123c-7.485,0.411-14.392,1.04-20.782,1.925c-6.387,0.863-11.907,2.288-16.552,4.244c-4.95,2.064-8.675,4.873-11.192,8.371c-2.495,3.486-3.749,7.744-3.749,12.785c0,4.761,1.766,8.608,5.313,11.587c3.549,2.962,8.078,4.456,13.677,4.456c3.507,0,6.211-0.24,8.195-0.704c1.964-0.478,4.063-1.143,6.261-2.031c1.671-0.665,3.476-1.606,5.362-2.8c1.928-1.209,3.56-2.227,4.945-3.051L408.866,110.28z"-->
+<!--                  ></path>-->
+<!--                  <polyline-->
+<!--                    fill="#000"-->
+<!--                    points="493.85,22.084 472.201,110.28 450.403,110.28 472.053,22.084 493.85,22.084 "-->
+<!--                  ></polyline></svg-->
+<!--              ></i>-->
+<!--            </li>-->
+<!--            <li class="payment__list__item">-->
+<!--              <i class="payment__list__item__icon icon--secure-payment"-->
+<!--                ><svg -->
+<!--                  id="Layer_1"-->
+<!--                  version="1.1"-->
+<!--                  xmlns="http://www.w3.org/2000/svg"-->
+<!--                  xmlns:xlink="http://www.w3.org/1999/xlink"-->
+<!--                  x="0px"-->
+<!--                  y="0px"-->
+<!--                  viewbox="0 0 32 28"-->
+<!--                  xml:space="preserve"-->
+<!--                >-->
+<!--                  <style type="text/css">-->
+<!--                    .st0 {-->
+<!--                      fill: #ffffff;-->
+<!--                    }-->
+<!--                  </style>-->
+<!--                  <g>-->
+<!--                    <path -->
+<!--                      class="st0"-->
+<!--                      d="M31,18c-0.6,0-1,0.4-1,1v7H2V14h11c0.6,0,1-0.4,1-1s-0.4-1-1-1H2V8h11c0.6,0,1-0.4,1-1s-0.4-1-1-1H2    C0.9,6,0,6.9,0,8v18c0,1.1,0.9,2,2,2h28c1.1,0,2-0.9,2-2v-7C32,18.4,31.6,18,31,18z"-->
+<!--                    ></path>-->
+<!--                    <path -->
+<!--                      class="st0"-->
+<!--                      d="M5,18c-0.6,0-1,0.4-1,1s0.4,1,1,1h4c0.6,0,1-0.4,1-1s-0.4-1-1-1H5z"-->
+<!--                    ></path>-->
+<!--                    <path -->
+<!--                      class="st0"-->
+<!--                      d="M31.4,3.1l-7-3c-0.3-0.1-0.5-0.1-0.8,0l-7,3C16.2,3.2,16,3.6,16,4v4c0,5.5,2,8.7,7.5,11.9    C23.7,20,23.8,20,24,20s0.3,0,0.5-0.1C30,16.7,32,13.5,32,8V4C32,3.6,31.8,3.2,31.4,3.1z M30,8c0,4.6-1.5,7.2-6,9.8    c-4.5-2.7-6-5.2-6-9.8V4.7l6-2.6l6,2.6V8z"-->
+<!--                    ></path>-->
+<!--                    <path -->
+<!--                      class="st0"-->
+<!--                      d="M21.8,8.4c-0.3-0.5-0.9-0.6-1.4-0.3c-0.5,0.3-0.6,0.9-0.3,1.4l2,3c0.2,0.3,0.5,0.4,0.8,0.4c0,0,0,0,0,0    c0.3,0,0.6-0.1,0.8-0.4l4-5c0.3-0.4,0.3-1.1-0.2-1.4c-0.4-0.3-1.1-0.3-1.4,0.2l-3.1,3.9L21.8,8.4z"-->
+<!--                    ></path>-->
+<!--                  </g></svg-->
+<!--              ></i>-->
+<!--            </li>-->
+<!--          </ul>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="col-lg-6">-->
+<!--        <div class="store__promo">-->
+<!--          <div class="img-lazy">-->
+<!--            <div -->
+<!--              class="placeholder"-->
+<!--              style="-->
+<!--                padding-bottom: calc(1460 / 2560 * 100%);-->
+<!--                background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAYAAAD68A/GAAAACXBIWXMAAAsTAAALEwEAmpwYAAABAUlEQVQImQH2AAn/ABogIP4WHR7/JEA4/iApIv8qMij/Q15H/y07NP8KDBD+CwwN/wECA/4AHiMj/xshIf5dbGb/VFhY/2RlTf+tnG7/fWtc/1BTS/9NTk/+PTw8/wAbHh/+LS0s/8XAvv6gpaX/ur+5/4Npbf+se2z/zc60/rmtsf/q3dn+ABQSEf4ZFhb/XXCB/lZdYP88QUb/LTMv/zpBSP9MTlb+V1ZY/2dkdf4ADAgH/yMfHf6Tmab/hoeO/6iZfv+XbjL/UDMv/2tiZf+ur7T+t7K2/wAMBwb7GRYV/4SAhv50b2//a2x3/0c4Vf+XSkD/elpU/peYmv+Mh4X7IXF6k2bXY74AAAAASUVORK5CYII=)-->
+<!--                  center no-repeat;-->
+<!--                background-size: cover;-->
+<!--              "-->
+<!--            ></div>-->
+<!--            <img -->
+<!--              alt="mInstaller store interface with available plugins"-->
+<!--              data-src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAYAAAD68A/GAAAACXBIWXMAAAsTAAALEwEAmpwYAAABAUlEQVQImQH2AAn/ABogIP4WHR7/JEA4/iApIv8qMij/Q15H/y07NP8KDBD+CwwN/wECA/4AHiMj/xshIf5dbGb/VFhY/2RlTf+tnG7/fWtc/1BTS/9NTk/+PTw8/wAbHh/+LS0s/8XAvv6gpaX/ur+5/4Npbf+se2z/zc60/rmtsf/q3dn+ABQSEf4ZFhb/XXCB/lZdYP88QUb/LTMv/zpBSP9MTlb+V1ZY/2dkdf4ADAgH/yMfHf6Tmab/hoeO/6iZfv+XbjL/UDMv/2tiZf+ur7T+t7K2/wAMBwb7GRYV/4SAhv50b2//a2x3/0c4Vf+XSkD/elpU/peYmv+Mh4X7IXF6k2bXY74AAAAASUVORK5CYII="-->
+<!--              data-srcset="https://s3.motionvfx.com/mvfxpublic/pages/templates/55/media/store_promo-320.png 320w,https://s3.motionvfx.com/mvfxpublic/pages/templates/55/media/store_promo-640.png 640w,https://s3.motionvfx.com/mvfxpublic/pages/templates/55/media/store_promo-960.png 960w,https://s3.motionvfx.com/mvfxpublic/pages/templates/55/media/store_promo-1180.png 1180w"-->
+<!--              sizes="(max-width: 992px) 150vw"-->
+<!--            />-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</section>-->
+<section class="content bg--dark" style="">
+    <div class="content__bg bg--full--absolute">
+        <div class="img-lazy">
+            {{ picture_w_placeholder(
+                media_url,
+                filename='macbook',
+                file_sizes=[320, 640, 960, 1200, 1277],
+                formats=['jpg'],
+                media_sizes='(max-width: 1024px) 50vw, 100vw',
+                alt='Half open, dimly lit Macbook pro',
+                placeholder='data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAGAAoDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAYH/8QAIBAAAgEDBAMAAAAAAAAAAAAAAQIEAAMFBhIhMSIykf/EABUBAQEAAAAAAAAAAAAAAAAAAAID/8QAFxEBAQEBAAAAAAAAAAAAAAAAAQADEf/aAAwDAQACEQMRAD8AwHAZPTkfGPbn4aTKmbT5i+qKOO/Ut8IqWc2y7FVYKTwC3QpSiKr2toACX//Z',
+                width=2560,
+                height=1460,
+                data_src=True
+            ) }}
+        </div> 
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="content__content section__text__content">
+                    <div class="section__header">
+                        <h2 class="content__title title--varied">
+                            <span>Access your content
+                                <br />
+                            </span>anywhere
+                        </h2>
+                    </div>
+                    <p class="content__text" style="max-width: 27em; margin: auto">
+                        Never lose contact with your collection of tools and get them whenever needed, wherever you are.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="content__left section__text__content">
+                    <h2 class="content__notification__title-2 title--varied">
+                        <span>Built-in
+                            <br />
+                        </span>notification system
+                    </h2>
+                    <p class="content__notification__text__sub" style="max-width: 26em;">
+                        Always know first about product updates, new release or even when a product is downloaded and ready to use.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="notifications">
+                    {% for n in [
+                        {
+                            'time': 'Yesterday 15:37',
+                            'text': 'Your order is ready to download via mInstaller!'
+                        },
+                        {
+                            'time': '37m ago',
+                            'text': 'mGrid plugin is available now!'
+                        },
+                        {
+                            'time': '2m ago',
+                            'text': 'The plugin you own is now compatible with Apple Silicon!'
+                        }
+                    ] %}
+                        <div class="notification__item">
+                            <div class="notification__head">
+                                <div class="notification__icon">
+                                    <svg width="18"
+                                        height="18"
+                                        viewbox="0 0 18 18"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9 0C14 0 18 4 18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0Z"
+                                            fill="black">
+                                        </path>
+                                        <path d="M6.5002 13.7H5.3002C5.0002 13.7 4.7002 13.4 4.7002 13.1V4.80005C4.7002 4.50005 4.9002 4.30005 5.2002 4.30005H6.5002C6.8002 4.30005 7.0002 4.50005 7.0002 4.80005V13.1C7.0002 13.4 6.8002 13.7 6.5002 13.7Z"
+                                            fill="white">
+                                        </path>
+                                        <path d="M12.7004 13.7H11.5004C11.2004 13.7 10.9004 13.4 10.9004 13.1V4.80005C10.9004 4.50005 11.1004 4.30005 11.4004 4.30005H12.7004C13.0004 4.30005 13.2004 4.50005 13.2004 4.80005V13.1C13.2004 13.4 13.0004 13.7 12.7004 13.7Z"
+                                            fill="white">
+                                        </path>
+                                        <path d="M9.1998 9.90005C9.0998 10 8.8998 10 8.7998 9.90005C8.4998 9.70005 7.7998 9.10005 7.7998 8.90005V4.80005C7.7998 4.50005 7.9998 4.30005 8.2998 4.30005H9.5998C9.8998 4.30005 10.0998 4.50005 10.0998 4.80005V8.90005C10.0998 9.10005 9.4998 9.70005 9.1998 9.90005Z"
+                                            fill="white">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <div class="notification__title">
+                                    MINSTALLER
+                                </div>
+                                <div class="notification__date">
+                                    {{ n.time }}
+                                </div>
+                            </div>
+                            <div class="notification__body">
+                                <!--<div class="notification__text">mLUT plugin is now compatible with apple Silicon!</div>-->
+                                <div class="notification__text">
+                                    {{ n.text|safe }}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="manage bg--light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="manage__content section__text__content">
+                    <div class="section__header">
+                        <h1 class="manage__title title--varied">
+                            <span>Install, manage, repair
+                                <br />
+                            </span>with one click
+                            <br />
+                        </h1>
+                    </div>
+                    <p class="manage__text">
+                    </p>
+                    <p class="manage__text">
+                        Install directly to <b>Final Cut Pro</b>, <b>Apple Motion</b>, <b>After Effects</b>, or download products for your other <b>favorite apps</b>.
+                    </p>
+                    <p class="manage__text" style="max-width: 17em;">
+                        Big compositing elements packs?
+                        <br />
+                        No worries, it has a built-in multisource and a download resumer!
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="manage__comp scene">
+
+                    {% set tiles = [
+                        {
+                            'name': 'mt_01',
+                            'width': '952',
+                            'height': '500',
+                            'file_sizes': [320, 640, 952],
+                            'placeholder': 'data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAFAAoDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAMI/8QAHhAAAgICAgMAAAAAAAAAAAAAAQIAAwQhERIiMVH/xAAVAQEBAAAAAAAAAAAAAAAAAAABAv/EABcRAQEBAQAAAAAAAAAAAAAAAAEAAhH/2gAMAwEAAhEDEQA/AM7a8dDrrkfZbIvpfItdMWutGYkIDpRz6iJRpDkIN//Z',
+                        },
+                        {
+                            'name': 'mt_02',
+                            'width': '1080',
+                            'height': '964',
+                            'file_sizes': [320, 640, 960, 1080],
+                            'placeholder': 'data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAJAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAABgj/xAAnEAABAgQDCQEAAAAAAAAAAAABAwUAAgQGBxExEhMUFzRVc5TB0v/EABUBAQEAAAAAAAAAAAAAAAAAAAID/8QAGREAAwEBAQAAAAAAAAAAAAAAAQIDABES/9oADAMBAAIRAxEAPwBXcOMLQneLRV0rxuGIJjiE16OpkUnO0STIBJkRkRrCPnzh73lf0lfzEi3R0rb4/gg8dYrWYm5UYTf2vTv/2Q==',
+                        },
+                        {
+                            'name': 'mt_03',
+                            'width': '1080',
+                            'height': '964',
+                            'file_sizes': [320, 640, 960, 1080],
+                            'placeholder': 'data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAJAAoDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAwQHCP/EACQQAAECBQIHAAAAAAAAAAAAAAECBAADBQYHETEXISJVcZTS/8QAFAEBAAAAAAAAAAAAAAAAAAAAAf/EABYRAQEBAAAAAAAAAAAAAAAAAAABEf/aAAwDAQACEQMRAD8Acu/J1Ff5Lt2t0u63DaitBLDpqZbhAmgLUVdATookEDnFB49Y97w49Kb8xiqdsjxATvDRj//Z',
+                        },
+                        {
+                            'name': 'mt_04',
+                            'width': '1080',
+                            'height': '964',
+                            'file_sizes': [320, 640, 960, 1080],
+                            'placeholder': 'data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAJAAoDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAABAYHCP/EACgQAAAFAQQLAAAAAAAAAAAAAAABAgMEBQYHETESExciNFFVc5TB0v/EABUBAQEAAAAAAAAAAAAAAAAAAAID/8QAGBEAAwEBAAAAAAAAAAAAAAAAAQIDABL/2gAMAwEAAhEDEQA/AKHU767JM1CE8iqyWox4axLsB5OmnmndzLEjBW3m73q7/hO/IyJabhad2/RBfPMUrISYqMJuXXo7/9k=',
+                        },
+                        {
+                            'name': 'mt_05',
+                            'width': '790',
+                            'height': '680',
+                            'file_sizes': [320, 640, 790],
+                            'fotmats': ['png'],
+                            'placeholder': 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAICAYAAADA+m62AAAACXBIWXMAAAsTAAALEwEAmpwYAAAA1UlEQVQYlT2P3WoCMRCF9zEUN8kk2R/TxNRd2guhKBIQdasvmWdsLjNlBvTi8IUzQ86ZBqBDpSwSvY/o/SfGOOE4fqDWPb7mDUD3B9AVUoxzmaavMs/fxbld0bpnXylbGqVsFkJn4maj8not8mrVsielYR+gyw19P46eY6wdcBgcOrfjSGMGFkcb09f7/VFTutTrdWHebr91WZ6sEPZVCF0pukppKvH1bltg0gIRoKt0DMeQpDS43Xo8nRIej2dM6YKHw8/76vciGdSVOjoXMIQ996fFf4DAcRVo9b39AAAAAElFTkSuQmCC',
+                        },
+                    ] %}
+
+                    {% for t in tiles %}
+                        {{ tile(tile = t) }}
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="update bg--dark text-center">
+    <div class="update__bg bg--full--absolute">
+        <div class="update__bg__matrix__shadow bg--full--absolute">
+        </div>
+        <div class=" update__bg__matrix__shadow update__bg__matrix__shadow--2 bg--full--absolute ">
+        </div>
+        <canvas class="update__bg__matrix" id="glowingBinaryMatrix"></canvas>
+        <div class="update__bg__items" id="parallax">
+            
+            {% for t in [
+                {
+                    'filename': 'update_01',
+                    'alt': 'Floating image tile with plugin',
+                    'file_size': [ 320, 365 ],
+                    'formats': ['png'],
+                    'placeholder': 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAJCAYAAAALpr0TAAAACXBIWXMAAAsTAAALEwEAmpwYAAABVUlEQVQYlR3KvU7CQBwA8Cst7fXryl0/bBHaUhCIII2JmshGcHBz4g3cHUxcKZ0IiYmjiaMEQ1x4Ax/ClyE5cn+Dw2/7IUWSJ7qirRzNKhxslDaulVgNyqoSlErFWkgSXiKkzJAqm0tHDyAlCXRpCinJwDMSsOQQJEQAIR0Qqu6QpjbmfXoJr4O7/XY05Z8XU/7WueUf3TF/OhnuQ9WHioTXiNqdomON4D0d822ai+/WQHydtsVvOxc/SX7o6T5IkrZBuhYWBs4gUhPexHVRr9bgXDXhQdXFvaIdXLkKiixvEMa1wiEhOE6D23ZD2FYgiElEZGIRGNqBmQY4hGyQbZN5HKeQtdr7MKxz3w94FGY8aeY8aY72SXMIjAXrY1xGUQPOOn2I4ww8z4VeOoXJ1QtMrp/hZvgIvhvvkGlaE0rdFaVuwZhbMub9o9Q9WjDmLgmpzf4AhldnEUJrTygAAAAASUVORK5CYII=',
+                },
+                {
+                    'filename': 'update_02',
+                    'alt': 'Floating image tile with plugin',
+                    'file_size': [ 320, 640, 960, 1000 ],
+                    'placeholder': 'data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAJAAoDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAwEH/8QAIxAAAQMDAgcAAAAAAAAAAAAAAQIDBAARIRJyBRMiMTM0of/EABUBAQEAAAAAAAAAAAAAAAAAAAAD/8QAGxEAAQQDAAAAAAAAAAAAAAAAAAECAxESISL/2gAMAwEAAhEDEQA/AMKgvRkxWmXUTC4UhtSY7aL8uwKsEHV1DvihUImo6nZ4N8gxWsfaLh/so2mo95nNxqzY+crC7P/Z',
+                },
+                {
+                    'filename': 'update_03',
+                    'alt': 'Floating image tile with plugin',
+                    'file_size': [ 320, 640, 960, 1000 ],
+                    'placeholder': 'data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAJAAoDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAwQGB//EACYQAAIBAgUCBwAAAAAAAAAAAAECAwARBAUGBxIhMhMVMTRRcsH/xAAUAQEAAAAAAAAAAAAAAAAAAAAC/8QAGREAAgMBAAAAAAAAAAAAAAAAAQIAAxIT/9oADAMBAAIRAxEAPwBTE7l5EYW8zwuZxlj4iKzMiTG5PcqK3S4t69KLDu5pYRJyhxqtxF1E05APx31i2p/aZd9PwVP07qublVYw1vtdMJ//2Q==',
+                },
+                {
+                    'filename': 'update_04',
+                    'alt': 'Floating image tile with plugin',
+                    'file_size': [ 320, 640, 960, 1000 ],
+                    'placeholder': 'data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAJAAoDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAgQGB//EACYQAAECBAMJAAAAAAAAAAAAAAECAwAEBhEhIiMFBxcxNEFyksH/xAAVAQEBAAAAAAAAAAAAAAAAAAAAAv/EAB4RAAIBAwUAAAAAAAAAAAAAAAECAwAEYRESExTB/9oADAMBAAIRAxEAPwA53eBS2micdnmmpwlyYceQ6LWJslFkZhZR74CwhHiTTSMrc0koTgk63L0jG6n6TZ3h8ET8Db9ZikLlRg1EfDKu6WJWOdfCK//Z',
+                },
+                {
+                    'filename': 'update_05',
+                    'alt': 'Floating image tile with plugin',
+                    'file_size': [ 320, 640, 960, 1000 ],
+                    'placeholder': 'data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAJAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAABgL/xAAlEAABAgMHBQAAAAAAAAAAAAABAgMABBEFBxMiMTJyBhIzNIH/xAAUAQEAAAAAAAAAAAAAAAAAAAAE/8QAGxEAAgMAAwAAAAAAAAAAAAAAAQMAAgQRElH/2gAMAwEAAhEDEQA/ADds3rCYs9pmSZedmku1phkpwyCVdoBB3AakbtIMqvT6gSopEpJAA0zMqr9zQIkPYTxMS95l8jDUMYpYC7cDwQzcWd1u7KAmf//Z',
+                },
+                {
+                    'filename': 'update_06',
+                    'alt': 'Floating image tile with plugin',
+                    'file_size': [ 320, 368 ],
+                    'formats': ['png'],
+                    'placeholder': 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAJCAYAAAALpr0TAAAACXBIWXMAAAsTAAALEwEAmpwYAAABeElEQVQYlRXMvy8DURwA8K8ornfvrtfqafv0nbu+ayktpaS08SMVR9tYSJqI0kVsBrFisRCJP4DEYLRYSdhsVqMIbaXxB0iU9j0xfNYPFNROxwWGvhsC1iUBeogFKrVjOhMv0vmJIrXCc5SQhAhXGMh9BD09DHg+64NQvQuLNXcHqfndqWoiVvwYGd98N0JzWbgOgvkcFeqPQz7+EhX5Y1jkXsHPAVROyTRPp7e5Fc0XIKOFzJI+WinFsnx9eau5sbjWOjHdrV0faa7Gy2xn0m7s9ao5EJSkiXCxqo5tce/OeSu9e8be0j52O+Bje4kZfjpEfq/9kAMFGWYAT1X6orMcZ1aakeQ827dUdqy3tY4IsAO986eMUQ6cTtHEuLdGqcWDOMi6Pd08gId5mC7wfsvmOhlvioorD5KEDE3zv+p6iAWJ8a1pPQ1LzzRSsfJ3Kl7+6TeyX7IsL/2PTllxzSIkLyFZsV0ut41Ql90lwL9FUXIsSBLy/gFAlG6LZa+OIAAAAABJRU5ErkJggg==',
+                },
+
+            ] %}
+            <div class=" update__bg__item__wrapper animated animation--fade animation--bottom "
+                 data-level="{{ loop.index }}">
+                <div class="update__bg__item">
+                    <div class="img-lazy">
+                        {{ picture_w_placeholder(
+                            media_url,
+                            filename=t.filename,
+                            file_sizes=t.file_size,
+                            formats=t.formats or ['jpg'],
+                            media_sizes='(max-width: 1024px) 50vw, 100vw',
+                            alt=t.alt,
+                            placeholder=t.placeholder,
+                            width=1000,
+                            height=876,
+                            data_src=True
+                        ) }}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="update__content">
+                    <h2 class="update__title title--varied">
+                        <span>Always
+                            <br />
+                        </span>up to date
+                    </h2>
+                    <p class="update__subtitle">
+                        Your content's updates done right.
+                    </p>
+                </div>
+                <div class="update__progress">
+                    <div class="progress__bar__wrapper">
+                        <div class="progress__bar">
+                            <div class="progress__bar__fill">
+                            </div>
+                        </div>
+                        <div class="progress__bar__text" data-text-end="All set up">
+                            Synchronizing...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="footer bg--dark text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="footer__content section__text__content">
+                    <h2 class="footer__title">
+                        mInstaller keeps you safe
+                    </h2>
+                    <p class="footer__text">
+                        You can always be sure you have the original, verified version of our software.
+                    </p>
+                    <div class="footer__buttons">
+                        {{ shop_buttons() }}
+                        <p style="font-size:14px;
+                            max-width: 33em;
+                            margin-left: auto;
+                            margin-right:auto;">
+                            <span style="color: #9A9A9A; opacity: 0.5">mInstaller 2.x supports Windows 10 and macOS 10.14 (Mojave) and higher. For older versions of macOS, please download the legacy version </span>  <a href="https://s3.motionvfx.com/mvfxpublic/mInstaller/legacy/mInstaller.dmg" rel="noopener noreferrer">here</a><span style="color: #9A9A9A; opacity: 0.5">.</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="footer__promo">
+                    <div class="img-lazy">
+                        {{ picture_w_placeholder(
+                            media_url,
+                            filename='footer_promo',
+                            file_sizes=[320, 640, 960, 1200, 1800, 1920],
+                            formats=['jpg'],
+                            media_sizes='(max-width: 1024px) 50vw, 100vw',
+                            alt='MOTIONVFX online shop interface with plugins for purchase',
+                            placeholder='data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAGAAoDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAQI/8QAIxAAAQMDAgcAAAAAAAAAAAAAAQIDEQAEEiFhBRMiIzFBcf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwDQTaeIm5SDy0MpIPS+ST3CYjDxjv6jer7RDotWQ/BdwTmcspVGusCfsClKD//Z',
+                            width=2560,
+                            height=1460,
+                            data_src=True
+                        ) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</main>
+<script>
+    function getOS() {
+    var userAgent = window.navigator.userAgent,
+        platform = window.navigator.platform,
+        macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'],
+        windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'],
+        iosPlatforms = ['iPhone', 'iPad', 'iPod'],
+        os = null;
+    
+    if (macosPlatforms.indexOf(platform) !== -1) {
+        os = 'macOS';
+    } else if (iosPlatforms.indexOf(platform) !== -1) {
+        os = 'iOS';
+    } else if (windowsPlatforms.indexOf(platform) !== -1) {
+        os = 'Windows';
+    } else if (/Android/.test(userAgent)) {
+        os = 'Android';
+    } else if (!os && /Linux/.test(platform)) {
+        os = 'Linux';
+    }
+    return os;
+    }
+    const os = getOS();
+    // if (os === 'macOS') document.querySelector('#btn-windows').classList.add('d-none');
+    // if (os === 'Windows') document.querySelector('#btn-macos').classList.add('d-none');
+    
+    const osSpecificButtons = {
+        windows: document.querySelectorAll(`[data-os='win']`),
+        mac: document.querySelectorAll(`[data-os='mac']`),
+    }
+    
+    osSpecificButtons.mac.forEach(btn => {
+        setTimeout(() => btn.classList.remove('loading'), 1400)
+    })
+    osSpecificButtons.windows.forEach(btn => {
+        setTimeout(() => btn.classList.remove('loading'), 1400)
+    })
+    if (os === 'Windows') {
+        osSpecificButtons.windows.forEach(btn => {
+            btn.classList.replace('btn__outline--none', 'btn__fill--primary')
+        })
+        osSpecificButtons.mac.forEach(btn => {
+            btn.classList.replace('btn__outline--none', 'btn__outline--gray')
+        })
+    }
+    else {
+        osSpecificButtons.mac.forEach(btn => {
+            btn.classList.replace('btn__outline--none', 'btn__fill--primary')
+        })
+        osSpecificButtons.windows.forEach(btn => {
+            btn.classList.replace('btn__outline--none', 'btn__outline--gray')
+        })
+    } 
+</script>
+{% endblock %}
+{# {% include 'page_template/js_includes.jinja2' %} #}
+<script src="dist/scripts.js"></script>
+{% if magic_link %}
+    <script>
+    setTimeout(function(){
+      window.location = '{{ magic_link }}';
+    }, 1000);                       
+    </script>
+{% endif %}
+</body>
+</html>

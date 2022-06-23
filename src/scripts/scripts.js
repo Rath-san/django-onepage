@@ -1,166 +1,210 @@
-import { doOnVisible } from "./libs/do-on-visible";
-import Splitting from "splitting";
-import { handleTouchEvents } from "./utils/utils";
-import './vendor/menu';
-import YTPlayer from "yt-player";
+import 'intersection-observer'
+import { lazyAnimations } from './minstaller/lazy-animation'
 
-const makePlayer = (id, elementId) => {
-    const player = new YTPlayer(elementId);
-    player.load(id);
-    player.setVolume(100);
-};
+import { progressAnim } from './minstaller/progress-bar'
 
-const ytTopVideos = Array.from(document.querySelectorAll('.video-iframe'));
+import { paralax } from './minstaller/paralax'
+import { glowingBinaryMatrix } from './minstaller/binary-matrix'
+import { animateTiles } from './minstaller/tiles'
+import { INITIAL_TRANSFORMS } from './minstaller/tiles-config'
+// import { detectOs, OSs } from './device-detection'
+import {
+  backgroundAnimation,
+  HEADER_GRADIENTS,
+  FOOTER_GRADIENTS
+} from './minstaller/background-animation'
+import { notificationsAnim } from './minstaller/notifications'
+import './minstaller/lazy-images'
+// import './scroll_to_anchor'
+;(() => {
+  window.addEventListener('load', () => {
+    // handling OS specific modification
+    // const os = detectOs()
+    // const osSpecificButtons = {
+    //   windows: document.querySelectorAll(`[data-os=${OSs.Windows}]`),
+    //   mac: document.querySelectorAll(`[data-os=${OSs.MacOS}]`)
+    // }
 
-const lazyShow = () => {
-    const imagesDocument = Array.from(document.querySelectorAll(".lazy-show"));
+    // if (os === OSs.MacOS) {
+    //   osSpecificButtons.windows.forEach((btn) => {
+    //     btn.style.display = 'none'
+    //   })
+    // } else if (os === OSs.Windows) {
+    //   osSpecificButtons.mac.forEach((btn) => {
+    //     btn.style.display = 'none'
+    //   })
+    //   osSpecificButtons.windows.forEach(btn => {
+    //     btn.classList.replace('btn__outline--light', 'btn__fill--primary')
+    //   })
+    // }
 
-    imagesDocument.forEach((img) => {
-        if (img.complete && img.src) {
-            img.classList.add("lazy-show__active");
-        }
+    const gradientAnimations = [
+      {
+        section: '.header__bg',
+        animations: HEADER_GRADIENTS
+      },
+      {
+        section: '.footer',
+        animations: FOOTER_GRADIENTS
+      }
+    ]
 
-        img.onload = () => {
-            img.classList.add("lazy-show__active");
-        };
-    });
-};
+    gradientAnimations.forEach(({ section, animations }) => {
+      const selector = document.querySelector(section)
+      const animation = backgroundAnimation({
+        selector,
+        gradients: animations
+      })
 
-const loadOnVisibleImages = (section) => {
-    const images = Array.from(section.querySelectorAll("picture"));
+      const cbIn = () => animation.play()
+      const cbOut = () => animation.pause()
 
-    images.forEach((picture) => {
-        const sources = [
-            ...Array.from(picture.querySelectorAll('[data-src]')),
-            ...Array.from(picture.querySelectorAll('[data-srcset]'))
-        ]
-        sources.forEach(s => {
-            if (s.src || s.srcset) return;
-            if (s.dataset.srcset) {
-                s.srcset = s.dataset.srcset
-            }
-            if (s.dataset.src) {
-                s.src = s.dataset.src;
-            }
+      doOnVisible({
+        sectionSelector: [selector],
+        cbIn,
+        cbOut,
+        threshold: 0.5
+      })
+    })
+
+    lazyAnimations({
+      selector: document.querySelectorAll('.animated')
+    })
+
+    const tileSections = [
+      {
+        section: 'products',
+        sectionClass: '.purchases__image--products',
+        order: -1
+      },
+      {
+        section: 'projects',
+        sectionClass: '.purchases__image--projects'
+      },
+      {
+        section: 'manage',
+        sectionClass: '.manage__comp'
+      }
+    ]
+
+    const tileTimelines = tileSections.map((tso) => {
+      const tileAnim = animateTiles({
+        tilesContainer: tso.sectionClass,
+        initialTransforms: INITIAL_TRANSFORMS[tso.section],
+        order: tso.order
+      })
+
+      return tileAnim
+    })
+
+    const animatedTileSections = [
+      {
+        class: '.purchases',
+        tileSectionsIndex: [0, 1]
+      },
+      {
+        class: '.manage__content',
+        tileSectionsIndex: [2]
+      }
+    ]
+
+    animatedTileSections.forEach((s) => {
+      const cbIn = () => {
+        s.tileSectionsIndex.forEach((tlIndex) => {
+          tileTimelines[tlIndex].play()
         })
-    });
-};
+      }
 
-(() => {
-    document.body.classList.add("initialized");
+      doOnVisible({
+        sectionSelector: [document.querySelector(s.class)],
+        cbIn,
+        cbOut: () => {},
+        threshold: 0.5
+      })
+    })
 
-    const titles = [
-        ...Array.from(document.querySelectorAll(".section__title")),
-        ...Array.from(document.querySelectorAll(".section__display")),
-    ];
+    const notificationSectionAnim = notificationsAnim({
+      notificationContainer: '.notifications'
+    })
 
-    titles.forEach((title) => {
-        title.style.opacity = 1;
-    });
+    const playNotifAnim = () => {
+      notificationSectionAnim.play()
+    }
 
-    Splitting({
-        target: ".section__title, .section__display, .left",
-        by: "chars",
-    });
+    doOnVisible({
+      sectionSelector: [document.querySelector('.notifications')],
+      cbIn: playNotifAnim,
+      cbOut: () => {},
+      threshold: 0.7
+    })
 
-    window.addEventListener("load", () => {
-        document.body.classList.add("ready");
+    // update section
+    const paralaxSelector = document.querySelector('.update__bg__items')
+    const mouseContainer = document.querySelector('section.update')
 
-        const sections = [
-            ...Array.from(document.querySelectorAll("section")),
-            ...Array.from(document.querySelectorAll(".left")),
-            ...Array.from(document.querySelectorAll("footer")),
-        ];
+    paralax({
+      selector: paralaxSelector,
+      mouseContainer,
+      offsetMultiplierX: 2000,
+      offsetMultiplierY: 500
+    })
 
-        sections.forEach((s) => {
-            s.dataset.visible = false;
-        });
+    const gbmSelector = document.querySelector('#glowingBinaryMatrix')
 
-        doOnVisible({
-            sectionSelector: sections,
-            cbIn: (target) => {
-                target.dataset.visible = true;
-                loadOnVisibleImages(target);
-            },
-            cbOut: () => {
-            },
-            rootMargin: "-150px",
-        });
+    // binary matrix
+    glowingBinaryMatrix({
+      canvas: gbmSelector,
+      fontSize: 20,
+      textColor: 'rgba(70,252,232, 1)',
+      bgColor: '#00000005',
+      speed: 100,
+      text: '01101101 01001001 01101110 01110011 01110100 01100001 01101100 01101100 01100101 01110010'
+    })
 
-        const prevCards = document.querySelectorAll(".prev-card");
+    const progressBarAnim = progressAnim({
+      selector: '.progress__bar'
+    })
 
-        doOnVisible({
-            sectionSelector: prevCards,
-            cbIn: (target) => {
-                target.dataset.rowvisible = true;
-            },
-            cbOut: () => {
-            },
-            rootMargin: "-150px",
-        });
+    const playProgressBarAnim = () => progressBarAnim.play()
 
-        ytTopVideos.forEach(v => {
-            makePlayer(v.dataset.id, v);
-        });
-    });
+    doOnVisible({
+      sectionSelector: [document.querySelector('.update__progress')],
+      cbIn: playProgressBarAnim,
+      cbOut: () => {},
+      threshold: 0.5
+    })
+  })
+})()
 
-    const carouselSwiping = (carousel) => {
-        const carouselEntity = $(`#${carousel.id}`);
-        const onRightSwipe = () => {
-            carouselEntity.carousel("next");
-        };
+const doOnVisible = ({
+  sectionSelector,
+  cbIn = () => {},
+  cbOut = () => {},
+  threshold = 0,
+  disconectOnIn = false
+}) => {
+  const lazyAnimate = (target) => {
+    const io = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            cbIn()
+            if (disconectOnIn) observer.disconnect()
+          } else {
+            cbOut()
+          }
+        })
+      },
+      {
+        threshold
+      }
+    )
 
-        const onLeftSwipe = () => {
-            carouselEntity.carousel("prev");
-        };
+    io.POLL_INTERVAL = 100
+    io.USE_MUTATION_OBSERVER = false
 
-        handleTouchEvents(document.querySelector('.promo-carousel-flat'), {
-            onLeftSwipe,
-            onRightSwipe,
-        }).init();
-    };
+    io.observe(target)
+  }
 
-    const makeSlider = (id, options = {}) => {
-        const defaultOptions = { pause: false, interval: 4000, wrap: true };
-        const currentOptions = { ...defaultOptions, ...options };
-        const slider = $(id).carousel(currentOptions);
-
-        // console.log(slider.carousel('next'));
-
-        // $(id).carousel("pause");
-        carouselSwiping(slider[0]);
-
-        return slider;
-    };
-
-    const initSlider = () => {
-        const id = "#carouselFlat";
-        makeSlider(id);
-
-        const indicators = $(`${id}Indicators > li`);
-
-        if (indicators) {
-            const carousel = $(id);
-            carousel.on("slide.bs.carousel", (e) => {
-                indicators.each((i, el) => {
-                    el.classList.remove("active");
-                    if (e.to === i) {
-                        el.classList.add("active");
-                        // $(id2).carousel(i);
-                    }
-                });
-            });
-
-            indicators.each((i, el) => {
-                el.addEventListener("click", () => {
-                    carousel.carousel(i);
-                });
-            });
-        }
-    };
-
-    lazyShow();
-    initSlider();
-    // initPrevs();
-})();
- 
+  sectionSelector.forEach(lazyAnimate)
+}

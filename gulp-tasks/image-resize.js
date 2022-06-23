@@ -18,70 +18,66 @@ const IMAGE_QUALITY = 50;
 const CONFIGS = [
     {
         directory: "_top",
-        sizes: [
-            ...RESPONSIVE_SIZES_DESKTOP.map((size) => ({ ...size, h: 960 })),
-            ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ ...size, h: 560 }))
-        ],
+        sizes: [320, 640, 960, 1200, 1800, 2400].map((n) => ({ w: n })),
         quality: 75,
         targetFormat: ["jpg"],
         outputOptions: {
-            mozjpeg: true,
+            // mozjpeg: true,
         },
     },
-    {
-        directory: "_slider",
-        sizes: [
-            ...RESPONSIVE_SIZES_DESKTOP.map((size) => ({ ...size, h: 960 })),
-            ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ ...size, h: 560 }))
-        ],
-        quality: 75,
-        targetFormat: ["jpg"],
-        outputOptions: {
-            mozjpeg: true,
-        },
-    },
-    {
-        directory: "_wide",
-        sizes: [
-            ...RESPONSIVE_SIZES_DESKTOP.map((size) => ({ ...size, h: 960 })),
-            ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ ...size, h: 560 }))
-        ],
-        quality: 75,
-        targetFormat: ["jpg"],
-        outputOptions: {
-            mozjpeg: true,
-        },
-    },
-    {
-        directory: "_wide_vertical",
-        sizes: [
-            {w: 620},
-            {w: 310},
-        ],
-        quality: 75,
-        targetFormat: ["jpg"],
-        outputOptions: {
-            mozjpeg: true,
-        },
-    },
-    {
-        directory: "_footer",
-        sizes: [
-            ...RESPONSIVE_SIZES_DESKTOP.map((size) => ({ ...size, h: 960 })),
-            ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ ...size, h: 560 }))
-        ],
-        quality: 75,
-        targetFormat: ["jpg"],
-        outputOptions: {
-            mozjpeg: true,
-        },
-    },
-
+    // {
+    //     directory: "_slider",
+    //     sizes: [
+    //         ...RESPONSIVE_SIZES_DESKTOP.map((size) => ({ ...size, h: 960 })),
+    //         ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ ...size, h: 560 }))
+    //     ],
+    //     quality: 75,
+    //     targetFormat: ["jpg"],
+    //     outputOptions: {
+    //         mozjpeg: true,
+    //     },
+    // },
+    // {
+    //     directory: "_wide",
+    //     sizes: [
+    //         ...RESPONSIVE_SIZES_DESKTOP.map((size) => ({ ...size, h: 960 })),
+    //         ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ ...size, h: 560 }))
+    //     ],
+    //     quality: 75,
+    //     targetFormat: ["jpg"],
+    //     outputOptions: {
+    //         mozjpeg: true,
+    //     },
+    // },
+    // {
+    //     directory: "_wide_vertical",
+    //     sizes: [
+    //         {w: 620},
+    //         {w: 310},
+    //     ],
+    //     quality: 75,
+    //     targetFormat: ["jpg"],
+    //     outputOptions: {
+    //         mozjpeg: true,
+    //     },
+    // },
+    // {
+    //     directory: "_footer",
+    //     sizes: [
+    //         ...RESPONSIVE_SIZES_DESKTOP.map((size) => ({ ...size, h: 960 })),
+    //         ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ ...size, h: 560 }))
+    //     ],
+    //     quality: 75,
+    //     targetFormat: ["jpg"],
+    //     outputOptions: {
+    //         mozjpeg: true,
+    //     },
+    // },
 ];
 
 function resizeTask(
     managedFormats = ["jpg", "jpeg", "png"],
-    imgDist = "src/plugins/luma/_images/otp/"
+    imgDist = "src/plugins/minstaller/_images/otp/"
 ) {
     CONFIGS.forEach(
         ({
@@ -93,7 +89,7 @@ function resizeTask(
             targetFormat = FORMATS,
         }) => {
             const fileSrcs = managedFormats.map(
-                (format) => `src/plugins/luma/_images/${directory}/*.${format}`
+                (format) => `src/plugins/minstaller/_images/${directory}/*.${format}`
             );
             return src(fileSrcs).pipe(
                 through2.obj(async function (file, _, cb) {
