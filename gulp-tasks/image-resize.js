@@ -16,13 +16,28 @@ const IMAGE_QUALITY = 50;
 640, 820, 1024;
 
 const CONFIGS = [
+    // {
+    //     directory: "_top",
+    //     sizes: [
+    //         ...RESPONSIVE_SIZES_DESKTOP.map((size) => ({ ...size, h: 960 })),
+    //         ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ ...size, h: 560 }))
+    //     ],
+    //     quality: 92,
+    //     targetFormat: ["jpg"],
+    //     outputOptions: {
+    //         mozjpeg: true,
+    //     },
+    // },
     {
-        directory: "_top",
-        sizes: [320, 640, 960, 1200, 1800, 2400].map((n) => ({ w: n })),
-        quality: 75,
+        directory: "_promo",
+        sizes: [
+            ...RESPONSIVE_SIZES,
+            // ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ ...size, h: 560 }))
+        ],
+        quality: 95,
         targetFormat: ["jpg"],
         outputOptions: {
-            // mozjpeg: true,
+            mozjpeg: true,
         },
     },
     // {
@@ -62,12 +77,34 @@ const CONFIGS = [
     //     },
     // },
     // {
+    //     directory: "_logo",
+    //     sizes: [312, 624].map((s) => ({
+    //         w: s,
+    //     })),
+    //     quality: 100,
+    //     targetFormat: ["png", "webp"],
+    //     // outputOptions: {
+    //     //     mozjpeg: true,
+    //     // },
+    // },
+    // {
+    //     directory: "_icon",
+    //     sizes: [330, 156].map((s) => ({
+    //         w: s,
+    //     })),
+    //     quality: 100,
+    //     targetFormat: ["png", "webp"],
+    //     // outputOptions: {
+    //     //     mozjpeg: true,
+    //     // },
+    // },
+    // {
     //     directory: "_footer",
     //     sizes: [
     //         ...RESPONSIVE_SIZES_DESKTOP.map((size) => ({ ...size, h: 960 })),
     //         ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ ...size, h: 560 }))
     //     ],
-    //     quality: 75,
+    //     quality: 95,
     //     targetFormat: ["jpg"],
     //     outputOptions: {
     //         mozjpeg: true,
@@ -77,7 +114,7 @@ const CONFIGS = [
 
 function resizeTask(
     managedFormats = ["jpg", "jpeg", "png"],
-    imgDist = "src/plugins/minstaller/_images/otp/"
+    imgDist = "src/plugins/camrig/_images/otp/"
 ) {
     CONFIGS.forEach(
         ({
@@ -89,7 +126,8 @@ function resizeTask(
             targetFormat = FORMATS,
         }) => {
             const fileSrcs = managedFormats.map(
-                (format) => `src/plugins/minstaller/_images/${directory}/*.${format}`
+                (format) =>
+                    `src/plugins/camrig/_images/${directory}/*.${format}`
             );
             return src(fileSrcs).pipe(
                 through2.obj(async function (file, _, cb) {

@@ -6,7 +6,7 @@
     color: #fff;
     text-align: center;
     overflow: visible;
-    padding-bottom: 100px;
+    // padding-bottom: 100px;
     .section {
         &__content {
             display: flex;
@@ -18,38 +18,48 @@
         }
     }
     &__logo {
-        &::after {
-            position: absolute;
-            content: '';
-            z-index: -1;
-            inset: -30%;
-            background: radial-gradient(
-                rgba(#000, .5) 15%,
-                transparent 50%
-            );
-        }
-        h2 {
-            font-family: $font-family-title;
-            font-weight: 300;
-            line-height: 1;
-            font-size: clamp(1.65rem, 8vw, 2.25rem);
-            margin-bottom: 2rem;
-        }
+        // &::after {
+        //     position: absolute;
+        //     content: '';
+        //     z-index: -1;
+        //     inset: -30%;
+        //     // background: radial-gradient(
+        //     //     rgba(#000, .5) 15%,
+        //     //     transparent 50%
+        //     // );
+        // }
+        // h2 {
+        //     font-family: $font-family-title;
+        //     font-weight: 300;
+        //     line-height: 1;
+        //     font-size: clamp(1.65rem, 8vw, 2.25rem);
+        //     margin-bottom: 2rem;
+        // }
 
-        .word:last-child() {
-            margin-left: .15em;
-            display: block;
-            font-size: 2.65em;
-            letter-spacing: .25em;
+        // .word:last-child() {
+        //     margin-left: .15em;
+        //     display: block;
+        //     font-size: 2.65em;
+        //     letter-spacing: .25em;
+        // }
+        margin-bottom: 1rem;
+        img {
+            height: auto;
+            // max-width: 312px;
+            width: clamp(260px, 40vw, 312px);
         }
 
     }
 
     #software-icons {
-        bottom: 13%;
+        bottom: clamp(1rem, 10vw, 6rem);
+        @media screen and (min-width: 480px) {
+            bottom: clamp(1rem, 20vw, 6rem);
+        }
     }
 
     .image__background {
+        z-index: -1;
         img {
             top: 100px;
             object-position: top;
@@ -193,10 +203,10 @@ $animation-delay-offset: 200ms;
     // }
 
     
-    &-primary {
-        #software-icons>* {
-            opacity: 1;
-        }
+    &-secondary {
+        // #software-icons>* {
+        //     opacity: 1;
+        // }
         .section {
             &__text {
                 opacity: 1;
