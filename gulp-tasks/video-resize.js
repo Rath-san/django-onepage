@@ -15,7 +15,7 @@ const CONFIGS = [
     },
 ];
 
-const root = 'area'
+const root = 'essentials'
 
 function resizeTask(
     managedFormats = ["mov", "mp4", "m4v"],

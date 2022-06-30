@@ -98,13 +98,13 @@ a.deco-link {
         width: 100%;
         display: flex;
         flex-wrap: wrap;
-        gap: 1rem 1.5rem;
+        gap: 1rem 2.5rem;
         max-width: 100%;
         margin-left: auto;
         margin-right: auto;
         justify-content: center;
         @media screen and (min-width: 1200px) {
-            justify-content: space-between;
+            // justify-content: space-between;
             max-width: 100%;
         }
         @media screen and (min-width: 500px) {
@@ -197,7 +197,9 @@ a.deco-link {
             flex-direction: column;
             justify-content: center;
             text-align: left;
+            flex: 1;
             @media screen and (min-width: 800px) {
+                flex: 1 0 33.333%;
                 padding: 2.5% 5%;
                 text-align: center;
             }
@@ -228,6 +230,9 @@ a.deco-link {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    @media screen and (min-width: 1200px) {
+        padding: 0 5%;
+    }
     @media screen and (min-width: 650px) {
         flex-direction: row;
     }
@@ -259,25 +264,33 @@ a.deco-link {
     }
 
     &__left {
-        flex: 0.9;
+        flex: .55;
         display: flex;
         justify-content: end;
         align-items: center;
         position: relative;
 
         .save-money {
-            font-size: clamp(.75rem, 4vw, 1.25rem);
-            left: 90%;
-            top: 90%;
+            font-size: clamp(.75rem, 2vw, 1.5rem);
+            left: 83%;
+            top: 30%;
             // transform: translateX(-50%);
             @media screen and (min-width: 650px) {
-                top: 0;
-                left: 50%;
+                // top: 0;
+                left: 93%;
             }
         }
 
         img {
-            transform-origin: calc(100% / var(--i)) center;
+            // transform-origin: calc(0% / var(--i)) center;
+            transform-origin: center;
+            width: 75%;
+            // margin-left: auto;
+            // margin-right: auto;
+            @media screen and (min-width: 650px) {
+                // transform-origin: calc(-10% / var(--i)) center;
+                width: 100%;
+            }
         }
 
         .box-link {
@@ -285,11 +298,15 @@ a.deco-link {
                 margin-left: -12%;
             }
         }
+
+        .plugin-box-inner {
+            text-align: center;
+        }
     }
 
     &__separator {
         text-align: center;
-        flex: 0.1;
+        flex: 0.2;
         font-weight: 400;
         font-family: $font-family-title;
         font-size: 2rem;

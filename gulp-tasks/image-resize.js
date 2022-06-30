@@ -10,7 +10,7 @@ const {
     RESPONSIVE_SIZES,
 } = require("./constants");
 
-const root = 'area'
+const root = "essentials";
 
 const FORMATS = ["jpg", "webp"];
 const IMAGE_QUALITY = 50;
@@ -18,18 +18,18 @@ const IMAGE_QUALITY = 50;
 // 640, 820, 1024;
 
 const CONFIGS = [
-    // {
-    //     directory: "_top",
-    //     sizes: [
-    //         ...RESPONSIVE_SIZES_DESKTOP.map((size) => ({ ...size, h: 960 })),
-    //         ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ ...size, h: 560 }))
-    //     ],
-    //     quality: 92,
-    //     targetFormat: ["jpg"],
-    //     outputOptions: {
-    //         mozjpeg: true,
-    //     },
-    // },
+    {
+        directory: "_top",
+        sizes: [
+            ...RESPONSIVE_SIZES_DESKTOP.map((size) => ({ ...size, h: 960 })),
+            ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ ...size, h: 560 })),
+        ],
+        quality: 92,
+        targetFormat: ["jpg"],
+        outputOptions: {
+            mozjpeg: true,
+        },
+    },
     // {
     //     directory: "_promo",
     //     sizes: [
@@ -42,15 +42,15 @@ const CONFIGS = [
     //         mozjpeg: true,
     //     },
     // },
-    // {
-    //     directory: "_slides",
-    //     sizes: [425, 850, 1700].map(s => ({w: s})),
-    //     quality: 90,
-    //     targetFormat: ["jpg"],
-    //     outputOptions: {
-    //         mozjpeg: true,
-    //     },
-    // },
+    {
+        directory: "_slides",
+        sizes: [425, 850, 1700].map(s => ({w: s})),
+        quality: 90,
+        targetFormat: ["jpg"],
+        outputOptions: {
+            mozjpeg: true,
+        },
+    },
     // {
     //     directory: "_slider",
     //     sizes: [
@@ -87,26 +87,26 @@ const CONFIGS = [
     //         mozjpeg: true,
     //     },
     // },
-    {
-            directory: "_swiper",
-            sizes: [1680, 840, 420].map(s => ({w: s})),
-            quality: 75,
-            targetFormat: ["jpg"],
-            outputOptions: {
-                mozjpeg: true,
-            },
-        },
     // {
-    //     directory: "_logo",
-    //     sizes: [250, 500, 1000].map((s) => ({
-    //         w: s,
-    //     })),
-    //     quality: 90,
-    //     targetFormat: ["png", "webp"],
-    //     // outputOptions: {
-    //     //     mozjpeg: true,
-    //     // },
-    // },
+    //         directory: "_swiper",
+    //         sizes: [1680, 840, 420].map(s => ({w: s})),
+    //         quality: 75,
+    //         targetFormat: ["jpg"],
+    //         outputOptions: {
+    //             mozjpeg: true,
+    //         },
+    //     },
+    {
+        directory: "_logo",
+        sizes: [250, 500, 1000].map((s) => ({
+            w: s,
+        })),
+        quality: 90,
+        targetFormat: ["png", "webp"],
+        // outputOptions: {
+        //     mozjpeg: true,
+        // },
+    },
     // {
     //     directory: "_icon",
     //     sizes: [330, 156].map((s) => ({
@@ -118,18 +118,18 @@ const CONFIGS = [
     //     //     mozjpeg: true,
     //     // },
     // },
-    // {
-    //     directory: "_footer",
-    //     sizes: [
-    //         ...RESPONSIVE_SIZES_DESKTOP.map((size) => ({ ...size, h: 960 })),
-    //         ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ ...size, h: 560 }))
-    //     ],
-    //     quality: 95,
-    //     targetFormat: ["jpg"],
-    //     outputOptions: {
-    //         mozjpeg: true,
-    //     },
-    // },
+    {
+        directory: "_footer",
+        sizes: [
+            ...RESPONSIVE_SIZES_DESKTOP.map((size) => ({ ...size, h: 960 })),
+            ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ ...size, h: 560 })),
+        ],
+        quality: 95,
+        targetFormat: ["jpg"],
+        outputOptions: {
+            mozjpeg: true,
+        },
+    },
 ];
 
 function resizeTask(

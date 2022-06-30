@@ -49,4 +49,4 @@ def index(request, **kwargs):
         'test': 'test12'
     }
 
-    return render(request, "area.jinja", context)
+    return render(request, "essentials.jinja", context)

@@ -39,14 +39,16 @@
     {% set srcsetSizesDesktop = [ 1280, 1920, 2560 ] %}
     {% set srcsetSizes = srcsetSizesMobile + srcsetSizesDesktop %}
 
-    {% set template_id = "1438" %}
-    {% set media_prefix = 'AreaBundle' %}
+    {% set template_id = "1440" %}
+    {% set template_bundle_id = "1438" %}
+    {% set media_prefix = 'EssentialBundle' %}
     {% set media_url = "https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media" % template_id %}
+    {% set media_bundle_url = "https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media" % template_bundle_id %}
     {% set version = "v=0" %}
 
-    {% set product_name = 'mTracker Area Bundle' %}
-    {% set products = software_versions|map(attribute="product") %}
-    {% set live = True %}
+    {# {% set product_name = 'mTracker Area Bundle' %} #}
+    {# {% set products = software_versions|map(attribute="product") %} #}
+    {# {% set live = True %} #}
 
     {% set bundleFullPrice = 10 %}
     {% set bundlePromoPrice = 5 %}
@@ -73,26 +75,26 @@
             'title': 'What’s included:',
         },
         'promo': {
-            'subtitle': 'Full-power',
-            'title': 'area of expertise',
+            'subtitle': 'DISCOVER THE POTENTIAL',
+            'title': 'MTRACKER 3D PLUGIN',
             'text': [
-                "Follow the latest editing trends and include 3D tracking in your workflow! Process your footage with mTracker 3D and extend the reality of your shots by placing all kinds of elements wherever you want — ensuring a natural look and the perfect viewing experience.",
-                "With mTracker 3D Area Bundle, what you're getting is an all-round wonder machine letting you power-boost the impact of your videos with countless, customizable elements included in the Titles, Captions, and Pointers Packs. What's more — now you can unlock even more creative potential with mTracker 3D Area, our professional 3D outline marker that brings new functionality to your FCP studio. Outline and highlight any area of interest, and rest assured it stays true to shape all the way through!"
+                "Now you can extend the reality on your shots and realize your creative ideas with no restraints, other than your imagination.",
+                "With mTracker 3D, any object added into a tracked scene will naturally follow the camera’s movement as if it was there from the beginning!"
             ]
         },
         'tiles': {
-            'subtitle': 'COUNTLESS CREATIVE OPTIONS',
-            'title': 'COUNTLESS CREATIVE OPTIONS',
-            'text':  "Describe space, entice emotions, highlight areas of interest, attract and guide your viewers' attention — the sheer number of customization options will be enough to send you into creative frenzy. Go mad creating!"
+            'subtitle': 'WHAT IS?',
+            'title': 'MASSIVE CONTENT EXPANSION',
+            'text':  "mTracker 3D Essential Bundle comes with over 150 trackable 3D titles, pointers, and captions to get you started."
         },
         'tutorials': {
             'subtitle': "So, you’re good? Get better!",
-            'title': 'LEARN PRO TIPS & TRICKS!'
+            'title': 'LEARN HOW TO USE mTRACKER 3D'
         },
         'footer': {
-            'subtitle': 'PRE-ORDER WITH THE BIGGEST DISCOUNT EVER!',
-            'title': 'SAVE UP TO',
-            'text': 'The plugin will be released in July 2022. Pre‑order in June to get the one‑time‑only, biggest discount!'
+            'subtitle': 'WHAT IS?',
+            'title': 'Rock around the clock!',
+            'text': 'More than just the sum of the possibilities afforded by each of its items — the Essential Bundle empowers you in multiple ways, literally knocking over any obstacles impeding your creativity. It’s simply… essential that you get it!'
         }
     } %}
 
@@ -104,7 +106,7 @@
             <div class="image__background header__bg">
                 {{picture(
                     media_url=media_url,
-                    filename= media_prefix,
+                    filename= media_prefix+ '_top',
                     file_sizes=srcsetSizes,
                     formats=['jpg'],
                     width=2560,
@@ -117,7 +119,7 @@
                     <div class="header__logo">
                         {{picture(
                             media_url=media_url,
-                            filename= 'area_bundle_logo',
+                            filename= 'essential_bundle_logo',
                             file_sizes=[250, 500, 1000],
                             formats=['webp','png'],
                             width=800,
@@ -160,26 +162,19 @@
         </script>
 
         {% set mediaUrl_mTracker = "https://s3.motionvfx.com/mvfxpublic/products/templates/1388/media" %}
-		{% set mediaUrl_area = "https://s3.motionvfx.com/mvfxpublic/products/templates/1436/media" %}
 
         {% set bundle_box = [
             {
                 'name': 'mTracker 3D Plugin',
+                'name_short': 'Plugin',
                 'link': 'https://www.motionvfx.com/store,mtracker-3d,p3506.html',
                 'src_url': mediaUrl_mTracker,
                 'src': 'mTracker3D_512',
                 'data_pair': 0
             },
             {
-                'name': 'mTracker Area',
-                'link': 'https://www.motionvfx.com/store,mtracker-3d-area,p3789.html',
-                'src_url': mediaUrl_area,
-                'src': 'mtracker3d_area_box',
-                'file_sizes': [256,512],
-                'data_pair': 1
-            },
-            {
                 'name': 'mTracker Titles Pack',
+                'name_short': 'Titles Pack',
                 'link': 'https://www.motionvfx.com/store,mtracker-3d-titles-pack,p3508.html',
                 'src_url': mediaUrl_mTracker,
                 'src': 'titles_512',
@@ -187,6 +182,7 @@
             },
             {
                 'name': 'mTracker Captions Pack',
+                'name_short': 'Captions Pack',
                 'link': 'https://www.motionvfx.com/store,mtracker-3d-pointers-pack,p3509.html',
                 'src_url': mediaUrl_mTracker,
                 'src': 'captions_512',
@@ -194,6 +190,7 @@
             },
             {
                 'name': 'mTracker Pointers Pack',
+                'name_short': 'Pointers Pack',
                 'link': 'https://www.motionvfx.com/store,mtracker-3d-pointers-pack,p3509.html',
                 'src_url': mediaUrl_mTracker,
                 'src': 'pointers_512',
@@ -229,9 +226,8 @@
                     <div class="section__content">
                         <div class="box-bundle">
                             <div class="box-bundle__left">
-                                {{box_link(bundle_box[0], 1, 5)}}
-                                {{box_link(bundle_box[1], 2, 4)}}
-                                <div class="save-money save-2 position-absolute d-flex align-items-center justify-content-center" style="--bbi: 6;">
+                                {{box_link(bundle_box[0], 1, 4)}}
+                                <div class="save-money save-2 position-absolute d-flex align-items-center justify-content-center" style="--bbi: 5;">
                                     <div class="save-money-bubble">
                                         <div class="inner">
                                             <div class="save">Save</div>
@@ -250,9 +246,9 @@
                                 +
                             </div>
                             <div class="box-bundle__right">
-                                {{box_link(bundle_box[2], 1, 3)}}
-                                {{box_link(bundle_box[3], 2, 2)}}
-                                {{box_link(bundle_box[4], 3, 1)}}
+                                {{box_link(bundle_box[1], 1, 3)}}
+                                {{box_link(bundle_box[2], 1, 2)}}
+                                {{box_link(bundle_box[3], 2, 1)}}
                             </div>
                         </div>
                     </div>
@@ -310,18 +306,15 @@
         <section class="promo">
             <div class="container">
                 <div class="row section__content">
-                    <div class="col-12">
+                    <div class="col-12 col-lg-6">
                         <div class="section__subtitle" style="max-width: 500px">{{ data['promo'].subtitle }}</div>
                         <div class="section__title" style="max-width: 500px">{{ data['promo'].title }}</div>
                     </div>
-                    {# {% for t in data['promo'].text %} #}
                     <div class="col-12 col-lg-6">
-                        <p class="section__text" style="max-width: 550px">{{ data['promo'].text[0]|safe }}</p>
+                    {% for t in data['promo'].text %}
+                        <p class="section__text" style="max-width: 550px">{{ t|safe }}</p>
+                    {% endfor %}
                     </div>
-                    <div class="col-12 col-lg-6">
-                        <p class="section__text">{{ data['promo'].text[1]|safe }}</p>
-                    </div>
-                    {# {% endfor %} #}
                 </div>
             </div>
         </section>
@@ -333,21 +326,19 @@
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
                                 <video autoplay loop muted playsinline>
-                                    {# <source bg-src="https://s3.motionvfx.com/mvfxpublic/products/templates/1303/media/pins.mp4?" type="video/mp4"> #}
-                                    <source bg-src="https://s3.motionvfx.com/mvfxpublic/products/templates/{{ template_id }}/media/s1.mp4?1" type="video/mp4">
-                                </video>
-                            </div>
-
-                            <div class="swiper-slide">
-                                <video autoplay loop muted playsinline>
                                     <source bg-src="https://s3.motionvfx.com/mvfxpublic/products/templates/1303/media/field.mp4" type="video/mp4">
                                 </video>
                             </div>
 
                             <div class="swiper-slide">
                                 <video autoplay loop muted playsinline>
-                                    {# <source bg-src="https://s3.motionvfx.com/mvfxpublic/products/templates/1303/media/body.mp4?" type="video/mp4"> #}
-                                    <source bg-src="https://s3.motionvfx.com/mvfxpublic/products/templates/{{ template_id }}/media/s2.mp4?1" type="video/mp4">
+                                    <source bg-src="https://s3.motionvfx.com/mvfxpublic/products/templates/1303/media/pins.mp4?" type="video/mp4">
+                                </video>
+                            </div>
+
+                            <div class="swiper-slide">
+                                <video autoplay loop muted playsinline>
+                                    <source bg-src="https://s3.motionvfx.com/mvfxpublic/products/templates/1303/media/body.mp4?" type="video/mp4">
                                 </video>
                             </div>
 
@@ -358,24 +349,24 @@
                             </div>
 
                         </div>
+                        <!-- Add Arrows -->
                     </div>
                     <div class="swiper-container swiper-container-mobile">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide ">
+                                <img bg-src="https://s3.motionvfx.com/mvfxpublic/products/templates/1303/media/pins_img.jpg" alt="">
+                            </div>
+                            <div class="swiper-slide">
                                 <img bg-src="https://s3.motionvfx.com/mvfxpublic/products/templates/1303/media/ships_img.jpg" alt="">
                             </div>
                             <div class="swiper-slide">
-                                {# <img bg-src="https://s3.motionvfx.com/mvfxpublic/products/templates/1303/media/pins_img.jpg" alt=""> #}
-                                <img bg-src="https://s3.motionvfx.com/mvfxpublic/products/templates/{{ template_id }}/media/s31-1680.jpg" alt="">
+                                <img bg-src="https://s3.motionvfx.com/mvfxpublic/products/templates/1303/media/body_img.jpg" alt="">
                             </div>
                             <div class="swiper-slide">
                                 <img bg-src="https://s3.motionvfx.com/mvfxpublic/products/templates/1303/media/robot_img.jpg" alt="">
                             </div>
-                            <div class="swiper-slide">
-                                {# <img bg-src="https://s3.motionvfx.com/mvfxpublic/products/templates/1303/media/body_img.jpg" alt=""> #}
-                                <img bg-src="https://s3.motionvfx.com/mvfxpublic/products/templates/{{ template_id }}/media/s2i-1680.jpg" alt="">
-                            </div>
                         </div>
+                        <!-- Add Arrows -->
                     </div>
                     <div class="arrow-right"></div>
                     <div class="arrow-left"></div>
@@ -386,36 +377,36 @@
         <section class="tiles">
             {% set tiles_content = [
                 {
-                    'src': 'v_2',
+                    'src': 'v_16',
                     'alt': ''
                 },
                 {
-                    'src': 'v_5',
-                    'alt': ''
-                },
-                {
-                    'src': 'v_3',
-                    'alt': ''
-                },
-                {
-                    'src': 'v_1',
-                    'alt': ''
-                },
-                {},
-                {
-                    'src': 'v_24',
-                    'alt': ''
-                },
-                {
-                    'src': 'v_6',
-                    'alt': ''
-                },
-                {
-                    'src': 'v_4',
+                    'src': 'v_15',
                     'alt': ''
                 },
                 {
                     'src': 'v_17',
+                    'alt': ''
+                },
+                {
+                    'src': 'v_25',
+                    'alt': ''
+                },
+                {},
+                {
+                    'src': 'v_11',
+                    'alt': ''
+                },
+                {
+                    'src': 'v_27',
+                    'alt': ''
+                },
+                {
+                    'src': 'v_12',
+                    'alt': ''
+                },
+                {
+                    'src': 'v_19',
                     'alt': ''
                 },
             ] %}
@@ -494,7 +485,6 @@
                                         <div class="tcell tlabel">Supported software</div>
                                         <div class="tcell tdata">
 
-                                        {% set music_all = product.productdetails.music.select_related('music_portal').all() %}
                                         {% set requirements_all = product.productdetails.minimal_requirements %}
 
                                         {% set versions = {
@@ -503,11 +493,6 @@
                                                 'includes': '1 FCPX title',
                                                 'size': "%.1f MB" % (product.productdetails.source_size / 1000),
                                             },
-                                            'dvr': {
-                                                'minimal_requirements': 'DaVinci Resolve 17.4.6 but 18 Highly Recommended',
-                                                'includes': '1 DVR effect',
-                                                'size': "%.1f KB" % (12),
-                                            }
                                          } %}
                                             {% for key, p in versions.items() %}
                                                 {{ p.minimal_requirements|safe }}<br/>
@@ -524,22 +509,6 @@
                                                 <a class="deco-link" title="{{b.name}}" href="{{ b.link }}" target="blank" rel="noopener noreferrer">{{ b.name }}</a>{{' + ' if not loop.last}}
                                             {% endfor %}
                                         </div>
-                                        {# <div class="tcell tlabel">Size</div>
-                                        <div class="tcell tdata">
-                                            {% for key, p in versions.items() %}
-                                                {{ key|upper }} — {{ p.size|safe }}<br/>
-                                            {% endfor %}
-                                        </div> #}
-                                        {# {% for kind in ['trailer', 'tutorial'] %}
-                                            {% with musics=product.productdetails.music.select_related('music_portal').all().filter(used_in_trailer=kind=='trailer') %}
-                                                {% if musics|length %}
-                                                    <div class="tcell tlabel">Music used in {{ kind }}</div>
-                                                    <div class="tcell tdata">
-                                                        {% include 'product/music_info.jinja2' %}
-                                                    </div>
-                                                {% endif %}
-                                            {% endwith %}
-                                        {% endfor %} #}
                                     </div>
                                 </div>
                             </div>
@@ -576,32 +545,6 @@
                     img_class='lazy-show',
                     alt="Footer image"
                 )}}
-                {# <div class="figure-wrapper d-none d-lg-block">
-                <div class="figure position-relative" data-video style="">
-                    {{ picture(mediaUrl_area, 'hill_heaven_black', file_sizes=[640,960,1280,1920,2560], formats=['jpg'], media_sizes="(max-width: 440px) 20px,180vw", width=2560, height=960, img_class="hill-bg",
-                        media_files={'(max-width: 699.98px)': { 'filename': 'hill_heaven_natural', 'file_sizes': [640,960,1280,1920,2560], 'media_sizes': '100vw' }}) }}
-
-                    <div class="video-el video1"
-                        data-webm="https://s3.motionvfx.com/mvfxpublic/products/templates/1436/media/mTracker_3D_Area_video1.webm"
-                        data-hevc="https://s3.motionvfx.com/mvfxpublic/products/templates/1436/media/mTracker_3D_Area_video1-hevc.mov"
-                        data-png="https://s3.motionvfx.com/mvfxpublic/products/templates/1436/media/mTracker_3D_Area_video1.png"
-                        data-autoplay="true"
-                        data-duration="6000"
-                        data-fake-loop="true"
-                        data-min-w="700"
-                        ></div>
-                    <div class="video-el video2"
-                        data-webm="https://s3.motionvfx.com/mvfxpublic/products/templates/1436/media/mTracker_3D_Area_video2.webm"
-                        data-hevc="https://s3.motionvfx.com/mvfxpublic/products/templates/1436/media/mTracker_3D_Area_video2-hevc.mov"
-                        data-png="https://s3.motionvfx.com/mvfxpublic/products/templates/1436/media/mTracker_3D_Area_video2.png"
-                        data-autoplay="true"
-                        data-duration="6000"
-                        data-fake-loop="true"
-                        data-delay="3000"
-                        data-min-w="700"
-                        >
-                    </div>
-                </div> #}
 			</div>
             </div>
             <div class="container">
@@ -609,13 +552,13 @@
                     <div class="col-12">
                         <div class="section__text__content">
                             <div class="section__head">
-                                <div class="footer__title section__subtitle">
+                                {# <div class="footer__title section__subtitle">
                                     {{data.footer.subtitle|safe}}
-                                </div>
+                                </div> #}
                                 <div class="footer__title section__title">
-                                    {{data.footer.title|safe}} ${{ price(bundleFullPrice - bundlePromoPrice) }}!
+                                    {{data.footer.title|safe}}!
                                 </div>
-                                <p class="footer__text section__text mx-auto" style="max-width: 500px">
+                                <p class="footer__text section__text mx-auto" style="max-width: 40em">
                                     {{ data.footer.text|safe }}
                                 </p>
                             </div>
@@ -641,3 +584,15 @@
 </body>
 
 </html>
+
+Supported software
+macOS Catalina 10.5.4 or higher,
+Motion 5.5.3 or Final Cut Pro 10.5
+
+Hardware requirements
+4GB of RAM (8GB recommended for 4K editing),
+1GB of VRAM
+
+Includes
+mTracker 3D Plugin + Titles Pack +
+Captions Pack + Pointers Pack

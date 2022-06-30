@@ -2,6 +2,7 @@
     &-playlist {
         background: #000;
         padding: 0;
+        position: relative;
     }
 
     &-content {
@@ -10,15 +11,14 @@
 
     &-menu {
         padding: 0;
-        // max-height: 540px;
+        max-height: 540px;
         overflow: scroll;
         overflow-x: hidden;
-        height: 479px;
-        @media screen and(max-width: 1920px) {
-            height: clamp(10px,34.4vw,444px);
-        }
-        @media screen and(max-width: 1200px) {
-            height: clamp(10px, 30.8vw, 414px);
+        @media screen and(min-width: 992px) {
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
         }
     }
 
@@ -31,7 +31,7 @@
             }
         }
         &::-webkit-scrollbar-thumb {
-            background-color: #F6CC24;
+            background-color: #f6cc24;
             border-radius: 6px;
         }
     }
