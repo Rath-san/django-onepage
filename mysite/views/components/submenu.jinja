@@ -9,12 +9,6 @@
     </div>
     {% set links = [
         {
-            'anchor': 'trailer',
-            'class': 'trailer',
-            'title': 'Watch trailer',
-            'src': 'play_menu.svg'
-        },
-        {
             'anchor': 'tutorial',
             'class': 'tutorial',
             'title': 'Watch tutorial',
@@ -40,8 +34,22 @@
         {% endfor %}
     </div>
     <div class="submenu-plugins-right">
-        {% with discount_text='INTRO', version=1 %}
+        {# {{ bundle.set_btn_title("Essential Bundle")|default("", True) }} #}
+        {# {{ plugin.set_btn_title("Plugin Only")|default("", True) }}
+        {{ titles.set_btn_title("Titles Pack")|default("", True) }}
+        {{ captions.set_btn_title("Captions Pack")|default("", True) }}
+        {{ pointers.set_btn_title("Pointers Pack")|default("", True) }} #}
+
+        {# {% set products = [plugin, titles, captions, pointers] %} #}
+
+        {% with discount_text='INTRO', version=4, products=products %}
             {% include 'product/buy_button.jinja2' %}
         {% endwith %}
+        <div class="bundle-info">
+            Get the <span>BUNDLE</span> and save money!
+        </div>
+        {# {% with discount_text='INTRO', version=1 %}
+            {% include 'product/buy_button.jinja2' %}
+        {% endwith %} #}
     </div>
 </div>

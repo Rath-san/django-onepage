@@ -4,9 +4,9 @@ $font-size-title: $rem * 2;
 $font-size-sub-title: $rem * 1.2;
 $font-size-body: $rem * 0.9;
 
-$font-family-text: "Maven Pro", sans-serif;;
-$font-family-title: "Montserrat",sans-serif;
-$font-family-subtitle: $font-family-text;
+$font-family-text: "Work Sans",sans-serif;
+$font-family-title: "Quantico", sans-serif;
+$font-family-subtitle: $font-family-title;
 $font-family-title--big: $font-family-title;
 
 @for $var from 1 to 6 {
@@ -40,7 +40,8 @@ main,
 .section {
   &__title {
     // font-size: 1.8rem;
-    font-size: 2rem;
+    text-transform: uppercase;
+    font-size: Min(2.2rem,8vw);
     font-weight: 700;
     line-height: 1.2;
     font-family: $font-family-title;
@@ -57,12 +58,12 @@ main,
 
   &__subtitle {
     opacity: 0;
-    font-size: 0.6rem;
+    font-size: 1.2rem;
     font-weight: 00;
     text-transform: uppercase;
     font-family: $font-family-subtitle;
     font-weight: 600;
-    margin-bottom: 1rem;
+    margin-bottom: 0rem;
     letter-spacing: 2px;
     transition:
       opacity .5s ease-in-out,

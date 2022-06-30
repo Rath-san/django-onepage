@@ -5,6 +5,10 @@ class Product(models.Model):
     minimal_requirements = models.CharField(max_length=50, default="min req details!")
     source_size = models.IntegerField(default=0)
 
+    def set_btn_title(string):
+        return string;
+
+
 class MusicPortal(models.Model):
     name = models.CharField(max_length=50, default="Portal name!")
 

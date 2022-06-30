@@ -75,14 +75,14 @@
 }
 
 .ts-mi {
-    padding: $section-padding-y 0;
+    padding: $section-padding-y 0 0 0;
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
     z-index: 2;
     position: relative;
-    margin: $section-padding-y 0;
+    // margin: $section-padding-y 0;
 
     .container {
         position: relative;

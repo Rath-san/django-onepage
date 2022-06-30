@@ -11,17 +11,19 @@ const VIDEO_QUALITY = 28; // this is not deterministic lower = uglier
 
 const CONFIGS = [
     {
-        directory: "_prevs",
+        directory: "_mov",
     },
 ];
 
+const root = 'area'
+
 function resizeTask(
     managedFormats = ["mov", "mp4", "m4v"],
-    videoDist = "src/luma/_videos/otp/"
+    videoDist = `src/plugins/${root}/_videos/otp/`
 ) {
     CONFIGS.forEach(({ directory }) => {
         const fileSrcs = managedFormats.map(
-            (format) => `src/luma/_videos/${directory}/*.${format}`
+            (format) => `src/plugins/${root}/_videos/${directory}/*.${format}`
         );
 
         return src(fileSrcs).pipe(
@@ -35,6 +37,7 @@ function resizeTask(
                     // '-c:v', 'libvpx',
                     '-b:v', '500k',
                     // '-tag:v', 'hvc1',
+                    '-vf', 'scale=1920:-1',
 
                     '-crf', VIDEO_QUALITY,
                     '-profile:v', 'high',

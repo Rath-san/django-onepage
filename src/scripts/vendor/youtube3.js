@@ -65,7 +65,7 @@ export default ($root, playlistId) => {
                 let $content = $root.find(".yt-content");
                 $content.html(
                     '<div class="embed-responsive embed-responsive-16by9">\n' +
-                        '  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/' +
+                        '  <iframe loading="lazy" class="embed-responsive-item" src="https://www.youtube.com/embed/' +
                         $item.data("src") +
                         '" allowfullscreen></iframe>\n' +
                         "</div>"

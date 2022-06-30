@@ -1,16 +1,9 @@
 import { doOnVisible } from "./libs/do-on-visible";
 import Splitting from "splitting";
 // import { handleTouchEvents } from "./utils/utils";
-import './vendor/menu';
-import YTPlayer from "yt-player";
-
-const makePlayer = (id, elementId) => {
-    const player = new YTPlayer(elementId);
-    player.load(id);
-    player.setVolume(100);
-};
-
-const ytTopVideos = Array.from(document.querySelectorAll('.video-iframe'));
+import "./vendor/menu";
+import youtube from "./vendor/youtube3";
+import Swiper from "./vendor/swiper";
 
 const lazyShow = () => {
     const imagesDocument = Array.from(document.querySelectorAll(".lazy-show"));
@@ -31,18 +24,18 @@ const loadOnVisibleImages = (section) => {
 
     images.forEach((picture) => {
         const sources = [
-            ...Array.from(picture.querySelectorAll('[data-src]')),
-            ...Array.from(picture.querySelectorAll('[data-srcset]'))
-        ]
-        sources.forEach(s => {
+            ...Array.from(picture.querySelectorAll("[data-src]")),
+            ...Array.from(picture.querySelectorAll("[data-srcset]")),
+        ];
+        sources.forEach((s) => {
             if (s.src || s.srcset) return;
             if (s.dataset.srcset) {
-                s.srcset = s.dataset.srcset
+                s.srcset = s.dataset.srcset;
             }
             if (s.dataset.src) {
                 s.src = s.dataset.src;
             }
-        })
+        });
     });
 };
 
@@ -82,8 +75,7 @@ const loadOnVisibleImages = (section) => {
                 target.dataset.visible = true;
                 loadOnVisibleImages(target);
             },
-            cbOut: () => {
-            },
+            cbOut: () => {},
             rootMargin: "-150px",
         });
 
@@ -94,15 +86,138 @@ const loadOnVisibleImages = (section) => {
             cbIn: (target) => {
                 target.dataset.rowvisible = true;
             },
-            cbOut: () => {
-            },
+            cbOut: () => {},
             rootMargin: "-150px",
         });
 
-        ytTopVideos.forEach(v => {
-            makePlayer(v.dataset.id, v);
+        // ytTopVideos.forEach(v => {
+        //     makePlayer(v.dataset.id, v);
+        // });
+
+        youtube($("#playlist"), "PLBrUm2lGexixgXY9hShMO0GV7N3mKFHyP");
+
+        let v;
+
+        const load_video = () => {
+            $(".swiper-container-mobile").css("display", "none");
+            $(".swiper-container-desktop").css("display", "block");
+            $(".swiper-container-desktop source").each(function (index) {
+                v = $(this);
+                v.attr("src", $(this).attr("bg-src"));
+                $(".swiper-container-desktop video")[index].load();
+            });
+            // console.log(Swiper);
+            // swiperSlider.reInit();
+        };
+
+        const load_img = () => {
+            $(".swiper-container-desktop").css("display", "none");
+            $(".swiper-container-mobile").css("display", "block");
+            $(".swiper-container-mobile img").each(function (index) {
+                $(this).attr(
+                    "src",
+                    $(this).attr("bg-src") + "?v=" + Math.random()
+                );
+                $(".swiper-container-desktop video")[index].pause();
+            });
+            // console.log(Swiper);
+            // swiperSlider.reInit();
+        };
+
+        const mobileViewBreakpoint = 768;
+        let start_mobile = 0;
+
+        if (window.innerWidth <= mobileViewBreakpoint) {
+            start_mobile = 1;
+        }
+
+        if (start_mobile) {
+            load_img();
+        } else {
+            load_video();
+        }
+
+        const swiperSlider = new Swiper(".swiper-container", {
+            autoplay: {
+                delay: 3000,
+            },
+            loop: true,
+            navigation: {
+                nextEl: ".arrow-right",
+                prevEl: ".arrow-left",
+            },
+            observer: true,
+            observeParents: true,
         });
+
+        window
+            .matchMedia(`(max-width: ${mobileViewBreakpoint}px)`)
+            .addEventListener("change", (e) => {
+                // console.log(e.maches);
+                e.matches ? load_img() : load_video();
+            });
+
+        const saveMoneyToggle = () => {
+            const element = document.querySelector(".save-money");
+            const animClass = "alt";
+            let timeout;
+
+            const checkAnimClass = () => {
+                if (element.classList.contains(animClass)) {
+                    element.classList.remove(animClass);
+                } else {
+                    element.classList.add(animClass);
+                }
+            };
+
+            const anim = () => {
+                checkAnimClass();
+                timeout = setTimeout(anim, 3000);
+            };
+
+            element.addEventListener("mouseenter", () => {
+                clearInterval(timeout);
+                checkAnimClass();
+            });
+
+            element.addEventListener("mouseleave", () => {
+                anim();
+            });
+
+            anim();
+        };
+
+        saveMoneyToggle();
+
+        const bundleBoxHover = () => {
+            const pairs = Array.from(document.querySelectorAll("[data-pair]"));
+
+            pairs.forEach((element) => {
+                const pairNumber = element.dataset.pair;
+
+                element.addEventListener("mouseenter", () => {
+                    pairs.forEach((p) => {
+                        if (p.dataset.pair === pairNumber) {
+                            p.classList.add("active");
+                        }
+                    });
+                });
+
+                element.addEventListener("mouseleave", () => {
+                    pairs.forEach((p) => {
+                        if (p.dataset.pair === pairNumber) {
+                            p.classList.remove("active");
+                        }
+                    });
+                });
+            });
+        };
+
+        bundleBoxHover();
     });
+
+    // $(document).ready(function() {
+    //     AOS.init();
 
     // const carouselSwiping = (carousel) => {
     //     const carouselEntity = $(`#${carousel.id}`);
@@ -163,4 +278,3 @@ const loadOnVisibleImages = (section) => {
     // initSlider();
     // initPrevs();
 })();
- 

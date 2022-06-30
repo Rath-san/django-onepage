@@ -10,10 +10,12 @@ const {
     RESPONSIVE_SIZES,
 } = require("./constants");
 
+const root = 'area'
+
 const FORMATS = ["jpg", "webp"];
 const IMAGE_QUALITY = 50;
 
-640, 820, 1024;
+// 640, 820, 1024;
 
 const CONFIGS = [
     // {
@@ -28,18 +30,27 @@ const CONFIGS = [
     //         mozjpeg: true,
     //     },
     // },
-    {
-        directory: "_promo",
-        sizes: [
-            ...RESPONSIVE_SIZES,
-            // ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ ...size, h: 560 }))
-        ],
-        quality: 95,
-        targetFormat: ["jpg"],
-        outputOptions: {
-            mozjpeg: true,
-        },
-    },
+    // {
+    //     directory: "_promo",
+    //     sizes: [
+    //         ...RESPONSIVE_SIZES,
+    //         // ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ ...size, h: 560 }))
+    //     ],
+    //     quality: 95,
+    //     targetFormat: ["jpg"],
+    //     outputOptions: {
+    //         mozjpeg: true,
+    //     },
+    // },
+    // {
+    //     directory: "_slides",
+    //     sizes: [425, 850, 1700].map(s => ({w: s})),
+    //     quality: 90,
+    //     targetFormat: ["jpg"],
+    //     outputOptions: {
+    //         mozjpeg: true,
+    //     },
+    // },
     // {
     //     directory: "_slider",
     //     sizes: [
@@ -76,12 +87,21 @@ const CONFIGS = [
     //         mozjpeg: true,
     //     },
     // },
+    {
+            directory: "_swiper",
+            sizes: [1680, 840, 420].map(s => ({w: s})),
+            quality: 75,
+            targetFormat: ["jpg"],
+            outputOptions: {
+                mozjpeg: true,
+            },
+        },
     // {
     //     directory: "_logo",
-    //     sizes: [312, 624].map((s) => ({
+    //     sizes: [250, 500, 1000].map((s) => ({
     //         w: s,
     //     })),
-    //     quality: 100,
+    //     quality: 90,
     //     targetFormat: ["png", "webp"],
     //     // outputOptions: {
     //     //     mozjpeg: true,
@@ -114,7 +134,7 @@ const CONFIGS = [
 
 function resizeTask(
     managedFormats = ["jpg", "jpeg", "png"],
-    imgDist = "src/plugins/camrig/_images/otp/"
+    imgDist = `src/plugins/${root}/_images/otp/`
 ) {
     CONFIGS.forEach(
         ({
@@ -127,7 +147,7 @@ function resizeTask(
         }) => {
             const fileSrcs = managedFormats.map(
                 (format) =>
-                    `src/plugins/camrig/_images/${directory}/*.${format}`
+                    `src/plugins/${root}/_images/${directory}/*.${format}`
             );
             return src(fileSrcs).pipe(
                 through2.obj(async function (file, _, cb) {
