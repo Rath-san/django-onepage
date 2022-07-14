@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include './components/head.jinja' %}
+
+<body>
+    {% include './components/nav.jinja' %}
+    {# {% include './components/macro.jinja' %} #}
+    {# {% include './components/bundle-popup.jinja' %} #}
+
+    {% macro picture(
+		media_url, filename, media_files={}, file_sizes=[360, 480, 640, 960], formats=['webp','jpg'], media_sizes='', media='', alt='', img_class='', img_style='', picture_class='', width='', height='', loading='', data_src=False, img_attr=""
+	) %}
+		<picture class="{{ picture_class }}">
+			{% for media in media_files %}
+				{% set m = media_files[media] %}
+				{% for format in formats %}
+					<source {% if data_src %} data-srcset=" {% for size in m['file_sizes'] %} {{ media_url }}/{{ m['filename'] }}-{{ size }}.{{ format }} {{size}}w, {% endfor %}" {% else %} srcset=" {% for size in m['file_sizes'] %} {{ media_url }}/{{ m['filename'] }}-{{ size }}.{{ format }} {{size}}w, {% endfor %}" {% endif %} type="image/{{ format | replace('jpg', 'jpeg') }}" sizes="{{ m['media_sizes'] | default(media_sizes) }}" media="{{ media }}" >
+				{% endfor %}
+			{% endfor %}
+			{% for format in formats %}
+				<source {% if data_src %} data-srcset=" {% for size in file_sizes %} {{ media_url }}/{{ filename }}-{{ size }}.{{ format }} {{size}}w, {% endfor %}" {% else %} srcset=" {% for size in file_sizes %} {{ media_url }}/{{ filename }}-{{ size }}.{{ format }} {{size}}w, {% endfor %}" {% endif %} type="image/{{ format | replace('jpg', 'jpeg') }}" sizes="{{ media_sizes }}" media="{{ media }}">
+			{% endfor %}
+			<img {% if data_src %} data-src="{{ media_url }}/{{ filename }}-{{ file_sizes[0] }}.{{ formats[-1] }}?{{file_version}}" {% else %} src="{{ media_url }}/{{ filename }}-{{ file_sizes[0] }}.{{ formats[-1] }}?{{file_version}}" {% endif %} {% if img_attr %}{{ img_attr }} {% endif %} alt="{{alt}}" class="{{img_class}}" style="{{img_style}}" width="{{width}}" height="{{height}}" loading="{{loading}}" >
+		</picture>
+	{% endmacro %}
+    {% macro buy_btn_free() %}
+    <div class="button-buy">
+        <div id="btn-buy-container" class="version1">
+            <div class="inner-container">
+                <a href="#" class="buy-button" data-add-to-cart='{ "productId": {{  product.id }}, "productTitle": "{{  product.title }}" }'>
+                    Get it free for FCP / DVR
+                </a>
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+
+    {% set srcsetSizesMobile = [ 640, 960 ] %}
+    {% set srcsetSizesDesktop = [ 1280, 1920, 2560 ] %}
+    {% set srcsetSizes = srcsetSizesMobile + srcsetSizesDesktop %}
+
+    {# {% set template_id = "1298" %} #}
+    {% set template_id = "1441" %}
+    {% set media_url = "https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media" % template_id %}
+    {% set media_prefix = '' %}
+    {% set version = "v=0" %}
+
+    {# {% set shared_media_template_id = '1408' %} #}
+    {# {% set shared_media_url = 'https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media' % (shared_media_template_id) %} #}
+
+    <main class="mlowers-mega-pack">
+        <section class="header">
+            <div class="image__background">
+                {{picture(
+                    media_url=media_url,
+                    filename= 'footer_bg',
+                    file_sizes=srcsetSizes,
+                    formats=['jpg'],
+                    width=2560,
+                    height=1100,
+                    alt="Header"
+                )}}
+            </div>
+            <div class="container-fluid">
+                <div class="section__content">
+                    <div data-aos="fade" data-aos-duration="1000" data-aos-delay="150" data-aos-easing="ease-in-out">
+                        <div class="header__logo">
+                            <img src="{{ media_url }}/mlowers_mega_pack_logo.svg" alt="mLowers Mega Pack">
+                        </div>
+                        <h1 class="section__text">A Selection Of Diverse Lower3rds for FCPX</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="trailer">
+            <div class="container">
+                <div class="text-box">
+                    <a class="nav" name="trailer"></a>
+                    <h2><span>See what you can</span> make with them</h2>
+                    <div class="yt embed-responsive embed-responsive-16by9">
+                        <iframe id="ytTrailer" src="https://www.youtube.com/embed/3y259Ek_XY8?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    </div>
+                    <div class="trailer-text">
+                        <a onclick="scrollToAnchor('tutorial');">
+                            {{picture(
+                                media_url=media_url,
+                                filename= 'learn_how',
+                                file_sizes=[640, 320],
+                                formats=['webp', 'png'],
+                                width=640,
+                                height=170,
+                                alt="Learn how to use FCPX plugins",
+                                loading="lazy"
+                            )}}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="spices mscroll">
+            <div class="image__background">
+                {{picture(
+                    media_url=media_url,
+                    filename= 'spices_bg',
+                    file_sizes=srcsetSizes,
+                    formats=['jpg'],
+                    width=2560,
+                    height=1050,
+                    alt="Spices",
+                    loading="lazy"
+                )}}
+            </div>
+            <div class="mlower">
+
+                {{picture(
+                    media_url=media_url,
+                    filename= 'mlower3rd_top',
+                    file_sizes=[400, 800],
+                    formats=['webp', 'png'],
+                    width=800,
+                    height=114,
+                    alt="mLower 3rd",
+                    img_class="mscrollInside",
+                    loading="lazy",
+                    img_attr='data-time=4 data-move=100 data-axis=X'
+                )}}
+
+                {{picture(
+                    media_url=media_url,
+                    filename= 'mlower3rd',
+                    file_sizes=[400, 800],
+                    formats=['webp', 'png'],
+                    width=800,
+                    height=114,
+                    alt="mlower3rd",
+                    img_class="mscrollInside",
+                    loading="lazy",
+                    img_attr='data-time=3 data-move=200 data-axis=X',
+                    
+                )}}
+
+            </div>
+            <div class="container">
+                <div class="text-box">
+                    <h2><span>Illustrate</span>any topic</h2>
+                    <h3>Add stylish descriptions and clarify your message.</h3>
+                </div>
+            </div>
+        </section>
+
+        <section class="lower-3rd">
+            <div class="column-left">
+                <div class="text-box">
+                    <h2><span>Match</span> any stylistics</h2>
+                    <p>Find a perfect look to fit your project. </p>
+                    <div class="arrows" data-aos="zoom-in" data-aos-offset="-100" data-aos-delay="200" data-aos-duration="600" data-aos-easing="ease-in-out-back">
+                        <div class="arrow left" onclick='changeBGImage(-1);'></div>
+                        <div class="arrow right" onclick='changeBGImage(1);'></div>
+                    </div>
+                </div>
+            </div>
+            <div class="column-right">
+                <div class="slider column-right-images">
+                    <div class="slider__container">
+                        {% for img in [
+                            {
+                                'src': 'lower_one',
+                                'alt': '',
+                                'object_position_y': 62
+                            },
+                            {
+                                'src': 'lower_two',
+                                'alt': '',
+                                'object_position_y': 90
+                            },
+                            {
+                                'src': 'lower_three',
+                                'alt': '',
+                                'object_position_y': 100,
+                            }
+                        ] %}
+                            <div class="slider__item {{ 'active' if loop.index == 1 }}" style="--x: {{(loop.index - 1) * 100}};">
+                                {{picture(
+                                    media_url=media_url,
+                                    filename=img.src,
+                                    file_sizes=[640, 960, 1280, 1800],
+                                    formats=['jpg'],
+                                    width=1800,
+                                    height=1100,
+                                    alt=img.alt,
+                                    img_style="--opy:" + img.object_position_y|string,
+                                    media_files={
+                                        '(max-width: 1200px)': {
+                                            'filename': img.src + '_mobile',
+                                            'formats':['jpg'],
+                                            'file_sizes': [600, 1200],
+                                        }
+                                    },
+                                )}}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mix">
+            <div class="image__background" style="--s-index:0">
+                {{picture(
+                    media_url=media_url,
+                    filename= 'mLowers_mix_bg',
+                    file_sizes=[1920, 2560],
+                    formats=['jpg'],
+                    width=2560,
+                    height=1100,
+                    media_files={
+                        '(max-width: 1280px)': {
+                            'filename': 'mix_mobile',
+                            'formats':['jpg'],
+                            'file_sizes': [640, 960, 1280],
+                        }
+                    },
+                    alt="Mix"
+                )}}
+            </div>
+            <div class="container">
+                <div class="text-box">
+                    <h2><span>Diversified</span>motion graphics</h2>
+                    <h3>A huge collection of lower thirds that will equip your toolbox with over 130 diversified presets that you can use instantly or customize to perfectly fit your current stylistics.</h3>
+                </div>
+            </div>
+        </section>
+
+        <section class="prevs">
+            <div class="container">
+                <div class="text-box">
+                    <div class="prev-title">
+                        <h2><span>OVER 130</span> Diverse Lower3rds for FCPX</h2>
+                        <picture>
+                            <img loading="lazy" src="https://s3.motionvfx.com/mvfxpublic/products/templates/1298/media/prev_title_bg.jpg" alt="Over 130 lower3rds for FCPX">
+                        </picture>
+                    </div>
+
+                    <p>HOVER ON THUMBNAIL TO VIEW ANIMATION</p>
+                </div>
+            </div>
+
+            <div class="videoList">
+                <div class="cover product-list-wrapper">
+                    <div class="carousel-image text-center d-flex d-none"></div>
+                    <div class="product-list" id="productList">
+                        <div class="container site-content container-lg">
+                            <div class="row product-grid" id="productsContainer" style="display:none">
+                                {% for i in range(131) %}
+                                {% if loop.index < 10 %}{% set num = "0" + loop.index|string %}{% else %}{% set num = loop.index %}{% endif %}
+                                <div class="col-12 col-sm-12 col-md-3 col-lg-3 {% if loop.index==129 %} col-6-desktop {% endif %} product">
+                                    <a>
+                                        <div class="product-preview">
+                                            <img class="img-fluid"
+                                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQkAAACVCAQAAADhssdjAAABEElEQVR42u3SMQ0AAAzDsJU/6d1l0MOGECUHJRJgCSyBJbAElsASWAJLYAksgSWwBJbAElgCS2AJsASWwBJYAktgCSyBJbAElsASWAJLYAksgSWwBFgCS2AJLIElsASWwBJYAktgCSyBJbAElsASWAIsgSWwBJbAElgCS2AJLIElsASWwBJYAktgCSwBlsASWAJLYAksgSWwBJbAElgCS2AJLIElsASWwBISYAksgSWwBJbAElgCS2AJLIElsASWwBJYAktgCbAElsASWAJLYAksgSWwBJbAElgCS2AJLIElsARYAktgCSyBJbAElsASWAJLYAksgSWwBJbAElgCLIElsASWwBJYAktgCSyBJRj2xckAllbmyYMAAAAASUVORK5CYII=" />
+
+                                            <div class="preview-wrapper zoom" data-mp4-url="https://s3.motionvfx.com/mvfxpublic/products/templates/1298/media/{{num}}.mp4">
+                                                <div class="preview-image-container">
+                                                    <img loading="lazy" class="img-fluid" data-src="https://s3.motionvfx.com/mvfxpublic/products/templates/1298/media/{{num}}.jpg" alt="{{ product.head_info }}" onerror="this.style.display='none'"
+                                                        onload="this.style.display='block'" />
+                                                </div>
+                                                <div class="preview-video-container" style="display: none"></div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                {% endfor %}
+                                <a href="#" class="load-more">Show all</a>
+                                <div class="hide-button"><a href="#" class="hide-products">Hide</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="tutorial">
+            <div class="container">
+                <div class="text-box">
+                    <a class="nav" name="tutorial"></a>
+                    <h2>Watch Tutorial</h2>
+                    <h3>Learn how to apply this plugin to meet your needs.</h3>
+                    <div class="yt embed-responsive embed-responsive-16by9">
+                        <iframe id="ytTrailer" src="https://www.youtube.com/embed/gnArbkYKv-g?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="ts-mi">
+        <section class="tech-spec">
+            <a class="nav" name="specs" style="position: relative; top:-10rem"></a>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="tech-spec-info">
+                            <div class="section__text__content">
+                                <div class="section__head">
+                                    <h2 class="section__title tech-spec__title section__title">Technical specifications</h2>
+                                </div>
+                                <div class="ttable tech-spec__table">
+                                    <div class="tcell tlabel">Supported software</div>
+                                    <div class="tcell tdata">
+                                        {% autoescape off %}
+                                            {{ product.productdetails.minimal_requirements.replace('FCP 10', 'FCP 10').replace('Motion 5', 'Motion 5').replace(', ', ',<br>') }}
+                                        {% endautoescape %}
+                                    </div>
+                                    <div class="tcell tlabel">Includes</div>
+                                    <div class="tcell tdata">1 FCP title / 1 DVR</div>
+                                    <div class="tcell tlabel">Size</div>
+                                    <div class="tcell tdata">
+                                        {{ "%.1f MB"|format(product.productdetails.source_size / 1000) }}
+                                    </div>
+                                    {% for kind in ['trailer', 'tutorial'] %}
+                                        {% with musics=product.productdetails.music.select_related('music_portal').all().filter(used_in_trailer=kind=='trailer') %}
+                                            {% if musics|length %}
+                                                <div class="tcell tlabel">Music used in {{ kind }}</div>
+                                                <div class="tcell tdata">
+                                                    {% include 'product/music_info.jinja2' %}
+                                                </div>
+                                            {% endif %}
+                                        {% endwith %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </section>
+
+        <section class="minstaller__section">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="minstaller">
+                            <h3 class="minstaller__title">mInstaller</h3>
+                            <p class="minstaller__description" style="max-width: 360px">
+                                After purchasing, the product is <b>instantly available </b>for download via <a href="https://www.motionvfx.com/page/minstaller.html" target="_blank" rel="noopener noreferrer">mInstaller</a>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        </div>
+
+        <section class="footer">
+            <div class="image__background " style="--s-index:0">
+                {{picture(
+                    media_url=media_url,
+                    filename= 'mlowers_header_bg',
+                    file_sizes=srcsetSizes,
+                    formats=['jpg'],
+                    width=2560,
+                    height=1100,
+                    alt="Footer"
+                )}}
+            </div>
+            <div class="container">
+                <div class="text-box">
+                    <div data-aos="fade" data-aos-duration="600" data-aos-delay="150" data-aos-easing="ease-in-out">
+                        <h2><span>Every editor's</span> toolbox essential</h2>
+                        <p>The diversity of topics that are covered in editing jobs creates a demand for a variety of motion design graphics that would match the action on the screen. With this huge assortment of lower3rds, you will never lack a
+                            suitable caption for any shot.</p>
+                        <div class="button-buy">
+                            {% with discount_text='INTRO', version=2 %}
+                            {% include 'product/buy_button.jinja2' %}
+                            {% endwith %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    {# {% include './components/popup-left.jinja' %} #}
+    {% include './components/submenu.jinja' %}
+    
+    <script src="https://s3.motionvfx.com/mvfxpublic/products/templates/1329/js/gsap.min.js"></script>
+    <script src="https://s3.motionvfx.com/mvfxpublic/products/templates/1329/js/morpher.min.js"></script>
+    
+    <script src="dist/scripts.js"></script>
+    <script src="scripts/vendor/menu.js" defer></script>
+    <script src="scripts/vendor/scroll_to_anchor.js" defer></script>
+</body>
+
+</html>

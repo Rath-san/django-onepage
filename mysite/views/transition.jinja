@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include './components/head.jinja' %}
+
+<body>
+    {% include './components/nav.jinja' %}
+    {# {% include './components/macro.jinja' %} #}
+    {# {% include './components/bundle-popup.jinja' %} #}
+
+    {% macro picture(
+		media_url, filename, media_files={}, file_sizes=[360, 480, 640, 960], formats=['webp','jpg'], media_sizes='', media='', alt='', img_class='', img_style='', picture_class='', width='', height='', loading='', data_src=False, img_attr=""
+	) %}
+		<picture class="{{ picture_class }}">
+			{% for media in media_files %}
+				{% set m = media_files[media] %}
+				{% for format in formats %}
+					<source {% if data_src %} data-srcset=" {% for size in m['file_sizes'] %} {{ media_url }}/{{ m['filename'] }}-{{ size }}.{{ format }} {{size}}w, {% endfor %}" {% else %} srcset=" {% for size in m['file_sizes'] %} {{ media_url }}/{{ m['filename'] }}-{{ size }}.{{ format }} {{size}}w, {% endfor %}" {% endif %} type="image/{{ format | replace('jpg', 'jpeg') }}" sizes="{{ m['media_sizes'] | default(media_sizes) }}" media="{{ media }}" >
+				{% endfor %}
+			{% endfor %}
+			{% for format in formats %}
+				<source {% if data_src %} data-srcset=" {% for size in file_sizes %} {{ media_url }}/{{ filename }}-{{ size }}.{{ format }} {{size}}w, {% endfor %}" {% else %} srcset=" {% for size in file_sizes %} {{ media_url }}/{{ filename }}-{{ size }}.{{ format }} {{size}}w, {% endfor %}" {% endif %} type="image/{{ format | replace('jpg', 'jpeg') }}" sizes="{{ media_sizes }}" media="{{ media }}">
+			{% endfor %}
+			<img {% if data_src %} data-src="{{ media_url }}/{{ filename }}-{{ file_sizes[0] }}.{{ formats[-1] }}?{{file_version}}" {% else %} src="{{ media_url }}/{{ filename }}-{{ file_sizes[0] }}.{{ formats[-1] }}?{{file_version}}" {% endif %} {% if img_attr %}{{ img_attr }} {% endif %} alt="{{alt}}" class="{{img_class}}" style="{{img_style}}" width="{{width}}" height="{{height}}" loading="{{loading}}" >
+		</picture>
+	{% endmacro %}
+    {% macro buy_btn_free() %}
+    <div class="button-buy">
+        <div id="btn-buy-container" class="version1">
+            <div class="inner-container">
+                <a href="#" class="buy-button" data-add-to-cart='{ "productId": {{  product.id }}, "productTitle": "{{  product.title }}" }'>
+                    Get it free for FCP / DVR
+                </a>
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+
+    {% set srcsetSizesMobile = [ 640, 960 ] %}
+    {% set srcsetSizesDesktop = [ 1280, 1920, 2560 ] %}
+    {% set srcsetSizes = srcsetSizesMobile + srcsetSizesDesktop %}
+
+    {# {% set template_id = "1301" %} #}
+    {% set template_id = "1442" %}
+    {% set media_url = "https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media" % template_id %}
+    {% set media_prefix = '' %}
+    {% set version = "v=0" %}
+
+    {# {% set shared_media_template_id = '1408' %} #}
+    {# {% set shared_media_url = 'https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media' % (shared_media_template_id) %} #}
+
+    <div class="mtransition_mega_pack">
+
+        <section class="header">
+            <div class="image__background">
+                {{picture(
+                    media_url=media_url,
+                    filename= 'header_bg',
+                    file_sizes=srcsetSizes,
+                    formats=['jpg'],
+                    width=2560,
+                    height=1100,
+                    alt="Header",
+                )}}
+            </div>
+            <div class="container-fluid">
+                <div class="section__content">
+                    <div data-aos="fade" data-aos="zoom-in" data-aos-offset="100" data-aos-delay="50" data-aos-duration="800">
+                        <div class="header__logo">
+                            <img src="{{ media_url }}/logo.svg" alt="mTransition Mega Pack">
+                        </div>
+                        <h1 class="section__text">A Selection Of Diverse Transitions For FCP</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    	<section class="trailer">
+            <div class="image__background">
+                {{picture(
+                    media_url=media_url,
+                    filename='trailer_bg',
+                    file_sizes=srcsetSizes,
+                    formats=['jpg'],
+                    width=2560,
+                    height=1250,
+                    alt="Trailer background"
+                )}}
+            </div>
+			<div class="container">
+				<div class="text-box">
+					<a class="nav" name="trailer"></a>
+					<h2 class="typo-1-white">Watch trailer</h2>
+					<h3 class="typo-2-white">See the versatility of this plugin in action!</h3>
+				</div>
+				<div class="yt embed-responsive embed-responsive-16by9">
+					<iframe id="ytTrailer" title="mTransition mega pack trailer video" src="https://www.youtube.com/embed/8THxsoXXKaY?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+				</div>
+				<div class="tutorial-link">
+					<h2 class="typo-1-white">Learn how to boost your workflow - <a role="button" onclick="scrollToAnchor('tutorial');">Watch tutorial</a></h2>
+				</div>
+			</div>
+		</section>
+
+		<section class="simple-2 mscroll" id="simple">
+            <div class="image__background">
+                {{picture(
+                    media_url=media_url,
+                    filename='simple_2_bg',
+                    file_sizes=srcsetSizes,
+                    formats=['jpg'],
+                    width=2560,
+                    height=1250,
+                    alt="Footer"
+                )}}
+            </div>
+			<div class="simple-bg">
+				<div class="container">
+					<div class="text-box" data-aos="zoom-in" data-aos-offset="100" data-aos-delay="50" data-aos-duration="800">
+						<h2 class="typo-1-black mscrollInside" data-time="1" data-move="-40" data-axis="X">Captivate your <span>viewers</span></h2>
+						<h3 class="typo-2-black mscrollInside" data-time="1" data-move="40" data-axis="X">Dynamic changes, footage shifts, and energetic animation to keep your audience entertained and craving for more.
+						</h3>
+					</div>
+				</div>
+			</div>
+		</section>
+
+        <section class="movie">
+            <div class="container-fluid">
+                <div class="movie-text" data-aos="zoom-in" data-aos-offset="100" data-aos-delay="50" data-aos-duration="1000">
+                    <div class="text-box">
+                        <h2 class="typo-1-white"><span>Diversified</span> motion graphics</h2>
+                        <h3 class="typo-2-black">A huge base of assorted <span>transitions</span> that come in all styles and looks.</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col col-12 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <video id="video" autoplay loop muted playsinline style="">
+                            <source src="https://s3.motionvfx.com/mvfxpublic/products/templates/1301/media/mov_01.mp4?" type="video/mp4">
+                            Your browser does not support the video tag
+                        </video>
+                    </div>
+                    <div class="col col-12 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <video id="video" autoplay loop muted playsinline style="">
+                            <source src="https://s3.motionvfx.com/mvfxpublic/products/templates/1301/media/mov_02.mp4" type="video/mp4">
+                            Your browser does not support the video tag
+                        </video>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col col-12 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <video id="video" autoplay loop muted playsinline style="">
+                            <source src="https://s3.motionvfx.com/mvfxpublic/products/templates/1301/media/mov_03.mp4" type="video/mp4">
+                            Your browser does not support the video tag
+                        </video>
+                    </div>
+                    <div class="col col-12 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <video id="video" autoplay loop muted playsinline style="">
+                            <source src="https://s3.motionvfx.com/mvfxpublic/products/templates/1301/media/mov_04.mp4" type="video/mp4">
+                            Your browser does not support the video tag
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="simple-3 mscroll" id="simple">
+            <div class="image__background">
+                {{picture(
+                    media_url=media_url,
+                    filename='simple_3_bg',
+                    file_sizes=srcsetSizes,
+                    formats=['jpg'],
+                    width=2560,
+                    height=1250,
+                    alt="Footer"
+                )}}
+            </div>
+            <div class="simple-bg">
+                <div class="container">
+                    <div class="text-box" data-aos="zoom-in" data-aos-offset="100" data-aos-delay="50" data-aos-duration="800">
+                        <h2 class="typo-1-white mscrollInside" data-time="1" data-move="40" data-axis="X">Improve your <span>edit's flow</span></h2>
+                        <h3 class="typo-2-white mscrollInside" data-time="1" data-move="-40" data-axis="X">Find suitable shifts to boost your current project and enhance its rhythm.</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="simple-4">
+            <div class="simple-bg">
+                <div class="container">
+                    <div class="text-box-title" data-aos="zoom-in" data-aos-offset="100" data-aos-delay="50" data-aos-duration="800">
+                        <h2 class="typo-1-black">Match every <span>topic</span></h2>
+                    </div>
+                    <div class="container-img"><img src="https://s3.motionvfx.com/mvfxpublic/products/templates/1301/media/simple_4_bg.jpg" alt=""></div>
+                    <div class="text-box-subtitle" data-aos="zoom-in" data-aos-offset="100" data-aos-delay="50" data-aos-duration="800">
+                        <h2 class="typo-2-black">With this massive collection of presets, you will always find the right design.</h2>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="prevs">
+            <div class="container">
+                <div class="text-box">
+                    <div class="prevs-title">
+                        <div class="number"><img src="https://s3.motionvfx.com/mvfxpublic/products/templates/1301/media/number.gif" alt=""></div>
+                        <h2> ASSORTED TRANSITIONS</h2>
+                    </div>
+
+                    <p>HOVER ON THUMBNAIL TO VIEW ANIMATION</p>
+                    <p style="letter-spacing: 0; padding: 0; margin: 0;">(Videos on the drop zones not included)</p>
+                </div>
+            </div>
+
+            <div class="videoList">
+                <div class="cover product-list-wrapper">
+                    <div class="carousel-image text-center d-flex d-none"></div>
+                    <div class="product-list" id="productList">
+                        <div class="container site-content container-lg">
+                            <div class="row product-grid" id="productsContainer" style="display:none">
+                                {% for i in range(140) %}
+                                {% if loop.index < 10 %}{% set num = "0" + loop.index|string %}{% else %}{% set num = loop.index %}{% endif %}
+                                <div class="col-12 col-sm-12 col-md-3 col-lg-3    product">
+                                    <a role="button">
+                                        <div class="product-preview">
+                                            <img class="img-fluid" alt="preview loading, placeholder"
+                                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQkAAACVCAQAAADhssdjAAABEElEQVR42u3SMQ0AAAzDsJU/6d1l0MOGECUHJRJgCSyBJbAElsASWAJLYAksgSWwBJbAElgCS2AJsASWwBJYAktgCSyBJbAElsASWAJLYAksgSWwBFgCS2AJLIElsASWwBJYAktgCSyBJbAElsASWAIsgSWwBJbAElgCS2AJLIElsASWwBJYAktgCSwBlsASWAJLYAksgSWwBJbAElgCS2AJLIElsASWwBISYAksgSWwBJbAElgCS2AJLIElsASWwBJYAktgCbAElsASWAJLYAksgSWwBJbAElgCS2AJLIElsARYAktgCSyBJbAElsASWAJLYAksgSWwBJbAElgCLIElsASWwBJYAktgCSyBJRj2xckAllbmyYMAAAAASUVORK5CYII=" />
+
+                                            <div class="preview-wrapper zoom" data-mp4-url="https://s3.motionvfx.com/mvfxpublic/products/templates/1301/media/{{num}}.mp4">
+                                                <div class="preview-image-container">
+                                                    <img class="img-fluid" data-src="https://s3.motionvfx.com/mvfxpublic/products/templates/1301/media/{{num}}.jpg" alt="{{ product.head_info }}" onerror="this.style.display='none'"
+                                                        onload="this.style.display='block'" />
+                                                </div>
+                                                <div class="preview-video-container" style="display: none"></div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                {% endfor %}
+                                <a href="#" role="button" class="load-more">Show all</a>
+                                <div class="hide-button"><a role="button" href="#" class="hide-products">Hide</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </section>
+
+
+        <section class="tutorial">
+            <div class="container">
+                <div class="text-box">
+                    <a class="nav" name="tutorial"></a>
+                    <h2 class="typo-1-white">Watch <span>tutorial</span></h2>
+                    <h3 class="typo-2-white">Learn how to create your custom visual identity!</h3>
+                    <div class="yt embed-responsive embed-responsive-16by9">
+                        <iframe id="ytTutorial" title="mTransition mega pack trailer video" src="https://www.youtube.com/embed/uwdrM6X7QQo?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="ts-mi">
+            <div class="image__background">
+                {{picture(
+                    media_url=media_url,
+                    filename='tech_spec_bg',
+                    file_sizes=srcsetSizes,
+                    formats=['jpg'],
+                    width=2560,
+                    height=1100,
+                    alt="Footer"
+                )}}
+            </div>
+            <section class="tech-spec">
+                <a class="nav" name="specs" style="position: relative; top:-10rem"></a>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="tech-spec-info">
+                                <div class="section__text__content">
+                                    <div class="section__head">
+                                        <h2 class="section__title tech-spec__title section__title">Technical specifications</h2>
+                                    </div>
+                                    <div class="ttable tech-spec__table">
+                                        <div class="tcell tlabel">Supported software</div>
+                                        <div class="tcell tdata">
+                                            {% autoescape off %}
+                                                {{ product.productdetails.minimal_requirements.replace('FCP 10', 'FCP 10').replace('Motion 5', 'Motion 5').replace(', ', ',<br>') }}
+                                            {% endautoescape %}
+                                        </div>
+                                        <div class="tcell tlabel">Includes</div>
+                                        <div class="tcell tdata">140 FCP Transitions</div>
+                                        <div class="tcell tlabel">Size</div>
+                                        <div class="tcell tdata">
+                                            {{ "%.1f MB"|format(product.productdetails.source_size / 1000) }}
+                                        </div>
+                                        {% for kind in ['trailer', 'tutorial'] %}
+                                            {% with musics=product.productdetails.music.select_related('music_portal').all().filter(used_in_trailer=kind=='trailer') %}
+                                                {% if musics|length %}
+                                                    <div class="tcell tlabel">Music used in {{ kind }}</div>
+                                                    <div class="tcell tdata">
+                                                        {% include 'product/music_info.jinja2' %}
+                                                    </div>
+                                                {% endif %}
+                                            {% endwith %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </section>
+
+            <section class="minstaller__section">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="minstaller">
+                                <h3 class="minstaller__title">mInstaller</h3>
+                                <p class="minstaller__description" style="max-width: 360px">
+                                    After purchasing, the product is <b>instantly available </b>for download via <a href="https://www.motionvfx.com/page/minstaller.html" target="_blank" rel="noopener noreferrer">mInstaller</a>.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <section class="footer">
+            <div class="image__background " style="--s-index:0">
+                {{picture(
+                    media_url=media_url,
+                    filename='footer_bg',
+                    file_sizes=srcsetSizes,
+                    formats=['jpg'],
+                    width=2560,
+                    height=1100,
+                    alt="Footer"
+                )}}
+            </div>
+            <div class="container">
+                <div class="text-box">
+                    <h2 class="typo-1-black">Every editor's toolbox <span>essential</span></h2>
+                    <p class="typo-2-black">mTransition Mega Pack gives you an immense variety of movements, looks, and styles to choose from. With this plugin in your toolbox, every editing job will be easier, better, and more energetic than ever.</p>
+                    <div class="button-buy">
+                        {% with discount_text='INTRO', version=2 %}
+                        {% include 'product/buy_button.jinja2' %}
+                        {% endwith %}
+                    </div>
+                </div>
+            </div>
+        </section>
+
+	</div>
+
+    {# {% include './components/popup-left.jinja' %} #}
+    {% include './components/submenu.jinja' %}
+    
+    <script src="https://s3.motionvfx.com/mvfxpublic/products/templates/1329/js/gsap.min.js"></script>
+    <script src="https://s3.motionvfx.com/mvfxpublic/products/templates/1329/js/morpher.min.js"></script>
+    
+    <script src="dist/scripts.js"></script>
+    <script src="scripts/vendor/menu.js" defer></script>
+    <script src="scripts/vendor/scroll_to_anchor.js" defer></script>
+</body>
+
+</html>

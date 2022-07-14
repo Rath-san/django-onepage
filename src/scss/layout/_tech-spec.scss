@@ -1,6 +1,7 @@
 .tech-spec {
-    padding: 0 5% $section-padding-y;
+    padding: 0 5% $section-padding-y !important;
     font-weight: 400;
+    color: #fff;
 
     &__title {
         margin-bottom: 3rem;
@@ -82,10 +83,15 @@
     justify-content: center;
     z-index: 2;
     position: relative;
-    margin: $section-padding-y 0;
+    // margin-bottom: $section-padding-y;
+    background: transparent;
 
     .container {
         position: relative;
+    }
+
+    .minstaller {
+        padding-bottom: $section-padding-y;
     }
 
     @include respond-below(md) {

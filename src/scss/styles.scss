@@ -1,40 +1,47 @@
 @import "abstract/abstract";
 
-// UTILS
-@import "utils/utils";
-@import "utils/shadows";
-@import "utils/bg";
+// // UTILS
+// @import "utils/utils";
+// @import "utils/shadows";
+// @import "utils/bg";
 
-// BASE
+// // BASE
 @import "base/fonts";
-@import "base/containers";
-@import "base/text-size";
+// @import "base/containers";
+// @import "base/text-size";
 
-// COMPONENTS
-@import "components/button";
+// // COMPONENTS
+// @import "components/button";
 @import "components/image-background";
-@import "components/splitting";
-@import "components/scroll-to-btn";
-@import "components/scroll-prompt";
-@import "components/decos";
+// @import "components/splitting";
+// @import "components/scroll-to-btn";
+// @import "components/scroll-prompt";
+// @import "components/decos";
 
-@import "components/carousel";
-// @import './components/slider-continous';
+// @import "components/carousel";
+// // @import './components/slider-continous';
 
-// LAYOUT
+// // LAYOUT
 @import "layout/header";
-@import "layout/video";
-@import "layout/compatible-software";
-@import "layout/promo";
-@import "layout/presets";
+// @import "layout/video";
+// @import "layout/compatible-software";
+// @import "layout/promo";
+// @import "layout/presets";
 @import "layout/tech-spec";
 @import "layout/minstaller";
 @import "layout/footer";
 
-@import "_camrig/index";
+// @import "_camrig/index";
 
-// ANIMATIONS
-@import "animations/animations";
+// // ANIMATIONS
+// @import "animations/animations";
+
+@import '_lowers/aos';
+@import '_transition/index';
+
+main {
+    background: #f5f5f5;
+}
 
 .yt {
     width: Min(100%, calc(177vh - 9rem));
@@ -44,95 +51,23 @@
     margin-inline: auto;
 }
 
-.lazy-show {
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-    &__active {
-        opacity: 1 !important;
+// .lazy-show {
+//     opacity: 0;
+//     transition: opacity 0.5s ease-in-out;
+//     &__active {
+//         opacity: 1 !important;
+//     }
+// }
+.trailer {
+    .text-box {
+        position: relative;
+        z-index: 1;
     }
 }
 
-.columns {
-    padding: clamp(6rem, 10vw, 10rem) 0;
-    color: #fff;
-    text-align: center;
-    &__items {
-        display: flex;
-        gap: 0 1rem;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
 
-    &__item {
-        position: relative;
-        padding-top: 1.5rem;
-        flex: 1 1 calc(45% - 1rem);
-        text-align: center;
-        // outline: 1px solid red;
-        width: 100%;
-        max-width: 260px;
-        min-height: calc(2 * 0.9rem * 1.5 + 1.5rem);
-        margin-top: 4rem;
-        font-size: 30px;
-        font-weight: 300;
-        letter-spacing: .02em;
-        font-family: $font-family-title;
-        
-        opacity: 0;
-        transform: translateY(50%);
-        transition: 
-            opacity .25s ease-in-out,
-            transform .25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-
-        @media screen and (min-width: 570px) {
-            flex: 1 1 calc(33% - 1rem);
-        }
-
-        [data-visible="true"] & {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        &::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            max-width: 250px;
-            margin: 0 auto;
-            height: 4px;
-            border-radius: 2px;
-            // filter: blur(1px);
-            // background: red;
-        }
-
-        $gradients:
-        #d59260 #a35181,
-        #92418e #7c4ac6,
-        #7b59d4 #7996ee,
-        #75a2ed #61a9ca,
-        #6eadbc #af9967,
-        #bf944f #d78558,
-        #d87b58 #e2375b,
-        #df3574 #c46fc9,
-        #b573d2 #b573d2;
-
-        @for $i from 1 through length($gradients) {
-            $c: nth($gradients, $i);
-        // @for $i from 1 to 10 {
-            &:nth-child(#{$i}) {
-                transition-delay: calc(#{$i} * 50ms);
-                &::before {
-                    background-image: linear-gradient(to right, nth($c, 1), nth($c, 2));
-                }
-            }
-        }
-    }
-
-    .section {
-        &__head {
-            // margin-bottom: 4rem;
-        }
+.simple-3 {
+    img {
+        object-position: top;
     }
 }

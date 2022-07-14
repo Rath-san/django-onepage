@@ -16,7 +16,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         User = get_user_model()
-        if not User.objects.filter(username=options['username']).exists():
+        if not User.objects.filter(username=options['username'] or os.environ[NAME]).exists():
             print('Creating admin')
             User.objects.create_superuser(username=os.environ[NAME] or options['username'],
                                           email=os.environ[EMAIL] or options['email'],

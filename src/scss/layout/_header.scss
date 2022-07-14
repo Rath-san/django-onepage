@@ -15,6 +15,11 @@
             margin-bottom: -4rem;
         }
         &__text {
+            font-weight: 300;
+            text-transform: uppercase;
+            font-size: 1rem;
+            color: #fff;
+            letter-spacing: 1px;
         }
     }
     &__logo {
@@ -46,7 +51,7 @@
         img {
             height: auto;
             // max-width: 312px;
-            width: clamp(260px, 40vw, 312px);
+            width: clamp(280px,40vw,500px);
         }
 
     }
@@ -59,7 +64,7 @@
     }
 
     .image__background {
-        z-index: -1;
+        z-index: 0;
         img {
             top: 100px;
             object-position: top;
@@ -165,7 +170,7 @@ $animation-delay-offset: 200ms;
 .dr-gradient,
 .header__deco,
 .header__bg {
-    opacity: 0;
+    opacity: 1;
     will-change: opacity;
     transition: opacity $animation-duration linear;
     transition-delay: calc(0ms + (#{$animation-delay-offset} * var(--h-index)));
@@ -174,7 +179,7 @@ $animation-delay-offset: 200ms;
 .header__logo,
 .header__subtitle,
 .header__deco {
-    opacity: 0;
+    opacity: 1;
     transform: translateY(-10px) scale(1.1);
     will-change: opacity, transform;
     transition: transform $animation-duration cubic-bezier(0.3, 0, 0.3, 1),

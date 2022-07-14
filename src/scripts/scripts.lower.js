@@ -166,39 +166,14 @@
 
 import AOS from "./libs/aos";
 import Paginator from "./libs/product_paginate";
-// import "./libs/arrows";
+import "./libs/arrows";
 import "./libs/mscroll";
-
-// function parallaxMove(func, mainElementId, insideElementId, movement, strength) {
-//     var $this = $("#" + mainElementId);
-//     var relX = func.pageX - $this.offset().left;
-//     var relY = func.pageY - $this.offset().top;
-  
-//     var x = (relX - $this.width() / 2) / $this.width() * movement;
-//     var y = (relY - $this.height() / 2) / $this.height() * movement;
-  
-//     TweenMax.to(insideElementId, strength, {
-//       x: x,
-//       y: y
-//     });
-//   }
-  
-//   function checkParallaxModules() {
-//     var mainId = "simple";
-  
-//     $("#" + mainId).mousemove(function(func) {
-//       parallaxMove(func, mainId, ".square-inner", -25, 1.5);
-//       parallaxMove(func, mainId, ".para", 25, 2);
-  
-//     });
-//   }
-  
 
 document.addEventListener("DOMContentLoaded", () => {
     AOS.init();
+    // lazyShow();
     $("#productsContainer").show();
     $(".product-grid").each(function () {
         new Paginator($(this), 16);
     });
-
 });

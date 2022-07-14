@@ -3,6 +3,7 @@
     position: relative;
     padding: 0 5%;
     background-color: transparent;
+    color: #fff;
   }
   text-align: center;
   &__title {
@@ -23,6 +24,10 @@
     text-rendering: optimizeLegibility !important;
     -webkit-font-smoothing: antialiased !important;
     line-height: 1.6;
+    font-weight: 300;
+    b {
+      font-weight: 700;
+    }
     a {
       color: #0071eb;
     }

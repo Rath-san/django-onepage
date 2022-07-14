@@ -13,45 +13,79 @@ const {
 const FORMATS = ["jpg", "webp"];
 const IMAGE_QUALITY = 50;
 
-640, 820, 1024;
-
 const CONFIGS = [
     // {
     //     directory: "_top",
     //     sizes: [
-    //         ...RESPONSIVE_SIZES_DESKTOP.map((size) => ({ ...size, h: 960 })),
-    //         ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ ...size, h: 560 }))
+    //         ...[1280, 1920, 2560, 3000].map((size) => ({ w: size, h: 960 })),
+    //         ...[640, 960].map((size) => ({ w: size, h: 560 })),
     //     ],
-    //     quality: 92,
+    //     quality: 85,
     //     targetFormat: ["jpg"],
     //     outputOptions: {
     //         mozjpeg: true,
     //     },
     // },
-    {
-        directory: "_promo",
-        sizes: [
-            ...RESPONSIVE_SIZES,
-            // ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ ...size, h: 560 }))
-        ],
-        quality: 95,
-        targetFormat: ["jpg"],
-        outputOptions: {
-            mozjpeg: true,
-        },
-    },
     // {
-    //     directory: "_slider",
+    //     directory: "_promo",
     //     sizes: [
-    //         ...RESPONSIVE_SIZES_DESKTOP.map((size) => ({ ...size, h: 960 })),
-    //         ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ ...size, h: 560 }))
+    //         ...RESPONSIVE_SIZES,
+    //         // ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ ...size, h: 560 }))
     //     ],
+    //     quality: 95,
+    //     targetFormat: ["jpg"],
+    //     outputOptions: {
+    //         mozjpeg: true,
+    //     },
+    // },
+    // {
+    //     directory: "_slides",
+    //     sizes: [640, 960, 1280, 1800].map((size) => ({ w: size })),
+    //     quality: 85,
+    //     targetFormat: ["jpg"],
+    //     outputOptions: {
+    //         mozjpeg: true,
+    //     },
+    // },
+    // {
+    //     directory: "_slides_mobile",
+    //     sizes: [600, 1200].map((size) => ({ w: size })),
     //     quality: 75,
     //     targetFormat: ["jpg"],
     //     outputOptions: {
     //         mozjpeg: true,
     //     },
     // },
+    // {
+    //     directory: "_mix",
+    //     sizes: [1280, 1920, 2560].map((size) => ({ w: size, h: 1250})),
+    //     quality: 75,
+    //     targetFormat: ["jpg"],
+    //     outputOptions: {
+    //         mozjpeg: true,
+    //     },
+    // },
+
+    // {
+    //     directory: "_mix_mobile",
+    //     sizes: [640, 960, 1280, 1920].map((size) => ({ w: size, h: 860 })),
+    //     quality: 75,
+    //     targetFormat: ["jpg"],
+    //     outputOptions: {
+    //         mozjpeg: true,
+    //     },
+    // },
+
+    // {
+    //     directory: "_prev_ins",
+    //     sizes: [350, 700, 1400].map((size) => ({ w: size })),
+    //     quality: 90,
+    //     targetFormat: ["jpg"],
+    //     outputOptions: {
+    //         mozjpeg: true,
+    //     },
+    // },
+
     // {
     //     directory: "_wide",
     //     sizes: [
@@ -65,12 +99,9 @@ const CONFIGS = [
     //     },
     // },
     // {
-    //     directory: "_wide_vertical",
-    //     sizes: [
-    //         {w: 620},
-    //         {w: 310},
-    //     ],
-    //     quality: 75,
+    //     directory: "_spices",
+    //     sizes: [...[ 640, 960, 1280, 1920, 2560 ].map((size) => ({ w: size, hmin: 960}))],
+    //     quality: 90,
     //     targetFormat: ["jpg"],
     //     outputOptions: {
     //         mozjpeg: true,
@@ -88,6 +119,24 @@ const CONFIGS = [
     //     // },
     // },
     // {
+    //     directory: "_spice_text_1",
+    //     sizes: [400, 800].map((s) => ({ w: s })),
+    //     quality: 90,
+    //     targetFormat: ["png", "webp"],
+    // },
+    // {
+    //     directory: "_spice_text_2",
+    //     sizes: [400, 800].map((s) => ({ w: s })),
+    //     quality: 90,
+    //     targetFormat: ["png", "webp"],
+    // },
+    // {
+    //     directory: "_watch_tutorial",
+    //     sizes: [320, 640].map((s) => ({ w: s })),
+    //     quality: 90,
+    //     targetFormat: ["png", "webp"],
+    // },
+    // {
     //     directory: "_icon",
     //     sizes: [330, 156].map((s) => ({
     //         w: s,
@@ -101,20 +150,70 @@ const CONFIGS = [
     // {
     //     directory: "_footer",
     //     sizes: [
-    //         ...RESPONSIVE_SIZES_DESKTOP.map((size) => ({ ...size, h: 960 })),
-    //         ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ ...size, h: 560 }))
+    //         ...[640, 960, 1280, 1920, 2560].map((size) => ({
+    //             w: size,
+    //             h: 1280,
+    //         })),
     //     ],
-    //     quality: 95,
+    //     quality: 80,
     //     targetFormat: ["jpg"],
     //     outputOptions: {
     //         mozjpeg: true,
     //     },
     // },
+    // {
+    //     directory: "_simple",
+    //     sizes: [
+    //         ...[1280, 1920, 2560].map((size) => ({
+    //             w: size,
+    //             h: 1250,
+    //         })),
+    //         ...[640, 960].map((size) => ({
+    //             w: size,
+    //             h: 800,
+    //         })),
+    //     ],
+    //     quality: 80,
+    //     targetFormat: ["jpg"],
+    //     outputOptions: {
+    //         mozjpeg: true,
+    //     },
+    // },
+    // {
+    //     directory: "_tech",
+    //     sizes: [
+    //         ...[640, 960, 1280, 1920, 2560].map((size) => ({
+    //             w: size,
+    //             h: 1280,
+    //         })),
+    //     ],
+    //     quality: 80,
+    //     targetFormat: ["jpg"],
+    //     outputOptions: {
+    //         mozjpeg: true,
+    //     },
+    // },
+    {
+        directory: "_trailer",
+        sizes: [
+            ...[640, 960, 1280, 1920, 2560].map((size) => ({
+                w: size,
+                hmin: 600
+            })),
+        ],
+        quality: 99,
+        targetFormat: ["jpg"],
+        outputOptions: {
+            mozjpeg: true,
+        },
+    },
 ];
+
+const PAGE_NAME = "transition";
 
 function resizeTask(
     managedFormats = ["jpg", "jpeg", "png"],
-    imgDist = "src/plugins/camrig/_images/otp/"
+    imgDist = `src/plugins/${PAGE_NAME}/_images/otp/`
 ) {
     CONFIGS.forEach(
         ({
@@ -127,7 +226,7 @@ function resizeTask(
         }) => {
             const fileSrcs = managedFormats.map(
                 (format) =>
-                    `src/plugins/camrig/_images/${directory}/*.${format}`
+                    `src/plugins/${PAGE_NAME}/_images/${directory}/*.${format}`
             );
             return src(fileSrcs).pipe(
                 through2.obj(async function (file, _, cb) {
@@ -145,6 +244,7 @@ function resizeTask(
                     sizes.forEach((size) => {
                         const width = size.w;
                         const height = size.h;
+                        const heightMin = size.hmin;
 
                         const generateName = (customExt) => {
                             const fileExt = customExt
@@ -173,7 +273,31 @@ function resizeTask(
                             });
 
                             const saveFile = async (format = file.extname) => {
-                                const imageClone = img.clone();
+                                const imageClone = await (async () => {
+                                    // minheight
+                                    const clone = img.clone();
+                                    let cloneResized = clone.resize(
+                                        width,
+                                        height,
+                                        {}
+                                    );
+                                    if (heightMin) {
+                                        const { info } =
+                                            await cloneResized.toBuffer({
+                                                resolveWithObject: true,
+                                            });
+
+                                        // console.log(cloneResized);
+                                        if (info?.height < heightMin) {
+                                            cloneResized = clone.resize(
+                                                width,
+                                                heightMin,
+                                                {}
+                                            );
+                                        }
+                                    }
+                                    return cloneResized;
+                                })();
 
                                 // if (format === "jpg" || format === "jpeg") {
                                 //     imageClone.flatten({
@@ -181,7 +305,6 @@ function resizeTask(
                                 //     });
                                 // }
 
-                                imageClone.resize(width, height, {});
                                 imageClone.toFormat(format, {
                                     quality,
                                     ...outputOptions,

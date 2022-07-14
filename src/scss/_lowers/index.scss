@@ -1,0 +1,1366 @@
+.mlowers-mega-pack {
+    // background-color: #0e0e0e;
+    font-family: "Roboto Condensed", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+    text-rendering: optimizeLegibility !important;
+    -webkit-font-smoothing: antialiased !important;
+}
+.mlowers-mega-pack a.nav {
+    display: block;
+    margin-top: -100px;
+    padding-top: 100px;
+    position: absolute;
+}
+.mlowers-mega-pack a.navTut {
+    display: block;
+    margin-top: -100px;
+    padding-top: 100px;
+    position: absolute;
+    top: -7vh;
+}
+.mlowers-mega-pack a.menu-row {
+    display: block;
+    padding: 26px 0 8px;
+    margin-left: 26px !important;
+    font-size: 0.8rem !important;
+}
+.mlowers-mega-pack a.menu-row img.menu-row {
+    width: 14px !important;
+    float: right;
+    margin-top: -6px;
+    margin-left: 24px !important;
+    margin-right: 26px;
+}
+.mlowers-mega-pack a.menu-row:first-child {
+    margin-top: 5px;
+}
+// .mlowers-mega-pack section.header {
+//     width: 100%;
+//     height: 100vh;
+//     max-height: 1280px;
+//     // background: #19161a
+//     //     url("https://s3.motionvfx.com/mvfxpublic/products/templates/1298/media/footer_bg.jpg");
+//     background-position: center center;
+//     background-repeat: no-repeat;
+//     background-size: cover;
+//     position: relative;
+//     overflow: hidden;
+// }
+// .mlowers-mega-pack section.header .container {
+//     height: 100%;
+//     padding: 2rem;
+//     position: relative;
+// }
+// .mlowers-mega-pack section.header .container .header-box {
+//     width: 90%;
+//     height: 300px;
+//     position: absolute;
+//     top: 52%;
+//     transform: translateY(-50%);
+//     left: 0;
+//     right: 0;
+//     margin: 0 auto;
+// }
+// .mlowers-mega-pack
+//     section.header
+//     .container
+//     .header-box
+//     .mlowers-mega-pack-logo {
+//     max-width: 520px;
+//     margin: 0 auto;
+//     position: relative;
+//     top: 0;
+//     font-size: 4rem;
+//     font-weight: 700;
+//     color: #fff;
+//     text-align: center;
+// }
+// .mlowers-mega-pack
+//     section.header
+//     .container
+//     .header-box
+//     .mlowers-mega-pack-logo
+//     img {
+//     width: 100%;
+// }
+// .mlowers-mega-pack section.header .container .header-box .text-box {
+//     text-align: center;
+//     padding-top: 2rem;
+// }
+// .mlowers-mega-pack section.header .container .header-box .text-box h2 {
+//     font-family: "Roboto", sans-serif;
+//     font-size: 1rem;
+//     color: #fff;
+//     font-weight: 300;
+//     letter-spacing: 1px;
+//     text-transform: uppercase;
+//     margin: 3rem auto 0;
+//     line-height: 1.4rem;
+// }
+.mlowers-mega-pack section.trailer {
+    background: #0e0e0e;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    overflow: hidden;
+    padding-top: 10rem;
+    padding-bottom: 10rem;
+    margin-bottom: -1px;
+}
+.mlowers-mega-pack section.trailer .container .text-box {
+    text-align: center;
+}
+.mlowers-mega-pack section.trailer .container .text-box h2 {
+    margin-bottom: 3rem;
+    color: #fff;
+    font-size: 3rem;
+    line-height: 2rem;
+    font-weight: 300;
+}
+.mlowers-mega-pack section.trailer .container .text-box h2 span {
+    font-size: 1.5rem;
+    display: block;
+}
+.mlowers-mega-pack section.trailer .container .text-box h3 {
+    font-size: 0.7rem;
+    padding-bottom: 2.2rem;
+    color: #0f131a;
+    font-weight: 300;
+    font-family: "Roboto Condensed", sans-serif;
+    margin: 0 auto;
+    letter-spacing: 1px;
+    text-align: left;
+    text-align: center;
+    opacity: 0.5;
+}
+.mlowers-mega-pack section.trailer .container .text-box h3 span {
+    font-weight: 700;
+}
+.mlowers-mega-pack section.trailer .container .text-box .trailer-text {
+    max-width: 320px;
+    margin-top: 2rem;
+    margin-left: 1rem;
+}
+.mlowers-mega-pack section.trailer .container .text-box .trailer-text img {
+    width: 100%;
+}
+.mlowers-mega-pack section.trailer .container .text-box .trailer-text a {
+    transition: opacity 200ms ease-in-out;
+    text-decoration: none;
+    cursor: pointer;
+    opacity: 0.8;
+}
+.mlowers-mega-pack section.trailer .container .text-box .trailer-text a:hover {
+    opacity: 1;
+}
+.mlowers-mega-pack section.spices {
+    width: 100%;
+    height: 1250px;
+    // background: #19161a
+        // url("https://s3.motionvfx.com/mvfxpublic/products/templates/1298/media/spices_bg.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    overflow: hidden;
+}
+.mlowers-mega-pack section.spices .mlower {
+    position: absolute;
+    max-width: 700px;
+    top: 20%;
+    left: 15%;
+}
+.mlowers-mega-pack section.spices .mlower img {
+    width: 100%;
+}
+.mlowers-mega-pack section.spices .container {
+    height: 100%;
+    position: relative;
+}
+.mlowers-mega-pack section.spices .container .text-box {
+    position: absolute;
+    max-width: 300px;
+    bottom: 35%;
+    right: 2rem;
+}
+.mlowers-mega-pack section.spices .container .text-box h2 {
+    color: #fff;
+    font-size: 3rem;
+    line-height: 2rem;
+    font-weight: 300;
+}
+.mlowers-mega-pack section.spices .container .text-box h2 span {
+    display: block;
+    font-size: 1.5rem;
+}
+.mlowers-mega-pack section.spices .container .text-box h3 {
+    font-family: "Roboto", sans-serif;
+    font-size: 1rem;
+    color: #fff;
+    line-height: 1.4rem;
+    padding-top: 1rem;
+    font-weight: 400;
+}
+.mlowers-mega-pack section.lower-3rd {
+    width: 100%;
+    // height: 1200px;
+    // background-color: gray;
+    // display: flex;
+}
+// .mlowers-mega-pack section.lower-3rd .column-left {
+    // width: 30%;
+    // min-width: 300px;
+    // height: 100%;
+    // position: relative;
+    // background-color: #fff;
+// }
+// .mlowers-mega-pack section.lower-3rd .column-left .text-box {
+    // padding: 2rem;
+    // max-width: 500px;
+    // position: absolute;
+    // top: 48%;
+    // transform: translateY(-48%);
+    // z-index: 2;
+    // margin: 0 auto;
+    // left: 0;
+    // right: 0;
+// }
+.mlowers-mega-pack section.lower-3rd .column-left .text-box h2 {
+    font-size: 2rem;
+    color: #000;
+    line-height: 2.4rem;
+    font-weight: 300;
+}
+.mlowers-mega-pack section.lower-3rd .column-left .text-box h2 span {
+    font-size: 3rem;
+    font-weight: 300;
+    display: block;
+}
+.mlowers-mega-pack section.lower-3rd .column-left .text-box p {
+    font-family: "Roboto", sans-serif;
+    color: #000;
+    font-size: 1rem;
+    padding-top: 0.5rem;
+}
+// .mlowers-mega-pack section.lower-3rd .column-left .text-box .arrows {
+//     max-width: 80px;
+// }
+.mlowers-mega-pack section.lower-3rd .column-left .text-box .arrows .arrow {
+    width: 26px;
+    height: 26px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    // position: absolute;
+    z-index: 10;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+    // margin-top: 1rem;
+}
+.mlowers-mega-pack
+    section.lower-3rd
+    .column-left
+    .text-box
+    .arrows
+    .arrow:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
+.mlowers-mega-pack
+    section.lower-3rd
+    .column-left
+    .text-box
+    .arrows
+    .arrow.left {
+    background: url("https://s3.motionvfx.com/mvfxpublic/products/templates/1281/media/arrow_left.svg");
+}
+.mlowers-mega-pack
+    section.lower-3rd
+    .column-left
+    .text-box
+    .arrows
+    .arrow.right {
+    background: url("https://s3.motionvfx.com/mvfxpublic/products/templates/1281/media/arrow_right.svg");
+    left: unset;
+    right: 0;
+}
+// .mlowers-mega-pack section.lower-3rd .column-right {
+//     position: relative;
+//     width: 70%;
+//     height: 100%;
+//     overflow: hidden;
+//     background-color: #fff;
+// }
+// .mlowers-mega-pack section.lower-3rd .column-right .lower-one {
+//     position: absolute;
+//     width: 100%;
+//     height: 100%;
+//     background: url("https://s3.motionvfx.com/mvfxpublic/products/templates/1298/media/lower_one.jpg");
+//     background-size: contain;
+//     background-position: left center;
+//     transition: opacity 350ms ease-in-out;
+//     background-repeat: no-repeat;
+// }
+// .mlowers-mega-pack section.lower-3rd .column-right .lower-two {
+//     position: absolute;
+//     width: 100%;
+//     height: 100%;
+//     background: url("https://s3.motionvfx.com/mvfxpublic/products/templates/1298/media/lower_two.jpg");
+//     background-size: contain;
+//     background-position: left center;
+//     transition: opacity 350ms ease-in-out;
+//     background-repeat: no-repeat;
+// }
+// .mlowers-mega-pack section.lower-3rd .column-right .lower-three {
+//     position: absolute;
+//     width: 100%;
+//     height: 100%;
+//     background: url("https://s3.motionvfx.com/mvfxpublic/products/templates/1298/media/lower_three.jpg");
+//     background-size: contain;
+//     background-position: left center;
+//     transition: opacity 350ms ease-in-out;
+//     background-repeat: no-repeat;
+// }
+.mlowers-mega-pack section.mix {
+    width: 100%;
+    height: 1250px;
+    // background: #19161a
+    //     url("https://s3.motionvfx.com/mvfxpublic/products/templates/1298/media/mLowers_mix_bg.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    overflow: hidden;
+}
+.mlowers-mega-pack section.mix .container {
+    height: 100%;
+    position: relative;
+}
+.mlowers-mega-pack section.mix .container .text-box {
+    position: absolute;
+    max-width: 600px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.mlowers-mega-pack section.mix .container .text-box h2 {
+    color: #fff;
+    font-size: 3rem;
+    line-height: 2rem;
+    font-weight: 300;
+    text-align: center;
+}
+.mlowers-mega-pack section.mix .container .text-box h2 span {
+    display: block;
+    font-size: 1.5rem;
+}
+.mlowers-mega-pack section.mix .container .text-box h3 {
+    font-family: "Roboto", sans-serif;
+    font-size: 1rem;
+    color: #fff;
+    line-height: 1.4rem;
+    padding-top: 1rem;
+    font-weight: 400;
+    text-align: center;
+}
+.mlowers-mega-pack section.prevs {
+    width: 100%;
+    background-color: #f0f0f0;
+    overflow: hidden;
+    padding-top: 6rem;
+}
+.mlowers-mega-pack section.prevs .container p {
+    display: block;
+    text-align: center;
+    margin-top: 2rem;
+    opacity: 0.3;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+}
+.mlowers-mega-pack section.prevs .container a.load-more {
+    display: block;
+    margin: 0 auto;
+    padding: 0.5rem 2.5rem;
+    background-color: #fe1c42;
+    border-radius: 4px;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color, color, 100ms ease-in-out;
+    margin-bottom: 4rem;
+    margin-top: 2rem;
+    font-size: 1.2rem;
+}
+.mlowers-mega-pack section.prevs .container a.load-more:hover {
+    background-color: #f7d534;
+    color: #000;
+}
+.mlowers-mega-pack section.prevs .container .hide-button {
+    width: 100%;
+    text-align: center;
+    margin-top: 2rem;
+}
+.mlowers-mega-pack section.prevs .container .hide-button a.hide-products {
+    margin: 0 auto;
+    padding: 0.5rem 2.5rem;
+    background-color: #000;
+    border-radius: 4px;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color, color, 100ms ease-in-out;
+    margin-bottom: 4rem;
+    margin-top: 2rem;
+    font-size: 1.2rem;
+}
+.mlowers-mega-pack section.prevs .container .hide-button a.hide-products:hover {
+    background-color: #2f2f2f;
+    color: #fff;
+}
+.mlowers-mega-pack section.prevs .prev-title {
+    // background: #fa2647
+        // url("https://s3.motionvfx.com/mvfxpublic/products/templates/1298/media/prev_title_bg.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    max-width: 700px;
+    height: 200px;
+    margin: 0 auto;
+}
+.mlowers-mega-pack section.prevs .prev-title h2 {
+    color: #fff;
+    text-align: center;
+    font-size: 1.6rem;
+    line-height: 3rem;
+    padding-top: 2.5rem;
+}
+.mlowers-mega-pack section.prevs .prev-title h2 span {
+    display: block;
+    font-size: 4rem;
+    font-weight: 300;
+}
+.mlowers-mega-pack section.prevs p {
+    display: block;
+    margin-top: 2rem;
+}
+.mlowers-mega-pack section.prevs .videoList {
+    margin: 0;
+    padding: 0;
+}
+.mlowers-mega-pack section.prevs .videoList .col-6-desktop {
+    margin-left: 12.5%;
+}
+.mlowers-mega-pack section.prevs .videoList .product-grid .product {
+    display: none;
+}
+.mlowers-mega-pack
+    section.prevs
+    .videoList
+    .product-grid
+    .product
+    .product-preview {
+    background-color: rgba(0, 0, 0, 0);
+}
+.mlowers-mega-pack section.tutorial {
+    background: #f5f5f5;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    overflow: hidden;
+    padding-top: 8rem;
+    padding-bottom: 10rem;
+}
+.mlowers-mega-pack section.tutorial .container .text-box {
+    text-align: center;
+}
+.mlowers-mega-pack section.tutorial .container .text-box h2 {
+    padding-bottom: 1rem;
+}
+.mlowers-mega-pack section.tutorial .container .text-box h3 {
+    margin: 0 auto;
+    max-width: 600px;
+    padding-bottom: 3rem;
+    font-size: 1rem;
+}
+// .mlowers-mega-pack section.tech-spec {
+//     background: #f5f5f5;
+//     width: 100%;
+//     position: relative;
+//     overflow: hidden;
+//     padding-top: 2rem;
+//     padding-bottom: 12rem;
+//     margin-top: -1px;
+// }
+// .mlowers-mega-pack section.tech-spec .tech-spec-info {
+//     text-align: center;
+//     max-width: 1200px;
+// }
+// .mlowers-mega-pack section.tech-spec .tech-spec-info h2 {
+//     text-align: center;
+//     margin: 0 auto;
+//     padding-bottom: 1rem;
+// }
+// .mlowers-mega-pack section.tech-spec .tech-spec-info table {
+//     margin-top: 2rem;
+//     border-collapse: collapse;
+//     border-spacing: 0;
+//     width: 100%;
+//     font-size: 1.1rem;
+//     color: #000;
+//     font-weight: 300;
+// }
+// .mlowers-mega-pack section.tech-spec .tech-spec-info table tr .td-left {
+//     width: 50%;
+//     text-align: left;
+//     padding: 0.7rem 0.7rem 0.7rem 20px;
+// }
+// .mlowers-mega-pack section.tech-spec .tech-spec-info table tr .td-right {
+//     width: 50%;
+//     text-align: right;
+//     padding: 0.5rem 20px 0.5rem 0.5rem;
+// }
+// .mlowers-mega-pack section.tech-spec .tech-spec-info table a {
+//     -webkit-transition: color 0.15s ease-in-out;
+//     transition: color 0.15s ease-in-out;
+//     color: #337582;
+//     line-height: 1.4rem;
+//     font-weight: 300;
+// }
+// .mlowers-mega-pack section.tech-spec .tech-spec-info table a:hover {
+//     color: #5197ed;
+//     text-decoration: none;
+// }
+.mlowers-mega-pack section.footer {
+    width: 100%;
+    height: 1250px;
+    // background: #19161a
+        // url("https://s3.motionvfx.com/mvfxpublic/products/templates/1298/media/mlowers_header_bg.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    position: relative;
+}
+.mlowers-mega-pack section.footer .container .text-box {
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    position: absolute;
+    text-align: center;
+    top: 43%;
+    transform: translateY(-50%);
+}
+.mlowers-mega-pack section.footer .container .text-box h2 {
+    color: #fff;
+    font-size: 3rem;
+    line-height: 2rem;
+    font-weight: 300;
+}
+.mlowers-mega-pack section.footer .container .text-box h2 span {
+    font-size: 1.5rem;
+    display: block;
+}
+.mlowers-mega-pack section.footer .container .text-box p {
+    margin: 0 auto;
+    max-width: 460px;
+    line-height: 1.3rem;
+    color: #fff;
+    padding-top: 2rem;
+    font-family: "Roboto", sans-serif;
+}
+.mlowers-mega-pack section.footer .container .text-box .button-buy {
+    margin-top: 2rem;
+    font-family: "Proxima", "Roboto", sans-serif;
+    color: #fff;
+}
+@media all and (max-width: 1920px) {
+    // .mlowers-mega-pack section.header {
+    //     max-height: 1080px;
+    // }
+    // .mlowers-mega-pack section.header .container .header-box {
+    //     top: 53%;
+    // }
+    .mlowers-mega-pack section.trailer {
+        padding-top: 5rem;
+        padding-bottom: 6rem;
+    }
+    .mlowers-mega-pack section.spices {
+        height: 1050px;
+    }
+    .mlowers-mega-pack section.spices .mlower {
+        position: absolute;
+        max-width: 700px;
+        top: 20%;
+        left: 15%;
+    }
+    .mlowers-mega-pack section.spices .mlower img {
+        width: 100%;
+    }
+    .mlowers-mega-pack section.spices .container {
+        height: 100%;
+        position: relative;
+    }
+    .mlowers-mega-pack section.spices .container .text-box {
+        position: absolute;
+        max-width: 300px;
+        bottom: 35%;
+        right: 2rem;
+    }
+    .mlowers-mega-pack section.spices .container .text-box h2 {
+        color: #fff;
+        font-size: 3rem;
+        line-height: 2rem;
+        font-weight: 300;
+    }
+    .mlowers-mega-pack section.spices .container .text-box h2 span {
+        display: block;
+        font-size: 1.5rem;
+    }
+    .mlowers-mega-pack section.spices .container .text-box h3 {
+        font-family: "Roboto", sans-serif;
+        font-size: 1rem;
+        color: #fff;
+        line-height: 1.4rem;
+        padding-top: 1rem;
+        font-weight: 400;
+    }
+    // .mlowers-mega-pack section.lower-3rd {
+    //     height: 980px;
+    // }
+    .mlowers-mega-pack section.mix {
+        height: 1050px;
+    }
+    .mlowers-mega-pack section.prevs {
+        width: 100%;
+        background-color: #f0f0f0;
+        overflow: hidden;
+        padding-top: 6rem;
+    }
+    .mlowers-mega-pack section.prevs .container p {
+        display: block;
+        text-align: center;
+        margin-top: 2rem;
+        opacity: 0.3;
+        font-size: 0.8rem;
+        letter-spacing: 2px;
+    }
+    .mlowers-mega-pack section.prevs .prev-title {
+        max-width: 600px;
+        height: 200px;
+        margin: 0 auto;
+    }
+    .mlowers-mega-pack section.prevs .prev-title h2 {
+        font-size: 1.6rem;
+        line-height: 3rem;
+        padding-top: 2.5rem;
+    }
+    .mlowers-mega-pack section.prevs .prev-title h2 span {
+        font-size: 4rem;
+    }
+    .mlowers-mega-pack section.footer {
+        height: 1200px;
+    }
+}
+@media all and (max-width: 1600px) {
+    // .mlowers-mega-pack section.header {
+    //     height: 960px;
+    // }
+    // .mlowers-mega-pack section.header .container .header-box {
+    //     top: 48%;
+    // }
+    // .mlowers-mega-pack
+    //     section.header
+    //     .container
+    //     .header-box
+    //     .mlowers-mega-pack-logo {
+    //     max-width: 560px;
+    // }
+    .mlowers-mega-pack section.spices {
+        height: 900px;
+    }
+    .mlowers-mega-pack section.spices .mlower {
+        max-width: 500px;
+        top: 20%;
+        left: 15%;
+    }
+    .mlowers-mega-pack section.spices .container .text-box {
+        max-width: 300px;
+        bottom: 35%;
+        right: 2rem;
+    }
+    .mlowers-mega-pack section.spices .container .text-box h2 {
+        font-size: 3rem;
+        line-height: 2rem;
+    }
+    .mlowers-mega-pack section.spices .container .text-box h2 span {
+        font-size: 1.5rem;
+    }
+    .mlowers-mega-pack section.spices .container .text-box h3 {
+        font-size: 1rem;
+        line-height: 1.4rem;
+        padding-top: 1rem;
+    }
+    // .mlowers-mega-pack section.lower-3rd {
+    //     height: 800px;
+    // }
+    .mlowers-mega-pack section.mix {
+        height: 860px;
+    }
+    .mlowers-mega-pack section.mix .container .text-box {
+        max-width: 540px;
+    }
+    .mlowers-mega-pack section.mix .container .text-box h2 {
+        font-size: 3rem;
+        line-height: 2rem;
+    }
+    .mlowers-mega-pack section.mix .container .text-box h2 span {
+        font-size: 1.5rem;
+    }
+    .mlowers-mega-pack section.mix .container .text-box h3 {
+        font-size: 0.9rem;
+        line-height: 1.3rem;
+        padding-top: 1rem;
+    }
+    .mlowers-mega-pack section.prevs .container p {
+        display: block;
+        text-align: center;
+        margin-top: 2rem;
+        opacity: 0.3;
+        font-size: 0.8rem;
+        letter-spacing: 2px;
+    }
+    .mlowers-mega-pack section.prevs .prev-title {
+        max-width: 460px;
+    }
+    .mlowers-mega-pack section.prevs .prev-title h2 {
+        font-size: 1.5rem;
+        line-height: 3rem;
+        padding-top: 2.5rem;
+    }
+    .mlowers-mega-pack section.prevs .prev-title h2 span {
+        font-size: 3.5rem;
+    }
+    .mlowers-mega-pack section.tutorial {
+        padding-top: 6rem;
+        padding-bottom: 6rem;
+    }
+    // .mlowers-mega-pack section.tech-spec {
+    //     padding-top: 2rem;
+    //     padding-bottom: 8rem;
+    // }
+}
+@media all and (max-width: 1440px) {
+    // .mlowers-mega-pack section.header .container .header-box {
+    //     top: 47%;
+    // }
+    // .mlowers-mega-pack
+    //     section.header
+    //     .container
+    //     .header-box
+    //     .mlowers-mega-pack-logo {
+    //     max-width: 500px;
+    // }
+    // .mlowers-mega-pack section.lower-3rd {
+    //     height: 760px;
+    // }
+    .mlowers-mega-pack section.lower-3rd .column-left .text-box h2 {
+        font-size: 1.8rem;
+    }
+    .mlowers-mega-pack section.lower-3rd .column-left .text-box p {
+        font-size: 0.9rem;
+    }
+    .mlowers-mega-pack section.footer {
+        height: 900px;
+    }
+    .mlowers-mega-pack section.footer .container .text-box {
+        top: 50%;
+    }
+}
+@media all and (max-width: 1366px) {
+    // .mlowers-mega-pack section.header {
+    //     height: 760px;
+    // }
+    // .mlowers-mega-pack section.header .container .header-box {
+    //     top: 48%;
+    // }
+    // .mlowers-mega-pack
+    //     section.header
+    //     .container
+    //     .header-box
+    //     .mlowers-mega-pack-logo {
+    //     max-width: 560px;
+    // }
+    .mlowers-mega-pack section.image-slider {
+        width: 100%;
+        height: 700px;
+        position: relative;
+        overflow: hidden;
+    }
+    .mlowers-mega-pack section.image-slider .slider-navigation {
+        left: 8rem;
+        top: 50%;
+    }
+    // .mlowers-mega-pack section.tech-spec .tech-spec-info h2 {
+    //     font-size: 2rem;
+    // }
+    // .mlowers-mega-pack section.tech-spec .tech-spec-info h2 span {
+    //     font-size: 1.8rem;
+    // }
+    .mlowers-mega-pack section.footer {
+        height: 900px;
+    }
+    .mlowers-mega-pack section.footer .container .text-box {
+        top: 50%;
+    }
+}
+@media all and (max-width: 1280px) {
+    // .mlowers-mega-pack section.header {
+    //     height: 720px;
+    // }
+    .mlowers-mega-pack section.spices {
+        height: 720px;
+    }
+    .mlowers-mega-pack section.spices .mlower {
+        max-width: 400px;
+        top: 20%;
+        left: 15%;
+    }
+    .mlowers-mega-pack section.spices .container .text-box {
+        max-width: 300px;
+        bottom: 35%;
+        right: 2rem;
+    }
+    .mlowers-mega-pack section.spices .container .text-box h2 {
+        font-size: 3rem;
+        line-height: 2rem;
+    }
+    .mlowers-mega-pack section.spices .container .text-box h2 span {
+        font-size: 1.5rem;
+    }
+    .mlowers-mega-pack section.spices .container .text-box h3 {
+        font-size: 1rem;
+        line-height: 1.4rem;
+        padding-top: 1rem;
+    }
+    // .mlowers-mega-pack section.lower-3rd {
+    //     height: 720px;
+    // }
+    .mlowers-mega-pack section.mix {
+        // background: #19161a
+            // url("https://s3.motionvfx.com/mvfxpublic/products/templates/1298/media/mix_mobile.jpg");
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 860px;
+    }
+    .mlowers-mega-pack section.mix .container .text-box {
+        max-width: 540px;
+    }
+    .mlowers-mega-pack section.mix .container .text-box h2 {
+        font-size: 3rem;
+        line-height: 2rem;
+    }
+    .mlowers-mega-pack section.mix .container .text-box h2 span {
+        font-size: 1.5rem;
+    }
+    .mlowers-mega-pack section.mix .container .text-box h3 {
+        font-size: 0.9rem;
+        line-height: 1.3rem;
+        padding-top: 1rem;
+    }
+}
+@media all and (max-width: 1199px) {
+    .mlowers-mega-pack section.logo-text .container .row-1st .col-text {
+        margin-top: 40px;
+    }
+    .mlowers-mega-pack section.logo-text .container .row-2nd {
+        margin-top: -30px;
+    }
+}
+@media all and (max-width: 1024px) {
+    // .mlowers-mega-pack section.header {
+    //     height: 768px;
+    // }
+    // .mlowers-mega-pack section.header .container .header-box {
+    //     top: 53%;
+    // }
+    // .mlowers-mega-pack section.header .container .scroll-down {
+    //     bottom: 2rem;
+    // }
+    .mlowers-mega-pack section.trailer .container .text-box p {
+        font-size: 0.9rem;
+    }
+    .mlowers-mega-pack section.lower-3rd .column-left .text-box h2 {
+        font-size: 1.8rem;
+        line-height: 1.8rem;
+    }
+    .mlowers-mega-pack section.lower-3rd .column-left .text-box h2 span {
+        line-height: 4.5rem;
+    }
+    .mlowers-mega-pack section.lower-3rd .column-left .text-box p {
+        padding-top: 0.5rem;
+        font-size: 0.9rem;
+    }
+    // .mlowers-mega-pack section.tech-spec {
+    //     height: auto;
+    //     padding-bottom: 6rem;
+    // }
+    // .mlowers-mega-pack section.tech-spec .tech-spec-info h2 {
+    //     font-size: 2rem;
+    // }
+    // .mlowers-mega-pack section.tech-spec .tech-spec-info h2 span {
+    //     font-size: 1.8rem;
+    // }
+    .mlowers-mega-pack section.footer {
+        height: 900px;
+    }
+    .mlowers-mega-pack section.footer .container .text-box {
+        top: 50%;
+    }
+}
+@media all and (max-width: 991px) {
+    .mlowers-mega-pack section.trailer .container {
+        max-width: 760px;
+        padding: 2rem 2rem 0;
+    }
+    .mlowers-mega-pack section.trailer .container .text-box .trailer-text {
+        padding: 2rem 0 4rem;
+    }
+    // .mlowers-mega-pack section.lower-3rd {
+    //     height: 1050px;
+    //     flex-direction: column;
+    // }
+    // .mlowers-mega-pack section.lower-3rd .column-left {
+    //     width: 100%;
+    //     max-height: 400px;
+    // }
+    .mlowers-mega-pack section.lower-3rd .column-left .text-box {
+        // padding: 0;
+        // max-width: unset;
+        // left: 3rem;
+    }
+    // .mlowers-mega-pack section.lower-3rd .column-right {
+    //     width: 100%;
+    // }
+    // .mlowers-mega-pack section.lower-3rd .column-right .lower-one {
+    //     position: absolute;
+    //     width: 100%;
+    //     height: 100%;
+    //     background: url("https://s3.motionvfx.com/mvfxpublic/products/templates/1298/media/lower_one_mobile.jpg");
+    //     background-size: cover;
+    //     background-position: bottom center;
+    //     transition: opacity 350ms ease-in-out;
+    // }
+    // .mlowers-mega-pack section.lower-3rd .column-right .lower-two {
+    //     position: absolute;
+    //     width: 100%;
+    //     height: 100%;
+    //     background: url("https://s3.motionvfx.com/mvfxpublic/products/templates/1298/media/lower_two_mobile.jpg");
+    //     background-size: cover;
+    //     background-position: bottom center;
+    //     transition: opacity 350ms ease-in-out;
+    // }
+    // .mlowers-mega-pack section.lower-3rd .column-right .lower-three {
+    //     position: absolute;
+    //     width: 100%;
+    //     height: 100%;
+    //     background: url("https://s3.motionvfx.com/mvfxpublic/products/templates/1298/media/lower_three_mobile.jpg");
+    //     background-size: cover;
+    //     background-position: bottom center;
+    //     transition: opacity 350ms ease-in-out;
+    // }
+    .mlowers-mega-pack section.tutorial {
+        padding-top: 6rem;
+        padding-bottom: 8rem;
+    }
+    .mlowers-mega-pack section.tutorial .container .text-box {
+        text-align: center;
+    }
+    .mlowers-mega-pack section.tutorial .container .text-box h2 {
+        font-size: 2.8rem;
+        line-height: 1.8rem;
+    }
+    .mlowers-mega-pack section.tutorial .container .text-box h2 span {
+        font-size: 1.5rem;
+    }
+    // .mlowers-mega-pack section.tech-spec {
+    //     height: auto;
+    //     padding-bottom: 6rem;
+    // }
+    // .mlowers-mega-pack section.tech-spec .tech-spec-info h2 {
+    //     font-size: 2rem;
+    // }
+    // .mlowers-mega-pack section.tech-spec .tech-spec-info h2 span {
+    //     font-size: 1.8rem;
+    // }
+    .mlowers-mega-pack section.footer {
+        height: 900px;
+    }
+    .mlowers-mega-pack section.footer .container .text-box {
+        top: 50%;
+    }
+}
+@media all and (max-width: 940px) {
+    .mlowers-mega-pack section.trailer .container {
+        max-width: 760px;
+    }
+    // .mlowers-mega-pack section.tech-spec {
+    //     height: auto;
+    //     padding-bottom: 6rem;
+    // }
+    // .mlowers-mega-pack section.tech-spec .tech-spec-info h2 {
+    //     font-size: 2rem;
+    // }
+    // .mlowers-mega-pack section.tech-spec .tech-spec-info h2 span {
+    //     font-size: 1.8rem;
+    // }
+    .mlowers-mega-pack section.footer {
+        height: 900px;
+    }
+    .mlowers-mega-pack section.footer .container .text-box {
+        top: 50%;
+    }
+}
+@media all and (max-width: 768px) {
+    .mlowers-mega-pack section.trailer .container {
+        max-width: 680px;
+    }
+    .mlowers-mega-pack section.logo-text {
+        padding-bottom: 0;
+    }
+    .mlowers-mega-pack section.video {
+        width: 100%;
+        background: #fafafa
+            url("https://s3.motionvfx.com/mvfxpublic/products/templates/1297/media/video_bg.jpg");
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        overflow: hidden;
+        padding-top: 0;
+        padding-bottom: 4rem;
+    }
+    .mlowers-mega-pack section.video .container {
+        max-width: 1600px;
+        padding: 2rem;
+    }
+    .mlowers-mega-pack section.video .container .row {
+        width: 100%;
+        margin: 0 auto;
+    }
+    .mlowers-mega-pack section.video .container .row .video-container {
+        width: 100%;
+        position: relative;
+    }
+    .mlowers-mega-pack
+        section.video
+        .container
+        .row
+        .video-container
+        .video-text {
+        position: absolute;
+        color: #fff;
+        bottom: 4rem;
+        left: 5rem;
+    }
+    .mlowers-mega-pack
+        section.video
+        .container
+        .row
+        .video-container
+        .video-text
+        h2 {
+        font-size: 2rem;
+        font-weight: 700;
+    }
+    .mlowers-mega-pack
+        section.video
+        .container
+        .row
+        .video-container
+        .video-text
+        h3 {
+        font-size: 1rem;
+    }
+    .mlowers-mega-pack section.video .container .row .video-container video {
+        width: 100%;
+    }
+    .mlowers-mega-pack section.prevs .col-6-desktop-overlay {
+        margin-left: 0;
+    }
+    .mlowers-mega-pack section.prevs .col-6-desktop-typo {
+        margin-left: 0;
+    }
+    .mlowers-mega-pack section.prevs .col-6-desktop-scribble {
+        margin-left: 25%;
+    }
+    // .mlowers-mega-pack section.tech-spec {
+    //     height: auto;
+    //     padding-bottom: 6rem;
+    // }
+    // .mlowers-mega-pack section.tech-spec .tech-spec-info h2 {
+    //     font-size: 2rem;
+    // }
+    // .mlowers-mega-pack section.tech-spec .tech-spec-info h2 span {
+    //     font-size: 1.8rem;
+    // }
+    .mlowers-mega-pack section.footer {
+        height: 900px;
+    }
+    .mlowers-mega-pack section.footer .container .text-box {
+        top: 50%;
+    }
+}
+@media all and (max-width: 767px) {
+    // .mlowers-mega-pack section.header .container .header-box {
+    //     top: 53%;
+    // }
+    // .mlowers-mega-pack section.header .container .header-box .text-box {
+    //     max-width: 360px;
+    //     margin: 0 auto;
+    // }
+    .mlowers-mega-pack section.prevs .col-6-desktop {
+        margin-left: 0;
+    }
+    .mlowers-mega-pack section.prevs .container .text-box {
+        padding-top: 2rem;
+        text-align: center;
+    }
+}
+@media all and (max-width: 640px) {
+    .mlowers-mega-pack section.trailer {
+        padding-top: 2.2rem;
+        padding-bottom: 0;
+    }
+    .mlowers-mega-pack section.trailer .container .text-box {
+        padding-bottom: 2rem;
+    }
+    .mlowers-mega-pack section.trailer .container .text-box .trailer-text {
+        padding: 2rem 0 0;
+        text-align: center;
+    }
+}
+@media all and (max-width: 589px) {
+    // .mlowers-mega-pack section.header {
+    //     height: 100vh;
+    // }
+    // .mlowers-mega-pack section.header .container {
+    //     height: 100%;
+    //     padding: 2rem;
+    //     position: relative;
+    // }
+    // .mlowers-mega-pack section.header .container .header-box {
+    //     top: 50%;
+    // }
+    // .mlowers-mega-pack
+    //     section.header
+    //     .container
+    //     .header-box
+    //     .mlowers-mega-pack-logo {
+    //     max-width: 320px;
+    //     margin: 0 auto;
+    //     position: relative;
+    //     top: 0;
+    //     font-size: 4rem;
+    //     font-weight: 700;
+    //     color: #fff;
+    //     text-align: center;
+    // }
+    // .mlowers-mega-pack
+    //     section.header
+    //     .container
+    //     .header-box
+    //     .mlowers-mega-pack-logo
+    //     img {
+    //     width: 100%;
+    // }
+    // .mlowers-mega-pack section.header .container .header-box .text-box {
+    //     max-width: 360px;
+    //     margin: 0 auto;
+    //     text-align: center;
+    //     padding-top: 2rem;
+    // }
+    // .mlowers-mega-pack section.header .container .header-box .text-box h2 {
+    //     font-family: "Roboto", sans-serif;
+    //     font-size: 1rem;
+    //     color: #fff;
+    //     font-weight: 300;
+    //     letter-spacing: 1px;
+    //     text-transform: uppercase;
+    //     margin: 3rem auto 0;
+    //     line-height: 1.4rem;
+    // }
+    .mlowers-mega-pack section.trailer .container .text-box h2 {
+        margin-bottom: 3rem;
+        color: #fff;
+        font-size: 2rem;
+        line-height: 2rem;
+        font-weight: 300;
+    }
+    .mlowers-mega-pack section.trailer .container .text-box h2 span {
+        font-size: 1.2rem;
+        display: block;
+    }
+    .mlowers-mega-pack section.trailer .container .text-box .trailer-text {
+        max-width: 280px;
+        margin-top: 0;
+        margin-left: 1rem;
+        margin-bottom: 2rem;
+    }
+    .mlowers-mega-pack section.spices {
+        height: 720px;
+    }
+    .mlowers-mega-pack section.spices .mlower {
+        max-width: 300px;
+        left: 1%;
+    }
+    .mlowers-mega-pack section.prevs {
+        padding-top: 2rem;
+    }
+    .mlowers-mega-pack section.prevs .container .text-box .prev-title h2 {
+        font-size: 1.2rem;
+    }
+    .mlowers-mega-pack section.prevs .container a.load-more {
+        display: block;
+        margin: 0 auto;
+        padding: 0.6rem 2.5rem;
+        background-color: #fe1c42;
+        border-radius: 4px;
+        color: #fff;
+        text-decoration: none;
+        transition: background-color, color, 100ms ease-in-out;
+        margin-bottom: 0;
+        margin-top: 3rem;
+        font-size: 1.2rem;
+    }
+    .mlowers-mega-pack section.tutorial {
+        position: relative;
+        overflow: hidden;
+        padding-top: 5rem;
+        padding-bottom: 2rem;
+    }
+    .mlowers-mega-pack section.tutorial .container .text-box p {
+        max-width: 300px;
+        margin: 0 auto;
+    }
+    .mlowers-mega-pack section.tutorial .container .text-box h2 {
+        font-size: 2rem;
+    }
+    .mlowers-mega-pack section.lower-3rd {
+        // height: 800px;
+        // padding-bottom: 4rem;
+        background-color: #fff;
+        // flex-direction: column;
+    }
+    // .mlowers-mega-pack section.lower-3rd .column-left {
+    //     width: 100%;
+    // }
+    .mlowers-mega-pack section.lower-3rd .column-left .text-box {
+        // padding: 0;
+        // max-width: unset;
+        // left: 3rem;
+    }
+    .mlowers-mega-pack section.lower-3rd .column-left .text-box h2 {
+        font-size: 2rem;
+        color: #000;
+        line-height: 0.5rem;
+        font-weight: 300;
+    }
+    .mlowers-mega-pack section.lower-3rd .column-left .text-box p {
+        padding-top: 1rem;
+    }
+    .mlowers-mega-pack section.mix {
+        background: #fff
+            url("https://s3.motionvfx.com/mvfxpublic/products/templates/1298/media/mix_mobile.jpg");
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 860px;
+    }
+    .mlowers-mega-pack section.mix .container .text-box {
+        max-width: 380px;
+    }
+    .mlowers-mega-pack section.mix .container .text-box h2 {
+        font-size: 3rem;
+        line-height: 2rem;
+    }
+    .mlowers-mega-pack section.mix .container .text-box h2 span {
+        font-size: 1.5rem;
+    }
+    .mlowers-mega-pack section.mix .container .text-box h3 {
+        font-size: 0.9rem;
+        line-height: 1.3rem;
+        padding-top: 1rem;
+    }
+    // .mlowers-mega-pack section.tech-spec {
+    //     padding-top: 4rem;
+    //     padding-bottom: 4rem;
+    // }
+    // .mlowers-mega-pack section.tech-spec .container h2 {
+    //     font-size: 2rem;
+    //     max-width: 200px;
+    //     margin: 0 auto;
+    // }
+    .mlowers-mega-pack section.footer {
+        // background: #19161a
+            // url("https://s3.motionvfx.com/mvfxpublic/products/templates/1298/media/mlowers_header_bg_mobile.jpg");
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 900px;
+    }
+    .mlowers-mega-pack section.footer .container .text-box {
+        top: 50%;
+        letter-spacing: 0;
+        padding: 1rem;
+    }
+    .mlowers-mega-pack section.footer .container .text-box h2 {
+        line-height: 1.9rem;
+        max-width: 360px;
+        margin: 0 auto;
+        font-size: 2.5rem;
+    }
+    .mlowers-mega-pack section.footer .container .text-box h2 span {
+        padding-top: 0.1rem;
+    }
+    .mlowers-mega-pack section.footer .container .text-box p {
+        font-family: "Roboto" sans-serif;
+        max-width: 460px;
+        padding: 1.5rem;
+        font-weight: 300;
+        margin: 0 auto;
+        color: #fff;
+        font-size: 0.9rem;
+    }
+    .mlowers-mega-pack section.footer .container .text-box .button-buy {
+        margin-top: 1rem;
+    }
+}
+@media all and (min-width: 320px) and (max-width: 360px) {
+    // .mlowers-mega-pack
+    //     section.header
+    //     .container
+    //     .header-box
+    //     .mlowers-mega-pack-logo {
+    //     max-width: 280px;
+    // }
+    .mlowers-mega-pack section.mix .container .text-box {
+        max-width: 300px;
+    }
+    .mlowers-mega-pack section.mix .container .text-box h2 {
+        font-size: 2.2rem;
+        line-height: 1.6rem;
+    }
+    .mlowers-mega-pack section.mix .container .text-box h2 span {
+        font-size: 1.4rem;
+    }
+    .mlowers-mega-pack section.mix .container .text-box h3 {
+        font-size: 0.9rem;
+        line-height: 1.3rem;
+        padding-top: 1rem;
+    }
+}
