@@ -185,3 +185,16 @@ jsum
 			height="{{height}}">
 	</picture>
 {% endmacro %}
+
+
+{% macro buy_btn_free() %}
+    <div class="button-buy">
+        <div id="btn-buy-container" class="version1">
+            <div class="inner-container">
+                <a href="#" class="buy-button" data-add-to-cart='{ "productId": {{  product.id }}, "productTitle": "{{  product.title }}" }'>
+                    Get it free for FCP / DVR
+                </a>
+            </div>
+        </div>
+    </div>
+{% endmacro %}

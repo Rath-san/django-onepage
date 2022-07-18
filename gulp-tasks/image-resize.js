@@ -118,12 +118,13 @@ const CONFIGS = [
     //     //     mozjpeg: true,
     //     // },
     // },
-    // {
-    //     directory: "_spice_text_1",
-    //     sizes: [400, 800].map((s) => ({ w: s })),
-    //     quality: 90,
-    //     targetFormat: ["png", "webp"],
-    // },
+
+    {
+        directory: "_box",
+        sizes: [512, 256].map((s) => ({ w: s })),
+        quality: 90,
+        targetFormat: ["png", "webp"],
+    },
     // {
     //     directory: "_spice_text_2",
     //     sizes: [400, 800].map((s) => ({ w: s })),
@@ -193,23 +194,23 @@ const CONFIGS = [
     //         mozjpeg: true,
     //     },
     // },
-    {
-        directory: "_trailer",
-        sizes: [
-            ...[640, 960, 1280, 1920, 2560].map((size) => ({
-                w: size,
-                hmin: 600
-            })),
-        ],
-        quality: 99,
-        targetFormat: ["jpg"],
-        outputOptions: {
-            mozjpeg: true,
-        },
-    },
+    // {
+    //     directory: "_trailer",
+    //     sizes: [
+    //         ...[640, 960, 1280, 1920, 2560].map((size) => ({
+    //             w: size,
+    //             hmin: 600
+    //         })),
+    //     ],
+    //     quality: 99,
+    //     targetFormat: ["jpg"],
+    //     outputOptions: {
+    //         mozjpeg: true,
+    //     },
+    // },
 ];
 
-const PAGE_NAME = "transition";
+const PAGE_NAME = "mtitle_glitch";
 
 function resizeTask(
     managedFormats = ["jpg", "jpeg", "png"],

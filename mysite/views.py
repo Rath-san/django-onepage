@@ -43,10 +43,10 @@ def index(request, **kwargs):
                 'minimal_requirements' : product.minimal_requirements,
                 'source_size' : product.source_size,
                 'music': Music.objects,
-            }
+            },
+            'get_price': lambda x: 199,
         },
-
-        'test': 'test12'
+        'test': 'test12',
     }
 
-    return render(request, "transition.jinja", context)
+    return render(request, "chalk.jinja", context)

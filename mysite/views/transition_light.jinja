@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include './components/head.jinja' %}
+
+<body>
+    {% include './components/nav.jinja' %}
+    {# {% include './components/macro.jinja' %} #}
+    {# {% include './components/bundle-popup.jinja' %} #}
+
+    <div class="mplugs76" id="mPlugsPage">
+        <section>
+            <div class="headerWrapper" style="background-image: url('https://s3.motionvfx.com/mvfxpublic/products/templates/362/media/bg_1.jpg?2');">
+                {# <div class="innerWrapper">
+                    <a href="#" title="{{ product.title }}" class="buyBtn" data-add-to-cart='{ "productId": "{{ product.id }}", "productTitle": "{{ product.title }}" }'>
+                    <span class="side leftSide">${{ price(product.get_price(request.user)) }}</span>
+                    <span class="side rightSide">
+                    <span class="firstLine">BUY</span>
+                    <span class="secondLine">NOW</span>
+                    </span></a>
+                    <a onclick="scrollToAnchor('watchpromo')" class="watch">WATCH PROMO &gt;</a>
+                </div> #}
+            </div>
+            <div style="background-image: url('https://s3.motionvfx.com/mvfxpublic/images/mtransition/light/bg_2.png'); background-color:#000; height:46px;" class="headerWrapper">
+                <a style="display: inline-block; width: 100%; height: 100%;" href="https://s3.motionvfx.com/mvfxpublic/images/mtransition/light/motionVFX_mTransition_Light_Sample.zip">&nbsp;</a>
+            </div>
+        </section>
+        <a class="nav" name="trailer"></a>
+        <section>
+            <div class="vimeoWrapper" style="background-image: url('https://s3.motionvfx.com/mvfxpublic/images/mtransition/light/bg_3.png'); height:788px; background-position: center center; background-repeat: no-repeat; background-size: cover;">
+                <div class="innerWrapper" style="margin-top:45px;">
+                    <!--<iframe allowfullscreen="" frameborder="0" height="538" mozallowfullscreen="" src="//player.vimeo.com/video/122405761?title=0&amp;byline=0&amp;portrait=0" webkitallowfullscreen="" width="958"></iframe>-->
+                    <iframe src="https://www.youtube.com/embed/wzcw3yygbzg?rel=0" frameborder="0" height="538" width="958" allow="autoplay; encrypted-media" allowfullscreen title="mTransition Light Trailer"></iframe>
+                </div>
+            </div>
+        </section>
+        <div class="headerWrapper" style="background-image: url('https://s3.motionvfx.com/mvfxpublic/images/mtransition/light/bg_4.png?2'); height:354px;"></div>
+        <div class="previewsWrapper" style="background-image: url('https://s3.motionvfx.com/mvfxpublic/images/mtransition/light/bg_5.jpg');">
+            <div class="innerWrapper">
+                <h2>mTransition Light examples</h2>
+                <h5 style="margin-bottom:30px;">
+                    (hover on thumbnail to view animation)
+                </h5>
+            </div>
+            <div class="header_bar"><img src="https://s3.motionvfx.com/mvfxpublic/images/mtransition/light/name_reflector.png" /></div>
+            <ul class="videoList">
+                <div class="cover product-list-wrapper">
+                    <div class="product-list" id="productList">
+                        <div class="container site-content container-lg">
+                            <div class="row product-grid" id="productsContainer">
+                                {% for i in range(25) %}
+                                {% set num = loop.index + 75 %}
+                                <div class="col-12 col-sm-6 col-md-4 col-lg-2 {% if (loop.index-1)%5==0 %}offset-lg-1{% endif %} product">
+                                    <a>
+                                        <div class="product-preview">
+                                            <img class="img-fluid" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZAAAADhCAQAAABMvyuXAAAByUlEQVR42u3TMQ0AAAzDsJU/6SHo28uGECk5oIoEYBAwCBgEDAIGAYOAQcAgYBDAIGAQMAgYBAwCBgGDgEHAIGAQwCBgEDAIGAQMAgYBg4BBwCCAQcAgYBAwCBgEDAIGAYOAQcAggEHAIGAQMAgYBAwCBgGDgEEAg4BBwCBgEDAIGAQMAgYBg4BBAIOAQcAgYBAwCBgEDAIGAYMABgGDgEHAIGAQMAgYBAwCBgGDAAYBg4BBwCBgEDAIGAQMAgYBg0gABgGDgEHAIGAQMAgYBAwCBgEMAgYBg4BBwCBgEDAIGAQMAgYBDAIGAYOAQcAgYBAwCBgEDAIYBAwCBgGDgEHAIGAQMAgYBAwCGAQMAgYBg4BBwCBgEDAIGAQwCBgEDAIGAYOAQcAgYBAwCBgEMAgYBAwCBgGDgEHAIGAQMAhgEDAIGAQMAgYBg4BBwCBgEDAIYBAwCBgEDAIGAYOAQcAgYBAwiARgEDAIGAQMAgYBg4BBwCBgEMAgYBAwCBgEDAIGAYOAQcAgYBDAIGAQMAgYBAwCBgGDgEHAIIBBwCBgEDAIGAQMAgYBg4BBwCCAQcAgYBAwCBgEDAIGAYOAQQCDgEHAIGAQmHuSyQDisCaXtQAAAABJRU5ErkJggg==" />            
+                                            <div class="preview-wrapper zoom" data-mp4-url="https://s3.motionvfx.com/mvfxpublic/images/mtransition/light/prevs/{{num}}.mp4">
+                                                <div class="preview-image-container">
+                                                    <img class="img-fluid" src="https://s3.motionvfx.com/mvfxpublic/images/mtransition/light/prevs/{{num}}.jpg" alt="{{ product.head_info }}" onerror="this.style.display='none'" onload="this.style.display='block'" />
+                                                </div>
+                                                <div class="preview-video-container" style="display: none"></div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ul>
+            <div class="header_bar"><img src="https://s3.motionvfx.com/mvfxpublic/images/mtransition/light/name_flares.png" /></div>
+            <ul class="videoList">
+                <div class="cover product-list-wrapper">
+                    <div class="product-list" id="productList">
+                        <div class="container site-content container-lg">
+                            <div class="row product-grid" id="productsContainer">
+                                {% for i in range(25) %}
+                                {% set num = loop.index + 50 %}
+                                <div class="col-12 col-sm-6 col-md-4 col-lg-2 {% if (loop.index-1)%5==0 %}offset-lg-1{% endif %} product">
+                                    <a>
+                                        <div class="product-preview">
+                                            <img class="img-fluid" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZAAAADhCAQAAABMvyuXAAAByUlEQVR42u3TMQ0AAAzDsJU/6SHo28uGECk5oIoEYBAwCBgEDAIGAYOAQcAgYBDAIGAQMAgYBAwCBgGDgEHAIGAQwCBgEDAIGAQMAgYBg4BBwCCAQcAgYBAwCBgEDAIGAYOAQcAggEHAIGAQMAgYBAwCBgGDgEEAg4BBwCBgEDAIGAQMAgYBg4BBAIOAQcAgYBAwCBgEDAIGAYMABgGDgEHAIGAQMAgYBAwCBgGDAAYBg4BBwCBgEDAIGAQMAgYBg0gABgGDgEHAIGAQMAgYBAwCBgEMAgYBg4BBwCBgEDAIGAQMAgYBDAIGAYOAQcAgYBAwCBgEDAIYBAwCBgGDgEHAIGAQMAgYBAwCGAQMAgYBg4BBwCBgEDAIGAQwCBgEDAIGAYOAQcAgYBAwCBgEMAgYBAwCBgGDgEHAIGAQMAhgEDAIGAQMAgYBg4BBwCBgEDAIYBAwCBgEDAIGAYOAQcAgYBAwiARgEDAIGAQMAgYBg4BBwCBgEMAgYBAwCBgEDAIGAYOAQcAgYBDAIGAQMAgYBAwCBgGDgEHAIIBBwCBgEDAIGAQMAgYBg4BBwCCAQcAgYBAwCBgEDAIGAYOAQQCDgEHAIGAQmHuSyQDisCaXtQAAAABJRU5ErkJggg==" />            
+                                            <div class="preview-wrapper zoom" data-mp4-url="https://s3.motionvfx.com/mvfxpublic/images/mtransition/light/prevs/{{num}}.mp4">
+                                                <div class="preview-image-container">
+                                                    <img class="img-fluid" src="https://s3.motionvfx.com/mvfxpublic/images/mtransition/light/prevs/{{num}}.jpg" alt="{{ product.head_info }}" onerror="this.style.display='none'" onload="this.style.display='block'" />
+                                                </div>
+                                                <div class="preview-video-container" style="display: none"></div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ul>
+            <div class="header_bar"><img src="https://s3.motionvfx.com/mvfxpublic/images/mtransition/light/name_bokeh.png" /></div>
+            <ul class="videoList">
+                <div class="cover product-list-wrapper">
+                    <div class="product-list" id="productList">
+                        <div class="container site-content container-lg">
+                            <div class="row product-grid" id="productsContainer">
+                                {% for i in range(25) %}
+                                {% set num = loop.index %}
+                                <div class="col-12 col-sm-6 col-md-4 col-lg-2 {% if (loop.index-1)%5==0 %}offset-lg-1{% endif %} product">
+                                    <a>
+                                        <div class="product-preview">
+                                            <img class="img-fluid" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZAAAADhCAQAAABMvyuXAAAByUlEQVR42u3TMQ0AAAzDsJU/6SHo28uGECk5oIoEYBAwCBgEDAIGAYOAQcAgYBDAIGAQMAgYBAwCBgGDgEHAIGAQwCBgEDAIGAQMAgYBg4BBwCCAQcAgYBAwCBgEDAIGAYOAQcAggEHAIGAQMAgYBAwCBgGDgEEAg4BBwCBgEDAIGAQMAgYBg4BBAIOAQcAgYBAwCBgEDAIGAYMABgGDgEHAIGAQMAgYBAwCBgGDAAYBg4BBwCBgEDAIGAQMAgYBg0gABgGDgEHAIGAQMAgYBAwCBgEMAgYBg4BBwCBgEDAIGAQMAgYBDAIGAYOAQcAgYBAwCBgEDAIYBAwCBgGDgEHAIGAQMAgYBAwCGAQMAgYBg4BBwCBgEDAIGAQwCBgEDAIGAYOAQcAgYBAwCBgEMAgYBAwCBgGDgEHAIGAQMAhgEDAIGAQMAgYBg4BBwCBgEDAIYBAwCBgEDAIGAYOAQcAgYBAwiARgEDAIGAQMAgYBg4BBwCBgEMAgYBAwCBgEDAIGAYOAQcAgYBDAIGAQMAgYBAwCBgGDgEHAIIBBwCBgEDAIGAQMAgYBg4BBwCCAQcAgYBAwCBgEDAIGAYOAQQCDgEHAIGAQmHuSyQDisCaXtQAAAABJRU5ErkJggg==" />            
+                                            <div class="preview-wrapper zoom" data-mp4-url="https://s3.motionvfx.com/mvfxpublic/images/mtransition/light/prevs/{{num}}.mp4">
+                                                <div class="preview-image-container">
+                                                    <img class="img-fluid" src="https://s3.motionvfx.com/mvfxpublic/images/mtransition/light/prevs/{{num}}.jpg" alt="{{ product.head_info }}" onerror="this.style.display='none'" onload="this.style.display='block'" />
+                                                </div>
+                                                <div class="preview-video-container" style="display: none"></div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ul>
+            <div class="header_bar"><img src="https://s3.motionvfx.com/mvfxpublic/images/mtransition/light/name_film_burn.png" /></div>
+            <ul class="videoList">
+                <div class="cover product-list-wrapper">
+                    <div class="product-list" id="productList">
+                        <div class="container site-content container-lg">
+                            <div class="row product-grid" id="productsContainer">
+                                {% for i in range(25) %}
+                                {% set num = loop.index + 25 %}
+                                <div class="col-12 col-sm-6 col-md-4 col-lg-2 {% if (loop.index-1)%5==0 %}offset-lg-1{% endif %} product">
+                                    <a>
+                                        <div class="product-preview">
+                                            <img class="img-fluid" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZAAAADhCAQAAABMvyuXAAAByUlEQVR42u3TMQ0AAAzDsJU/6SHo28uGECk5oIoEYBAwCBgEDAIGAYOAQcAgYBDAIGAQMAgYBAwCBgGDgEHAIGAQwCBgEDAIGAQMAgYBg4BBwCCAQcAgYBAwCBgEDAIGAYOAQcAggEHAIGAQMAgYBAwCBgGDgEEAg4BBwCBgEDAIGAQMAgYBg4BBAIOAQcAgYBAwCBgEDAIGAYMABgGDgEHAIGAQMAgYBAwCBgGDAAYBg4BBwCBgEDAIGAQMAgYBg0gABgGDgEHAIGAQMAgYBAwCBgEMAgYBg4BBwCBgEDAIGAQMAgYBDAIGAYOAQcAgYBAwCBgEDAIYBAwCBgGDgEHAIGAQMAgYBAwCGAQMAgYBg4BBwCBgEDAIGAQwCBgEDAIGAYOAQcAgYBAwCBgEMAgYBAwCBgGDgEHAIGAQMAhgEDAIGAQMAgYBg4BBwCBgEDAIYBAwCBgEDAIGAYOAQcAgYBAwiARgEDAIGAQMAgYBg4BBwCBgEMAgYBAwCBgEDAIGAYOAQcAgYBDAIGAQMAgYBAwCBgGDgEHAIIBBwCBgEDAIGAQMAgYBg4BBwCCAQcAgYBAwCBgEDAIGAYOAQQCDgEHAIGAQmHuSyQDisCaXtQAAAABJRU5ErkJggg==" />            
+                                            <div class="preview-wrapper zoom" data-mp4-url="https://s3.motionvfx.com/mvfxpublic/images/mtransition/light/prevs/{{num}}.mp4">
+                                                <div class="preview-image-container">
+                                                    <img class="img-fluid" src="https://s3.motionvfx.com/mvfxpublic/images/mtransition/light/prevs/{{num}}.jpg" alt="{{ product.head_info }}" onerror="this.style.display='none'" onload="this.style.display='block'" />
+                                                </div>
+                                                <div class="preview-video-container" style="display: none"></div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ul>
+            <h2 style="margin-top: 70px;"></h2>
+        </div>
+        <section>
+            <section>
+				<div class="footerWrapper" style="background-image: url('https://s3.motionvfx.com/mvfxpublic/images/mtransition/light/bg_6.jpg?1')">
+					<p>Switch between the videos with superb style and add some light to your projects. Luminous shifts will fill your edit with dynamic energy and make it incredibly engaging and fascinating.</p>
+                    <style>
+                        .footerWrapper .promo-info {
+                            color: #000 !important;
+                        }
+                    </style>
+                    <div class="button-buy" style="display: flex; justify-content:center;">
+                        {% with discount_text='INTRO', version=2 %}
+                        {% include 'product/buy_button.jinja2' %}
+                        {% endwith %}
+                    </div>
+					<!--<a href="#" title="{{ product.title }}" class="buyBtn" data-add-to-cart='{ "productId": "{{ product.id }}", "productTitle": "{{ product.title }}" }'>&nbsp;</a>-->
+				</div>
+			</section>
+        </section>
+    </div>
+
+
+    {# {% include './components/popup-left.jinja' %} #}
+    {% include './components/submenu.jinja' %}
+    
+    <script src="https://s3.motionvfx.com/mvfxpublic/products/templates/1329/js/gsap.min.js"></script>
+    <script src="https://s3.motionvfx.com/mvfxpublic/products/templates/1329/js/morpher.min.js"></script>
+    
+    <script src="dist/scripts.js"></script>
+    <script src="scripts/vendor/menu.js" defer></script>
+    <script src="scripts/vendor/scroll_to_anchor.js" defer></script>
+</body>
+
+</html>
+
+<style>
+    .promo-info {
+        color: #000;
+    }
+</style>
