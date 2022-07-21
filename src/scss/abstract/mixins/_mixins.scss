@@ -5,3 +5,27 @@
     width: $width;
     height: $width;
 }
+
+@mixin overlay($x: 0, $y: 0) {
+    position: absolute;
+    top: $y;
+    bottom: $y;
+    left: $x;
+    right: $x;
+}
+
+@mixin image-background($x: 0, $y: 0) {
+    position: relative;
+    z-index: 1;
+    .image-background {
+        @include overlay($x, $y);
+        z-index: -1;
+        .img {
+            width: 100%;
+            height: 100%;
+            object-position: center;
+            object-fit: cover;
+        }
+        @content;
+    }
+}

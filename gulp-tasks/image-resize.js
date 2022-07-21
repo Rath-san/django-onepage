@@ -39,9 +39,45 @@ const CONFIGS = [
     //     },
     // },
     // {
-    //     directory: "_slides",
-    //     sizes: [640, 960, 1280, 1800].map((size) => ({ w: size })),
+    //     directory: "_w",
+    //     sizes: [640, 960, 1280 ,2000].map((size) => ({ w: size })),
+    //     quality: 89,
+    //     targetFormat: ["jpg"],
+    //     outputOptions: {
+    //         mozjpeg: true,
+    //     },
+    // },
+    // {
+    //     directory: "_h",
+    //     sizes: [640, 960, 1125].map((size) => ({ w: size })),
+    //     quality: 89,
+    //     targetFormat: ["jpg"],
+    //     outputOptions: {
+    //         mozjpeg: true,
+    //     },
+    // },
+    // {
+    //     directory: "_footer_w",
+    //     sizes: [640, 960, 1280 ,2000].map((size) => ({ w: size })),
     //     quality: 85,
+    //     targetFormat: ["jpg"],
+    //     outputOptions: {
+    //         mozjpeg: true,
+    //     },
+    // },
+    // {
+    //     directory: "_footer_h",
+    //     sizes: [640, 960, 1125].map((size) => ({ w: size })),
+    //     quality: 85,
+    //     targetFormat: ["jpg"],
+    //     outputOptions: {
+    //         mozjpeg: true,
+    //     },
+    // },
+    // {
+    //     directory: "_slides",
+    //     sizes: [640, 960, 1280, 1920, 2560].map((size) => ({ w: size })),
+    //     quality: 89,
     //     targetFormat: ["jpg"],
     //     outputOptions: {
     //         mozjpeg: true,
@@ -77,9 +113,19 @@ const CONFIGS = [
     // },
 
     // {
-    //     directory: "_prev_ins",
-    //     sizes: [350, 700, 1400].map((size) => ({ w: size })),
-    //     quality: 90,
+    //     directory: "_prev",
+    //     sizes: [640].map((size) => ({ w: size })),
+    //     quality: 95,
+    //     targetFormat: ["jpg"],
+    //     outputOptions: {
+    //         mozjpeg: true,
+    //     },
+    // },
+
+    // {
+    //     directory: "_prevs_2",
+    //     sizes: [640].map((size) => ({ w: size })),
+    //     quality: 95,
     //     targetFormat: ["jpg"],
     //     outputOptions: {
     //         mozjpeg: true,
@@ -109,7 +155,7 @@ const CONFIGS = [
     // },
     // {
     //     directory: "_logo",
-    //     sizes: [312, 624].map((s) => ({
+    //     sizes: [640, 1000].map((s) => ({
     //         w: s,
     //     })),
     //     quality: 100,
@@ -119,12 +165,55 @@ const CONFIGS = [
     //     // },
     // },
 
+    // {
+    //     directory: "_porun",
+    //     sizes: [ 640, 960, 1280, 1920, 2560 ].map((s) => ({
+    //         w: s,
+    //     })),
+    //     quality: 90,
+    //     targetFormat: ["png"],
+    //     // outputOptions: {
+    //     //     mozjpeg: true,
+    //     // },
+    // },
+
     {
-        directory: "_box",
-        sizes: [512, 256].map((s) => ({ w: s })),
+        directory: "_chmurek",
+        sizes: [ 460, 750, 1000 ].map((s) => ({
+            w: s,
+        })),
         quality: 90,
-        targetFormat: ["png", "webp"],
+        targetFormat: ["png"],
+        // outputOptions: {
+        //     mozjpeg: true,
+        // },
     },
+
+    // {
+    //     directory: "_wow",
+    //     sizes: [320, 640].map((s) => ({
+    //         w: s,
+    //     })),
+    //     quality: 50,
+    //     targetFormat: ["png", "webp"],
+    //     // outputOptions: {
+    //     //     mozjpeg: true,
+    //     // },
+    // },
+
+    // {
+    //     directory: "_box",
+    //     sizes: [512, 256].map((s) => ({ w: s })),
+    //     quality: 90,
+    //     targetFormat: ["png", "webp"],
+    // },
+
+    // {
+    //     directory: "_cloud",
+    //     sizes: [640, 960, 1125].map((s) => ({ w: s })),
+    //     quality: 90,
+    //     targetFormat: ["png", "webp"],
+    // },
     // {
     //     directory: "_spice_text_2",
     //     sizes: [400, 800].map((s) => ({ w: s })),
@@ -210,7 +299,7 @@ const CONFIGS = [
     // },
 ];
 
-const PAGE_NAME = "mtitle_glitch";
+const PAGE_NAME = "manime";
 
 function resizeTask(
     managedFormats = ["jpg", "jpeg", "png"],

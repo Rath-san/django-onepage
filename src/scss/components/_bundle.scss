@@ -1,0 +1,208 @@
+section.bundle1 {
+    // background: #fff;
+    // color: #000;
+    position: relative;
+    @media (min-width: 1200px) {
+        z-index: 2;
+    }
+}
+
+
+.plugin-box {
+    img {
+        height: auto;
+        width: var(--figure-size);
+    }
+}
+.plugin-box-drop {
+    // margin-bottom: calc(Min(30vw, 8rem));
+    // margin-bottom: calc(5rem + Min(30vw, 8rem));
+    @media (min-width: 1200px) {
+        // margin-bottom: calc(-.2 * var(--figure-size));
+    }
+}
+
+.box-drop {
+    position: relative;
+    top: 5px;
+}
+
+.plugin-box {
+    position: relative;
+    z-index: 1;
+}
+.plugin-box:not(:last-child) {
+    margin-right: calc(var(--figure-size) * var(--box-distance, -.27));
+}
+
+
+.box-link img {
+    // filter: drop-shadow(-1.5rem 0 1rem rgba(#000, .8));
+    transition: transform .35s cubic-bezier(.2, 0, .2, 1);
+    transform: translateX(0);
+}
+.box-link:hover img {
+    transform: translateX(calc(var(--x, 1) * -11%)) scale(1.07);
+}
+
+.save-money {
+    font-size: 1.2rem;
+    line-height: 1;
+    text-align: center;
+
+    .save {
+        font-size: .7rem;
+        text-transform: uppercase;
+    }
+    .price {
+        font-family: 'Proxima', sans-serif;
+        font-weight: 600;
+    }
+    z-index: 2;
+    clip-path: circle(100% at 50% 50%);
+    transition:
+        clip-path .8s cubic-bezier(.3,0,.1,1),
+        transform .8s cubic-bezier(.21,.17,.2,1.31),
+        opacity .2s cubic-bezier(.3,0,.1,1),
+        ;
+    transition-delay: var(--delay, .5s);
+
+    // &, .save-money-inner, .save, .price {
+    //     will-change: opacity, transform, clip-path;
+    // }
+    // will-change: opacity, transform, clip-path;
+    transform: scale(.98);
+}
+
+.save-money-bubble {
+    width: 3.25em;
+    height: 3.25em;
+    border-radius: 50%;
+    background-color: $color-yellow;
+    color: #000;
+    display: flex;
+    align-items: center;
+    position: relative;
+    &.value {
+        background-color: $color-pink;
+        color: #fff;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    .inner {
+        width: 100%;
+    }
+}
+
+.save-money {
+    .value {
+        clip-path: polygon(50% -50%, 150% 50%, 50% 150%, -50% 50%);
+        transition: clip-path 1.2s cubic-bezier(.6,0,.1,1);
+    }
+    &:hover {
+        .value {
+            transition: clip-path .8s cubic-bezier(.6,0,.1,1);
+        }
+    }
+    // &.alt:not(:hover), &:not(.alt):hover {
+    //     .value {
+    //         clip-path: polygon(-50% 50%, 50% 150%, -50% 250%, -150% 150%);
+    //     }
+    // }
+    &.alt {
+        .value {
+            clip-path: polygon(-50% 50%, 50% 150%, -50% 250%, -150% 150%);
+        }
+    }
+}
+
+.box-size-1 {
+    --figure-size: clamp(140px, 22vw, 300px);
+}
+.box-size-2 {
+    --figure-size: clamp(100px, 20vw, 256px);
+}
+
+.boxes-1 {
+    position: relative;
+
+    .save-money {
+        position: absolute;
+        top: 0; right: 0;
+    }
+}
+.boxes-2 {
+    --box-distance: -.35;
+    @media (max-width: 600px) {
+        --box-distance: -.65;
+    }
+}
+
+.save-2 {
+    top: 20%; right: -.5rem;
+}
+
+section {
+    @include image-background {
+        .img {
+            object-position: center top;
+        }
+    }
+}
+
+.bundle2 {
+    padding-top: calc(.4 * clamp(550px, 100vw, 960px));
+    
+    padding-bottom: 7rem;
+    @media (min-width: 1200px) {
+        padding-bottom: Min(15vw, 5rem);
+    }
+    // height: clamp(550px, 100vw, 960px);
+}
+
+
+
+.plugin-box {
+    transition: 2s cubic-bezier(.28,.2,.13,1);
+    transition-property: transform;
+    transition-delay: calc(.15s + (var(--i) - 1) * .17s);
+}
+.plugin-box-inner {
+    transition: 2s cubic-bezier(.28,.2,.13,1.4);
+    transition-property: transform;
+    transition-delay: calc((var(--i) - 1 - 2) * .17s);
+}
+
+.show-section-boxes {
+    transition: opacity .85s cubic-bezier(.4,0,.3,1);
+}
+
+[data-visible="false"] .show-section-boxes {
+    // &:not(.show) {
+        opacity: 0;
+        transform: translateX(calc(var(--total, 1) * -1 * Min(3rem, 3vw)));
+        .plugin-box {
+            transform: translateX(calc((var(--total) - var(--i)) * var(--total, 1) * Min(1rem, 1vw) + var(--total, 1) * Min(1rem, 1vw))) scale(.9);
+        }
+        .plugin-box-inner {
+            transform: scale(calc(1 + var(--i) * .05));
+        }
+        &.two-boxes {
+            transform: none;
+            .plugin-box {
+                transform: translateX(calc((-2 * var(--i) + 3) * Min(3rem, 3vw))) scale(1.1);
+            }
+            .plugin-box-inner {
+                transform: scale(calc(1 + var(--i) * .05));
+            }
+        }
+
+        .save-money {
+            opacity: 0;
+            transform: scale(.4);
+            clip-path: circle(0% at 50% 50%);
+        }
+    // }
+
+}

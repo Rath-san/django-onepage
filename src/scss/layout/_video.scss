@@ -3,9 +3,14 @@
   z-index: 1;
   padding-bottom: 0;
 
-  .section__title {
-    margin-bottom: clamp(3rem, 10vw, 5rem);
-    // margin-bottom: 2rem;
+  .section {
+    &__title {
+      // margin-bottom: clamp(3rem, 10vw, 5rem);
+      // margin-bottom: 2rem;
+    }
+    &__content {
+      margin-bottom: $section-padding-y;
+    }
   }
 
   &.trailer,

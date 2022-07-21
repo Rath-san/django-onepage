@@ -5,7 +5,8 @@
     position: absolute;
     top: 0;
     left: 0;
-    img {
+    img,
+    video {
         position: absolute;
         inset: 0;
         width: 100%;
@@ -14,7 +15,8 @@
     }
     &--static {
         width: 100%;
-        img {
+        img,
+        video {
             height: auto;
             width: 100%;
             object-fit: cover;

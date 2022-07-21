@@ -1,11 +1,12 @@
 .header {
     position: relative;
+    overflow: hidden;
     img {
         transition: opacity 0.5s ease-in-out;
     }
     color: #fff;
     text-align: center;
-    overflow: visible;
+    // overflow: visible;
     // padding-bottom: 100px;
     .section {
         &__content {
@@ -17,9 +18,9 @@
         &__text {
             font-weight: 300;
             text-transform: uppercase;
-            font-size: 1rem;
+            // font-size: 1rem;
             color: #fff;
-            letter-spacing: 1px;
+            // letter-spacing: 1px;
         }
     }
     &__logo {
@@ -47,7 +48,8 @@
         //     font-size: 2.65em;
         //     letter-spacing: .25em;
         // }
-        margin-bottom: 1rem;
+        margin-bottom: -1rem;
+        // margin-bottom: 1rem;
         img {
             height: auto;
             // max-width: 312px;
@@ -57,10 +59,12 @@
     }
 
     #software-icons {
-        bottom: clamp(1rem, 10vw, 6rem);
-        @media screen and (min-width: 480px) {
-            bottom: clamp(1rem, 20vw, 6rem);
-        }
+        bottom: unset;
+        top: 82%;
+        // bottom: clamp(1rem, 10vw, 6rem);
+        // @media screen and (min-width: 480px) {
+        //     bottom: clamp(1rem, 20vw, 6rem);
+        // }
     }
 
     .image__background {
@@ -167,19 +171,20 @@ section.header {
 $animation-duration: 0.5s;
 $animation-delay-offset: 200ms;
 
-.dr-gradient,
-.header__deco,
-.header__bg {
-    opacity: 1;
-    will-change: opacity;
-    transition: opacity $animation-duration linear;
-    transition-delay: calc(0ms + (#{$animation-delay-offset} * var(--h-index)));
-}
+// .dr-gradient,
+// .header__deco,
+// .header__bg {
+//     opacity: 1;
+//     will-change: opacity;
+//     transition: opacity $animation-duration linear;
+//     transition-delay: calc(0ms + (#{$animation-delay-offset} * var(--h-index)));
+// }
 
 .header__logo,
-.header__subtitle,
-.header__deco {
-    opacity: 1;
+.header .section__text,
+.header video {
+    --h-index: 1;
+    opacity: 0;
     transform: translateY(-10px) scale(1.1);
     will-change: opacity, transform;
     transition: transform $animation-duration cubic-bezier(0.3, 0, 0.3, 1),
@@ -187,65 +192,10 @@ $animation-delay-offset: 200ms;
     transition-delay: calc(0ms + (#{$animation-delay-offset} * var(--h-index)));
 }
 
-.dr-gradient {
-    &::after {
-        // transform: translateY(-20px);
-        // opacity: 0;
+.header.loaded-media {
+    .header__logo,
+    .section__text,
+    video {
+        opacity: 1;
     }
-}
-
-.header.loaded {
-    // &-primary {
-    //     .header__logo {
-    //         img {
-    //             opacity: 1 !important;
-    //         }
-    //     }
-    
-    //     .fcp {
-    //         opacity: 1;
-    //     }
-    // }
-
-    
-    &-secondary {
-        // #software-icons>* {
-        //     opacity: 1;
-        // }
-        .section {
-            &__text {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-        .header {
-            &__bg {
-                opacity: 1;
-            }
-            
-            &__logo {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                // transform: scale(1);
-            }
-        }
-    }
-
-    // .header__logo,
-    // .header__subtitle,
-    // .header__deco,
-    // .header__bg {
-    //     transform: translateY(0) scale(1);
-    //     opacity: 1;
-    // }
-    // + .dr-gradient {
-    //     opacity: 1;
-    //     &::after {
-    //         opacity: 1;
-    //     }
-    // }
-
-    // .comp-img {
-    //     opacity: 1;
-    // }
 }

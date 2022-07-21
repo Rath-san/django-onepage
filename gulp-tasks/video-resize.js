@@ -11,11 +11,11 @@ const VIDEO_QUALITY = 28; // this is not deterministic lower = uglier
 
 const CONFIGS = [
     {
-        directory: "_prevs",
+        directory: "_porun",
     },
 ];
 
-const PAGE_NAME = 'lowers';
+const PAGE_NAME = 'manime';
 
 function resizeTask(
     managedFormats = ["mov", "mp4", "m4v"],

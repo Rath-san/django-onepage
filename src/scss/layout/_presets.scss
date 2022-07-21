@@ -3,6 +3,7 @@
 .prevs {
   position: relative;
   z-index: 0;
+  padding-bottom: 0;
 
   .video__wrapper {
     max-height: 12rem;
@@ -27,8 +28,10 @@
 
   .tap {
     letter-spacing: 2px;
-    color: #555;
-    font-weight: 600;
+    color: #9A9A9A;
+    font-weight: 400;
+    font-family: $font-family-title;
+    margin-top: $section-padding-y;
   }
 
   .section {
@@ -39,9 +42,18 @@
       @include respond-below(md) {
         margin-right: 0;
       }
+
+      + div {
+        position: absolute;
+
+      }
+
     }
     &__title {
       text-transform: unset;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     &__subtitle {
       letter-spacing: 1px;

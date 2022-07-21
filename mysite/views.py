@@ -33,6 +33,7 @@ def index(request, **kwargs):
     context = {
         'get_products': get_products,
         'price': price,
+        'promo_price': price,
         'get_product': get_product,
         'get_promo_valid_info': get_promo_valid_info,
         'product' : {
@@ -49,4 +50,4 @@ def index(request, **kwargs):
         'test': 'test12',
     }
 
-    return render(request, "chalk.jinja", context)
+    return render(request, "index.jinja", context)
