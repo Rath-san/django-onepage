@@ -32,7 +32,7 @@
 	{% set template_id = "1417" %}
 	{# {% set template_id_s3 = "200" %} #}
 	{% set media_prefix = "mVertical" %}
-	{% set media_url = "https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media" % '1444' %}
+	{% set media_url = "https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media" % '1445' %}
 	{# {% set media_prefix_s3 = "https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media" % template_id_s3 %} #}
 	{# {% set media_prefix_presets = media_prefix + "/presets" %} #}
 	{% set version = "v=0" %}
@@ -41,27 +41,27 @@
     {% set product_name = 'mVertical' %}
     {% set shared_media_template_id = '1408' %}
     {% set shared_media_url = 'https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media' % (shared_media_template_id) %}
-    {% set product_id_fcp = 2444 %}
-    {% set product_id_pr = 3727 %}
-    {% set twin_product_id = product_id_fcp %}
-    {# {% set product_fcp, product_dvr = get_products([product_id_fcp, product_id_dvr]) %} #}
-	{% set product_fcp, product_pr = [product, product] %}
+
+    
+	{% set product_id_fcp = 3641 %}
+    {% set product_id_dvr = 3823 %}
+    {% set product_fcp, product_dvr = get_products([product_id_fcp, product_id_dvr]) %}
     {% set software_versions = [
-		{
+    	{
             'type': 'fcp',
             'name': ['FCP', 'Final Cut Pro'],
-            'product': product_fcp,
+            'product': product,
             'product_url': 'https://www.motionvfx.com/store,%s,p%s.html' % (product_fcp.slug, product_fcp.id),
             'images': ["box_fcp", "fcp_icon"],
-            'box_media_url': 'https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media' % ('1444')
+            'box_media_url': 'https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media' % ('1445')
         },
         {
-            'type': 'pr',
-            'name': ['Premiere', 'Adobe Premiere'],
-            'product': product_pr,
-            'product_url': 'https://www.motionvfx.com/store,%s,p%s.html' % (product_pr.slug, product_pr.id),
-            'images': ["box_pr", "pr_icon"],
-            'box_media_url': 'https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media' % ('1444'),
+            'type': 'dvr',
+            'name': ['DVR', 'Da Vinci Resolve'],
+            'product': product,
+            'product_url': 'https://www.motionvfx.com/store,%s,p%s.html' % (product_dvr.slug, product_dvr.id),
+            'images': ["box_dvr", "dvr_icon"],
+            'box_media_url': 'https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media' % ('1445'),
         },
     ] %}
     {#{% for sv in software_versions %}
@@ -72,33 +72,224 @@
 
 	{% set trailer_id = 'iBtNRsQeZnQ' %}
 	{% set tutorial_ids  = [
-		'6eaeSIy0gto',
-		'6eaeSIy0gto'
+		'0d4CBUgCrzQ',
+		'0d4CBUgCrzQ'
 	] %}
 
-	<div class="mplugs157" id="mPlugsPage">
-		<div class="headerWrapper" style="background-image: url('https://s3.motionvfx.com/mvfxpublic/images/mtitle/glitch/bg_01.jpg?1.0.5'); height:634px; background-position: top">
-			<div class="innerWrapper">
-				<div class="logo">
-					<img src="https://s3.motionvfx.com/mvfxpublic/images/mtitle/glitch/images/Logo.png?1.0.5" />
-				</div>
-				<p class="infoTop">
-					30 Dynamic Glitchy Titles For Final Cut Pro and Adobe Premiere
-				</p>
-			</div>
-			<a onclick="" class="watch data">
-			FCP 10.3.4 required
-			</a>
+	<div class="mTitleRestyle">
+		{% set refresh = '4' %}
 
-			{# SOFTWARE ICONS #}
-			<div id="software-icons" class="software-icons text-center" style="width: 100%; left: 0; bottom: 0">
+		<section class="header header2 dark mix-slider">
+			
+			<div class="image-background height100">
+				<div class="container-flex height100">
+					<div class="row height100">
+						<div class="col-6 col-left height100">
+							<div class="bg height100">
+								<picture>
+									<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/left_half-640.jpg?v{{refresh}} 640w,
+											https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/left_half-960.jpg?v{{refresh}} 960w,
+											https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/left_half-1280.jpg?v{{refresh}} 1280w"
+										sizes="(min-width: 1200px) 50vw, 100vw"
+										type="image/jpeg">
+									<img class="bgLeft bgLeft1" src="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/left_half-1280.jpg?v{{refresh}}" alt="" width="1280" height="860" />
+								</picture>
+								<picture>
+									<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/left_half_2-640.jpg?v{{refresh}} 640w,
+											https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/left_half_2-960.jpg?v{{refresh}} 960w,
+											https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/left_half_2-1280.jpg?v{{refresh}} 1280w"
+										sizes="(min-width: 1200px) 50vw, 100vw"
+										type="image/jpeg">
+									<img class="bgLeft overlay inactive" src="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/left_half_2-1280.jpg?v{{refresh}}" alt="" width="1280" height="860" />
+								</picture>
+								<picture>
+									<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/left_half_3-640.jpg?v{{refresh}} 640w,
+											https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/left_half_3-960.jpg?v{{refresh}} 960w,
+											https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/left_half_3-1280.jpg?v{{refresh}} 1280w"
+										sizes="(min-width: 1200px) 50vw, 100vw"
+										type="image/jpeg">
+									<img class="bgLeft overlay inactive" src="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/left_half_3-1280.jpg?v{{refresh}}" alt="" width="1280" height="860" />
+								</picture>
+								<picture>
+									<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/left_half_4-640.jpg?v{{refresh}} 640w,
+											https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/left_half_4-960.jpg?v{{refresh}} 960w,
+											https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/left_half_4-1280.jpg?v{{refresh}} 1280w"
+										sizes="(min-width: 1200px) 50vw, 100vw"
+										type="image/jpeg">
+									<img class="bgLeft overlay inactive" src="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/left_half_4-1280.jpg?v{{refresh}}" alt="" width="1280" height="860" />
+								</picture>
+							</div>
+						</div>
+						<div class="col-6 col-right height100">
+							<div class="bg height100">
+								<picture>
+									<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/right_half-640.jpg?v{{refresh}} 640w,
+											https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/right_half-960.jpg?v{{refresh}} 960w,
+											https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/right_half-1280.jpg?v{{refresh}} 1280w"
+										sizes="(min-width: 1200px) 50vw, 100vw"
+										type="image/jpeg">
+									<img class="bgRight bgRight1" src="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/right_half-1280.jpg?v{{refresh}}" alt="" width="1280" height="860" />
+								</picture>
+								<picture>
+									<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/right_half_2-640.jpg?v{{refresh}} 640w,
+											https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/right_half_2-960.jpg?v{{refresh}} 960w,
+											https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/right_half_2-1280.jpg?v{{refresh}} 1280w"
+										sizes="(min-width: 1200px) 50vw, 100vw"
+										type="image/jpeg">
+									<img class="bgRight overlay inactive" src="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/right_half_2-1280.jpg?v{{refresh}}" alt="" width="1280" height="860" />
+								</picture>
+								<picture>
+									<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/right_half_3-640.jpg?v{{refresh}} 640w,
+											https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/right_half_3-960.jpg?v{{refresh}} 960w,
+											https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/right_half_3-1280.jpg?v{{refresh}} 1280w"
+										sizes="(min-width: 1200px) 50vw, 100vw"
+										type="image/jpeg">
+									<img class="bgRight overlay inactive" src="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/right_half_3-1280.jpg?v{{refresh}}" alt="" width="1280" height="860" />
+								</picture>
+								<picture>
+									<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/right_half_4-640.jpg?v{{refresh}} 640w,
+											https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/right_half_4-960.jpg?v{{refresh}} 960w,
+											https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/right_half_4-1280.jpg?v{{refresh}} 1280w"
+										sizes="(min-width: 1200px) 50vw, 100vw"
+										type="image/jpeg">
+									<img class="bgRight overlay inactive" src="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/right_half_4-1280.jpg?v{{refresh}}" alt="" width="1280" height="860" />
+								</picture>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="container-fluid">
+				<div class="header-box">
+					<h1>
+						<div class="text">
+							mTITLE
+						</div>
+						<div class="row">
+							<div class="col-6 col-left">
+								<div class="logo">
+									<picture>
+										<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_left_half-640.webp?v{{refresh}} 640w,
+										https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_left_half-960.webp?v{{refresh}} 960w,
+										https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_left_half-1280.webp?v{{refresh}} 1280w"
+										sizes="50vw"
+										type="image/webp">
+										<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_left_half-640.png?v{{refresh}} 640w,
+										https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_left_half-960.png?v{{refresh}} 960w,
+										https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_left_half-1280.png?v{{refresh}} 1280w"
+										sizes="50vw"
+										type="image/png">
+										<img class="logoLeft logoLeft1" src="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_left_half-1280.png?v{{refresh}}" alt="" width="1280" height="260" />
+									</picture>
+									<picture>
+										<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_left_half_2-640.webp?v{{refresh}} 640w,
+										https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_left_half_2-960.webp?v{{refresh}} 960w,
+										https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_left_half_2-1280.webp?v{{refresh}} 1280w"
+										sizes="50vw"
+										type="image/webp">
+										<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_left_half_2-640.png?v{{refresh}} 640w,
+										https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_left_half_2-960.png?v{{refresh}} 960w,
+										https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_left_half_2-1280.png?v{{refresh}} 1280w"
+										sizes="50vw"
+										type="image/png">
+										<img class="logoLeft overlay inactive" src="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_left_half_2-1280.png?v{{refresh}}" alt="" width="1280" height="260" />
+									</picture>
+									<picture>
+										<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_left_half_3-640.webp?v{{refresh}} 640w,
+										https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_left_half_3-960.webp?v{{refresh}} 960w,
+										https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_left_half_3-1280.webp?v{{refresh}} 1280w"
+										sizes="50vw"
+										type="image/webp">
+										<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_left_half_3-640.png?v{{refresh}} 640w,
+										https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_left_half_3-960.png?v{{refresh}} 960w,
+										https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_left_half_3-1280.png?v{{refresh}} 1280w"
+										sizes="50vw"
+										type="image/png">
+										<img class="logoLeft overlay inactive" src="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_left_half_3-1280.png?v{{refresh}}" alt="" width="1280" height="260" />
+									</picture>
+									<picture>
+										<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_left_half_4-640.webp?v{{refresh}} 640w,
+										https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_left_half_4-960.webp?v{{refresh}} 960w,
+										https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_left_half_4-1280.webp?v{{refresh}} 1280w"
+										sizes="50vw"
+										type="image/webp">
+										<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_left_half_4-640.png?v{{refresh}} 640w,
+										https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_left_half_4-960.png?v{{refresh}} 960w,
+										https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_left_half_4-1280.png?v{{refresh}} 1280w"
+										sizes="50vw"
+										type="image/png">
+										<img class="logoLeft overlay inactive" src="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_left_half_4-1280.png?v{{refresh}}" alt="" width="1280" height="260" />
+									</picture>
+								</div>
+							</div>
+							<div class="col-6 col-right">
+								<div class="logo">
+									<picture>
+										<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_right_half-640.webp?v{{refresh}} 640w,
+										https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_right_half-960.webp?v{{refresh}} 960w,
+										https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_right_half-1280.webp?v{{refresh}} 1280w"
+										sizes="50vw"
+										type="image/webp">
+										<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_right_half-640.png?v{{refresh}} 640w,
+										https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_right_half-960.png?v{{refresh}} 960w,
+										https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_right_half-1280.png?v{{refresh}} 1280w"
+										sizes="50vw"
+										type="image/png">
+										<img class="logoRight logoRight1" src="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_right_half-1280.png?v{{refresh}}" alt="" width="1280" height="260" />
+									</picture>
+									<picture>
+										<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_right_half_2-640.webp?v{{refresh}} 640w,
+										https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_right_half_2-960.webp?v{{refresh}} 960w,
+										https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_right_half_2-1280.webp?v{{refresh}} 1280w"
+										sizes="50vw"
+										type="image/webp">
+										<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_right_half_2-640.png?v{{refresh}} 640w,
+										https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_right_half_2-960.png?v{{refresh}} 960w,
+										https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_right_half_2-1280.png?v{{refresh}} 1280w"
+										sizes="50vw"
+										type="image/png">
+										<img class="logoRight overlay inactive" src="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_right_half_2-1280.png?v{{refresh}}" alt="" width="1280" height="260" />
+									</picture>
+									<picture>
+										<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_right_half_3-640.webp?v{{refresh}} 640w,
+										https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_right_half_3-960.webp?v{{refresh}} 960w,
+										https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_right_half_3-1280.webp?v{{refresh}} 1280w"
+										sizes="50vw"
+										type="image/webp">
+										<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_right_half_3-640.png?v{{refresh}} 640w,
+										https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_right_half_3-960.png?v{{refresh}} 960w,
+										https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_right_half_3-1280.png?v{{refresh}} 1280w"
+										sizes="50vw"
+										type="image/png">
+										<img class="logoRight overlay inactive" src="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_right_half_3-1280.png?v{{refresh}}" alt="" width="1280" height="260" />
+									</picture>
+									<picture>
+										<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_right_half_4-640.webp?v{{refresh}} 640w,
+										https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_right_half_4-960.webp?v{{refresh}} 960w,
+										https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_right_half_4-1280.webp?v{{refresh}} 1280w"
+										sizes="50vw"
+										type="image/webp">
+										<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_right_half_4-640.png?v{{refresh}} 640w,
+										https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_right_half_4-960.png?v{{refresh}} 960w,
+										https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_right_half_4-1280.png?v{{refresh}} 1280w"
+										sizes="50vw"
+										type="image/png">
+										<img class="logoRight overlay inactive" src="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/logo_right_half_4-1280.png?v{{refresh}}" alt="" width="1280" height="260" />
+									</picture>
+								</div>
+							</div>
+						</div>
+					</h1>
+
+					<p class="subtitle animate-opacity">{{ product.head_info }}</p>
+				</div>
+				{# SOFTWARE ICONS #}
+			</div>
+			<div id="software-icons" class="software-icons text-center" style="width: 100%; left: 0; bottom: 13%; z-index: 1">
 				{% for si in software_versions %}
 				<a
-					{% if si.product.id != product.id %}
-						href="{{si.product_url}}"
-					{% else %}
-						role="button"
-					{% endif %}
+					role="button"
 					name="product link {{ si.name[1] }}"
 					aria-label="Product link {{ si.name[1] }}"
 					target="_blank"
@@ -108,67 +299,93 @@
 				</a>
 				{% endfor %}
 			</div>
+
+			<img src="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/loader.gif" alt="" width="150" height="150" class="loader" />
+		</section>
+		
+		<div class="paper-bg">
+		<div class="scroll-prompt">
+			<a href="#" class="scroll-to-btn" onclick="scrollToAnchor('trailer');" tabindex="-1">
+			</a>
 		</div>
 
-		<div class="headerWrapper trailer" style="background-color:#0a0a0a;">
-			<a class="navmTuber" name="trailer"></a>
-			<div class="bg2 section__content" >
-				<h4>Warning!</h4>
-				<h4 class="mx-auto" style="max-width: 38em"><span style="color: #9a9a9a; padding-bottom: 3rem">
-					Trailer video and product previews contain flashing images, which may not be suitable for photosensitive epilepsy.
-					</span>
-				</h4>
-			</div>
-			<div class="container">
-				<div class="row">
-					<div class="col-12">
-						<div class="yt embed-responsive embed-responsive-16by9">
-							<iframe loading="lazy" title="trailer" src="https://www.youtube.com/embed/{{trailer_id}}?rel=0" frameborder="0" height="496" width="1144" allow="autoplay; encrypted-media" allowfullscreen title="mTitle Glitch Trailer"></iframe>
-						</div>
+			<section class="trailer light">
+				<div class="container center">
+					<div class="text-box">
+						<a class="nav" name="trailer"></a>
+						<h2 class="tighter">Watch trailer</h2>
+						<p class="mw-23">
+							From the opening credits to THE END, make all your edits letter-perfect. See how it works.
+						</p>
 					</div>
 				</div>
-			</div>
-		</div>
+				<div class="container yt-wrapper">
+					<div class="yt embed-responsive embed-responsive-16by9">
+						<iframe id="ytTrailer" src="https://www.youtube.com/embed/bnpiErTjVk4?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+					</div>
+				</div>
+			</section>
 
-		<div class="headerWrapper tutorial" style="background-color:#0a0a0a;">
-			<a class="navmTuber" name="tutorial"></a>
-			<div class="bg9">
-				<h4>WATCH TUTORIAL</h4>
-			</div>
-			<div class="container">
-				<div class="row">
-					{% for t_id in tutorial_ids %}
-					<div class="col-12 col-lg-6 mb-4 mb-lg-0">
-						<div class="yt embed-responsive embed-responsive-16by9" >
-							<iframe loading="lazy" title="plugin tutorial" src="https://www.youtube.com/embed/{{ t_id }}?rel=0" frameborder="0" height="642" width="1144" allow="autoplay; encrypted-media" allowfullscreen title="mTitle Glitch Tutorial"></iframe>
-							{# <div class="innerWrapper" style="margin-top:0px;">
-								<!--<iframe allowfullscreen="" frameborder="0"  width="1144" height="642" mozallowfullscreen="" src="//player.vimeo.com/video/227068963?1.0.5title=0&amp;byline=0&amp;portrait=0" webkitallowfullscreen=""></iframe>-->
-				
-							</div> #}
-						</div>
+			<section class="tutorial light">
+				<div class="container center">
+					<div class="text-box">
+						<a class="nav" name="tutorial"></a>
+						<h3 class="tighter">
+							See the workflow!
+						</h3>
+						<h2>
+							View tutorial
+						</h2>
+						<p class="mw-23">Typography speaks volumes. Find out how to make it look really good.
+						</p>
 					</div>
-					{% endfor %}
 				</div>
-			</div>
+				<div class="container">
+					<div class="row">
+						{% for t_id in tutorial_ids %}
+							<div class="col-12 col-lg-6">
+							<div class="yt-wrapper">
+								<div class="yt embed-responsive embed-responsive-16by9">
+									<iframe id="ytTrailer" src="https://www.youtube.com/embed/{{ t_id }}?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+								</div>
+							</div>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+			</section>
 		</div>
 
 		{# BUY BOXES #}
-		<section id="buy-boxes" class="text-center"
-			style="
-				background-image:url(
-					'{{media_url}}/box_bg-raw.jpg'
-				);
-				background-size: contain;
-				background-position: center;
-				background-repeat: no-repeat;
-			"
-		>
-			<div class="container">
-				<p class="section__title mx-auto" style="width: Min(90%, 10em)">
-					<span>GET IT FOR YOUR</span>
-						APP OF CHOICE
-					</p>
-				<p class="section__text mx-auto" style="width: Min(90%, 26em)">
+		<section id="buy-boxes" class="text-center">
+			<style>
+				.boxes__bg {
+					position: absolute;
+					top: 0;
+				}
+				.boxes__bg img {
+					width: 100%;
+					height: auto;
+				}
+			</style>
+			<div class="boxes__bg">
+				{{ picture(
+					media_url,
+					'boxes_bg',
+					file_sizes=srcsetSizes,
+					media_sizes='100vw',
+					formats=['jpg'],
+					width=2560,
+					height=960,
+					loading="lazy"
+				) }}
+			</div>
+			<div class="container pt-4">
+				<h3>GET IT FOR YOUR</h3>
+				<h2 class="mx-auto" style="width: Min(90%, 10em)">
+					APP OF CHOICE
+				</h2>
+				<p class="section__text mx-auto" style="width: Min(90%, 26em); line-height: 1.6">
 					Now our top-quality editing tools are available for both Final Cut Pro and Adobe Premiere!
 				</p>
 		
@@ -192,11 +409,6 @@
 				<div class="row pt-5" style="max-width: 840px; margin-left: auto; margin-right: auto;">
 					{% for b in software_versions %}
 						<div class="col-12 col-md-6 pb-5 pb-md-0 mb-md-0">
-								{# {% if b.product.id != product.id %}
-									href="{{ b.product_url }}"
-									target="_blank"
-								{% else %}
-								{% endif %} #}
 							<a  
 								role="button"
 								aria-label="{{ b.name[1] }} link"
@@ -237,250 +449,426 @@
 			</div>
 		</section>
 
-		<div id="img1" class="headerWrapper"
-			style="
-				background-image:url(
-					'https://s3.motionvfx.com/mvfxpublic/images/mtitle/glitch/bg_03.jpg?1.0.5'
-				);
-				background-color:#0a0a0a;
-				height:1036px;
-			">
-			<video id="video1" autoplay loop muted playsInline style="display:none; top:518px; mix-blend-mode:screen;">
-				<source src="https://s3.motionvfx.com/mvfxpublic/images/mtitle/glitch/bg_03.mp4?1.0.5" type="video/mp4">
-				<source src="https://s3.motionvfx.com/mvfxpublic/images/mtitle/glitch/bg_03.webm?1.0.5" type="video/webm">
-				Your browser does not support the video tag
-			</video>
-			<div class="section__content">
-				<div class="bg3">
-					<h4>Frantic glitches <span>&</span> modern typography</h4>
-					<h3>30 unique titles that can enrich any project.</h3>
+		<section class="video center">
+			{# <div class="image-background">
+				<picture>
+					<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/corrosion_bg_top-640.webp?v{{refresh}} 640w,
+							https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/corrosion_bg_top-960.webp?v{{refresh}} 960w,
+							https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/corrosion_bg_top-1280.webp?v{{refresh}} 1280w,
+							https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/corrosion_bg_top-1920.webp?v{{refresh}} 1920w,
+							https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/corrosion_bg_top-2560.webp?v{{refresh}} 2560w"
+						sizes="2560px"
+						type="image/webp">
+					<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/corrosion_bg_top-640.jpg?v{{refresh}} 640w,
+							https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/corrosion_bg_top-960.jpg?v{{refresh}} 960w,
+							https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/corrosion_bg_top-1280.jpg?v{{refresh}} 1280w,
+							https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/corrosion_bg_top-1920.jpg?v{{refresh}} 1920w,
+							https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/corrosion_bg_top-2560.jpg?v{{refresh}} 2560w"
+						sizes="2560px"
+						type="image/jpeg">
+					<img class="img" src="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/corrosion_bg_top-2560.jpg?v{{refresh}}" alt="" width="2560" height="310" />
+				</picture>
+			</div> #}
+			<div class="container">
+				<h3>THE MEDIUM IS THE MESSAGE</h3>
+				<h2>Animation is your medium</h2>
+				<div class="">
+					<video class="img-fluid" src="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/mTitleRestyle_corrosion.mp4" muted autoplay playsinline loop width="1920" height="1080"></video>
 				</div>
+				<p>
+					Make mTitle Restyle your tool of choice for all things typography. Animate your titles, supers, YouTube channel openings, transitions and lots more, for an even more dynamic viewing experience.
+				</p>
 			</div>
-		</div>
-		<div class="headerWrapper warped"
-			style="
-				background-image:
-					url('https://s3.motionvfx.com/mvfxpublic/images/mtitle/glitch/bg_04.jpg?1.0.5');
-			">
-			<div class="section__content">
-				<div class="bg4">
-					<h4>
-						IMMENSELY<br />
-						ENERGETIC
-					</h4>
-					<h3>
-						Loaded with dynamic action that can't go unnoticed.
-					</h3>
-				</div>
-				<div class="bg4 bottom">
-					<h4>
-						CLEARLY<br />
-						STYLIZED
-					</h4>
-					<h3>
-						Elegantly crafted for clarity of every message.
-					</h3>
-				</div>
-			</div>
-		</div>
+		</section>
 
-		<div id="img2" class="headerWrapper chaotic"
-			style="
-				background-image:
-					url('https://s3.motionvfx.com/mvfxpublic/images/mtitle/glitch/bg_05.jpg?1.0.5');
-				background-color: #121212;
-			">
-			<div class="section__content">
-				<div class="bg5">
-					<h4>CHANNEL SHIFTS & DIGITAL WARPS</h4>
-					<h3>
-						Realistically designed distortions that enliven the text.
-					</h3>
+		<section class="section-carousel">
+			<div class="slider slider-continuous d-none d-xl-block" data-slider='{"offset": -0.15, "skip": [6], "autoplay": false, "start": 5, "stayOn": [0]}'>
+				<div class="slider-inner">
+					<div class="slider-item">
+					</div>
+					<div class="slider-item">
+						<picture>
+							<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_1-640.webp?v{{refresh}} 640w,
+									https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_1-960.webp?v{{refresh}} 960w,
+									https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_1-1280.webp?v{{refresh}} 1280w"
+								sizes="(min-width: 1200px) 50vw, 100vw"
+								type="image/webp">
+							<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_1-640.jpg?v{{refresh}} 640w,
+									https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_1-960.jpg?v{{refresh}} 960w,
+									https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_1-1280.jpg?v{{refresh}} 1280w"
+								sizes="(min-width: 1200px) 50vw, 100vw"
+								type="image/jpeg">
+							<img src="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_1-1280.jpg?v{{refresh}}" alt="" width="1280" height="720" />
+						</picture>
+					</div>
+
+					<div class="slider-item">
+						<picture>
+							<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_2-640.webp?v{{refresh}} 640w,
+									https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_2-960.webp?v{{refresh}} 960w,
+									https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_2-1280.webp?v{{refresh}} 1280w"
+								sizes="(min-width: 1200px) 50vw, 100vw"
+								type="image/webp">
+							<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_2-640.jpg?v{{refresh}} 640w,
+									https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_2-960.jpg?v{{refresh}} 960w,
+									https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_2-1280.jpg?v{{refresh}} 1280w"
+								sizes="(min-width: 1200px) 50vw, 100vw"
+								type="image/jpeg">
+							<img src="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_2-1280.jpg?v{{refresh}}" alt="" width="1280" height="720" />
+						</picture>
+					</div>
+
+					<div class="slider-item">
+						<picture>
+							<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_3-640.webp?v{{refresh}} 640w,
+									https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_3-960.webp?v{{refresh}} 960w,
+									https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_3-1280.webp?v{{refresh}} 1280w"
+								sizes="(min-width: 1200px) 50vw, 100vw"
+								type="image/webp">
+							<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_3-640.jpg?v{{refresh}} 640w,
+									https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_3-960.jpg?v{{refresh}} 960w,
+									https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_3-1280.jpg?v{{refresh}} 1280w"
+								sizes="(min-width: 1200px) 50vw, 100vw"
+								type="image/jpeg">
+							<img src="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_3-1280.jpg?v{{refresh}}" alt="" width="1280" height="720" />
+						</picture>
+					</div>
+
+					<div class="slider-item">
+						<picture>
+							<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_4-640.webp?v{{refresh}} 640w,
+									https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_4-960.webp?v{{refresh}} 960w,
+									https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_4-1280.webp?v{{refresh}} 1280w"
+								sizes="(min-width: 1200px) 50vw, 100vw"
+								type="image/webp">
+							<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_4-640.jpg?v{{refresh}} 640w,
+									https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_4-960.jpg?v{{refresh}} 960w,
+									https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_4-1280.jpg?v{{refresh}} 1280w"
+								sizes="(min-width: 1200px) 50vw, 100vw"
+								type="image/jpeg">
+							<img src="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_4-1280.jpg?v{{refresh}}" alt="" width="1280" height="720" />
+						</picture>
+					</div>
+
+					<div class="slider-item">
+						<picture>
+							<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_5-640.webp?v{{refresh}} 640w,
+									https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_5-960.webp?v{{refresh}} 960w,
+									https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_5-1280.webp?v{{refresh}} 1280w"
+								sizes="(min-width: 1200px) 50vw, 100vw"
+								type="image/webp">
+							<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_5-640.jpg?v{{refresh}} 640w,
+									https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_5-960.jpg?v{{refresh}} 960w,
+									https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_5-1280.jpg?v{{refresh}} 1280w"
+								sizes="(min-width: 1200px) 50vw, 100vw"
+								type="image/jpeg">
+							<img src="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_5-1280.jpg?v{{refresh}}" alt="" width="1280" height="720" />
+						</picture>
+					</div>
+
+					<div class="slider-item">
+						<picture>
+							<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_6-640.webp?v{{refresh}} 640w,
+									https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_6-960.webp?v{{refresh}} 960w,
+									https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_6-1280.webp?v{{refresh}} 1280w"
+								sizes="(min-width: 1200px) 50vw, 100vw"
+								type="image/webp">
+							<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_6-640.jpg?v{{refresh}} 640w,
+									https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_6-960.jpg?v{{refresh}} 960w,
+									https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_6-1280.jpg?v{{refresh}} 1280w"
+								sizes="(min-width: 1200px) 50vw, 100vw"
+								type="image/jpeg">
+							<img src="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_6-1280.jpg?v{{refresh}}" alt="" width="1280" height="720" />
+						</picture>
+					</div>
+
+				</div>
+
+				<div class="slider_nav">
+					<div class="nav_button button_prev">Previous</div>
+					<div class="nav_button button_next">Next</div>
 				</div>
 			</div>
-			<video id="video2" autoplay loop muted playsInline style="display:none; top:440px; mix-blend-mode:screen;">
-				<source src="https://s3.motionvfx.com/mvfxpublic/images/mtitle/glitch/bg_05.mp4?1.0.5" type="video/mp4">
-				<source src="https://s3.motionvfx.com/mvfxpublic/images/mtitle/glitch/bg_05.webm?1.0.5" type="video/webm">
-				Your browser does not support the video tag
-			</video>
-		</div>
-		<div class="headerWrapper resolutions" style="background-image: url('https://s3.motionvfx.com/mvfxpublic/images/mtitle/glitch/bg_06.jpg?1.0.5');">
-			<div class="section__content">
-				<div class="glitch__wrapper">
-					<img class="glitch" src="https://s3.motionvfx.com/mvfxpublic/images/mtitle/glitch/images/4K.png" alt="" />
+			<div class="slider slider-continuous d-xl-none" data-slider='{"offset": 0, "autoplay": false}'>
+				<div class="slider-inner">
+					<div class="slider-item">
+						<picture>
+							<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_1-640.webp?v{{refresh}} 640w,
+									https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_1-960.webp?v{{refresh}} 960w,
+									https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_1-1280.webp?v{{refresh}} 1280w"
+								sizes="(min-width: 1200px) 50vw, 100vw"
+								type="image/webp">
+							<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_1-640.jpg?v{{refresh}} 640w,
+									https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_1-960.jpg?v{{refresh}} 960w,
+									https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_1-1280.jpg?v{{refresh}} 1280w"
+								sizes="(min-width: 1200px) 50vw, 100vw"
+								type="image/jpeg">
+							<img src="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_1-1280.jpg?v{{refresh}}" alt="" width="1280" height="720" />
+						</picture>
+					</div>
+
+					<div class="slider-item">
+						<picture>
+							<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_2-640.webp?v{{refresh}} 640w,
+									https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_2-960.webp?v{{refresh}} 960w,
+									https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_2-1280.webp?v{{refresh}} 1280w"
+								sizes="(min-width: 1200px) 50vw, 100vw"
+								type="image/webp">
+							<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_2-640.jpg?v{{refresh}} 640w,
+									https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_2-960.jpg?v{{refresh}} 960w,
+									https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_2-1280.jpg?v{{refresh}} 1280w"
+								sizes="(min-width: 1200px) 50vw, 100vw"
+								type="image/jpeg">
+							<img src="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_2-1280.jpg?v{{refresh}}" alt="" width="1280" height="720" />
+						</picture>
+					</div>
+
+					<div class="slider-item">
+						<picture>
+							<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_3-640.webp?v{{refresh}} 640w,
+									https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_3-960.webp?v{{refresh}} 960w,
+									https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_3-1280.webp?v{{refresh}} 1280w"
+								sizes="(min-width: 1200px) 50vw, 100vw"
+								type="image/webp">
+							<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_3-640.jpg?v{{refresh}} 640w,
+									https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_3-960.jpg?v{{refresh}} 960w,
+									https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_3-1280.jpg?v{{refresh}} 1280w"
+								sizes="(min-width: 1200px) 50vw, 100vw"
+								type="image/jpeg">
+							<img src="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_3-1280.jpg?v{{refresh}}" alt="" width="1280" height="720" />
+						</picture>
+					</div>
+
+					<div class="slider-item">
+						<picture>
+							<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_4-640.webp?v{{refresh}} 640w,
+									https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_4-960.webp?v{{refresh}} 960w,
+									https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_4-1280.webp?v{{refresh}} 1280w"
+								sizes="(min-width: 1200px) 50vw, 100vw"
+								type="image/webp">
+							<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_4-640.jpg?v{{refresh}} 640w,
+									https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_4-960.jpg?v{{refresh}} 960w,
+									https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_4-1280.jpg?v{{refresh}} 1280w"
+								sizes="(min-width: 1200px) 50vw, 100vw"
+								type="image/jpeg">
+							<img src="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_4-1280.jpg?v{{refresh}}" alt="" width="1280" height="720" />
+						</picture>
+					</div>
+
+					<div class="slider-item">
+						<picture>
+							<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_5-640.webp?v{{refresh}} 640w,
+									https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_5-960.webp?v{{refresh}} 960w,
+									https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_5-1280.webp?v{{refresh}} 1280w"
+								sizes="(min-width: 1200px) 50vw, 100vw"
+								type="image/webp">
+							<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_5-640.jpg?v{{refresh}} 640w,
+									https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_5-960.jpg?v{{refresh}} 960w,
+									https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_5-1280.jpg?v{{refresh}} 1280w"
+								sizes="(min-width: 1200px) 50vw, 100vw"
+								type="image/jpeg">
+							<img src="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_5-1280.jpg?v{{refresh}}" alt="" width="1280" height="720" />
+						</picture>
+					</div>
+
+					<div class="slider-item">
+						<picture>
+							<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_6-640.webp?v{{refresh}} 640w,
+									https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_6-960.webp?v{{refresh}} 960w,
+									https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_6-1280.webp?v{{refresh}} 1280w"
+								sizes="(min-width: 1200px) 50vw, 100vw"
+								type="image/webp">
+							<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_6-640.jpg?v{{refresh}} 640w,
+									https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_6-960.jpg?v{{refresh}} 960w,
+									https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_6-1280.jpg?v{{refresh}} 1280w"
+								sizes="(min-width: 1200px) 50vw, 100vw"
+								type="image/jpeg">
+							<img src="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_6-1280.jpg?v{{refresh}}" alt="" width="1280" height="720" />
+						</picture>
+					</div>
+
 				</div>
-				<div class="bg6">
-					<h4>
-						PREPARED FOR HIGHEST<br />
-						RESOLUTIONS
-					</h4>
-					<h3>
-						Top-quality to the last detail
-					</h3>
+
+				<div class="slider_nav">
+					<div class="nav_button button_prev">Previous</div>
+					<div class="nav_button button_next">Next</div>
 				</div>
 			</div>
-		</div>
-		<div class="headerWrapper built">
-			<div class="built__wrapper">
-				<div class="section__content">
-					<div class="bg7">
-						<h4 style="max-width: 12em;">Built exclusively for <b>Final Cut Pro</b> and <b>Adobe Premiere</b></h4>
+
+			<div class="container">
+				<div class="row">
+					<div class="col-12 col-lg-6 col-xl-4">
+						<h3>ATTENTION, PLEASE</h3>
+						<h2>Grab the attention. Impress. Repeat.</h2>
+						<p>Apply the effects to all your typography to grab attention, create suspense and build momentum. Let the words speak for themselves.</p>
+						<img class="code" src="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/code.jpg?v{{refresh}}" alt="" width="200" height="70">
 					</div>
 				</div>
-				<img src="https://s3.motionvfx.com/mvfxpublic/images/mtitle/glitch/bg_07.jpg?1.0.5" alt="">
 			</div>
-			<div class="section__content">
-				<div class="bg7">
-					{# <h4 style="max-width: 12em;">Built exclusively for <b>Final Cut Pro</b> and <b>Adobe Premiere</b></h4> #}
-					<h2 style="max-width: 24em;">
-						Drag & Drop workflow and easy customization with on-screen controls and published parameters.
-					</h2>
-				</div>
-			</div>
-		</div>
+		</section>
 
-		<div class="headerWrapper prevs" style="background-color:#0d0d0d;">
-			<div class="bg8">
-				<img src="https://s3.motionvfx.com/mvfxpublic/images/mtitle/glitch/images/30titles.jpg" alt="" />
-				<h4><span>M</span>TITLE GLITCH</h4>
-				<h3>examples</h3>
-				<h2>
-					Hover on thumbnail to view animation
-				</h2>
+		<section class="mix2 mix3 center mix-slider">
+			<div class="container">
+				<h3>Your visuals need a flow</h3>
+				<h2>Mix your effects, add some rhythm</h2>
+				<!-- <div class="logo-wrapper">
+				</div> -->
+				<!-- <p>When performing live, freestyle battles juxtapose songs with flowing lyrics. Time of Restyle battle that you’re about to win.
+				</p> -->
 			</div>
-		</div>
-		<div class="prevsWrapper">
-			<div class="prevsComp">
-				{% for id in range(1,31) %}
-					{% set f_name = '%02d' % id %}
-					<div class="prev__container">
-						<img id="image{{ f_name }}" src="https://s3.motionvfx.com/mvfxpublic/images/mtitle/glitch/prevs/{{ f_name }}.jpg?1.0.5" alt="" />
-						<video id="video{{ f_name }}" onmouseover="hoverOnPrev(1, '{{ f_name }}', '{{ f_name }}');" onmouseout="hoverOnPrev(0, '{{ f_name }}', '{{ f_name }}');" autoplay loop muted playsInline></video>
+			<div class="image-background mix-slider-wrapper">
+				<picture>
+					<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_2_1-640.jpg?v{{refresh}} 640w,
+						https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_2_1-960.jpg?v{{refresh}} 960w,
+						https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_2_1-1280.jpg?v{{refresh}} 1280w,
+						https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_2_1-1920.jpg?v{{refresh}} 1920w,
+						https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_2_1-2560.jpg?v{{refresh}} 2560w"
+						sizes="100vw">
+					<img class="img mixBg"
+						src="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_2_1-2560.jpg?v{{refresh}}"
+						width="2560"
+						height="860"
+						alt="">
+				</picture>
+				<picture>
+					<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_2_2-640.jpg?v{{refresh}} 640w,
+						https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_2_2-960.jpg?v{{refresh}} 960w,
+						https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_2_2-1280.jpg?v{{refresh}} 1280w,
+						https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_2_2-1920.jpg?v{{refresh}} 1920w,
+						https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_2_2-2560.jpg?v{{refresh}} 2560w"
+						sizes="100vw">
+					<img class="img mixBg inactive"
+						src="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_2_2-2560.jpg?v{{refresh}}"
+						width="2560"
+						height="860"
+						alt="">
+				</picture>
+				<picture>
+					<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_2_3-640.jpg?v{{refresh}} 640w,
+						https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_2_3-960.jpg?v{{refresh}} 960w,
+						https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_2_3-1280.jpg?v{{refresh}} 1280w,
+						https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_2_3-1920.jpg?v{{refresh}} 1920w,
+						https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_2_3-2560.jpg?v{{refresh}} 2560w"
+						sizes="100vw">
+					<img class="img mixBg inactive"
+						src="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_2_3-2560.jpg?v{{refresh}}"
+						width="2560"
+						height="860"
+						alt="">
+				</picture>
+			</div>
+		</section>
+
+		<div class="overflow-hidden">
+
+
+		<section class="prevs center">
+			
+			<div class="image-background">
+				<picture>
+					<!-- <source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1353/media/footer_mobile-640.jpg?v{{refresh}} 640w,
+						https://s3.motionvfx.com/mvfxpublic/products/templates/1353/media/footer_mobile-960.jpg?v{{refresh}} 960w,
+						https://s3.motionvfx.com/mvfxpublic/products/templates/1353/media/footer_mobile-1024.jpg?v{{refresh}} 1024w"
+						sizes="(max-width:600px) 150vw, 100vw" media="(max-width: 1024px)"> -->
+					<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/prevs_bg-640.webp?v{{refresh}} 640w,
+						https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/prevs_bg-960.webp?v{{refresh}} 960w,
+						https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/prevs_bg-1280.webp?v{{refresh}} 1280w,
+						https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/prevs_bg-1920.webp?v{{refresh}} 1920w,
+						https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/prevs_bg-2560.webp?v{{refresh}} 2560w"
+						sizes="100vw" type="image/webp">
+					<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/prevs_bg-640.jpg?v{{refresh}} 640w,
+						https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/prevs_bg-960.jpg?v{{refresh}} 960w,
+						https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/prevs_bg-1280.jpg?v{{refresh}} 1280w,
+						https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/prevs_bg-1920.jpg?v{{refresh}} 1920w,
+						https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/prevs_bg-2560.jpg?v{{refresh}} 2560w"
+						sizes="100vw" type="image/jpeg">
+					<img class="img"
+						src="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/prevs_bg-2560.jpg?v{{refresh}}"
+						width="2560"
+						height="950"
+						alt="">
+				</picture>
+			</div>
+
+			
+			<div class="header-box">
+				<h2>
+					<picture>
+						<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_2_3-180.webp?v{{refresh}} 180w,
+							https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/prev_number-360.webp?v{{refresh}} 360w,
+							https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/prev_number-540.webp?v{{refresh}} 540w,
+							https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/prev_number-600.webp?v{{refresh}} 600w"
+							type="image/webp"
+							sizes="(max-width: 600px) 70vw, 300px">
+						<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/slider_2_3-180.png?v{{refresh}} 180w,
+							https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/prev_number-360.png?v{{refresh}} 360w,
+							https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/prev_number-540.png?v{{refresh}} 540w,
+							https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/prev_number-600.png?v{{refresh}} 600w"
+							type="image/png"
+							sizes="(max-width: 600px) 70vw, 300px">
+						<img class=""
+							src="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/prev_number-600.webp?v{{refresh}}"
+							width="300"
+							height="204"
+							alt="">
+					</picture>
+					<div class="h2-text">versatile presets</div>
+				</h2>
+				<p class="hover-or-tap">Hover or tap to view animations</p>
+			</div>
+
+			{% set productPageTemplateId = '1358' %} 
+			{% set collapseAfter = 4 %}
+			{% set namePrefix = 'mTitle_Restyle_' %}
+			{% set categories = [
+				{ 'key':'Typography', 'label': 'Typography', 'count': 30, 'cols': 3 },
+				{ 'key':'Add-ons', 'label': 'Add-ons', 'count': 8,  },
+				{ 'key':'Backgrounds', 'label': 'Backgrounds', 'count': 10,  },
+				{ 'key':'Descriptions', 'label': 'Descriptions', 'count': 6,  },
+				{ 'key':'Overlay_effects', 'label': 'Overlay effects', 'count': 11, },
+				]
+			%}
+			
+			<div id="product-prev-grid" class="product-prev-grid container">
+				{% for category in categories %}
+					{% set key = category.key %}
+					{% set cols = category.cols | default(4) %}
+					{% if categories|length > 1 %}<h3 class="{{ 'left' if loop.index % 2 != 0 else 'right' }}">{{ category.label }}</h3>{% endif %}
+					<div class="row {{ 'grid' if  large in category and category.large | length else '' }} {{ category.key }} {% if category.count == 5 %}row-5{% endif %}">
+						{% for i in range(category.count) %}
+							{% set num = '%02d' % loop.index %}
+							{% set filename = 'https://s3.motionvfx.com/mvfxpublic/products/templates/' + productPageTemplateId + '/media/' + namePrefix + key + '_' + num %}
+							<div class="product-prev-col col-6 col-lg-{{ 12 // cols }} {% if  large in category and loop.index in category.large %}large{% endif %} {% if loop.index > collapseAfter %}collapse prev-collapse-{{ key }}{% endif %}" id="prev-{{ key }}-{{ loop.index }}"
+								>
+								<div class="product-prev-cell" data-mp4-src="{{ filename }}.mp4?{{refresh}}">
+									<img srcset="{{ filename }}-400.jpg?{{refresh}} 400w, {{ filename }}-850.jpg?{{refresh}} 850w" sizes="(max-width: 991px) 49vw, (max-width: 1600px) {{ 100 // cols }}vw, 425px"
+									  src="{{ filename }}-850.jpg?{{refresh}}" alt="" width="400" height="225" />
+									<div class="loading-spinner"></div>
+								</div>
+							</div>
+						{% endfor %}
+						{% if category.count > collapseAfter %}
+							<div class="col-btn-collapse">
+								<button class="btn-collapse" type="button" data-target=".prev-collapse-{{ key }}" aria-expanded="false" aria-controls="{% for j in range(collapseAfter, category.count) %} prev-{{ key }}-{{ j }} {% endfor %}">
+									<span><span class="label-collapsed">Show more</span><span class="label-expanded">Collapse</span> ({{ category.count - collapseAfter }})</span>
+									<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+											viewBox="0 0 36.6 61.5" style="enable-background:new 0 0 36.6 61.5;" xml:space="preserve" class="btn-collapse-arrow" height="20">
+										<style type="text/css">
+											.st0{fill:none;stroke:currentColor;stroke-width:8;stroke-miterlimit:10;}
+										</style>
+										<polyline class="st0" points="2.8,58.6 30.9,30.5 3.2,2.8 "/>
+									</svg>
+								</button>
+							</div>
+						{% endif %}
 					</div>
 				{% endfor %}
+			</div> 
+		</section>
 
-				{# <div class="pattern2">
-					<div class="left">
-						<img class="left" id="image01" src="https://s3.motionvfx.com/mvfxpublic/images/mtitle/glitch/prevs/01.jpg?1.0.5" alt="" />
-						<video class="left" id="video01" onmouseover="hoverOnPrev(1, '01', '01');" onmouseout="hoverOnPrev(0, '01', '01');" autoplay loop muted playsInline></video>
-						<img id="image02" class="right" src="https://s3.motionvfx.com/mvfxpublic/images/mtitle/glitch/prevs/02.jpg?1.0.5" alt="" />
-						<video id="video02" class="right" onmouseover="hoverOnPrev(1, '02', '02');" onmouseout="hoverOnPrev(0, '02', '02');" autoplay loop muted playsInline></video>
-					</div>
-					<div class="right">
-						<img class="left" id="image03" src="https://s3.motionvfx.com/mvfxpublic/images/mtitle/glitch/prevs/03.jpg?1.0.5" alt="" />
-						<video class="left" id="video03" onmouseover="hoverOnPrev(1, '03', '03');" onmouseout="hoverOnPrev(0, '03', '03');" autoplay loop muted playsInline></video>
-						<img id="image04" class="right"  src="https://s3.motionvfx.com/mvfxpublic/images/mtitle/glitch/prevs/04.jpg?1.0.5" alt="" />
-						<video id="video04" class="right" onmouseover="hoverOnPrev(1, '04', '04');" onmouseout="hoverOnPrev(0, '04', '04');" autoplay loop muted playsInline></video>
-					</div>
-				</div>
-				<div style="clear:both"></div>
-				<div class="pattern2">
-					<div class="left">
-						<img class="left" id="image05" src="https://s3.motionvfx.com/mvfxpublic/images/mtitle/glitch/prevs/05.jpg?1.0.5" alt="" />
-						<video class="left" id="video05" onmouseover="hoverOnPrev(1, '05', '05');" onmouseout="hoverOnPrev(0, '05', '05');" autoplay loop muted playsInline></video>
-						<img id="image06" class="right" src="https://s3.motionvfx.com/mvfxpublic/images/mtitle/glitch/prevs/06.jpg?1.0.5" alt="" />
-						<video id="video06" class="right" onmouseover="hoverOnPrev(1, '06', '06');" onmouseout="hoverOnPrev(0, '06', '06');" autoplay loop muted playsInline></video>
-					</div>
-					<div class="right">
-						<img class="left" id="image07" src="https://s3.motionvfx.com/mvfxpublic/images/mtitle/glitch/prevs/07.jpg?1.0.5" alt="" />
-						<video class="left" id="video07" onmouseover="hoverOnPrev(1, '07', '07');" onmouseout="hoverOnPrev(0, '07', '07');" autoplay loop muted playsInline></video>
-						<img id="image08" class="right"  src="https://s3.motionvfx.com/mvfxpublic/images/mtitle/glitch/prevs/08.jpg?1.0.5" alt="" />
-						<video id="video08" class="right" onmouseover="hoverOnPrev(1, '08', '08');" onmouseout="hoverOnPrev(0, '08', '08');" autoplay loop muted playsInline></video>
-					</div>
-				</div>
-				<div style="clear:both"></div>
-				<div class="pattern2">
-					<div class="left">
-						<img class="left" id="image09" src="https://s3.motionvfx.com/mvfxpublic/images/mtitle/glitch/prevs/09.jpg?1.0.5" alt="" />
-						<video class="left" id="video09" onmouseover="hoverOnPrev(1, '09', '09');" onmouseout="hoverOnPrev(0, '09', '09');" autoplay loop muted playsInline></video>
-						<img id="image10" class="right" src="https://s3.motionvfx.com/mvfxpublic/images/mtitle/glitch/prevs/10.jpg?1.0.5" alt="" />
-						<video id="video10" class="right" onmouseover="hoverOnPrev(1, '10', '10');" onmouseout="hoverOnPrev(0, '10', '10');" autoplay loop muted playsInline></video>
-					</div>
-					<div class="right">
-						<img class="left" id="image11" src="https://s3.motionvfx.com/mvfxpublic/images/mtitle/glitch/prevs/11.jpg?1.0.5" alt="" />
-						<video class="left" id="video11" onmouseover="hoverOnPrev(1, '11', '11');" onmouseout="hoverOnPrev(0, '11', '11');" autoplay loop muted playsInline></video>
-						<img id="image12" class="right"  src="https://s3.motionvfx.com/mvfxpublic/images/mtitle/glitch/prevs/12.jpg?1.0.5" alt="" />
-						<video id="video12" class="right" onmouseover="hoverOnPrev(1, '12', '12');" onmouseout="hoverOnPrev(0, '12', '12');" autoplay loop muted playsInline></video>
-					</div>
-				</div>
-				<div style="clear:both"></div>
-				<div class="pattern2">
-					<div class="left">
-						<img class="left" id="image13" src="https://s3.motionvfx.com/mvfxpublic/images/mtitle/glitch/prevs/13.jpg?1.0.5" alt="" />
-						<video class="left" id="video13" onmouseover="hoverOnPrev(1, '13', '13');" onmouseout="hoverOnPrev(0, '13', '13');" autoplay loop muted playsInline></video>
-						<img id="image14" class="right" src="https://s3.motionvfx.com/mvfxpublic/images/mtitle/glitch/prevs/14.jpg?1.0.5" alt="" />
-						<video id="video14" class="right" onmouseover="hoverOnPrev(1, '14', '14');" onmouseout="hoverOnPrev(0, '14', '14');" autoplay loop muted playsInline></video>
-					</div>
-					<div class="right">
-						<img class="left" id="image15" src="https://s3.motionvfx.com/mvfxpublic/images/mtitle/glitch/prevs/15.jpg?1.0.5" alt="" />
-						<video class="left" id="video15" onmouseover="hoverOnPrev(1, '15', '15');" onmouseout="hoverOnPrev(0, '15', '15');" autoplay loop muted playsInline></video>
-						<img id="image16" class="right"  src="https://s3.motionvfx.com/mvfxpublic/images/mtitle/glitch/prevs/16.jpg?1.0.5" alt="" />
-						<video id="video16" class="right" onmouseover="hoverOnPrev(1, '16', '16');" onmouseout="hoverOnPrev(0, '16', '16');" autoplay loop muted playsInline></video>
-					</div>
-				</div>
-				<div style="clear:both"></div>
-				<div class="pattern2">
-					<div class="left">
-						<img class="left" id="image17" src="https://s3.motionvfx.com/mvfxpublic/images/mtitle/glitch/prevs/17.jpg?1.0.5" alt="" />
-						<video class="left" id="video17" onmouseover="hoverOnPrev(1, '17', '17');" onmouseout="hoverOnPrev(0, '17', '17');" autoplay loop muted playsInline></video>
-						<img id="image18" class="right" src="https://s3.motionvfx.com/mvfxpublic/images/mtitle/glitch/prevs/18.jpg?1.0.5" alt="" />
-						<video id="video18" class="right" onmouseover="hoverOnPrev(1, '18', '18');" onmouseout="hoverOnPrev(0, '18', '18');" autoplay loop muted playsInline></video>
-					</div>
-					<div class="right">
-						<img class="left" id="image19" src="https://s3.motionvfx.com/mvfxpublic/images/mtitle/glitch/prevs/19.jpg?1.0.5" alt="" />
-						<video class="left" id="video19" onmouseover="hoverOnPrev(1, '19', '19');" onmouseout="hoverOnPrev(0, '19', '19');" autoplay loop muted playsInline></video>
-						<img id="image20" class="right"  src="https://s3.motionvfx.com/mvfxpublic/images/mtitle/glitch/prevs/20.jpg?1.0.5" alt="" />
-						<video id="video20" class="right" onmouseover="hoverOnPrev(1, '20', '20');" onmouseout="hoverOnPrev(0, '20', '20');" autoplay loop muted playsInline></video>
-					</div>
-				</div>
-				<div style="clear:both"></div>
-				<div class="pattern2">
-					<div class="left">
-						<img class="left" id="image21" src="https://s3.motionvfx.com/mvfxpublic/images/mtitle/glitch/prevs/21.jpg?1.0.5" alt="" />
-						<video class="left" id="video21" onmouseover="hoverOnPrev(1, '21', '21');" onmouseout="hoverOnPrev(0, '21', '21');" autoplay loop muted playsInline></video>
-						<img id="image22" class="right" src="https://s3.motionvfx.com/mvfxpublic/images/mtitle/glitch/prevs/22.jpg?1.0.5" alt="" />
-						<video id="video22" class="right" onmouseover="hoverOnPrev(1, '22', '22');" onmouseout="hoverOnPrev(0, '22', '22');" autoplay loop muted playsInline></video>
-					</div>
-					<div class="right">
-						<img class="left" id="image23" src="https://s3.motionvfx.com/mvfxpublic/images/mtitle/glitch/prevs/23.jpg?1.0.5" alt="" />
-						<video class="left" id="video23" onmouseover="hoverOnPrev(1, '23', '23');" onmouseout="hoverOnPrev(0, '23', '23');" autoplay loop muted playsInline></video>
-						<img id="image24" class="right"  src="https://s3.motionvfx.com/mvfxpublic/images/mtitle/glitch/prevs/24.jpg?1.0.5" alt="" />
-						<video id="video24" class="right" onmouseover="hoverOnPrev(1, '24', '24');" onmouseout="hoverOnPrev(0, '24', '24');" autoplay loop muted playsInline></video>
-					</div>
-				</div>
-				<div style="clear:both"></div>
-				<div class="pattern2">
-					<div class="left">
-						<img class="left" id="image25" src="https://s3.motionvfx.com/mvfxpublic/images/mtitle/glitch/prevs/25.jpg?1.0.5" alt="" />
-						<video class="left" id="video25" onmouseover="hoverOnPrev(1, '25', '25');" onmouseout="hoverOnPrev(0, '25', '25');" autoplay loop muted playsInline></video>
-						<img id="image26" class="right" src="https://s3.motionvfx.com/mvfxpublic/images/mtitle/glitch/prevs/26.jpg?1.0.5" alt="" />
-						<video id="video26" class="right" onmouseover="hoverOnPrev(1, '26', '26');" onmouseout="hoverOnPrev(0, '26', '26');" autoplay loop muted playsInline></video>
-					</div>
-					<div class="right">
-						<img class="left" id="image27" src="https://s3.motionvfx.com/mvfxpublic/images/mtitle/glitch/prevs/27.jpg?1.0.5" alt="" />
-						<video class="left" id="video27" onmouseover="hoverOnPrev(1, '27', '27');" onmouseout="hoverOnPrev(0, '27', '27');" autoplay loop muted playsInline></video>
-						<img id="image28" class="right"  src="https://s3.motionvfx.com/mvfxpublic/images/mtitle/glitch/prevs/28.jpg?1.0.5" alt="" />
-						<video id="video28" class="right" onmouseover="hoverOnPrev(1, '28', '28');" onmouseout="hoverOnPrev(0, '28', '28');" autoplay loop muted playsInline></video>
-					</div>
-				</div>
-				<div style="clear:both"></div>
-				<div class="pattern2">
-					<div class="left">
-						<img id="image29" class="right" src="https://s3.motionvfx.com/mvfxpublic/images/mtitle/glitch/prevs/29.jpg?1.0.5" alt="" />
-						<video id="video29" class="right" onmouseover="hoverOnPrev(1, '29', '29');" onmouseout="hoverOnPrev(0, '29', '29');" autoplay loop muted playsInline></video>
-					</div>
-					<div class="right">
-						<img class="left" id="image30" src="https://s3.motionvfx.com/mvfxpublic/images/mtitle/glitch/prevs/30.jpg?1.0.5" alt="" />
-						<video class="left" id="video30" onmouseover="hoverOnPrev(1, '30', '30');" onmouseout="hoverOnPrev(0, '30', '30');" autoplay loop muted playsInline></video>
-					</div>
-				</div>
-				<div style="clear:both"></div>
-				<div style="margin-top:150px"></div> #}
-			</div>
-		</div>
-
+		<a class="nav" name="specs"></a>
 		{# TECHSPEC #}
-		<a class="nav" href="#" name="specs" rel="noopener noreferrer"></a>
+		{# <a class="nav" href="#" name="specs" rel="noopener noreferrer"></a>
 		<section class="tech-spec">
 			<div class="container">
 				<div class="tech-spec-info">
@@ -488,19 +876,22 @@
 
 					{% set products_specs = {
 						'FCP': product_fcp,
-						'PR': product_pr,
+						'DVR': product_dvr,
 					}%}
 					{% set includes = {
-						'PR': '50 FCPX Titles + 6 Add-ons + 6 Backgrounds',
-						'FCP': '50 DVR Titles + 6 Add-ons + 6 Backgrounds'
+						'DVR': '30 FCP Titles',
+						'FCP': '30 PR Titles'
 					} %}
 					{% set product_options = {
 						'FCP': {
 						'music': {}
 						},
-						'PR': {
-						'music': {
-						}
+						'DVR': {
+    						'music': {
+                                'trailer': True,
+                                'tutorial': False
+                                
+    						}
 						},
 					} %}
 					<style>
@@ -536,14 +927,12 @@
 								<tr>
 									<td class="td-right">Includes</td>
 									<td class="td-left">
-										<!-- 50 FCPX Titles<br>
-										+ 6 Add-ons<br>
-										+ 6 Backgrounds -->
 										{{ includes[key] }}
 									</td>
 								</tr>
 								<tr>
 									<td class="td-right">Size</td>
+								<td class="td-left">{{product.productdetails.source_size}}</td>
 									<td class="td-left">{{ ((product.productdetails.source_size * 1000) | filesizeformat).replace('.0 ', ' ') }}</td>
 								</tr>
 								{% for kind in ['trailer', 'tutorial'] %}
@@ -580,113 +969,177 @@
 					</div>
 				</div>
 			</div>
-		</section>
-		
-		{# <div class="headerWrapper" style="background-color:#000; height:665px;">
-			<a class="nav" name="specs" style="position:relative;top:-7rem;"></a>
-			<div class="specs">
-				<p><span>Technical specifications</span></p>
-				<div class="info">
-					<p class="snd left">Supported software</p>
-					<p class="snd right">FCP 10.3.4, Motion 5.3.2 (or later)</p>
-					<div style="clear: both;"></div>
-					<p class="snd left">Includes</p>
-					<p class="snd right">30 FCP titles</p>
-					<div style="clear: both;"></div>
-					<p class="snd left">Size</p>
-					<p class="snd right">57.5 MB</p>
-					<div style="clear: both;"></div>
-					<p class="snd left">Music used in trailer</p>
-					<p class="snd right">
-						<a class="snd" href="https://www.premiumbeat.com/royalty_free_music/songs/south-london?utm_source=partners&utm_medium=link&utm_campaign=2019-partnerships&utm_content=SM-19171" target="_blank">
-						> Premiumbeat.com - South London
-						</a>
-					</p>
-					<div style="clear: both;"></div>
-					<p class="snd left">Music used in tutorial</p>
-					<p class="snd right">
-						<a class="snd tut" href="https://www.premiumbeat.com/royalty_free_music/songs/sound-struck?utm_source=partners&utm_medium=link&utm_campaign=2019-partnerships&utm_content=SM-19171" target="_blank">
-						> Premiumbeat.com - Sound Struck
-						</a>
-					</p>
-					<div style="clear: both;"></div>
-					<p class="snd left"></p>
-					<p class="snd right"></p>
-					<div style="clear: both;"></div>
+		</section> #}
+		<section class="tech-spec center">
+			<div class="container">
+				<h2><span>Technical specifications</span></h2>
+				
+				<style>
+					.tech-spec-software__version {
+						display: flex;
+						justify-content: center;
+						color: #fff;
+						font-weight: 600;
+						align-items: center;
+						margin-top: 3rem;
+					}
+
+					table tr {
+						vertical-align: baseline;
+					}
+
+					table a {
+						color: #3D98FF !important;
+					}
+				</style>
+
+				{% set products_specs = {
+						'FCP': product_fcp,
+						'DVR': product_dvr,
+				}%}
+
+				{% set requirements = {
+						'DVR': 'DVR 18, (17.4.6 - slower performance)'
+				 } %}
+
+				{% set includes = {
+					'DVR': '65 Titles',
+					'FCP': '44 DVR Titles + 21 Effects'
+				} %}
+
+				{% set product_options = {
+					'FCP': {
+					'music': {}
+					},
+					'DVR': {
+						'music': {
+							'trailer': True,
+							'tutorial': False
+							
+						}
+					},
+				} %}
+
+				<div class="row">
+
+				{% for key, p in products_specs.items() %}
+				<div class="col-12 col-lg-6">
+
+				<div class="tech-spec-software__version mb-3">
+					{{ picture(shared_media_url, key|lower + '_icon', formats=["webp","png"], file_sizes=[180], width=40, height=40, img_class='software-icon', loading="lazy") }}
+					<p class="mt-0 mb-0 ml-2 mr-0">{{ key }} version</p>
+				</div>
+				<div class="table">
+					<div class="cell label" class="td-right">Supported software</div>
+					<div class="cell data" class="td-left">
+						{% autoescape off %}
+								{{ p.productdetails.minimal_requirements.replace('FCP 10', 'FCP\xa010').replace('Motion 5', 'Motion\xa05').replace(', ', ',<br>') }} {{requirements[key] if requirements[key]}}
+						{% endautoescape %}
+					</div>
+					<div class="cell label" class="td-right">Includes</div>
+					<div class="cell data" class="td-left">{{ includes[key] }}</div>
+					<div class="cell label" class="td-right">Size</div>
+					<div class="cell data" class="td-left">{{ ((product.productdetails.source_size * 1000) | filesizeformat).replace('.0 ', ' ') }}</div>
+
+					{% for kind in ['trailer', 'tutorial'] %}
+						{% with musics=product.productdetails.music.select_related('music_portal').all().filter(used_in_trailer=kind=='trailer') %}
+							{% if musics|length %}
+								<div class="cell label" class="td-right">Music used in {{ kind }}</div>
+								<div class="cell data" class="td-left">
+									{% for music in musics %}
+										{% if music.music_portal.name == "www.premiumbeat.com" or music.music_portal.name ==  "www.shutterstock.com" %}
+											<a href="{{ music.url }}" target="_blank">{{ music.music_portal.name.replace('www.','') }} — {{ music.title }}</a>{% if not loop.last %},&nbsp;<wbr>{% endif %}
+										{% else %}
+											{{ music.music_portal.name.replace('www.','') }} — {{ music.title }}{% if not loop.last %},&nbsp;<wbr>{% endif %}
+										{% endif %}
+									{% endfor %}
+								</div>
+							{% endif %}
+						{% endwith %}
+					{% endfor %}
+				</div>
+
+				</div>
+				{% endfor %}
+
+				</div>
+				
+				<div class="minstaller-info">
+					<h4>mInstaller</h4>
+					<p>After purchasing, the product is&nbsp;<strong>instantly available</strong> for&nbsp;download via&nbsp;<a target="_blank" href="https://www.motionvfx.com/page/minstaller.html">mInstaller</a>.</p>
 				</div>
 			</div>
-		</div> #}
-		<div class="headerWrapper footer" style="background-image: url('https://s3.motionvfx.com/mvfxpublic/images/mtitle/glitch/bg_11.jpg?1.0.5'); height:1012px;">
-			<div class="bg11">
-				<h4 class="mx-auto" style="max-width: 13em">MODERN TYPOGRAPHY WITH A DIGITAL TWIST</h4>
-				<h3 style="margin-bottom: 2rem">
-					We mixed channel shifts, digital distortions and form warps and applied<br />
-					these effects to perfectly stylized modern typography. The outcome is<br />
-					an incredibly dynamic set of 30 titles that will draw attention anywhere<br />
-					they appear. Make your edit stand out from the crowd!
-				</h3>
-				{% with discount_text='SALE', version=2 %}
-				{% include 'product/buy_button.jinja2' %}
-				{% endwith %}
-			</div>
-			</div>
+		</section>
+
+
+			<section class="footer center">
+				<div class="image-background">
+					<picture>
+						<!-- <source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1353/media/footer_mobile-640.jpg?v{{refresh}} 640w,
+							https://s3.motionvfx.com/mvfxpublic/products/templates/1353/media/footer_mobile-960.jpg?v{{refresh}} 960w,
+							https://s3.motionvfx.com/mvfxpublic/products/templates/1353/media/footer_mobile-1024.jpg?v{{refresh}} 1024w"
+							sizes="(max-width:600px) 150vw, 100vw" media="(max-width: 1024px)"> -->
+						<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/footer_bg-640.webp?v{{refresh}} 640w,
+							https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/footer_bg-960.webp?v{{refresh}} 960w,
+							https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/footer_bg-1280.webp?v{{refresh}} 1280w,
+							https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/footer_bg-1920.webp?v{{refresh}} 1920w,
+							https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/footer_bg-2560.webp?v{{refresh}} 2560w"
+							sizes="100vw" type="image/webp">
+						<source srcset="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/footer_bg-640.jpg?v{{refresh}} 640w,
+							https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/footer_bg-960.jpg?v{{refresh}} 960w,
+							https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/footer_bg-1280.jpg?v{{refresh}} 1280w,
+							https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/footer_bg-1920.jpg?v{{refresh}} 1920w,
+							https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/footer_bg-2560.jpg?v{{refresh}} 2560w"
+							sizes="100vw" type="image/jpeg">
+						<img class="img"
+							src="https://s3.motionvfx.com/mvfxpublic/products/templates/1358/media/footer_bg-2560.jpg?v{{refresh}}"
+							width="2560"
+							height="950"
+							alt="">
+					</picture>
+				</div>
+				<div class="container">
+					<div class="text-box">
+						<h2>
+							Reshape. Refine. Restyle.
+						</h2>
+						<p>
+							Master the shape of typography in your videos and make it powerful like never before. This collection of dynamic, eye-catching presets will boost your narrative and help it convey every meaning of the visual message.
+						</p>
+						{% with discount_text='INTRO', version=1 %}
+						{% include 'product/buy_button.jinja2' %}
+						{% endwith %}
+						<!-- <div id="btn-buy-container" class="version1">
+							<div class="inner-container">
+								
+								<div>
+								<a href="#" class="buy-button" data-add-to-cart="{ &quot;productId&quot;: &quot;3641&quot;, &quot;productTitle&quot;: &quot;mTitle Restyle&quot; }">
+									buy now  <span class="price">$79</span></a>
+								
+								</div>
+							</div>
+						</div> -->
+						<!-- <div id="btn-buy-container" class="version1">
+							<div class="inner-container">
+								<span class="promo-label mr-10"> SALE</span>
+								<div>
+								<a href="#" class="buy-button" data-add-to-cart="{ &quot;productId&quot;: &quot;1913&quot;, &quot;productTitle&quot;: &quot;mWatercolor&quot; }">
+									buy now <span class="price-line"> $79</span> <span>$39</span></a>
+								<div class="promo-info" style="color:#fff"><span> Hurry up!</span> Valid till July 14, 2021</div>
+								</div>
+							</div>
+						</div> -->
+					</div>
+				</div>
+			</section>
 		</div>
+
 	</div>
-    
+
 	<script>
-
 		document.addEventListener('DOMContentLoaded', () => {
-			document.body.classList.add('ready');
-		})
-
-
-		function hoverOnPrev(hoverOn, idNum, num) {
-			var videoId = document.getElementById("video" + idNum);
-			var imgId = document.getElementById("image" + idNum);
-	
-			var html = "";
-			var videoOpacity = "0";
-			var videoBorder = "none";
-			var imgOpacity = "1";
-	
-			if(hoverOn) {
-				html = "<source src=\"https://s3.motionvfx.com/mvfxpublic/images/mtitle/glitch/prevs/" + num + ".mp4\" type=\"video/mp4\">";
-				html 	+= "<source src=\"https://s3.motionvfx.com/mvfxpublic/images/mtitle/glitch/prevs/" + num + ".webm\" type=\"video/webm\">";
-				videoOpacity = "1";
-				imgOpacity = "0";
-				videoId.play();
-			}
-			else {
-				videoId.pause();
-				videoId.currentTime = 0;
-			}
-	
-			videoId.style.opacity = videoOpacity;
-			imgId.style.opacity = imgOpacity;
-			videoId.innerHTML = html;
-		}
-		
-		function mobileAndTabletcheck() {
-				var check = false;
-				(function(a){if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(a)||/1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0,4)))check = true})(navigator.userAgent||navigator.vendor||window.opera);
-				return check;
-		}
-		
-		if(!mobileAndTabletcheck()) {
-			var videoId1, videoId2, img2;
-			
-			videoId1 = document.getElementById("video1");
-			videoId1.style.display = 'block';
-			
-			videoId2 = document.getElementById("video2");
-			videoId2.style.display = 'block';
-			
-			img1 = document.getElementById("img1");
-			img1.style.backgroundImage = "url('')"; 
-			
-			img2 = document.getElementById("img2");
-			img2.style.backgroundImage = "url('')"; 
-		}
+        		document.body.classList.add('ready');
+    		})
 	</script>
 
     {# {% include './components/popup-left.jinja' %} #}
@@ -698,6 +1151,15 @@
     {# <script src="dist/scripts.js"></script> #}
     <script src="scripts/vendor/menu.js" defer></script>
     <script src="scripts/vendor/scroll_to_anchor.js" defer></script>
+
+	{% set js_links  = [
+        'https://s3.motionvfx.com/mvfxpublic/products/templates/1408/js/menu.js?response-content-type=application/javascript',
+        'https://s3.motionvfx.com/mvfxpublic/products/templates/1358/js/33bundle_copy.js'
+    ] %}
+
+    {% for jl in js_links %}
+        <script src="{{ jl }}?response-content-type=application/javascript"></script>
+    {% endfor %}
 </body>
 
 </html>

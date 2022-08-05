@@ -17,8 +17,7 @@ const CONFIGS = [
     // {
     //     directory: "_top",
     //     sizes: [
-    //         ...[1280, 1920, 2560, 3000].map((size) => ({ w: size, h: 960 })),
-    //         ...[640, 960].map((size) => ({ w: size, h: 560 })),
+    //         ...[640, 960, 1280, 1920, 2560, 3000].map((size) => ({ w: size})),
     //     ],
     //     quality: 85,
     //     targetFormat: ["jpg"],
