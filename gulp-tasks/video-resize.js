@@ -15,7 +15,7 @@ const CONFIGS = [
     },
 ];
 
-const PAGE_NAME = 'lowers';
+const PAGE_NAME = 'mrealestate';
 
 function resizeTask(
     managedFormats = ["mov", "mp4", "m4v"],

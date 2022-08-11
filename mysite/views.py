@@ -26,7 +26,7 @@ def index(request, **kwargs):
 
     def price(price):
         return '89'
-
+    
     def get_products(ids):
         return map(lambda x: product, ids)
 
@@ -49,4 +49,4 @@ def index(request, **kwargs):
         'test': 'test12',
     }
 
-    return render(request, "chalk.jinja", context)
+    return render(request, "index.jinja", context)

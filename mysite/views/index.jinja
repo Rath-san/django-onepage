@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include './components/head.jinja' %}
+
+<body>
+    {% include './components/nav.jinja' %}
+    {# {% include './components/macro.jinja' %} #}
+    {# {% include './components/bundle-popup.jinja' %} #}
+
+    {% macro picture(
+		media_url, filename, media_files={}, file_sizes=[360, 480, 640, 960], formats=['webp','jpg'], media_sizes='', media='', alt='', img_class='', img_style='', picture_class='', width='', height='', loading='', data_src=False
+	) %}
+		<picture class="{{ picture_class }}">
+			{% for media in media_files %}
+				{% set m = media_files[media] %}
+				{% for format in formats %}
+					<source {% if data_src %} data-srcset=" {% for size in m['file_sizes'] %} {{ media_url }}/{{ m['filename'] }}-{{ size }}.{{ format }} {{size}}w, {% endfor %}" {% else %} srcset=" {% for size in m['file_sizes'] %} {{ media_url }}/{{ m['filename'] }}-{{ size }}.{{ format }} {{size}}w, {% endfor %}" {% endif %} type="image/{{ format | replace('jpg', 'jpeg') }}" sizes="{{ m['media_sizes'] | default(media_sizes) }}" media="{{ media }}" >
+				{% endfor %}
+			{% endfor %}
+			{% for format in formats %}
+				<source {% if data_src %} data-srcset=" {% for size in file_sizes %} {{ media_url }}/{{ filename }}-{{ size }}.{{ format }} {{size}}w, {% endfor %}" {% else %} srcset=" {% for size in file_sizes %} {{ media_url }}/{{ filename }}-{{ size }}.{{ format }} {{size}}w, {% endfor %}" {% endif %} type="image/{{ format | replace('jpg', 'jpeg') }}" sizes="{{ media_sizes }}" media="{{ media }}">
+			{% endfor %}
+			<img {% if data_src %} data-src="{{ media_url }}/{{ filename }}-{{ file_sizes[0] }}.{{ formats[-1] }}?{{file_version}}" {% else %} src="{{ media_url }}/{{ filename }}-{{ file_sizes[0] }}.{{ formats[-1] }}?{{file_version}}" {% endif %} alt="{{alt}}" class="{{img_class}}" style="{{img_style}}" width="{{width}}" height="{{height}}" loading="{{loading}}" >
+		</picture>
+	{% endmacro %}
+    {% macro buy_btn_free() %}
+    <div class="button-buy">
+        <div id="btn-buy-container" class="version1">
+            <div class="inner-container">
+                <a href="#" class="buy-button" data-add-to-cart='{ "productId": {{  product.id }}, "productTitle": "{{  product.title }}" }'>
+                    Get it free for FCP / DVR
+                </a>
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro card_estate(
+    src="square_1",
+    title="Illinois",
+    text= 'This is some description text',
+    tags= ['tag1', 'tag2'],
+    price= '$200'
+) %}
+    <div class="card-estate">
+        <div class="card-estate__img">
+            {{ picture(
+                media_url,
+                src,
+                file_sizes=[560, 300],
+                formats=['jpg'],
+                width=560,
+                height=365,
+                alt=title
+            ) }}
+        </div>
+        <div class="card-estate__content">
+            <div class="card-estate__title">{{ title }}</div>
+            <div class="card-estate__text">{{ text|safe }}</div>
+            <div class="card-estate__tags">
+            {% for tag in tags %}
+                {{ tag }} {{ '|' if not loop.last }}
+            {% endfor %}
+            </div>
+            <div class="card-estate__price">{{ price }}</div>
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro card_preview(
+    src="square_1",
+    alt="",
+    icon="icon",
+    label="test"
+) %}
+    <div class="card-preview">
+        <div class="card-preview__img">
+            {{ picture(
+                media_url,
+                src,
+                file_sizes=[560, 300],
+                formats=['jpg'],
+                width=560,
+                height=1600,
+                alt=alt
+            ) }}
+        </div>
+        <div class="card-preview__content">
+            <img width="128" height="128" class="card-preview__icon" src="{{ media_url }}/{{ icon }}-256.png?{{ version }}" alt="">
+            <div class="card-preview__label">{{ label }}</div>
+        </div>
+    </div>
+{% endmacro %}
+
+		{% set srcsetSizesMobile = [ 640, 960 ] %}
+		{% set srcsetSizesDesktop = [ 1280, 1920, 2560 ] %}
+		{% set srcsetSizes = srcsetSizesMobile + srcsetSizesDesktop %}
+
+		{% set template_id = "1448" %}
+		{# {% set template_id_s3 = "200" %} #}
+        {% set media_prefix = "mVertical" %}
+		{% set media_url = "https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media" % template_id %}
+		{# {% set media_prefix_s3 = "https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media" % template_id_s3 %} #}
+		{# {% set media_prefix_presets = media_prefix + "/presets" %} #}
+		{% set version = "v=0" %}
+
+
+    {% set product_name = 'mReal Estate' %}
+    {% set shared_media_template_id = '1408' %}
+    {% set shared_media_url = 'https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media' % (shared_media_template_id) %}
+    {% set product_id_fcp = 3698 %}
+    {% set product_id_dvr = 3727 %}
+    {% set twin_product_id = product_id_fcp %}
+    {# {% set product_fcp, product_dvr = get_products([product_id_fcp, product_id_dvr]) %} #}
+	{% set product_fcp, product_dvr = [product, product] %}
+    {% set software_versions = [
+        {
+            'type': 'fcp',
+            'name': ['FCP', 'Final Cut Pro'],
+            'product': product_fcp,
+            'product_url': 'https://www.motionvfx.com/store,%s,p%s.html' % (product_fcp.slug, product_fcp.id),
+            'images': ["box_fcp", "fcp_icon"],
+            'box_media_url': 'https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media' % ('1415')
+        },
+    ] %}
+    {#{% for sv in software_versions %}
+        {{ sv.product.set_btn_title("%s for %s" % (product_name, sv.name[0]))|default("", True) }}
+    {% endfor %}#}
+    {% set products = software_versions|map(attribute="product") %}
+    {% set live = True %}
+
+    {% set data = {
+        'header': {
+            'subtitle': '116 Assorted Real Estate Elements for Final Cut Pro'
+        },
+        'trailer': {
+            'subtitle': 'See how it works!',
+            'title': 'Watch trailer',
+            'text': 'See the core features of the plugin in an instant'
+        },
+        'tutorial': {
+            'subtitle': 'Use it to the fullest!',
+            'title': 'Watch tutorial',
+            'text': 'Learn how to make the most of real estate with mReal Estate'
+        },
+        'promo': {
+            'subtitle': '',
+            'title': 'Get real quality for real estate purposes',
+            'text': 'We know you cut footage, not corners. Crafted for perfection!',
+        },
+        'promo-big': {
+            'title': 'Present all kinds of properties like a dream come true... topped with precise, detailed information on every possible aspect',
+            'text': '',
+        },
+        'promo-carousel-flat': {
+            'subtitle': 'The simplest solution',
+            'title': 'Handy & easy to use',
+            'text': 'We made sure this plugin removes things from your trouble list, so it’s both handy and easy to use. Enjoy!',
+        },
+        'footer': {
+            'subtitle': 'Level up your toolbox!',
+            'title': 'Real estate is<br> business like no other.',
+            'text': 'Get the best & most versatile tools to prove you understand it and make your videos really stand out!'
+        }
+    } %}
+
+	{% set trailer_id = 'P9qYuSb6GIc' %}
+    {% set tutorial_id = 'LUeIqFOHiKE' %}
+
+    <main class="mreal-estate">
+    <section class="header">
+            <div class="image__background__comp">
+                <div class="image__background">
+                    {# {{picture(
+                        media_url=media_url,
+                        filename= media_prefix + '_web_top_2' ,
+                        file_sizes=srcsetSizes,
+                        formats=['jpg'],
+                        width=2560,
+                        height=960,
+                        alt="Header image",
+                    )}} #}
+                </div>
+
+                <div class="header-cards cards-estate__wrapper">
+                    {% set cards_estate = [
+                        {
+                            'src': "t_1",
+                            'title': "Maryland",
+                            'text': '2546 Marie Street Baltimore, MD 21202',
+                            'tags': ['2 Bedrooms', '2 Bathrooms', '950 SQ. FT'],
+                            'price': '$265,000'
+                        },
+                        {
+                            'src': "t_2",
+                            'title': "Illinois",
+                            'text': '2468 Lewis Street Geneva, IL 60134',
+                            'tags': ['2 Bedrooms', '2 Bathrooms', '1000 SQ. FT'],
+                            'price': '$250,000'
+                        },
+                        {
+                            'src': "t_3",
+                            'title': "Arizona",
+                            'text': '3544 East Avenue Tempe, AZ 85281',
+                            'tags': ['4 Bedrooms', '3 Bathrooms', '3,252 SQ. FT'],
+                            'price': '$707,900'
+                        }
+                    ] %}
+                    {% for c in cards_estate %}
+                        {{ card_estate(**c) }}
+                    {% endfor %}
+                </div>
+
+                <div class="header-cards cards-preview__wrapper">
+                    {% set cards_preview = [
+                        {
+                            'src': "v_1",
+                            'alt': "",
+                            'icon': "area",
+                            'label': "2,245 Sq.ft"
+                        },
+                        {
+                            'src': "v_2",
+                            'alt': "",
+                            'icon': "smarthome",
+                            'label': "Smart system"
+                        },
+                        {
+                            'src': "v_3",
+                            'alt': "",
+                            'icon': "power",
+                            'label': "Ecological"
+                        }
+                    ] %}
+
+                    {% for c in cards_preview %}
+                        {{ card_preview(**c) }}
+                    {% endfor %}
+                </div>
+
+            </div>
+            <div class="container-fluid">
+                <div class="section__content">
+                    <div class="header__logo">
+                        {{picture(
+                            media_url=media_url,
+                            filename= 'logo_2' ,
+                            file_sizes=[1200],
+                            formats=['png'],
+                            width=1200,
+                            height=675,
+                            alt="Logo",
+                        )}}
+                        {# mReal Estate #}
+                        <h2 hidden class="">mReal Estate</h2>
+                    </div>
+                    <h1 class="section__text">
+                        {{ data.header.subtitle }}
+                        {# {{product.head_info|safe}} #}
+                    </h1>
+                </div>
+        </div>
+            </div>
+        {# SOFTWARE ICONS #}
+		<div id="software-icons" class="software-icons text-center" style="width: 100%; left: 0;">
+			{% for si in software_versions %}
+			<a
+                role="button"
+                name="product link {{ si.name[1] }}"
+                aria-label="Product link {{ si.name[1] }}"
+				target="_blank"
+				class="d-inline-block mx-1"
+				style="--i: {{ loop.index }}; --d: {{ loop.index }}">
+				{{ picture(shared_media_url, si.images[1], formats=["webp","png"], file_sizes=[180], width=60, height=60, img_class='software-icon', data_src=False) }}
+			</a>
+			{% endfor %}
+        </section>
+
+	{# <script>
+            const onHeaderImagesLoaded = (images, type= 'primary') => {
+                const loadedImages = images.map(img => false);
+                images.forEach((img, idx) => {
+                    loadedImages[idx] = img.complete;
+
+                    if (loadedImages.every(val => val)) {
+                        header.classList.add(`loaded-${type}`)
+                    }
+                    img.onload = () => {
+                        loadedImages[idx] = true
+                        if (loadedImages.every(val => val)) {
+                            header.classList.add(`loaded-${type}`)
+                        }
+                    }
+                })
+            }
+
+            const header = document.querySelector('section.header')
+            const items1 = [
+                header.querySelector('.image__background img'),
+            ]
+
+            const items2 = Array.from(header.querySelectorAll('.image__background img'));
+
+            onHeaderImagesLoaded(items1);
+            onHeaderImagesLoaded(items2, 'secondary');
+        </script> #}
+
+        <a class="nav" name="trailer"></a>
+        {# TRAILER #}
+        <section class="video trailer">
+            <div class="image__deco image__deco--1">
+                <video src="{{ media_url }}/sold.webm?{{ version }}" loading="lazy" muted loop autoplay playsinline></video>
+                {# {{ picture(
+                    media_url,
+                    "square_1",
+                    file_sizes=[256],
+                    formats=['jpg'],
+                    width=150,
+                    height=150,
+                    alt=alt
+                ) }} #}
+            </div>
+            {# <div class="image__deco image__deco--2">
+                <video src="{{ media_url }}/vektor.webm?{{ version }}" loading="lazy" muted loop autoplay playsinline></video>
+                </video>
+            </div> #}
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="section__content">
+                            <div class="section__head">
+                                {# <p class="section__subtitle " style="--s-index:0;">
+                                    {{data.trailer.subtitle}}
+                                </p> #}
+                                <div class="section__title">
+                                    {{ data.trailer.title|safe }}
+                                </div>
+                                <p class="section__text mx-auto" style="max-width: 400px">
+                                    {{ data.trailer.text|safe }}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="yt embed-responsive embed-responsive-16by9">
+                            <div class="video-iframe" data-id="{{trailer_id}}" style="background-color: #000"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <a class="nav" name="tutorial"></a>
+		{# TUTORIAL #}
+        <section class="video tutorial">
+            <div class="image__deco image__deco--3">
+                <video src="{{ media_url }}/car.webm?{{ version }}" loading="lazy" muted loop autoplay playsinline></video>
+                {# {{ picture(
+                    media_url,
+                    "square_1",
+                    file_sizes=[400, 800],
+                    formats=['jpg'],
+                    width=800,
+                    height=800,
+                    alt=alt
+                ) }} #}
+            </div>
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section__content">
+                            <div class="section__head">
+                                {# <p class="section__subtitle " style="--s-index:0;">{{ data.tutorial.subtitle}}</p> #}
+                                <div class="section__title ">{{ data.tutorial.title|safe }}</div>
+                                <p class="section__text mx-auto" style="max-width: 350px">{{ data.tutorial.text|safe }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="yt embed-responsive embed-responsive-16by9">
+                            <div class="video-iframe" data-id="{{tutorial_id}}" style="background-color: #000"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {# PROMO #}
+        <section class="promo-head text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="section__content mx-auto">
+                        <div class="section__title" style="max-width: 10em">{{ data.promo.title }}</div>
+                        <div class="section__text mx-auto" style="max-width: 20em">{{ data.promo.text }}</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section__content">
+            <div class="promo__quote quote mobile" style="max-width: 48em;">
+                <img src="{{ media_url }}/quote-600.png?{{ version }}" class="quote__deco" alt="Quote avatar">
+                <div class="quote__body">
+                    <div class="quote__text section__title">
+                        {{ data["promo-big"].title }}
+                    </div>
+                    <div class="quote__avatar">
+                        <img src="{{ media_url }}/p_1-200.jpg?{{ version }}" alt="Quote avatar">
+                        <div class="quote__avatar__body">
+                            <div class="quote__avatar__name">
+                                David L. Cardoso <br>Sales Representative
+                            </div>
+                            <div class="quote__avatar__extra">
+                                <img src="{{ media_url }}/phone-500.png?{{ version }}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="promo">
+            <div class="image__background">
+                {{picture(
+                    media_url=media_url,
+                    filename= 'gfx_1' ,
+                    file_sizes=[2560, 1920, 1280, 960, 640],
+                    formats=['jpg'],
+                    width=2560,
+                    height=960,
+                    alt="Header image",
+                )}}
+                <div class="container image__background__overlay">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="overlay__info">
+                                <div class="overlay__title">62, Castellon de la Plana</div>
+                                <div class="overlay__text">Valencia | Spain</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="
+                    {# col-12 #}
+                    col-5 offset-7
+                    {# col-10 offset-1 #}
+                    ">
+                        <div class="promo__quote quote desktop" style="max-width: 48em;">
+                            <img src="{{ media_url }}/quote-600.png?{{ version }}" class="quote__deco" alt="Quote avatar">
+                            <div class="quote__body">
+                                <div class="quote__text section__title">
+                                    {{ data["promo-big"].title }}
+                                </div>
+                                <div class="quote__avatar">
+                                    <img src="{{ media_url }}/p_1-200.jpg?{{ version }}" alt="Quote avatar">
+                                    <div class="quote__avatar__body">
+                                        <div class="quote__avatar__name">
+                                            David L. Cardoso <br>Sales Representative
+                                        </div>
+                                        <div class="quote__avatar__extra">
+                                            <img src="{{ media_url }}/phone-500.png?{{ version }}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {# PROMO TRANSITION-SLIDER #}
+        {# {
+            'img': {
+                'src': 'gfx_s0',
+                'alt': ''
+            },
+            'st': [
+                {
+                    'title': 'Neighborhood Coast',
+                    'text': '12 Webb Road COOKS HILL NSW 2300',
+                    'price': '$450,000',
+                    'icon': 'icon',
+                    'img':  {
+                        'src': 'gfx_s0a',
+                        'alt': '',
+                    }
+                }
+            ]
+        }, #}
+        
+        {#'gfx_s2b'#}
+        
+        {% set slides_transition = [
+            {
+                'img': {
+                    'src': 'gfx_s4',
+                    'alt': ''
+                },
+                'images': [
+                    'gfx_s4a'
+                ]
+            },
+            {
+                'img': {
+                    'src': 'gfx_s1',
+                    'alt': ''
+                },
+                'images': [
+                    'gfx_s1a'
+                ]
+            },
+            {
+                'img': {
+                    'src': 'gfx_s2',
+                    'alt': ''
+                },
+                'videos': [
+                    'gfx_s2a'
+                ],
+                'images': ['gfx_s2c'],
+                'type': 'png'
+            },
+            {
+                'img': {
+                    'src': 'gfx_s3',
+                    'alt': ''
+                },
+                'videos': [
+                    'gfx_s3a',
+                    'gfx_s3b'
+                ]
+            },
+        ] %}
+        <section class="transition-slider">
+            <div class="container transition-slider__head">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="slide__title section__title" style="max-width: 16em;">Highlight the WOW factors, pinpoint unique features, astonish the viewer!</div>
+                        <div class="slide__text section__text" style="max-width: 21em;">Real estate is about essential facts and powerful emotions. So is mReal Estate!</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="swiper transition-swiper mobile">
+                <div class="swiper-wrapper">
+                    {% for pos in slides_transition %}
+                    <div class="swiper-slide">
+                        {{ picture(
+                            media_url,
+                            pos.img.src + 'm',
+                            file_sizes=[1024, 960, 640],
+                            formats=['jpg'],
+                            width=1500,
+                            height=977,
+                            alt=pos.img.alt
+                        ) }}
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+
+            {# DESKTOP #}
+
+            <div class="swiper transition-swiper desktop">
+                <div class="swiper-wrapper">
+                    {% for pos in slides_transition %}
+                    <div class="swiper-slide">
+                        {# <div class="container"> #}
+                            {# <div class="row"> #}
+                                {# <div class="col-12"> #}
+                                    <div class="slide__content">
+                                        <div class="slide__content__image">
+                                            {{ picture(
+                                                media_url,
+                                                pos.img.src,
+                                                file_sizes=[1500, 1280, 960, 640],
+                                                formats=['jpg'],
+                                                width=1500,
+                                                height=977,
+                                                alt=pos.img.alt
+                                            ) }}
+                                        </div>
+                                        {# <div class=""> #}
+                                            {% if pos.st %}
+                                                {% for item in pos.st %}
+                                                    <div class="data {{ pos.img.src }}">
+                                                        <div class="slide__data">
+                                                            <div class="data__body">
+                                                                <div class="data__title">{{ item.title }}</div>
+                                                                <div class="data__text">{{ item.text }}</div>
+                                                                <div class="data__price">{{ item.price }}</div>
+                                                                {# <div class="data__icon">{{ item.icon }}</div> #}
+                                                            </div>
+                                                            {{ picture(
+                                                                media_url,
+                                                                item.img.src,
+                                                                file_sizes=[1280, 960, 640],
+                                                                formats=['jpg'],
+                                                                width=1920,
+                                                                height=480,
+                                                                img_class="slide__data__picture",
+                                                                alt=item.img.alt
+                                                            ) }}
+                                                        </div>
+                                                    </div>
+                                                {% endfor %}
+                                            {% endif %}
+
+                                            {% if pos.videos %}
+                                                {% for video in pos.videos %}
+                                                    <div class="data {{ pos.img.src }}">
+                                                        <video src="{{ media_url }}/{{ video }}.webm?{{ version }}" loading="lazy" muted loop autoplay playsinline></video>
+                                                    </div>
+                                                {% endfor %}
+                                            {% endif %}
+
+                                            {% if pos.images %}
+                                                {% for img in pos.images %}
+                                                    <div class="data {{ pos.img.src }}">
+                                                    {{ picture(
+                                                        media_url,
+                                                        img,
+                                                        file_sizes=[1280, 960, 640],
+                                                        formats=['png'] if pos.type else ['jpg'],
+                                                        width=1920,
+                                                        height=480,
+                                                        picture_class="",
+                                                        img_class="slide__data__picture",
+                                                        alt=''
+                                                    ) }}
+                                                    </div>
+                                                {% endfor %}
+                                            {% endif %}
+                                        {# </div> #}
+
+                                    {# </div> #}
+                                {# </div> #}
+                            {# </div> #}
+                        </div>
+                        
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        </section>
+
+        <div class="bg--dark">
+        {# SUGESTED PRODUCT #}
+        <section class="suggested-product">
+            <div class="sp__deco sp__deco--1">
+                {{ picture(
+                    media_url,
+                    'sg_01',
+                    file_sizes=[640, 960, 1280, 1920],
+                    formats=['jpg'],
+                    width=1920,
+                    height=1250,
+                    alt=title
+                ) }}
+            <div class="bars">
+                <div class="bar">34 Park Place, 54</div>
+                <div class="bar">3BD, 4.5 BA</div>
+                <div class="bar">$950,000</div>
+            </div>
+            </div>
+
+            <div class="sp__deco sp__deco--2">
+                <div class="property-price-tag">
+                    <img src="{{ media_url }}/valued-1000.png?{{ version }}" alt="Tag price">
+                </div>
+                {{ picture(
+                    media_url,
+                    'sg_02',
+                    file_sizes=[640, 800],
+                    formats=['jpg'],
+                    width=800,
+                    height=800,
+                    alt=title
+                ) }}
+            </div>
+
+            <div class="sp__deco sp__deco--3">
+                <video class="data" src="{{ media_url }}/vektor.webm?{{ version }}" loading="lazy" muted loop autoplay playsinline></video>
+            </div>
+
+
+            <a class="nav" id="match" name="suggested" style="position: absolute; padding-top: 150px; width: 100%; bottom: 100%;"></a>
+            {% macro buy_btn_suggested_product(product, product_name) %}
+            {% set info = get_promo_valid_info( product).replace('April ', 'April ') if live else 'Valid till April 21, 2022' %}
+            {% set is_promo = not live or ( product.is_promo and  product.promo_date) %}
+            <div class="button-buy">
+                <div id="btn-buy-container" class="version2" style="min-width: max-content">
+                    <div class="inner-container">
+                        <a href="#" class="buy-button" data-add-to-cart='{ "productId": {{  product.id }}, "productTitle": "{{  product.title }}" }'>
+                            {{ product_name }} {% if is_promo %}<del class="price-crossed"> ${{ price( product.price) }}</del>{% endif %} <span class="price">${{ price( product.get_price(request.user)) if live else 89 }}</span>
+                        </a>
+                    </div>
+                    {#{% if is_promo %}
+                    <div class="promo-info">{{ ('<strong>Promo price</strong> ' + (info[0] | lower + info[1:])) | safe if info.startswith('Valid') else info }}</div>
+                    {% endif %}#}
+                </div>
+            </div>
+            {% endmacro %}
+
+            <div class="container">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-12 col-lg-6">
+                        <div class="suggested-product__boxes mb-5 mb-lg-0 mx-auto justify-content-center">
+                        {% set product_external = get_product('3789') %}
+                        {% set suggested_product = {
+                            'raw': product_external,
+                            'name': 'mTracker 3D Area',
+                            'url': 'https://www.motionvfx.com/store,%s,p%s.html' % (product_external.slug, product_external.id),
+                        } %}
+                        {% for b in [
+                            {
+                                'box': {
+                                    'media_url': 'https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media' % (template_id),
+                                    'src': '512',
+                                    'alt': 'mReal Estate',
+                                }
+                            },
+                            {
+                                'suggested': True,
+                                'box': {
+                                    'media_url': 'https://s3.motionvfx.com/mvfxpublic/products/templates/%s/media' % (template_id),
+                                    'src': '512_2',
+                                    'alt': 'mTracker 3d Area',
+                                }
+                            }
+                        ] %}
+                            {% if b.suggested %}
+                            <a href="{{ suggested_product.url }}" aria-label="{{ suggested_product.name }} link" target="_blank" rel="noopener noreferrer">
+                            {# <div class="suggested-product__discount">-15%</div> #}
+                            {% endif %}
+                            {{ picture(
+                                b.box.media_url,
+                                b.box.src,
+                                file_sizes=[512, 256],
+                                media_sizes='100vw',
+                                formats=['webp', 'png'],
+                                width=276,
+                                height=276,
+                                alt=b.alt,
+                                img_class='suggested-product__box ' + ('suggested-product__box--external' if b.suggested else ''),
+                                loading="lazy"
+                            ) }}
+                            {% if b.suggested %}
+                            </a>
+                            {% endif %}
+                        {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="suggested-product__content text-center text-lg-left">
+                            <div class="section__title suggested-product__title glitch-anim-2">
+                                <span class="front">It's a great match.</span><br> For real!
+                            </div>
+                            <div class="section__text suggested-product__text mb-5 " style="max-width: 20em;">
+                                <span class="discount__text">15% OFF!</span> Get them together, feel the real (estate!) power! You need to have mTracker 3D to use mTracker 3D Area.
+                            </div>
+                            <div class="suggested-product__action">
+                                {{ buy_btn_suggested_product(suggested_product.raw, suggested_product.name) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {# {% if pic.images %}
+            {% for p in pic.images %}
+                <div class="data {{ pic.src }}">
+                    {{ picture(
+                        media_url,
+                        p,
+                        file_sizes=[640, 1000],
+                        formats=['png'],
+                        width=1000,
+                        height=200,
+                        img_class="",
+                        alt=''
+                    ) }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        {% if pic.videos %}
+            {% for video in pic.videos %}
+                <div class="data {{ pic.src }}">
+                    <video src="{{ media_url }}/{{ video }}.webm?{{ version }}" loading="lazy" muted loop autoplay playsinline></video>
+                </div>
+            {% endfor %}
+        {% endif %}
+        {% if pic.code %}
+            {% for c in pic.code %}
+                <div class="data {{ pic.src }}">
+                    {{ c|safe }}
+                </div>
+            {% endfor %}
+            
+        {% endif %} #}
+
+        {# STEPS SLIDER #}
+        <section class="steps">
+            <div class="container-fluid">
+                <div class="row">
+                    {% set step_slides = [
+                        {
+                            'src': 'ss_0',
+                            'alt': '',
+                            'code': [
+                                '',
+                            ]
+                        },
+                        {
+                            'src': 'ss_1',
+                            'alt': '',
+                            'videos': [''],
+                            'code': [
+                                '',
+                                ''
+                            ]
+                        },
+                        {
+                            'src': 'ss_2',
+                            'alt': '',
+                            'images': [''],
+                            'code': [
+                                '',
+                                ''
+                            ]
+                        },
+                        {
+                            'src': 'ss_3',
+                            'alt': '',
+                            'images': [''],
+                        }
+                    ] %}
+                    <div class="col-12 col-xl-6 mb-5">
+                        <div class="swiper steps-swiper mobile">
+                            {% set mobile_sizes = [1024, 960, 640] %}
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    {{ picture(
+                                        media_url,
+                                        'm_s2_1',
+                                        file_sizes=mobile_sizes,
+                                        formats=['jpg'],
+                                        width=1920,
+                                        height=1250,
+                                        img_class="img",
+                                        alt=''
+                                    ) }}
+                                </div>
+                                <div class="swiper-slide">
+                                    {{ picture(
+                                        media_url,
+                                        'm_s2_2',
+                                        file_sizes=mobile_sizes,
+                                        formats=['jpg'],
+                                        width=1920,
+                                        height=1250,
+                                        img_class="img",
+                                        alt=''
+                                    ) }}
+                                </div>
+                                <div class="swiper-slide">
+                                    {{ picture(
+                                        media_url,
+                                        'm_s2_3',
+                                        file_sizes=mobile_sizes,
+                                        formats=['jpg'],
+                                        width=1920,
+                                        height=1250,
+                                        img_class="img",
+                                        alt=''
+                                    ) }}
+                                </div><div class="swiper-slide">
+                                    {{ picture(
+                                        media_url,
+                                        'm_s2_4',
+                                        file_sizes=mobile_sizes,
+                                        formats=['jpg'],
+                                        width=1920,
+                                        height=1250,
+                                        img_class="img",
+                                        alt=''
+                                    ) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        {# DESKTOP #}
+
+                        <div class="swiper steps-swiper desktop">
+                            <div class="swiper-wrapper">
+                                {# {% for pic in step_slides %} #}
+                                <div class="swiper-slide">
+                                    <div class="steps-slide__content">
+                                        <div class="steps-slide__content__comp ss_0">
+                                            {{ picture(
+                                                media_url,
+                                                'ss_0',
+                                                file_sizes=[640, 960, 1280, 1500, 1920],
+                                                formats=['jpg'],
+                                                width=1920,
+                                                height=1250,
+                                                img_class="img",
+                                                alt=''
+                                            ) }}
+
+                                            <div class="data">
+                                                <div class="data__columns">
+                                                    <div class="column__1">
+                                                        <div class="row__1">
+                                                            BEDROOMS<br> 5
+                                                        </div>
+                                                        <div class="row__2">
+                                                            SQFT<br> 3,200
+                                                        </div>
+                                                    </div>
+                                                    <div class="column__1">
+                                                        <div class="row__1">
+                                                            
+                                                            BATHROOMS<br> 3
+                                                        </div>
+                                                        <div class="row__2">
+                                                            TYPE<br> Mansion
+                                                        </div>
+                                                    </div>
+                                                    <div class="column__1">
+                                                        <div class="row__1">
+                                                            FLOORS<br> 3
+                                                        </div>
+                                                        <div class="row__2">
+                                                            YEAR BUILT<br> 1998
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="steps-slide__content">
+                                        <div class="steps-slide__content__comp ss_1">
+                                            {{ picture(
+                                                media_url,
+                                                'ss_1',
+                                                file_sizes=[640, 960, 1280, 1500, 1920],
+                                                formats=['jpg'],
+                                                width=1920,
+                                                height=1250,
+                                                img_class="img",
+                                                alt=''
+                                            ) }}
+
+                                            <div class="data">
+                                                <video src="{{ media_url }}/ss_1a.webm?{{ version }}" loading="lazy" muted loop autoplay playsinline></video>
+                                            </div>
+
+                                            <div class="data--2">
+                                                <div class="square">
+                                                    <div class="square__icon">
+                                                    </div>
+                                                    <div class="square__body">
+                                                        <div class="square__title">
+                                                            Villa Maranta
+                                                        </div>
+                                                        <div class="square__text">
+                                                            16 North Street, West Side
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="steps-slide__content">
+                                        <div class="steps-slide__content__comp ss_2">
+                                            {{ picture(
+                                                media_url,
+                                                'ss_2',
+                                                file_sizes=[640, 960, 1280, 1500, 1920],
+                                                formats=['jpg'],
+                                                width=1920,
+                                                height=1250,
+                                                img_class="img",
+                                                alt=''
+                                            ) }}
+
+                                            <div class="data">
+                                                {{ picture(
+                                                    media_url,
+                                                    'ss_2a',
+                                                    file_sizes=[1000, 640],
+                                                    formats=['png'],
+                                                    width=1920,
+                                                    height=1250,
+                                                    img_class="img",
+                                                    alt=''
+                                                ) }}
+                                            </div>
+
+                                            <div class="data data--2">
+                                                <div class="post">
+                                                    <div class="post__title">
+                                                        Washington
+                                                    </div>
+                                                    <div class="post__text">
+                                                        elisabeth street, 608 0483 / westwood
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="steps-slide__content">
+                                        <div class="steps-slide__content__comp ss_3">
+                                            {{ picture(
+                                                media_url,
+                                                'ss_3',
+                                                file_sizes=[640, 960, 1280, 1500, 1920],
+                                                formats=['jpg'],
+                                                width=1920,
+                                                height=1250,
+                                                img_class="img",
+                                                alt=''
+                                            ) }}
+
+                                            <div class="data">
+                                                {{ picture(
+                                                    media_url,
+                                                    'info_2',
+                                                    file_sizes=[1000, 640],
+                                                    formats=['png'],
+                                                    width=1920,
+                                                    height=1250,
+                                                    img_class="img",
+                                                    alt=''
+                                                ) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {# {% endfor %} #}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-xl-6 steps-pagination">
+                        {# <div class="section__content"> #}
+                        <div class="swiper-pagination"></div>
+                        {# </div> #}
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="prevs center">
+            {% set productPageTemplateId = template_id %} 
+            {% set collapseAfter = 8 %}
+            {% set namePrefix = '' %}
+            {% set categories = [
+                { 'label': 'Contacts', 'key': 'contact', 'count': 8, 'class': None },
+                { 'label': 'Icons', 'key': 'icon', 'count': 33, 'class': None },
+                { 'label': 'Infographics', 'key': 'infographic', 'count': 8, 'class': None },
+                { 'label': 'Lower3rds', 'key': 'lower3rd', 'count': 10, 'class': None },
+                { 'label': 'Placeholders', 'key': 'placeholders', 'count': 20, 'class': None },
+                { 'label': 'Tools', 'key': 'tools', 'count': 6, 'class': None },
+                { 'label': 'Transitions', 'key': 'transition', 'count': 5, 'class': None },
+                { 'label': 'Typography', 'key': 'typography', 'count': 26, 'class': None },
+            ] %}
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <div class="lines__comp">
+                            <div class="section__head">
+                                <img src="{{ media_url }}/stars.png?{{ version }}" alt="">
+                                <p class="section__display" style="max-width: 13em;">
+                                    An all-round solution
+                                </p>
+                                <h2 class="section__title" style="max-width: 22em;">
+                                    Designed to cater to your every real estate need, this plugin will help you prepare 100% informative videos that sell. 
+                                </h2>
+                                <p class="section__subtitle">
+                                    hover or tap to preview animations
+                                </p>
+                            </div>
+                            <div class="lines__wrapper">
+                                <div class="lines">
+                                    <div class="lines-v"></div>
+                                    <div class="lines-h"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="product-prev-grid" class="product-prev-grid container">
+    			{% for category in categories %}
+					{% set key = category.key %}
+					{% if categories|length > 1 %}
+                        <h3 class="prevs__title {{ 'left' if loop.index % 2 != 0 else 'right' }}">{{ category.label }}
+                        </h3>
+                    {% endif %}
+					<div class="row {{ category.rowClass | default('') }} {% if category.count == 5 %}row-5{% endif %}">
+						{% for i in range(category.count) %}
+							{% set num = '%02d' % loop.index %}
+                            {# https://s3.motionvfx.com/mvfxpublic/products/templates/1297/media/Background_{{num}}.mp4 #}
+                            {# https://s3.motionvfx.com/mvfxpublic/products/templates/1297/media/mIntro_2_04.mp4 #}
+							{% set filename = 'https://s3.motionvfx.com/mvfxpublic/products/templates/' + productPageTemplateId + '/media/' + namePrefix + key +  '_' + num %}
+							<div class="product-prev-col col-6 col-lg-3 {% if loop.index > collapseAfter %}collapse prev-collapse-{{ key }}{% endif %}" id="prev-collapse-{{ key }}-{{ loop.index }}"
+								>
+								<div class="product-prev-cell" data-mp4-src="{{ filename }}.mp4?{{refresh}}">
+									<img loading="lazy" src="{{ filename }}.jpg?{{refresh}}" alt="" width="400" height="225" />
+									<div class="loading-spinner"></div>
+								</div>
+							</div>
+						{% endfor %}
+						{% if category.count > collapseAfter %}
+							<div class="col-btn-collapse">
+								<button class="btn-collapse" type="button" data-target=".prev-collapse-{{ key }}" aria-expanded="false" aria-controls="{% for j in range(collapseAfter, category.count) %} prev-collapse-{{ key }}-{{ j }} {% endfor %}">
+									<span><span class="label-collapsed">Show more</span><span class="label-expanded">Collapse</span> ({{ category.count - collapseAfter }})</span>
+									<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+											viewBox="0 0 36.6 61.5" style="enable-background:new 0 0 36.6 61.5;" xml:space="preserve" class="btn-collapse-arrow" height="20">
+										<style type="text/css">
+											.st0{fill:none;stroke:currentColor;stroke-width:8;stroke-miterlimit:10;}
+										</style>
+										<polyline class="st0" points="2.8,58.6 30.9,30.5 3.2,2.8 "/>
+									</svg>
+								</button>
+							</div>
+						{% endif %}
+					</div>
+				{% endfor %}
+			</div>
+        </section>
+
+        {# MSLIDER #}
+        <section class="mSlides four-pic">
+            <div class="four-pic__comp">
+				{% for slide in [
+					[
+						{
+							'src': 'm_1',
+                            'alt': '',
+                            'text': '4888 Owagner Lane, Redmond, WA 98052',
+                            'price': '$500,999',
+                            'tags': ['3 Bedrooms', '2 Bathrooms', '2,300 sq.ft']
+						},
+						{
+							'src': 'm_2',
+                            'alt': '',
+                            'text': '4637 Meadowcrest Lane, Lexington, KY 40507',
+                            'price': '$449,999',
+                            'tags': ['3 Bedrooms', '1 Bathrooms', '2,190 sq.ft']
+						},
+						{
+							'src': 'm_3',
+                            'alt': '',
+                            'text': '4774 Henery Street, Wichita, KS 67202',
+                            'price': '$340,999',
+                            'tags': ['2 Bedrooms', '1 Bathrooms', '1,400 sq.ft']
+						},
+						{
+							'src': 'm_4',
+                            'alt': '',
+                            'text': '584 Jessie Street, Boise, 83702',
+                            'price': '$549,999',
+                            'tags': ['4 Bedrooms', '2 Bathrooms', '2,400 sq.ft']
+						}
+					]
+				] %}
+
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="m__comp">
+                                <div class="m__letter">M</div>
+                                <div class="swiper mSwiperM">
+                                    <div class="swiper-wrapper">
+                                        {% for pic in slide %}
+                                        <div class="swiper-slide">
+                                            {{ picture(
+                                                media_url,
+                                                pic.src,
+                                                file_sizes=[640, 960, 1280],
+                                                formats=['jpg'],
+                                                width=1280,
+                                                height=720,
+                                                img_class="img",
+                                                alt=pic.alt
+                                            ) }}
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="section__content">
+                                <div class="section__title" style="max-width: 13em;">
+                                    Each property is a small world of its own.
+                                </div>
+                                <div class="section__text">
+                                    Here's a tool to describe each of these worlds. 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper mSwiper">
+                    <div class="swiper-wrapper">
+                        {% for pic in slide %}
+                        <div class="swiper-slide">
+                            <div class="card-estate">
+                                <div class="card-estate__img">
+                                    {{ picture(
+                                        media_url,
+                                        pic.src,
+                                        file_sizes=[640, 960, 1280],
+                                        formats=['jpg'],
+                                        width=800,
+                                        height=800,
+                                        img_class="img",
+                                        alt=pic.alt
+                                    ) }}
+                                </div>
+                                <div class="card-estate__content">
+                                    <div class="card-estate__text">{{ pic.text|safe }}</div>
+                                    <div class="card-estate__price">{{ pic.price }}</div>
+                                    <div class="card-estate__tags">
+                                    {% for tag in pic.tags %}
+                                        {{ tag }} {{ '  ' if not loop.last }}
+                                    {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                {% endfor %}
+            </div>
+        </section>
+        </div>
+
+        {# TECHSPEC #}
+        <a class="nav" href="#" name="specs" rel="noopener noreferrer"></a>
+        <div class="ts-mi">
+        <section class="tech-spec">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="tech-spec-info">
+                            <div class="section__text__content">
+                                <div class="section__head">
+                                    <h2 class="section__title tech-spec__title section__title">Technical specifications</h2>
+                                </div>
+                                <div class="ttable tech-spec__table">
+                                    <div class="tcell tlabel">Supported software</div>
+                                    <div class="tcell tdata">
+                                        {% autoescape off %}
+                                            {{ product.productdetails.minimal_requirements.replace('FCP 10', 'FCP 10').replace('Motion 5', 'Motion 5').replace(', ', ',<br>') }}
+                                        {% endautoescape %}
+                                    </div>
+                                    <div class="tcell tlabel">Includes</div>
+                                    <div class="tcell tdata">5 FCP Transitions, 111 FCP Titles</div>
+                                    <div class="tcell tlabel">Size</div>
+                                    <div class="tcell tdata">
+                                        {{ "%.1f MB"|format(product.productdetails.source_size / 1000) }}
+                                    </div>
+                                    {% for kind in ['trailer', 'tutorial'] %}
+                                        {% with musics=product.productdetails.music.select_related('music_portal').all().filter(used_in_trailer=kind=='trailer') %}
+                                            {% if musics|length %}
+                                                <div class="tcell tlabel">Music used in {{ kind }}</div>
+                                                <div class="tcell tdata">
+                                                    {% include 'product/music_info.jinja2' %}
+                                                </div>
+                                            {% endif %}
+                                        {% endwith %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </section>
+
+        <section class="minstaller__section">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="minstaller">
+                            <h3 class="minstaller__title">mInstaller</h3>
+                            <p class="minstaller__description">
+                                After purchasing, the product is <b>instantly available </b>for download via <a href="https://www.motionvfx.com/page/minstaller.html" target="_blank" rel="noopener noreferrer">mInstaller</a>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        </div>
+
+		{# FOOTER #}
+        {# media_files={
+                        '(max-width: 960px)': {
+                            'filename': media_prefix + '_footer_mobile',
+                            'formats':['jpg'],
+                            'file_sizes': [640, 960],
+                        }
+                    }, #}
+	<footer class="footer">
+            <div class="image__background " style="--s-index:0">
+                {{picture(
+                    media_url=media_url,
+                    filename= 'footer' ,
+                    file_sizes=srcsetSizes,
+                    formats=['jpg'],
+                    width=2560,
+                    height=1280,
+                    loading="lazy",
+                    alt="Footer"
+                )}}
+            </div>
+            <div class="image__deco image__deco--1">
+                {{picture(
+                    media_url=media_url,
+                    filename= 'woman' ,
+                    file_sizes=[1000, 640],
+                    formats=['jpg'],
+                    width=1000,
+                    height=1500,
+                    loading="lazy",
+                    alt="Footer"
+                )}}
+                <div class="c-data">
+                    <div class="c-data__title">
+                        Sandra P. Rose
+                    </div>
+                    <div class="c-data__text">
+                        Let’s find your dream house and seal the deal!
+                    </div>
+                </div>
+            </div>
+            <div class="image__deco image__deco--2">
+
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section__text__content">
+                            <div class="section__head">
+                                <div class="footer__subtitle section__subtitle" style="max-width: ;">
+                                    <img src="{{ media_url }}/baliff-256.png?{{ version }}" alt="">
+                                </div>
+                                <div class="footer__title section__title">
+                                    {{data.footer.title|safe}}
+                                </div>
+                                <p class="footer__text mx-auto" style="max-width: 500px">
+                                    {{ data.footer.text|safe }}
+                                </p>
+                            </div>
+                            <div class="button-buy">
+                                {# {{buy_btn_free()}} #}
+                                {% with discount_text="INTRO", version=2 %}
+                                    {% include "product/buy_button.jinja2" %}
+                                {% endwith %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    {# {% include './components/popup-left.jinja' %} #}
+    {% include './components/submenu.jinja' %}
+    
+    <script src="https://s3.motionvfx.com/mvfxpublic/products/templates/1329/js/gsap.min.js"></script>
+    <script src="https://s3.motionvfx.com/mvfxpublic/products/templates/1329/js/morpher.min.js"></script>
+    
+    <script src="dist/scripts.js"></script>
+    <script src="scripts/vendor/menu.js" defer></script>
+    <script src="scripts/vendor/scroll_to_anchor.js" defer></script>
+</body>
+
+</html>

@@ -1,24 +1,28 @@
 .video {
-  text-align: center;
-  z-index: 1;
-  padding-bottom: 0;
+    text-align: center;
+    z-index: 1;
+    padding-bottom: 0;
 
-  .section__title {
-    margin-bottom: clamp(3rem, 10vw, 5rem);
-    // margin-bottom: 2rem;
-  }
+    .section {
+        &__text {
+            margin-bottom: $section-padding-y;
+        }
+        &__title {
+            // margin-bottom: 2rem;
+        }
+    }
 
-  &.trailer,
-  .tutorial {
-  }
-  
-  &.trailer {
-    // margin-bottom: clamp(3rem, 20vw, 6rem);
-  }
+    &.trailer,
+    .tutorial {
+    }
 
-  &.tutorial {
-    // padding-top: 3rem;
-    // margin-bottom: clamp(3rem, 10vw, 5rem);
-    // margin-bottom: 2rem;
-  }
+    &.trailer {
+        // margin-bottom: clamp(3rem, 20vw, 6rem);
+    }
+
+    &.tutorial {
+        // padding-top: 3rem;
+        // margin-bottom: $section-padding-y;
+        // margin-bottom: 2rem;
+    }
 }

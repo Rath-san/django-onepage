@@ -15,9 +15,9 @@ const IMAGE_QUALITY = 50;
 
 const CONFIGS = [
     // {
-    //     directory: "_top",
+    //     directory: "_top_h",
     //     sizes: [
-    //         ...[640, 960, 1280, 1920, 2560, 3000].map((size) => ({ w: size})),
+    //         ...[300, 560].map((size) => ({ w: size })),
     //     ],
     //     quality: 85,
     //     targetFormat: ["jpg"],
@@ -26,123 +26,188 @@ const CONFIGS = [
     //     },
     // },
     // {
-    //     directory: "_promo",
+    //     directory: "_top_v",
     //     sizes: [
-    //         ...RESPONSIVE_SIZES,
-    //         // ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ ...size, h: 560 }))
+    //         ...[300, 560].map((size) => ({ w: size })),
     //     ],
-    //     quality: 95,
-    //     targetFormat: ["jpg"],
-    //     outputOptions: {
-    //         mozjpeg: true,
-    //     },
-    // },
-    // {
-    //     directory: "_slides",
-    //     sizes: [640, 960, 1280, 1800].map((size) => ({ w: size })),
     //     quality: 85,
     //     targetFormat: ["jpg"],
     //     outputOptions: {
     //         mozjpeg: true,
     //     },
     // },
-    // {
-    //     directory: "_slides_mobile",
-    //     sizes: [600, 1200].map((size) => ({ w: size })),
-    //     quality: 75,
-    //     targetFormat: ["jpg"],
-    //     outputOptions: {
-    //         mozjpeg: true,
-    //     },
-    // },
-    // {
-    //     directory: "_mix",
-    //     sizes: [1280, 1920, 2560].map((size) => ({ w: size, h: 1250})),
-    //     quality: 75,
-    //     targetFormat: ["jpg"],
-    //     outputOptions: {
-    //         mozjpeg: true,
-    //     },
-    // },
 
     // {
-    //     directory: "_mix_mobile",
-    //     sizes: [640, 960, 1280, 1920].map((size) => ({ w: size, h: 860 })),
-    //     quality: 75,
-    //     targetFormat: ["jpg"],
-    //     outputOptions: {
-    //         mozjpeg: true,
-    //     },
-    // },
-
-    // {
-    //     directory: "_prev_ins",
-    //     sizes: [350, 700, 1400].map((size) => ({ w: size })),
-    //     quality: 90,
-    //     targetFormat: ["jpg"],
-    //     outputOptions: {
-    //         mozjpeg: true,
-    //     },
-    // },
-
-    // {
-    //     directory: "_wide",
+    //     directory: "_phone",
     //     sizes: [
-    //         ...RESPONSIVE_SIZES_DESKTOP.map((size) => ({ ...size, h: 960 })),
-    //         ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ ...size, h: 560 }))
+    //         ...[250, 500].map((size) => ({ w: size })),
     //     ],
-    //     quality: 75,
-    //     targetFormat: ["jpg"],
-    //     outputOptions: {
-    //         mozjpeg: true,
-    //     },
+    //     quality: 85,
+    //     targetFormat: ["png"],
+    //     // outputOptions: {
+    //     //     mozjpeg: true,
+    //     // },
     // },
     // {
-    //     directory: "_spices",
-    //     sizes: [...[ 640, 960, 1280, 1920, 2560 ].map((size) => ({ w: size, hmin: 960}))],
-    //     quality: 90,
-    //     targetFormat: ["jpg"],
-    //     outputOptions: {
-    //         mozjpeg: true,
-    //     },
-    // },
-    // {
-    //     directory: "_logo",
-    //     sizes: [312, 624].map((s) => ({
-    //         w: s,
-    //     })),
-    //     quality: 100,
-    //     targetFormat: ["png", "webp"],
+    //     directory: "_icons",
+    //     sizes: [
+    //         ...[256].map((size) => ({ w: size })),
+    //     ],
+    //     quality: 85,
+    //     targetFormat: ["png"],
     //     // outputOptions: {
     //     //     mozjpeg: true,
     //     // },
     // },
 
+    // {
+    //     directory: "_man",
+    //     sizes: [
+    //         ...[200].map((size) => ({ w: size })),
+    //     ],
+    //     quality: 85,
+    //     targetFormat: ["jpg"],
+    //     outputOptions: {
+    //         mozjpeg: true,
+    //     },
+    // },
+
+    // {
+    //     directory: "_box",
+    //     sizes: [
+    //         ...[512, 256].map((size) => ({ w: size })),
+    //     ],
+    //     quality: 90,
+    //     targetFormat: ["webp", "png"],
+    //     // outputOptions: {
+    //     //     mozjpeg: true,
+    //     // },
+    // },
+
+    // {
+    //     directory: "_mobile/s2",
+    //     sizes: [
+    //         ...[1024, 960, 640].map((size) => ({ w: size })),
+    //     ],
+    //     quality: 90,
+    //     targetFormat: ["jpg"],
+    //     outputOptions: {
+    //         mozjpeg: true,
+    //     },
+    // },
+
     {
-        directory: "_box",
-        sizes: [512, 256].map((s) => ({ w: s })),
+        directory: "_promo",
+        sizes: [
+            ...RESPONSIVE_SIZES_DESKTOP,
+            ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ ...size, h: 500 })),
+        ],
         quality: 90,
-        targetFormat: ["png", "webp"],
+        targetFormat: ["jpg"],
+        outputOptions: {
+            mozjpeg: true,
+        },
     },
     // {
-    //     directory: "_spice_text_2",
-    //     sizes: [400, 800].map((s) => ({ w: s })),
+    //     directory: "_quote",
+    //     sizes: [600, 300].map((size) => ({ w: size })),
     //     quality: 90,
-    //     targetFormat: ["png", "webp"],
+    //     targetFormat: ["png"],
+    //     // outputOptions: {
+    //     //     mozjpeg: true,
+    //     // },
     // },
     // {
-    //     directory: "_watch_tutorial",
-    //     sizes: [320, 640].map((s) => ({ w: s })),
-    //     quality: 90,
-    //     targetFormat: ["png", "webp"],
+    //     directory: "_slider_m",
+    //     sizes: [640, 960, 1280].map((size) => ({ w: size })),
+    //     quality: 85,
+    //     targetFormat: ["jpg"],
+    //     outputOptions: {
+    //         mozjpeg: true,
+    //     },
     // },
     // {
-    //     directory: "_icon",
-    //     sizes: [330, 156].map((s) => ({
-    //         w: s,
-    //     })),
-    //     quality: 100,
-    //     targetFormat: ["png", "webp"],
+    //     directory: "_slider_steps",
+    //     sizes: [1920, 1280, 960, 640].map((size) => ({ w: size })),
+    //     quality: 85,
+    //     targetFormat: ["jpg"],
+    //     outputOptions: {
+    //         mozjpeg: true,
+    //     },
+    // },
+    // {
+    //     directory: "_slider_1/bg",
+    //     sizes: [2560, 1920, 1500, 1280, 960, 640].map((size) => ({ w: size })),
+    //     quality: 85,
+    //     targetFormat: ["jpg"],
+    //     outputOptions: {
+    //         mozjpeg: true,
+    //     },
+    // },
+    // {
+    //     directory: "_slider_1/detail",
+    //     sizes: [1600, 1280, 960, 640].map((size) => ({ w: size })),
+    //     quality: 85,
+    //     targetFormat: ["jpg"],
+    //     outputOptions: {
+    //         mozjpeg: true,
+    //     },
+    // },
+
+    // {
+    //     directory: "_slider_2/bg",
+    //     sizes: [1920, 1500, 1280, 960, 640].map((size) => ({ w: size })),
+    //     quality: 85,
+    //     targetFormat: ["jpg"],
+    //     outputOptions: {
+    //         mozjpeg: true,
+    //     },
+    // },
+    // {
+    //     directory: "_slider_2/detail",
+    //     sizes: [1000, 640].map((size) => ({ w: size })),
+    //     quality: 85,
+    //     targetFormat: ["png"],
+    //     // outputOptions: {
+    //     //     mozjpeg: true,
+    //     // },
+    // },
+
+    // {
+    //     directory: "_slider_2",
+    //     sizes: [1280, 960, 640].map((size) => ({ w: size })),
+    //     quality: 85,
+    //     targetFormat: ["jpg"],
+    //     outputOptions: {
+    //         mozjpeg: true,
+    //     },
+    // },
+
+    // {
+    //     directory: "_suggested",
+    //     sizes: [640, 960, 1280, 1920].map((size) => ({ w: size })),
+    //     quality: 85,
+    //     targetFormat: ["jpg"],
+    //     outputOptions: {
+    //         mozjpeg: true,
+    //     },
+    // },
+
+    // {
+    //     directory: "_suggested_sq",
+    //     sizes: [640, 800].map((size) => ({ w: size })),
+    //     quality: 85,
+    //     targetFormat: ["jpg"],
+    //     outputOptions: {
+    //         mozjpeg: true,
+    //     },
+    // },
+
+    // {
+    //     directory: "_suggested_deco",
+    //     sizes: [640, 960, 1000].map((size) => ({ w: size })),
+    //     quality: 85,
+    //     targetFormat: ["png"],
     //     // outputOptions: {
     //     //     mozjpeg: true,
     //     // },
@@ -155,53 +220,21 @@ const CONFIGS = [
     //             h: 1280,
     //         })),
     //     ],
-    //     quality: 80,
+    //     quality: 90,
     //     targetFormat: ["jpg"],
     //     outputOptions: {
     //         mozjpeg: true,
     //     },
     // },
+
     // {
-    //     directory: "_simple",
+    //     directory: "_footer_woman",
     //     sizes: [
-    //         ...[1280, 1920, 2560].map((size) => ({
+    //         ...[1000, 640].map((size) => ({
     //             w: size,
-    //             h: 1250,
-    //         })),
-    //         ...[640, 960].map((size) => ({
-    //             w: size,
-    //             h: 800,
     //         })),
     //     ],
-    //     quality: 80,
-    //     targetFormat: ["jpg"],
-    //     outputOptions: {
-    //         mozjpeg: true,
-    //     },
-    // },
-    // {
-    //     directory: "_tech",
-    //     sizes: [
-    //         ...[640, 960, 1280, 1920, 2560].map((size) => ({
-    //             w: size,
-    //             h: 1280,
-    //         })),
-    //     ],
-    //     quality: 80,
-    //     targetFormat: ["jpg"],
-    //     outputOptions: {
-    //         mozjpeg: true,
-    //     },
-    // },
-    // {
-    //     directory: "_trailer",
-    //     sizes: [
-    //         ...[640, 960, 1280, 1920, 2560].map((size) => ({
-    //             w: size,
-    //             hmin: 600
-    //         })),
-    //     ],
-    //     quality: 99,
+    //     quality: 85,
     //     targetFormat: ["jpg"],
     //     outputOptions: {
     //         mozjpeg: true,
@@ -209,11 +242,11 @@ const CONFIGS = [
     // },
 ];
 
-const PAGE_NAME = "mtitle_glitch";
+const PAGE_NAME = "mrealestate";
 
 function resizeTask(
     managedFormats = ["jpg", "jpeg", "png"],
-    imgDist = `src/plugins/${PAGE_NAME}/_images/otp/`
+    imgDist = `src/_images/otp/`
 ) {
     CONFIGS.forEach(
         ({
@@ -231,6 +264,7 @@ function resizeTask(
             return src(fileSrcs).pipe(
                 through2.obj(async function (file, _, cb) {
                     const [name] = file.basename.split("-");
+                    console.log(name);
 
                     // make sharp instance
                     const img = sharp(file.contents);
@@ -320,8 +354,10 @@ function resizeTask(
                                 );
                             };
 
-                            [...new Set([...targetFormat])].forEach((format) =>
-                                saveFile(format)
+                            [...new Set([...targetFormat])].forEach((format) => {
+                                    console.log(format);
+                                    saveFile(format)
+                                }
                             );
                         }
                     });

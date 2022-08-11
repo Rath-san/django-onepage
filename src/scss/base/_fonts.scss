@@ -4,8 +4,8 @@ $font-size-title: $rem * 2;
 $font-size-sub-title: $rem * 1.2;
 $font-size-body: $rem * 0.9;
 
-$font-family-text: 'Roboto', sans-serif;
-$font-family-title: "Roboto Condensed", sans-serif;
+$font-family-text: 'IBM Plex Sans', sans-serif;
+$font-family-title: "Lora", serif;
 $font-family-subtitle: $font-family-text;
 $font-family-title--big: $font-family-title;
 
@@ -41,7 +41,7 @@ main,
   &__title {
     // font-size: 1.8rem;
     font-size: 2rem;
-    font-weight: 500;
+    font-weight: 200;
     line-height: 1.2;
     font-family: $font-family-title;
     letter-spacing: 1px;
@@ -75,7 +75,7 @@ main,
   }
 
   &__display {
-    font-size: 11rem;
+    font-size: 4rem;
     font-weight: 900;
     line-height: 1;
     font-family: $font-family-title--big;

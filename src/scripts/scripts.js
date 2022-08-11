@@ -1,204 +1,250 @@
-// import { doOnVisible } from "./libs/do-on-visible";
-// import Splitting from "splitting";
-// // import { handleTouchEvents } from "./utils/utils";
-// import './vendor/menu';
-// import YTPlayer from "yt-player";
+import { doOnVisible } from "./libs/do-on-visible";
+import Splitting from "splitting";
+// import { handleTouchEvents } from "./utils/utils";
+import "./vendor/menu";
+import YTPlayer from "yt-player";
+import "./libs/arrow-slider";
+import initPrevs from "./libs/prevs";
 
-// const makePlayer = (id, elementId) => {
-//     const player = new YTPlayer(elementId);
-//     player.load(id);
-//     player.setVolume(100);
-// };
+import Swiper, { EffectFade, Navigation, Autoplay, Pagination } from "swiper";
 
-// const ytTopVideos = Array.from(document.querySelectorAll('.video-iframe'));
+const makePlayer = (id, elementId) => {
+    const player = new YTPlayer(elementId);
+    player.load(id);
+    player.setVolume(100);
+};
 
-// const lazyShow = () => {
-//     const imagesDocument = Array.from(document.querySelectorAll(".lazy-show"));
+const ytTopVideos = Array.from(document.querySelectorAll(".video-iframe"));
 
-//     imagesDocument.forEach((img) => {
-//         if (img.complete && img.src) {
-//             img.classList.add("lazy-show__active");
-//         }
+const lazyShow = () => {
+    const imagesDocument = Array.from(document.querySelectorAll(".lazy-show"));
 
-//         img.onload = () => {
-//             img.classList.add("lazy-show__active");
-//         };
-//     });
-// };
+    imagesDocument.forEach((img) => {
+        if (img.complete && img.src) {
+            img.classList.add("lazy-show__active");
+        }
 
-// const loadOnVisibleImages = (section) => {
-//     const images = Array.from(section.querySelectorAll("picture"));
+        img.onload = () => {
+            img.classList.add("lazy-show__active");
+        };
+    });
+};
 
-//     images.forEach((picture) => {
-//         const sources = [
-//             ...Array.from(picture.querySelectorAll('[data-src]')),
-//             ...Array.from(picture.querySelectorAll('[data-srcset]'))
-//         ]
-//         sources.forEach(s => {
-//             if (s.src || s.srcset) return;
-//             if (s.dataset.srcset) {
-//                 s.srcset = s.dataset.srcset
-//             }
-//             if (s.dataset.src) {
-//                 s.src = s.dataset.src;
-//             }
-//         })
-//     });
-// };
+const loadOnVisibleImages = (section) => {
+    const images = Array.from(section.querySelectorAll("picture"));
 
-// (() => {
-//     document.body.classList.add("initialized");
+    images.forEach((picture) => {
+        const sources = [
+            ...Array.from(picture.querySelectorAll("[data-src]")),
+            ...Array.from(picture.querySelectorAll("[data-srcset]")),
+        ];
+        sources.forEach((s) => {
+            if (s.src || s.srcset) return;
+            if (s.dataset.srcset) {
+                s.srcset = s.dataset.srcset;
+            }
+            if (s.dataset.src) {
+                s.src = s.dataset.src;
+            }
+        });
+    });
+};
 
-//     const titles = [
-//         ...Array.from(document.querySelectorAll(".section__title")),
-//         ...Array.from(document.querySelectorAll(".section__display")),
-//     ];
+const bigMSlider = () => {
+    const swiperElement = ".mSwiper";
+    const mSwiperElement = ".mSwiperM";
+    const transitionSwiperElement = ".transition-swiper";
+    const stepsSwiperElement = ".steps-swiper";
+    Swiper.use([EffectFade, Navigation, Autoplay, Pagination]);
 
-//     titles.forEach((title) => {
-//         title.style.opacity = 1;
-//     });
-
-//     Splitting({
-//         target: ".section__title, .section__display, .left",
-//         by: "chars",
-//     });
-
-//     window.addEventListener("load", () => {
-//         document.body.classList.add("ready");
-
-//         const sections = [
-//             ...Array.from(document.querySelectorAll("section")),
-//             ...Array.from(document.querySelectorAll(".left")),
-//             ...Array.from(document.querySelectorAll("footer")),
-//         ];
-
-//         sections.forEach((s) => {
-//             s.dataset.visible = false;
-//         });
-
-//         doOnVisible({
-//             sectionSelector: sections,
-//             cbIn: (target) => {
-//                 target.dataset.visible = true;
-//                 loadOnVisibleImages(target);
-//             },
-//             cbOut: () => {
-//             },
-//             rootMargin: "-150px",
-//         });
-
-//         const prevCards = document.querySelectorAll(".prev-card");
-
-//         doOnVisible({
-//             sectionSelector: prevCards,
-//             cbIn: (target) => {
-//                 target.dataset.rowvisible = true;
-//             },
-//             cbOut: () => {
-//             },
-//             rootMargin: "-150px",
-//         });
-
-//         ytTopVideos.forEach(v => {
-//             makePlayer(v.dataset.id, v);
-//         });
-//     });
-
-//     // const carouselSwiping = (carousel) => {
-//     //     const carouselEntity = $(`#${carousel.id}`);
-//     //     const onRightSwipe = () => {
-//     //         carouselEntity.carousel("next");
-//     //     };
-
-//     //     const onLeftSwipe = () => {
-//     //         carouselEntity.carousel("prev");
-//     //     };
-
-//     //     handleTouchEvents(document.querySelector('.promo-carousel-flat'), {
-//     //         onLeftSwipe,
-//     //         onRightSwipe,
-//     //     }).init();
-//     // };
-
-//     // const makeSlider = (id, options = {}) => {
-//     //     const defaultOptions = { pause: false, interval: 4000, wrap: true };
-//     //     const currentOptions = { ...defaultOptions, ...options };
-//     //     const slider = $(id).carousel(currentOptions);
-
-//     //     // console.log(slider.carousel('next'));
-
-//     //     // $(id).carousel("pause");
-//     //     carouselSwiping(slider[0]);
-
-//     //     return slider;
-//     // };
-
-//     // const initSlider = () => {
-//     //     const id = "#carouselFlat";
-//     //     makeSlider(id);
-
-//     //     const indicators = $(`${id}Indicators > li`);
-
-//     //     if (indicators) {
-//     //         const carousel = $(id);
-//     //         carousel.on("slide.bs.carousel", (e) => {
-//     //             indicators.each((i, el) => {
-//     //                 el.classList.remove("active");
-//     //                 if (e.to === i) {
-//     //                     el.classList.add("active");
-//     //                     // $(id2).carousel(i);
-//     //                 }
-//     //             });
-//     //         });
-
-//     //         indicators.each((i, el) => {
-//     //             el.addEventListener("click", () => {
-//     //                 carousel.carousel(i);
-//     //             });
-//     //         });
-//     //     }
-//     // };
-
-//     lazyShow();
-//     // initSlider();
-//     // initPrevs();
-// })();
-
-import AOS from "./libs/aos";
-import Paginator from "./libs/product_paginate";
-// import "./libs/arrows";
-import "./libs/mscroll";
-
-// function parallaxMove(func, mainElementId, insideElementId, movement, strength) {
-//     var $this = $("#" + mainElementId);
-//     var relX = func.pageX - $this.offset().left;
-//     var relY = func.pageY - $this.offset().top;
-  
-//     var x = (relX - $this.width() / 2) / $this.width() * movement;
-//     var y = (relY - $this.height() / 2) / $this.height() * movement;
-  
-//     TweenMax.to(insideElementId, strength, {
-//       x: x,
-//       y: y
-//     });
-//   }
-  
-//   function checkParallaxModules() {
-//     var mainId = "simple";
-  
-//     $("#" + mainId).mousemove(function(func) {
-//       parallaxMove(func, mainId, ".square-inner", -25, 1.5);
-//       parallaxMove(func, mainId, ".para", 25, 2);
-  
-//     });
-//   }
-  
-
-document.addEventListener("DOMContentLoaded", () => {
-    AOS.init();
-    $("#productsContainer").show();
-    $(".product-grid").each(function () {
-        new Paginator($(this), 16);
+    const swiper = new Swiper(swiperElement, {
+        slidesPerView: 4,
+        spaceBetween: 30,
     });
 
-});
+    var menu = [
+        {
+            title: 'Visualize key data',
+            text: "Versatile infographics and more to boost your message — check!"
+        },
+        {
+            title: 'Point out property advantages',
+            text: "Rest assured you've done your best thanks to our plugin"
+        },
+        {
+            title: 'Appeal to reason and emotions',
+            text: 'This match gets real estate jobs done'
+        },
+        {
+            title: 'Create premium buying experience',
+            text: 'Prove you understand how special the moment is'
+        }
+    ];
+
+    const stepsSwiper = new Swiper(stepsSwiperElement, {
+        loop: true,
+        autoplay: {
+            delay: 3000,
+        },
+        pagination: {
+            el: ".steps .swiper-pagination",
+            clickable: true,
+            renderBullet: function (index, className) {
+                const data = menu[index];
+                return (
+                    `
+                    <div class="step ${className}">
+                        <div class="step__dot">${index + 1}</div>
+                        <div class="step__data">
+                            <div class="step__title">${data.title}</div>
+                            <div class="step__text">${data.text}</div>
+                        </div>
+                    </div>
+                    `
+                );
+            },
+        },
+    });
+
+    const mSwiper = new Swiper(mSwiperElement, {
+        effect: "fade",
+        loop: true,
+    });
+
+    const transitionSwiper = new Swiper(transitionSwiperElement, {
+        // speed: 1000,
+        loop: true,
+        effect: "fade",
+        autoplay: {
+            delay: 3000,
+        },
+
+        navigation: {
+            nextEl: transitionSwiperElement + " .swiper-button-next",
+            prevEl: transitionSwiperElement + " .swiper-button-prev",
+        },
+    });
+
+    swiper.on("click", (e) => {
+        const index = e.clickedIndex + 1;
+        mSwiper.slideTo(index, 100);
+    });
+};
+
+(() => {
+    document.body.classList.add("initialized");
+
+    bigMSlider();
+
+    const titles = [
+        ...Array.from(document.querySelectorAll(".section__title")),
+        ...Array.from(document.querySelectorAll(".section__display")),
+    ];
+
+    titles.forEach((title) => {
+        title.style.opacity = 1;
+    });
+
+    Splitting({
+        target: ".section__title, .section__display, .left",
+        by: "chars",
+    });
+
+    window.addEventListener("load", () => {
+        document.body.classList.add("ready");
+
+        const sections = [
+            ...Array.from(document.querySelectorAll("section")),
+            ...Array.from(document.querySelectorAll(".left")),
+            ...Array.from(document.querySelectorAll("footer")),
+        ];
+
+        sections.forEach((s) => {
+            s.dataset.visible = false;
+        });
+
+        doOnVisible({
+            sectionSelector: sections,
+            cbIn: (target) => {
+                target.dataset.visible = true;
+                loadOnVisibleImages(target);
+            },
+            cbOut: () => {},
+            rootMargin: "-150px",
+        });
+
+        const prevCards = document.querySelectorAll(".prev-card");
+
+        doOnVisible({
+            sectionSelector: prevCards,
+            cbIn: (target) => {
+                target.dataset.rowvisible = true;
+            },
+            cbOut: () => {},
+            rootMargin: "-150px",
+        });
+
+        ytTopVideos.forEach((v) => {
+            makePlayer(v.dataset.id, v);
+        });
+    });
+
+    // const carouselSwiping = (carousel) => {
+    //     const carouselEntity = $(`#${carousel.id}`);
+    //     const onRightSwipe = () => {
+    //         carouselEntity.carousel("next");
+    //     };
+
+    //     const onLeftSwipe = () => {
+    //         carouselEntity.carousel("prev");
+    //     };
+
+    //     handleTouchEvents(document.querySelector('.promo-carousel-flat'), {
+    //         onLeftSwipe,
+    //         onRightSwipe,
+    //     }).init();
+    // };
+
+    // const makeSlider = (id, options = {}) => {
+    //     const defaultOptions = { pause: false, interval: 4000, wrap: true };
+    //     const currentOptions = { ...defaultOptions, ...options };
+    //     const slider = $(id).carousel(currentOptions);
+
+    //     // console.log(slider.carousel('next'));
+
+    //     // $(id).carousel("pause");
+    //     carouselSwiping(slider[0]);
+
+    //     return slider;
+    // };
+
+    // const initSlider = () => {
+    //     const id = "#carouselFlat";
+    //     makeSlider(id);
+
+    //     const indicators = $(`${id}Indicators > li`);
+
+    //     if (indicators) {
+    //         const carousel = $(id);
+    //         carousel.on("slide.bs.carousel", (e) => {
+    //             indicators.each((i, el) => {
+    //                 el.classList.remove("active");
+    //                 if (e.to === i) {
+    //                     el.classList.add("active");
+    //                     // $(id2).carousel(i);
+    //                 }
+    //             });
+    //         });
+
+    //         indicators.each((i, el) => {
+    //             el.addEventListener("click", () => {
+    //                 carousel.carousel(i);
+    //             });
+    //         });
+    //     }
+    // };
+
+    lazyShow();
+    // initSlider();
+    initPrevs();
+})();

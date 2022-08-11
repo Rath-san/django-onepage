@@ -1,7 +1,7 @@
 .tech-spec {
     padding: 0 5% $section-padding-y !important;
     font-weight: 400;
-    color: #fff;
+    // color: #fff;
 
     &__title {
         margin-bottom: 3rem;
@@ -76,7 +76,9 @@
 }
 
 .ts-mi {
-    padding: $section-padding-y 0;
+    // background: #F7F7F7;
+    z-index: auto;
+    padding: $section-padding-y 0 0 0;
     position: relative;
     display: flex;
     flex-direction: column;

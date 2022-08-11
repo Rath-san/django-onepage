@@ -12,14 +12,16 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-bottom: -4rem;
+            margin-bottom: 1rem;
         }
         &__text {
             font-weight: 300;
-            text-transform: uppercase;
-            font-size: 1rem;
+            // text-transform: uppercase;
+            // font-size: 1rem;
             color: #fff;
             letter-spacing: 1px;
+            margin-top: -1rem;
+            // font-size: .9rem;
         }
     }
     &__logo {
@@ -64,15 +66,29 @@
     }
 
     .image__background {
-        z-index: 0;
-        img {
-            top: 100px;
-            object-position: top;
-            height: calc(100% - 100px);
-            @media screen and (max-width: 768px) {
-                top: 100px;
-            }
-        }
+        // z-index: 0;
+        background: #000;
+        background:
+            radial-gradient(
+                ellipse farthest-corner at 50% 110%,
+                #D2AC4376 0%,
+                transparent 70%
+            ),
+            radial-gradient(
+                ellipse farthest-corner at -50% 20%,
+                #D2AC4376 0%,
+                transparent 50%
+            ),
+        #000;
+
+        // img {
+        //     top: 100px;
+        //     object-position: top;
+        //     height: calc(100% - 100px);
+        //     @media screen and (max-width: 768px) {
+        //         top: 100px;
+        //     }
+        // }
     }
 
     .fcp {
