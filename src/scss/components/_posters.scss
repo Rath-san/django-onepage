@@ -1,0 +1,124 @@
+.posters-section {
+    padding-top: calc(#{$section-padding-y} * 2);
+    padding-bottom: calc(#{$section-padding-y} * 2);
+    @media screen and (max-width: 1200px) {
+        padding-top: calc(0);
+        padding-bottom: calc(#{$section-padding-y} * 1);
+    }
+    .section {
+        &__content {
+            text-align: center;
+            padding-top: 3rem;
+            
+            @media screen and (min-width: 1200px) {
+                padding-top: 5rem;
+                padding-left: 0;
+                padding-right: 0;
+                text-align: right;
+            }
+        }
+
+        &__title {
+            margin-left: auto;
+            margin-right: auto;
+            @media screen and (min-width: 1200px) {
+                margin-right: 0;
+            }
+        }
+
+        &__text {
+            margin-left: auto;
+            margin-right: auto;
+            @media screen and (min-width: 1200px) {
+                margin-right: 0;
+            }
+        }
+
+    }
+}
+
+.poster {
+    max-width: 425px;
+    width: 100%;
+    position: absolute;
+
+    img {
+        width: 100%;
+        height: auto;
+    }
+
+    &:not(.poster--main) {
+        display: none;
+        @media screen and (min-width: 1200px) {
+            display: block;
+        }
+    }
+
+    &--main {
+        position: static;
+        margin-left: auto;
+
+        @media screen and (max-width: 1200px) {
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 20px;
+            padding-right: 20px;
+            // width: 100vw;
+
+            .carousel {
+                width: auto;
+            }
+        }
+
+        @media screen and (max-width: 450px) {
+            // margin-left: auto;
+            margin-right: 5px;
+            margin-left: 5px;
+            // width: 100vw;
+
+            .carousel {
+                width: 100%;
+            }
+        }
+
+        .mobile {
+            display: block;
+            @media screen and (min-width: 1200px) {
+                display: none;
+            }
+        }
+
+        .desktop {
+            display: none;
+            @media screen and (min-width: 1200px) {
+                display: block;
+            }
+        }
+    }
+
+    &--1 {
+        grid-row: 1 / span 2;
+        display: flex;
+        align-items: center;
+        justify-self: end;
+        // margin-right: 2%;
+        right: calc(50% - 80px);
+        top: 55%;
+        transform: translateY(-50%);
+        max-width: 500px;
+    }
+
+    &--2 {
+        left: calc(50% + 750px);
+        transform: translateY(-25%);
+    }
+    
+    &--3 {
+        justify-self: end;
+        grid-row: 2 / 3;
+        top: 10%;
+        right: calc(50% + 540px);
+        transform: translateY(0%);
+    }
+    
+}

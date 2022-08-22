@@ -15,11 +15,36 @@ const IMAGE_QUALITY = 50;
 
 const CONFIGS = [
     // {
-    //     directory: "_top_h",
+    //     directory: "_top",
     //     sizes: [
-    //         ...[300, 560].map((size) => ({ w: size })),
+    //         ...RESPONSIVE_SIZES_DESKTOP.map((size) => ({ w: size.w })),
+    //         ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ w: size.w, h: 640 })),
     //     ],
-    //     quality: 85,
+    //     quality: 75,
+    //     targetFormat: ["jpg"],
+    //     outputOptions: {
+    //         mozjpeg: true,
+    //     },
+    // },
+    // {
+    //     directory: "_top/mobile",
+    //     sizes: [
+    //         ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ w: size.w })),
+    //     ],
+    //     quality: 75,
+    //     targetFormat: ["jpg"],
+    //     outputOptions: {
+    //         mozjpeg: true,
+    //     },
+    // },
+
+    // {
+    //     directory: "_video",
+    //     sizes: [
+    //         ...RESPONSIVE_SIZES_DESKTOP.map((size) => ({ w: size.w })),
+    //         ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ w: size.w, h: 740 })),
+    //     ],
+    //     quality: 90,
     //     targetFormat: ["jpg"],
     //     outputOptions: {
     //         mozjpeg: true,
@@ -96,18 +121,18 @@ const CONFIGS = [
     //     },
     // },
 
-    {
-        directory: "_promo",
-        sizes: [
-            ...RESPONSIVE_SIZES_DESKTOP,
-            ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ ...size, h: 500 })),
-        ],
-        quality: 90,
-        targetFormat: ["jpg"],
-        outputOptions: {
-            mozjpeg: true,
-        },
-    },
+    // {
+    //     directory: "_promo",
+    //     sizes: [
+    //         ...RESPONSIVE_SIZES_DESKTOP,
+    //         ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ ...size, h: 500 })),
+    //     ],
+    //     quality: 90,
+    //     targetFormat: ["jpg"],
+    //     outputOptions: {
+    //         mozjpeg: true,
+    //     },
+    // },
     // {
     //     directory: "_quote",
     //     sizes: [600, 300].map((size) => ({ w: size })),
@@ -118,14 +143,141 @@ const CONFIGS = [
     //     // },
     // },
     // {
-    //     directory: "_slider_m",
-    //     sizes: [640, 960, 1280].map((size) => ({ w: size })),
-    //     quality: 85,
+    //     directory: "_slider_1/bg",
+    //     sizes: [
+    //         ...RESPONSIVE_SIZES_DESKTOP.map((size) => ({ w: size.w })),
+    //         ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ w: size.w, h: 640 })),
+    //     ],
+    //     quality: 90,
     //     targetFormat: ["jpg"],
     //     outputOptions: {
     //         mozjpeg: true,
     //     },
     // },
+    // {
+    //     directory: "_slider_1/title",
+    //     sizes: [1000, 640, 320].map((size) => ({ w: size })),
+    //     quality: 90,
+    //     targetFormat: ["webp", "png"],
+    //     // outputOptions: {
+    //     //     mozjpeg: true,
+    //     // },
+    // },
+
+    //  {
+    //     directory: "_boxy/box",
+    //     sizes: [256, 512].map((size) => ({ w: size })),
+    //     quality: 90,
+    //     targetFormat: ["webp", "png"],
+    //     // outputOptions: {
+    //     //     mozjpeg: true,
+    //     // },
+    // },
+    // {
+    //     directory: "_static/guy",
+    //     sizes: [900, 640, 320].map((size) => ({ w: size })),
+    //     quality: 90,
+    //     targetFormat: ["webp", "png"],
+    //     // outputOptions: {
+    //     //     mozjpeg: true,
+    //     // },
+    // },
+
+    // {
+    //     directory: "_deco",
+    //     sizes: [640].map((size) => ({ w: size })),
+    //     quality: 90,
+    //     targetFormat: ["jpg"],
+    //     outputOptions: {
+    //         mozjpeg: true,
+    //     },
+    // },
+    // {
+    //     directory: "_static/bg",
+    //     sizes: [
+    //         ...RESPONSIVE_SIZES_DESKTOP.map((size) => ({ w: size.w })),
+    //         ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ w: size.w, h: 640 })),
+    //     ],
+    //     quality: 90,
+    //     targetFormat: ["jpg"],
+    //     outputOptions: {
+    //         mozjpeg: true,
+    //     },
+    // },
+
+    // {
+    //     directory: "_tech-spec/bg",
+    //     sizes: RESPONSIVE_SIZES.map((size) => ({ w: size.w })),
+    //     quality: 90,
+    //     targetFormat: ["jpg"],
+    //     // outputOptions: {
+    //     //     mozjpeg: true,
+    //     // },
+    // },
+
+    // {
+    //     directory: "_tech-spec",
+    //     sizes: [940, 640, 320].map((size) => ({ w: size })),
+    //     quality: 90,
+    //     targetFormat: ["webp", "png"],
+    //     // outputOptions: {
+    //     //     mozjpeg: true,
+    //     // },
+    // },
+
+    // {
+    //     directory: "_boxy/bg",
+    //     sizes: [
+    //         ...RESPONSIVE_SIZES_DESKTOP.map((size) => ({ w: size.w })),
+    //         ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ w: size.w, h: 640 })),
+    //     ],
+    //     quality: 90,
+    //     targetFormat: ["jpg"],
+    //     outputOptions: {
+    //         mozjpeg: true,
+    //     },
+    // },
+
+    // {
+    //     directory: "_static/mask",
+    //     sizes: [1280, 960, 640].map((size) => ({ w: size })),
+    //     quality: 90,
+    //     targetFormat: ["png", "webp"],
+    // },
+    // {
+    //     directory: "_static/ui",
+    //     sizes: [1500, 1280, 960, 640].map((size) => ({ w: size })),
+    //     quality: 90,
+    //     targetFormat: ["png", "webp"],
+    // },
+
+    // {
+    //     directory: "_posters/big",
+    //     sizes: [1280, 960, 640].map((size) => ({ w: size })),
+    //     quality: 90,
+    //     targetFormat: ["jpg"],
+    //     outputOptions: {
+    //         mozjpeg: true,
+    //     },
+    // },
+    // {
+    //     directory: "_posters/st",
+    //     sizes: [900, 640, 320].map((size) => ({ w: size })),
+    //     quality: 50,
+    //     targetFormat: ["jpg"],
+    //     outputOptions: {
+    //         mozjpeg: true,
+    //     },
+    // },
+    {
+        directory: "_boxy/icon",
+        sizes: [256, 125].map((size) => ({ w: size })),
+        quality: 90,
+        targetFormat: ["webp", "png"],
+        // outputOptions: {
+        //     mozjpeg: true,
+        // },
+    },
     // {
     //     directory: "_slider_steps",
     //     sizes: [1920, 1280, 960, 640].map((size) => ({ w: size })),
@@ -138,7 +290,7 @@ const CONFIGS = [
     // {
     //     directory: "_slider_1/bg",
     //     sizes: [2560, 1920, 1500, 1280, 960, 640].map((size) => ({ w: size })),
-    //     quality: 85,
+    //     quality: 90,
     //     targetFormat: ["jpg"],
     //     outputOptions: {
     //         mozjpeg: true,
@@ -155,9 +307,9 @@ const CONFIGS = [
     // },
 
     // {
-    //     directory: "_slider_2/bg",
-    //     sizes: [1920, 1500, 1280, 960, 640].map((size) => ({ w: size })),
-    //     quality: 85,
+    //     directory: "_slider_2",
+    //     sizes: [2560, 1920, 1280, 960, 640].map((size) => ({ w: size })),
+    //     quality: 45,
     //     targetFormat: ["jpg"],
     //     outputOptions: {
     //         mozjpeg: true,
@@ -217,10 +369,9 @@ const CONFIGS = [
     //     sizes: [
     //         ...[640, 960, 1280, 1920, 2560].map((size) => ({
     //             w: size,
-    //             h: 1280,
     //         })),
     //     ],
-    //     quality: 90,
+    //     quality: 75,
     //     targetFormat: ["jpg"],
     //     outputOptions: {
     //         mozjpeg: true,
@@ -242,11 +393,11 @@ const CONFIGS = [
     // },
 ];
 
-const PAGE_NAME = "mrealestate";
+const PAGE_NAME = "mfreezeframe";
 
 function resizeTask(
     managedFormats = ["jpg", "jpeg", "png"],
-    imgDist = `src/_images/otp/`
+    imgDist = `src/plugins/${PAGE_NAME}/_images/otp/`
 ) {
     CONFIGS.forEach(
         ({
@@ -354,9 +505,10 @@ function resizeTask(
                                 );
                             };
 
-                            [...new Set([...targetFormat])].forEach((format) => {
-                                    console.log(format);
-                                    saveFile(format)
+                            [...new Set([...targetFormat])].forEach(
+                                (format) => {
+                                    console.log("save:", format);
+                                    saveFile(format);
                                 }
                             );
                         }

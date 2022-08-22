@@ -1,6 +1,7 @@
 @import '../3d/prev-anim';
 
 .prevs {
+  padding-top: calc(#{$section-padding-y} * 1.5);
   position: relative;
   z-index: 0;
 
@@ -41,7 +42,7 @@
       }
     }
     &__title {
-      text-transform: unset;
+      // text-transform: unset;
     }
     &__subtitle {
       letter-spacing: 1px;

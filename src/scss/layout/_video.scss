@@ -21,6 +21,14 @@
     }
 
     &.tutorial {
+        .image__background {
+            img {
+                object-position: center 100px;
+                @media screen and (min-width: 640px) {
+                    object-position: center;
+                }
+            }
+        }
         // padding-top: 3rem;
         // margin-bottom: $section-padding-y;
         // margin-bottom: 2rem;

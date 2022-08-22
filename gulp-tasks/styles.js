@@ -8,7 +8,7 @@ const { DIRS } = require("./constants");
 
 function scssTask() {
     return (
-        src("src/scss/*.scss")
+        src("src/scss/styles.scss")
             // .pipe(aliases({
             //     "~": "node_modules/"
             // }))

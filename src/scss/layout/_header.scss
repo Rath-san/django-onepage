@@ -12,7 +12,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-bottom: 1rem;
+            margin-bottom: -3rem;
         }
         &__text {
             font-weight: 300;
@@ -20,7 +20,11 @@
             // font-size: 1rem;
             color: #fff;
             letter-spacing: 1px;
-            margin-top: -1rem;
+            margin-top: .5rem;
+            text-transform: uppercase;
+            letter-spacing: .2em;
+            font-family: $font-family-title;
+            font-weight: 400;
             // font-size: .9rem;
         }
     }
@@ -49,14 +53,39 @@
         //     font-size: 2.65em;
         //     letter-spacing: .25em;
         // }
-        margin-bottom: 1rem;
-        img {
-            height: auto;
-            // max-width: 312px;
-            width: clamp(280px,40vw,500px);
-        }
+        margin-bottom: 0rem;
+        // img {
+        //     height: auto;
+        //     // max-width: 312px;
+        //     width: clamp(280px,40vw,500px);
+        // }
 
     }
+
+    .logo-top {
+        font-size: clamp(1.1rem, 5vw, 2rem);
+        .logo-first {
+            display: block;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: .2em;
+            font-size: .9em;
+            line-height: 1;
+        }
+    
+        .logo-color {
+            color: $color-cta;
+        }
+        
+        .logo-big {
+            line-height: 1;
+            letter-spacing: .1em;
+            display: block;
+            font-size: 2.1em;
+            font-weight: 900;
+        }
+    }
+
 
     #software-icons {
         bottom: clamp(1rem, 10vw, 6rem);
@@ -72,12 +101,12 @@
             radial-gradient(
                 ellipse farthest-corner at 50% 110%,
                 #D2AC4376 0%,
-                transparent 70%
+                #4C0F05 70%
             ),
             radial-gradient(
                 ellipse farthest-corner at -50% 20%,
                 #D2AC4376 0%,
-                transparent 50%
+                #4C0F05 50%
             ),
         #000;
 
@@ -94,6 +123,59 @@
     .fcp {
         position: absolute;
         bottom: 1rem;
+    }
+
+    .actors {
+        position: absolute;
+        z-index: 1;
+        display: flex;
+        width: 100%;
+        bottom: 4.5%;
+        justify-content: space-evenly;
+        max-width: 900px;
+        font-size: .6rem;
+        font-family: 'Castoro', serif;
+        font-weight: 400;
+        text-transform: uppercase;
+        left: 50%;
+        transform: translateX(-51%);
+        text-shadow: 0px 0px 10px #00000050;
+
+        .actor {
+            &:nth-child(3) {
+                @media screen and (max-width: 360px) {
+                    display: none;
+                }
+            }
+
+            &:nth-child(4) {
+                @media screen and (max-width: 560px) {
+                    display: none;
+                }
+            }
+
+            &:nth-child(5) {
+                @media screen and (max-width: 560px) {
+                    display: none;
+                }
+            }
+
+            &__name {
+                font-size: .6em;
+                letter-spacing: .5em;
+            }
+
+            &__surname {
+                font-size: 1em;
+                letter-spacing: .3em;
+            }
+        }
+    }
+
+    #software-icons {
+        @media screen and (max-width: 480px) {
+            bottom: 15%;
+        }
     }
 }
 
@@ -194,8 +276,10 @@ $animation-delay-offset: 200ms;
 
 .header__logo,
 .header__subtitle,
-.header__deco {
-    opacity: 1;
+.header__deco,
+.header__text,
+.actor {
+    opacity: 0;
     transform: translateY(-10px) scale(1.1);
     will-change: opacity, transform;
     transition: transform $animation-duration cubic-bezier(0.3, 0, 0.3, 1),
@@ -244,6 +328,14 @@ $animation-delay-offset: 200ms;
                 transform: translateY(0) scale(1);
                 // transform: scale(1);
             }
+        }
+
+        .actor {
+            opacity: 1;
+        }
+
+        #software-icons > * {
+            opacity: 1 !important;
         }
     }
 
