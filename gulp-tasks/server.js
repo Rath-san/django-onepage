@@ -6,7 +6,7 @@ function browserSyncTask(cb) {
         notify: false,
         open: false,
         serveStatic: STATICS,
-        proxy
+        proxy,
     });
     cb();
 }

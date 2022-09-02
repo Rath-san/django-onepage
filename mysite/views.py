@@ -16,19 +16,19 @@ def index(request, **kwargs):
                 })
         }
 
-    product = Product.objects.all()[0]
+    # product = Product.objects.all()[0]
 
     context = {
-        'product' : {
-            'head_info': "Animated mockups collection for Final Cut Pro",
-            'title': product.title,
-            'productdetails' : {
-                'meta_title': "This is title",
-                'minimal_requirements' : product.minimal_requirements,
-                'source_size' : product.source_size,
-                'music': Music.objects,
-            }
-        },
+        # 'product' : {
+        #     'head_info': "Animated mockups collection for Final Cut Pro",
+        #     'title': product.title,
+        #     'productdetails' : {
+        #         'meta_title': "This is title",
+        #         'minimal_requirements' : product.minimal_requirements,
+        #         'source_size' : product.source_size,
+        #         'music': Music.objects,
+        #     }
+        # },
 
         'test': 'test12'
     }

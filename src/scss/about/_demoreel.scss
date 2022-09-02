@@ -1,0 +1,46 @@
+
+.about-us section.demorell {
+    position: relative;
+    overflow: hidden;
+}
+.about-us section.demorell .container {
+    max-width: 1600px;
+    padding: 2rem;
+}
+.about-us section.demorell .container .demorell-title {
+    max-width: 760px;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+.about-us section.demorell .container .demorell-title p {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #b8b8b8;
+    margin-bottom: 0.7rem;
+}
+.about-us section.demorell .container .demorell-title h2 {
+    max-width: 780px;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 2.6rem;
+}
+.about-us section.demorell .container .yt {
+    max-width: 1200px;
+    margin: 2rem auto 0;
+    z-index: 2;
+}
+.about-us section.demorell .slogan-3 {
+    position: absolute;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #cacaca;
+    z-index: 1;
+    right: 12rem;
+    top: 55%;
+}
+.about-us section.demorell .letter-t {
+    font-size: 15rem;
+    left: 6rem;
+    margin-top: -20rem;
+    z-index: 1;
+}

@@ -1,0 +1,57 @@
+.about-us section.work {
+    position: relative;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+.about-us section.work .slogan-4 {
+    font-size: 1rem;
+    right: 50%;
+    margin-right: -900px;
+    top: 50%;
+    font-weight: 700;
+    color: #cacaca;
+}
+.about-us section.work .letter-o-2 {
+    font-size: 15rem;
+    left: -2rem;
+    margin-top: -2rem;
+}
+.about-us section.work .container {
+    max-width: 1600px;
+    padding: 2rem;
+}
+.about-us section.work .container .work-title {
+    max-width: 760px;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+.about-us section.work .container .work-title p {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #b8b8b8;
+    margin-bottom: 0.7rem;
+}
+.about-us section.work .container .work-title h2 {
+    max-width: 780px;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 2.6rem;
+}
+.about-us section.work .container .row .col-left {
+    height: auto;
+    padding: 20px;
+    height: 540px;
+    overflow: hidden;
+}
+.about-us section.work .container .row .col-left img {
+    width: 100%;
+}
+.about-us section.work .container .row .col-right {
+    height: 530px;
+    overflow: hidden;
+    padding: 20px;
+}
+.about-us section.work .container .row .col-right img {
+    width: 100%;
+}

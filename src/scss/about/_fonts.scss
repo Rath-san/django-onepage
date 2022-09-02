@@ -1,0 +1,1626 @@
+@media all and (max-width: 1920px) {
+    .about-us section.introduction {
+        height: 1100px;
+    }
+    .about-us section.introduction .slogan-1 {
+        left: 10rem;
+        top: 50%;
+    }
+    .about-us section.introduction .letter-m {
+        font-size: 10rem;
+        z-index: 4;
+        left: -3rem;
+        margin-top: -6rem;
+    }
+    .about-us section.introduction .container {
+        height: 100%;
+    }
+    .about-us section.introduction .container .letter-o {
+        font-size: 10rem;
+        margin-left: -420px;
+        bottom: 6rem;
+    }
+    .about-us section.demorell .letter-t {
+        font-size: 10rem;
+    }
+    .about-us section.demorell .slogan-3 {
+        right: 4rem;
+    }
+    .about-us section.art .slogan-2 {
+        top: 40%;
+        margin-left: -90px;
+    }
+    .about-us section.art .letter-i {
+        font-size: 10rem;
+        margin-right: -100px;
+    }
+    .about-us section.work .letter-o-2 {
+        font-size: 10rem;
+    }
+    .about-us section.code .letter-n {
+        font-size: 10rem;
+        margin-top: 4rem;
+    }
+    .about-us section.ninjas .letter-f {
+        font-size: 10rem;
+        right: 50%;
+        margin-right: -400px;
+    }
+    .about-us section.ninjas .slogan-7 {
+        right: 50%;
+        margin-right: -500px;
+    }
+    .about-us section.partners .slogan-6 {
+        margin-right: -840px;
+    }
+    .about-us section.partners .letter-v {
+        font-size: 10rem;
+        left: 0;
+        margin-left: 0;
+    }
+    .about-us section.support {
+        padding-bottom: 4rem;
+    }
+    .about-us section.support .letter-f {
+        font-size: 10rem;
+        margin-right: -500px;
+    }
+    .about-us section.support .slogan-7 {
+        right: 50%;
+        margin-right: -700px;
+    }
+    .about-us section.footer .container .header-box {
+        top: 32%;
+    }
+    .about-us section.footer .letter-x {
+        font-size: 10rem;
+    }
+}
+@media all and (max-width: 1600px) {
+    .about-us section.header {
+        height: 800px;
+    }
+    .about-us section.header .container .header-box {
+        padding: 2rem;
+    }
+    .about-us section.header .container .header-box h1 {
+        font-size: 2rem;
+    }
+    .about-us section.header .container .header-box p {
+        max-width: 580px;
+        padding-top: 1rem;
+        font-size: 1rem;
+    }
+    .about-us section.header .container .header-box .buttons {
+        max-width: 440px;
+        margin: 1rem auto 0;
+    }
+    .about-us section.header .container .header-box .buttons a.join-now {
+        font-size: 0.8rem;
+    }
+    .about-us section.introduction {
+        width: 100%;
+        height: 900px;
+        padding-bottom: 2rem;
+        position: relative;
+        overflow: hidden;
+    }
+    .about-us section.introduction .letter-m {
+        font-size: 10rem;
+        z-index: 4;
+        left: -3rem;
+        margin-top: -6rem;
+    }
+    .about-us section.introduction .container {
+        padding: 6rem 2rem 2rem;
+    }
+    .about-us section.introduction .container p {
+        font-size: 1rem;
+        margin-left: 4rem;
+    }
+    .about-us section.introduction .container h2 {
+        max-width: 780px;
+        font-size: 2rem;
+        margin-left: 4rem;
+    }
+    .about-us section.introduction .container .letter-o {
+        font-size: 10rem;
+        color: #3d98ff;
+        z-index: 1;
+        left: 50%;
+        top: 50%;
+        margin-left: -200px;
+        margin-top: 10rem;
+    }
+    .about-us section.introduction .container .team-photo {
+        max-width: 800px;
+        right: 6rem;
+        margin-top: 2rem;
+        z-index: 2;
+    }
+    .about-us section.demorell {
+        height: auto;
+        position: relative;
+        overflow: hidden;
+    }
+    .about-us section.demorell .container {
+        max-width: 1600px;
+        padding: 2rem;
+    }
+    .about-us section.demorell .container .demorell-title {
+        padding-top: 2rem;
+        padding-bottom: 0.5rem;
+    }
+    .about-us section.demorell .container .demorell-title p {
+        font-size: 1rem;
+        margin-left: 4rem;
+    }
+    .about-us section.demorell .container .demorell-title h2 {
+        max-width: 780px;
+        font-size: 2rem;
+        margin-left: 4rem;
+        line-height: 2.2rem;
+    }
+    .about-us section.demorell .slogan-3 {
+        font-size: 1rem;
+        right: 3rem;
+        top: 75%;
+    }
+    .about-us section.demorell .letter-t {
+        font-size: 10rem;
+        left: 3rem;
+        top: 80%;
+        margin-top: 0;
+    }
+    .about-us section.art {
+        width: 100%;
+        height: auto;
+        position: relative;
+        overflow: hidden;
+    }
+    .about-us section.art .letter-i {
+        font-size: 10rem;
+        top: 65%;
+        right: 10rem;
+        margin-top: 0;
+    }
+    .about-us section.art .art-title {
+        max-width: 500px;
+        margin: 0 auto;
+        padding-top: 0;
+        padding-bottom: 2rem;
+    }
+    .about-us section.art .art-title p {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #b8b8b8;
+        line-height: 0.5rem;
+    }
+    .about-us section.art .art-title h2 {
+        max-width: 780px;
+        font-size: 2rem;
+        font-weight: 700;
+        line-height: 2rem;
+    }
+    .about-us section.art .container {
+        padding: 3rem;
+    }
+    .about-us section.art .container .row .art-col {
+        padding-right: 8px;
+        padding-left: 8px;
+        margin-top: 20px;
+    }
+    .about-us section.art .container .row .art-col .art-col-text {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+    .about-us section.art .container .row .art-col .art-col-text .name {
+        display: block;
+        font-weight: 700;
+        font-size: 1.2rem;
+        height: 25px;
+    }
+    .about-us section.work .letter-o-2 {
+        font-size: 10rem;
+        left: unset;
+        right: 50%;
+        margin-right: -400px;
+        margin-top: 1rem;
+        z-index: 4;
+    }
+    .about-us section.work .container {
+        padding: 3rem;
+    }
+    .about-us section.work .container .work-title {
+        padding-top: 0;
+    }
+    .about-us section.work .container .work-title p {
+        font-size: 1rem;
+        line-height: 0.1rem;
+    }
+    .about-us section.work .container .work-title h2 {
+        font-size: 2rem;
+    }
+    .about-us section.work .container .row .col-left {
+        height: auto;
+    }
+    .about-us section.work .container .row .col-right {
+        height: auto;
+    }
+    .about-us section.code .letter-n {
+        font-size: 10rem;
+        margin-top: 1rem;
+    }
+    .about-us section.code .code-title p {
+        font-size: 1rem;
+    }
+    .about-us section.code .code-title h2 {
+        font-size: 2rem;
+    }
+    .about-us section.code .container {
+        padding: 3rem;
+    }
+    .about-us section.code .container .code-title {
+        padding-top: 0;
+    }
+    .about-us section.code .container .code-title p {
+        line-height: 1rem;
+    }
+    .about-us section.code .container .row .code-col {
+        margin-top: 20px;
+    }
+    .about-us section.ninjas {
+        padding-bottom: 2rem;
+    }
+    .about-us section.ninjas .container {
+        padding-top: 2rem;
+    }
+    .about-us section.partners {
+        width: 100%;
+        height: auto;
+    }
+    .about-us section.partners .letter-v {
+        left: 50%;
+        margin-left: -300px;
+        margin-top: -2rem;
+    }
+    .about-us section.partners .code-title {
+        max-width: 700px;
+        margin: 0 auto;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+    .about-us section.partners .code-title h2 {
+        font-size: 2rem;
+    }
+    .about-us section.partners .container {
+        max-width: 1600px;
+        position: relative;
+        padding: 3rem 3rem 4rem;
+    }
+    .about-us section.partners .container .row .col-text h2 {
+        font-weight: 700;
+        max-width: 400px;
+        padding-top: 5rem;
+    }
+    .about-us section.partners .container .row .col-text p {
+        padding-top: 1rem;
+    }
+    .about-us section.support {
+        padding-bottom: 4rem;
+    }
+    .about-us section.support .letter-f {
+        font-size: 10rem;
+        margin-right: -700px;
+    }
+    .about-us section.support .slogan-7 {
+        right: 50%;
+        margin-right: -600px;
+    }
+    .about-us section.support .support-title {
+        max-width: 700px;
+        margin: 0 auto;
+        padding-top: 0;
+        padding-bottom: 2rem;
+    }
+    .about-us section.support .support-title p {
+        font-size: 1rem;
+        line-height: 1rem;
+    }
+    .about-us section.support .support-title h2 {
+        max-width: 780px;
+        font-size: 2rem;
+        font-weight: 700;
+        line-height: 2rem;
+    }
+    .about-us section.support .container {
+        max-width: 1600px;
+        position: relative;
+        padding: 4rem;
+        padding-top: 2rem;
+    }
+    .about-us section.support .container .row .support-col {
+        padding-right: 8px;
+        padding-left: 8px;
+        margin-top: 10px;
+    }
+    .about-us section.support .container .row .support-col .support-col-img {
+        position: relative;
+        overflow: hidden;
+        transition: 0.5s all;
+    }
+    .about-us
+        section.support
+        .container
+        .row
+        .support-col
+        .support-col-img
+        img {
+        width: 100%;
+        height: auto;
+    }
+    .about-us
+        section.support
+        .container
+        .row
+        .support-col
+        .support-col-img
+        .pic-2 {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: 0.5s all;
+        opacity: 0;
+    }
+    .about-us
+        section.support
+        .container
+        .row
+        .support-col
+        .support-col-img
+        .pic-2:hover {
+        opacity: 1;
+    }
+    .about-us
+        section.support
+        .container
+        .row
+        .support-col
+        .support-col-img
+        .pic-1:hover {
+        opacity: 0;
+    }
+    .about-us section.support .container .row .support-col .support-col-text {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+    .about-us
+        section.support
+        .container
+        .row
+        .support-col
+        .support-col-text
+        .name {
+        display: block;
+        font-weight: 700;
+        font-size: 1.2rem;
+        height: 25px;
+    }
+    .about-us section.footer {
+        width: 100%;
+        height: 800px;
+        // background: url("https://s3.motionvfx.com/mvfxpublic/pages/templates/42/media/footer_bg.jpg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+    .about-us section.footer .container {
+        position: relative;
+        z-index: 2;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        padding: 2rem;
+        height: 100%;
+    }
+    .about-us section.footer .container .header-box {
+        position: absolute;
+        text-align: center;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        top: 18%;
+        padding: 2rem;
+    }
+    .about-us section.footer .container .header-box h1 {
+        color: #fff;
+        font-weight: 700;
+        font-size: 2rem;
+    }
+    .about-us section.footer .container .header-box .buttons {
+        display: block;
+        max-width: 440px;
+        margin: 3rem auto 0;
+    }
+    .about-us section.footer .container .header-box .buttons a.join-now {
+        background-color: #4697fc;
+        padding: 0.75rem 2.5rem 0.75rem 2.8rem;
+        border-radius: 4px;
+        margin-left: 0.5rem;
+        font-weight: 700;
+        color: #fdfdfd;
+        font-size: 0.8rem;
+        text-decoration: none;
+        text-align: center;
+        -webkit-transition: background-color 0.3s ease-in-out;
+        transition: background-color 0.3s ease-in-out;
+        box-shadow: 0 0 18px 0 rgba(61, 152, 255, 0.35);
+    }
+    .about-us section.footer .container .header-box .buttons a.join-now:hover {
+        background-color: #1d82ff;
+    }
+}
+@media all and (max-width: 1440px) {
+    .about-us section.header {
+        width: 100%;
+        height: 700px;
+    }
+    .about-us section.introduction {
+        width: 100%;
+        height: 800px;
+        padding-bottom: 0;
+    }
+    .about-us section.introduction .letter-m {
+        font-size: 8rem;
+        left: -2rem;
+        margin-top: -5rem;
+    }
+    .about-us section.introduction .container {
+        padding: 6rem 2rem 2rem;
+    }
+    .about-us section.introduction .container p {
+        font-size: 1rem;
+        margin-left: 4rem;
+    }
+    .about-us section.introduction .container h2 {
+        max-width: 780px;
+        font-size: 2rem;
+        margin-left: 4rem;
+    }
+    .about-us section.introduction .container .letter-o {
+        font-size: 8rem;
+        color: #3d98ff;
+        z-index: 1;
+        left: 50%;
+        top: 45%;
+        margin-left: -200px;
+    }
+    .about-us section.introduction .container .team-photo {
+        max-width: 700px;
+        right: 6rem;
+        margin-top: 2rem;
+        z-index: 2;
+    }
+    .about-us section.demorell {
+        height: auto;
+        position: relative;
+        overflow: hidden;
+    }
+    .about-us section.demorell .container {
+        max-width: 1600px;
+        padding: 2rem;
+    }
+    .about-us section.demorell .container .demorell-title {
+        padding-top: 2rem;
+        padding-bottom: 0.5rem;
+    }
+    .about-us section.demorell .container .demorell-title p {
+        font-size: 1rem;
+        margin-left: 4rem;
+    }
+    .about-us section.demorell .container .demorell-title h2 {
+        max-width: 780px;
+        font-size: 2rem;
+        margin-left: 4rem;
+        line-height: 2.2rem;
+    }
+    .about-us section.demorell .letter-i {
+        font-size: 8rem;
+        top: 50%;
+        right: 2rem;
+        margin-top: 0;
+    }
+    .about-us section.demorell .slogan-3 {
+        font-size: 1rem;
+        right: 0;
+        top: 75%;
+    }
+    .about-us section.demorell .letter-t {
+        font-size: 8rem;
+        left: 0;
+        margin-top: -2rem;
+    }
+    .about-us section.work {
+        position: relative;
+        overflow: hidden;
+    }
+    .about-us section.work .container {
+        padding: 3rem;
+    }
+    .about-us section.work .container .work-title {
+        padding-top: 0;
+    }
+    .about-us section.work .container .work-title p {
+        font-size: 1rem;
+        line-height: 0.1rem;
+    }
+    .about-us section.work .container .work-title h2 {
+        font-size: 2rem;
+    }
+    .about-us section.work .container .row .col-left {
+        height: auto;
+    }
+    .about-us section.work .container .row .col-right {
+        height: auto;
+    }
+    .about-us section.code .code-title p {
+        font-size: 1rem;
+    }
+    .about-us section.code .code-title h2 {
+        font-size: 2rem;
+    }
+    .about-us section.code .container {
+        padding: 3rem;
+    }
+    .about-us section.code .container .code-title {
+        padding-top: 0;
+    }
+    .about-us section.code .container .code-title p {
+        line-height: 1rem;
+    }
+    .about-us section.code .container .row .code-col {
+        margin-top: 20px;
+    }
+    .about-us section.partners {
+        width: 100%;
+        height: auto;
+    }
+    .about-us section.partners .code-title {
+        max-width: 700px;
+        margin: 0 auto;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+    .about-us section.partners .code-title h2 {
+        font-size: 2rem;
+    }
+    .about-us section.partners .container {
+        max-width: 1600px;
+        position: relative;
+        padding: 3rem 3rem 4rem;
+    }
+    .about-us section.partners .container .row .col-text h2 {
+        font-weight: 700;
+        max-width: 400px;
+        padding-top: 5rem;
+    }
+    .about-us section.partners .container .row .col-text p {
+        padding-top: 1rem;
+    }
+    .about-us section.support {
+        padding-bottom: 4rem;
+    }
+    .about-us section.support .support-title {
+        max-width: 700px;
+        margin: 0 auto;
+        padding-top: 0;
+        padding-bottom: 2rem;
+    }
+    .about-us section.support .support-title p {
+        font-size: 1rem;
+        line-height: 1rem;
+    }
+    .about-us section.support .support-title h2 {
+        max-width: 780px;
+        font-size: 2rem;
+        font-weight: 700;
+        line-height: 2rem;
+    }
+    .about-us section.support .container {
+        max-width: 1600px;
+        position: relative;
+    }
+    .about-us section.support .container .row .support-col {
+        padding-right: 8px;
+        padding-left: 8px;
+        margin-top: 10px;
+    }
+    .about-us section.support .container .row .support-col .support-col-img {
+        position: relative;
+        overflow: hidden;
+        transition: 0.5s all;
+    }
+    .about-us
+        section.support
+        .container
+        .row
+        .support-col
+        .support-col-img
+        img {
+        width: 100%;
+        height: auto;
+    }
+    .about-us
+        section.support
+        .container
+        .row
+        .support-col
+        .support-col-img
+        .pic-2 {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: 0.5s all;
+        opacity: 0;
+    }
+    .about-us
+        section.support
+        .container
+        .row
+        .support-col
+        .support-col-img
+        .pic-2:hover {
+        opacity: 1;
+    }
+    .about-us
+        section.support
+        .container
+        .row
+        .support-col
+        .support-col-img
+        .pic-1:hover {
+        opacity: 0;
+    }
+    .about-us section.support .container .row .support-col .support-col-text {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+    .about-us
+        section.support
+        .container
+        .row
+        .support-col
+        .support-col-text
+        .name {
+        display: block;
+        font-weight: 700;
+        font-size: 1.2rem;
+        height: 25px;
+    }
+    .about-us section.footer {
+        width: 100%;
+        height: 800px;
+        // background: url("https://s3.motionvfx.com/mvfxpublic/pages/templates/42/media/footer_bg.jpg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+    .about-us section.footer .container {
+        position: relative;
+        z-index: 2;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        padding: 2rem;
+        height: 100%;
+    }
+    .about-us section.footer .container .header-box {
+        position: absolute;
+        text-align: center;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        top: 18%;
+        padding: 2rem;
+    }
+    .about-us section.footer .container .header-box h1 {
+        color: #fff;
+        font-weight: 700;
+        font-size: 2rem;
+    }
+    .about-us section.footer .container .header-box .buttons {
+        display: block;
+        max-width: 440px;
+        margin: 3rem auto 0;
+    }
+    .about-us section.footer .container .header-box .buttons a.join-now {
+        background-color: #4697fc;
+        padding: 0.75rem 2.5rem 0.75rem 2.8rem;
+        border-radius: 4px;
+        margin-left: 0.5rem;
+        font-weight: 700;
+        color: #fdfdfd;
+        font-size: 0.8rem;
+        text-decoration: none;
+        text-align: center;
+        -webkit-transition: background-color 0.3s ease-in-out;
+        transition: background-color 0.3s ease-in-out;
+        box-shadow: 0 0 18px 0 rgba(61, 152, 255, 0.35);
+    }
+    .about-us section.footer .container .header-box .buttons a.join-now:hover {
+        background-color: #1d82ff;
+    }
+}
+@media all and (max-width: 1360px) {
+    .about-us section.introduction .slogan-1 {
+        left: 8rem;
+    }
+    .about-us section.introduction .letter-m {
+        font-size: 8rem;
+        margin-top: -4rem;
+    }
+    .about-us section.demorell {
+        overflow: visible;
+    }
+    .about-us section.demorell .letter-t {
+        font-size: 8rem;
+        margin-top: 8rem;
+        left: 4rem;
+    }
+    .about-us section.demorell .slogan-3 {
+        right: 4rem;
+    }
+    .about-us section.art .slogan-2 {
+        top: 40%;
+        margin-left: -90px;
+    }
+    .about-us section.art .letter-i {
+        font-size: 8rem;
+        margin-right: -100px;
+        margin-top: 2rem;
+    }
+    .about-us section.work .letter-o-2 {
+        font-size: 8rem;
+        margin-top: 4rem;
+    }
+    .about-us section.code .letter-n {
+        font-size: 8rem;
+        margin-top: 2rem;
+    }
+    .about-us section.partners .slogan-6 {
+        margin-right: -840px;
+    }
+    .about-us section.partners .letter-v {
+        font-size: 8rem;
+        left: 0;
+        margin-left: 0;
+    }
+    .about-us section.support {
+        padding-bottom: 4rem;
+    }
+    .about-us section.support .letter-f {
+        font-size: 8rem;
+        margin-right: -500px;
+    }
+    .about-us section.support .slogan-7 {
+        right: 50%;
+        margin-right: -700px;
+    }
+    .about-us section.footer .letter-x {
+        font-size: 8rem;
+    }
+}
+@media all and (max-width: 1280px) {
+    .about-us section.header {
+        width: 100%;
+        height: 700px;
+    }
+    .about-us section.introduction {
+        width: 100%;
+        padding-bottom: 0;
+    }
+    .about-us section.introduction .slogan-1 {
+        left: 8rem;
+    }
+    .about-us section.introduction .letter-m {
+        font-size: 8rem;
+        margin-top: -4rem;
+    }
+    .about-us section.introduction .container {
+        padding: 6rem 2rem 2rem;
+    }
+    .about-us section.introduction .container p {
+        font-size: 1rem;
+        margin-left: 4rem;
+    }
+    .about-us section.introduction .container h2 {
+        max-width: 780px;
+        font-size: 2rem;
+        margin-left: 4rem;
+    }
+    .about-us section.introduction .container .team-photo {
+        max-width: 700px;
+        right: 6rem;
+        margin-top: 2rem;
+        z-index: 2;
+    }
+    .about-us section.demorell {
+        height: auto;
+    }
+    .about-us section.demorell .container {
+        max-width: 1600px;
+        padding: 2rem;
+    }
+    .about-us section.demorell .container .demorell-title {
+        padding-top: 0;
+        padding-bottom: 0.5rem;
+    }
+    .about-us section.demorell .container .demorell-title p {
+        font-size: 1rem;
+        margin-left: 4rem;
+    }
+    .about-us section.demorell .container .demorell-title h2 {
+        max-width: 780px;
+        font-size: 2rem;
+        margin-left: 4rem;
+        line-height: 2.2rem;
+    }
+    .about-us section.demorell .letter-i {
+        font-size: 8rem;
+        top: 50%;
+        right: 1rem;
+        margin-top: 0;
+    }
+    .about-us section.demorell .slogan-3 {
+        display: none;
+    }
+    .about-us section.work .container {
+        padding: 3rem;
+    }
+    .about-us section.work .container .work-title {
+        padding-top: 0;
+    }
+    .about-us section.work .container .work-title p {
+        font-size: 1rem;
+        line-height: 0.1rem;
+    }
+    .about-us section.work .container .work-title h2 {
+        font-size: 2rem;
+    }
+    .about-us section.work .container .row .col-left {
+        height: auto;
+    }
+    .about-us section.work .container .row .col-right {
+        height: auto;
+    }
+    .about-us section.code .code-title p {
+        font-size: 1rem;
+    }
+    .about-us section.code .code-title h2 {
+        font-size: 2rem;
+    }
+    .about-us section.code .container {
+        padding: 3rem;
+    }
+    .about-us section.code .container .code-title {
+        padding-top: 0;
+    }
+    .about-us section.code .container .code-title p {
+        line-height: 1rem;
+    }
+    .about-us section.code .container .row .code-col {
+        margin-top: 20px;
+    }
+    .about-us section.partners {
+        width: 100%;
+        height: auto;
+        overflow: visible;
+    }
+    .about-us section.partners .letter-v {
+        font-size: 8rem;
+        left: 50%;
+        margin-left: -250px;
+    }
+    .about-us section.partners .slogan-6 {
+        display: none;
+    }
+    .about-us section.partners .code-title {
+        max-width: 700px;
+        margin: 0 auto;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+    .about-us section.partners .code-title h2 {
+        font-size: 2rem;
+    }
+    .about-us section.partners .container {
+        max-width: 1600px;
+        position: relative;
+        padding: 3rem 3rem 4rem;
+    }
+    .about-us section.partners .container .row .col-text h2 {
+        font-weight: 700;
+        max-width: 400px;
+        padding-top: 2.5rem;
+    }
+    .about-us section.partners .container .row .col-text p {
+        padding-top: 1rem;
+    }
+    .about-us section.ninjas {
+        padding-bottom: 2rem;
+    }
+    .about-us section.ninjas .slogan-7 {
+        margin-right: -500px;
+    }
+    .about-us section.ninjas .letter-f {
+        font-size: 8rem;
+        margin-right: -300px;
+    }
+    .about-us section.ninjas .ninjas-title {
+        max-width: 700px;
+        margin: 0 auto;
+        padding-top: 0;
+        padding-bottom: 2rem;
+    }
+    .about-us section.ninjas .ninjas-title h2 {
+        font-size: 2rem;
+    }
+    .about-us section.ninjas .container {
+        padding: 2rem 4rem 4rem;
+    }
+    .about-us section.support {
+        padding-bottom: 2rem;
+    }
+    .about-us section.support .slogan-7 {
+        margin-right: -500px;
+    }
+    .about-us section.support .letter-f {
+        font-size: 8rem;
+        margin-right: -300px;
+    }
+    .about-us section.support .support-title {
+        max-width: 700px;
+        margin: 0 auto;
+        padding-top: 0;
+        padding-bottom: 2rem;
+    }
+    .about-us section.support .support-title h2 {
+        font-size: 2rem;
+    }
+    .about-us section.support .container {
+        padding: 2rem 4rem 4rem;
+    }
+    .about-us section.footer {
+        height: 780px;
+    }
+    .about-us section.footer .container .header-box {
+        top: 18%;
+        padding: 2rem;
+    }
+    .about-us section.footer .container .header-box h1 {
+        font-size: 2rem;
+    }
+}
+@media all and (max-width: 1190px) {
+    .about-us section.introduction {
+        width: 100%;
+        padding-bottom: 0;
+    }
+    .about-us section.introduction .slogan-1 {
+        left: 8rem;
+    }
+    .about-us section.introduction .letter-m {
+        font-size: 8rem;
+        margin-top: -4rem;
+    }
+    .about-us section.introduction .container .letter-o {
+        margin-left: -350px;
+    }
+    .about-us section.partners .container {
+        padding: 3rem 3rem 4rem;
+    }
+    .about-us section.partners .container .row .col-text h2 {
+        padding-top: 1rem;
+        font-size: 1.8rem;
+    }
+    .about-us section.partners .container .row .col-text p {
+        padding-top: 1rem;
+    }
+    .about-us section.art {
+        width: 100%;
+        height: auto;
+    }
+    .about-us section.art .letter-i {
+        bottom: 0;
+        top: unset;
+    }
+    .about-us section.art .container .row .art-col .art-col-text {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+    .about-us section.art .container .row .art-col .art-col-text .name {
+        display: block;
+        font-weight: 700;
+        font-size: 1rem;
+        height: 25px;
+    }
+    .about-us section.code {
+        width: 100%;
+        height: auto;
+    }
+    .about-us section.code .container .row .code-col .code-col-text {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+    .about-us section.code .container .row .code-col .code-col-text .name {
+        display: block;
+        font-weight: 700;
+        font-size: 1rem;
+        height: 25px;
+    }
+    .about-us section.ninjas {
+        padding-bottom: 0;
+    }
+    .about-us section.ninjas .container .row .ninjas-col .ninjas-col-text {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+    .about-us
+        section.ninjas
+        .container
+        .row
+        .ninjas-col
+        .ninjas-col-text
+        .name {
+        display: block;
+        font-weight: 700;
+        font-size: 1rem;
+        height: 25px;
+    }
+    .about-us section.support {
+        width: 100%;
+        height: auto;
+    }
+    .about-us section.support .container .row .support-col .support-col-text {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+    .about-us
+        section.support
+        .container
+        .row
+        .support-col
+        .support-col-text
+        .name {
+        display: block;
+        font-weight: 700;
+        font-size: 1rem;
+        height: 25px;
+    }
+    .about-us section.footer .letter-x {
+        margin-top: -4rem;
+    }
+}
+@media all and (max-width: 1024px) {
+    .about-us section.introduction .slogan-1 {
+        display: none;
+    }
+    .about-us section.introduction .container .letter-o {
+        margin-left: -400px;
+    }
+    .about-us section.partners .letter-v {
+        font-size: 8rem;
+        left: 50%;
+        margin-left: -100px;
+        margin-top: -1rem;
+    }
+}
+@media all and (max-width: 992px) {
+    .about-us section.partners .container {
+        padding: 3rem 3rem 4rem;
+    }
+    .about-us section.partners .container .row .col-text h2 {
+        padding-top: 0.5rem;
+        font-size: 1.6rem;
+        line-height: 1.6rem;
+    }
+    .about-us section.partners .container .row .col-text p {
+        padding-top: 1rem;
+        line-height: 1.2rem;
+        font-size: 0.9rem;
+    }
+    .about-us section.partners .container .row .col-text a {
+        font-size: 0.9rem;
+    }
+}
+@media all and (max-width: 991px) {
+    .about-us section.introduction {
+        min-height: 600px;
+    }
+    .about-us section.introduction .letter-m {
+        font-size: 8rem;
+        margin-top: -4rem;
+    }
+    .about-us section.partners .letter-v {
+        font-size: 8rem;
+        left: unset;
+        right: 2rem;
+        margin-left: -250px;
+    }
+    .about-us section.partners .container {
+        padding: 3rem 3rem 4rem;
+        padding-top: 0;
+    }
+    .about-us section.partners .container .row .col-text {
+        padding-bottom: 2rem;
+        max-width: 76%;
+        padding-top: 2rem;
+    }
+    .about-us section.partners .container .row .col-text h2 {
+        max-width: 300px;
+        padding-top: 0.5rem;
+        font-size: 1.6rem;
+        line-height: 1.6rem;
+    }
+    .about-us section.partners .container .row .col-text p {
+        padding-top: 1rem;
+        line-height: 1.2rem;
+        font-size: 0.9rem;
+    }
+    .about-us section.partners .container .row .col-text a {
+        font-size: 0.9rem;
+    }
+    .about-us section.art .slogan-2 {
+        display: none;
+    }
+    .about-us section.art .letter-i {
+        font-size: 8rem;
+        left: unset;
+        right: 30%;
+        margin-left: 0;
+        bottom: 10rem;
+        z-index: 5;
+    }
+    .about-us section.work .letter-o-2 {
+        top: 0;
+        margin-top: -1rem;
+        right: -2%;
+        margin-right: 0;
+    }
+}
+@media all and (max-width: 890px) {
+    .about-us section.introduction {
+        min-height: 500px;
+        max-height: 660px;
+    }
+    .about-us section.introduction .letter-m {
+        font-size: 6rem;
+        left: -2rem;
+        margin-top: -2.5rem;
+    }
+    .about-us section.introduction .container {
+        padding: 6rem 2rem 2rem;
+    }
+    .about-us section.introduction .container p {
+        font-size: 1rem;
+        margin-left: 0;
+    }
+    .about-us section.introduction .container h2 {
+        font-size: 1.6rem;
+        line-height: 1.8rem;
+        margin-left: 0;
+    }
+    .about-us section.introduction .container h2 .break {
+        display: none;
+    }
+    .about-us section.introduction .container .letter-o {
+        font-size: 6rem;
+        color: #3d98ff;
+        z-index: 3;
+        right: -2rem;
+        left: unset;
+        bottom: unset;
+        top: 30%;
+        margin-left: unset;
+        margin-bottom: unset;
+    }
+    .about-us section.introduction .container .team-photo {
+        max-width: 600px;
+        right: 0;
+        left: 0;
+        margin: 2rem auto 0;
+        z-index: 2;
+    }
+    .about-us section.demorell {
+        position: relative;
+    }
+    .about-us section.demorell .letter-t {
+        left: -2rem;
+    }
+    .about-us section.demorell .container .demorell-title {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+    .about-us section.demorell .container .demorell-title p {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #b8b8b8;
+        margin-left: 0;
+    }
+    .about-us section.demorell .container .demorell-title h2 {
+        font-size: 1.6rem;
+        line-height: 1.8rem;
+        margin-left: 0;
+    }
+    .about-us section.work .container .work-title {
+        max-width: 300px;
+    }
+    .about-us section.work .container .work-title h2 {
+        font-size: 1.6rem;
+        line-height: 1.8rem;
+    }
+    .about-us section.code .container .code-title h2 {
+        max-width: 300px;
+        font-size: 1.6rem;
+        line-height: 1.8rem;
+    }
+    .about-us section.ninjas .container .ninjas-title h2 {
+        max-width: 300px;
+        font-size: 1.6rem;
+        line-height: 1.8rem;
+    }
+    .about-us section.support .container .support-title h2 {
+        max-width: 260px;
+        font-size: 1.6rem;
+        line-height: 1.8rem;
+    }
+}
+@media all and (max-width: 767px) {
+    .about-us section.partners .container {
+        padding: 1rem 3rem 4rem;
+    }
+    .about-us section.partners .container .row .col-text {
+        padding-bottom: 2rem;
+        max-width: 76%;
+    }
+    .about-us section.partners .container .row .col-text h2 {
+        max-width: 300px;
+        padding-top: 0.5rem;
+        font-size: 1.6rem;
+        line-height: 1.6rem;
+    }
+    .about-us section.partners .container .row .col-text p {
+        padding-top: 1rem;
+        line-height: 1.2rem;
+        font-size: 0.9rem;
+    }
+    .about-us section.partners .container .row .col-text a {
+        font-size: 0.9rem;
+    }
+    .about-us section.code .container {
+        padding-top: 0;
+    }
+    .about-us section.work .container {
+        padding: 2rem;
+    }
+    .about-us section.art .art-title p {
+        font-size: 1rem;
+    }
+    .about-us section.art .art-title h2 {
+        font-size: 1.6rem;
+        line-height: 1.6rem;
+    }
+    .about-us section.art .container {
+        padding: 2rem 2rem 0;
+    }
+    .about-us section.art .container .row .art-col {
+        padding-right: 8px;
+        padding-left: 8px;
+        margin-top: 20px;
+    }
+    .about-us section.art .container .row .art-col .art-col-text {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+    .about-us section.art .container .row .art-col .art-col-text .name {
+        display: block;
+        font-weight: 700;
+        font-size: 1.2rem;
+        height: 25px;
+    }
+}
+@media all and (max-width: 589px) {
+    .about-us section.header {
+        background: url("https://s3.motionvfx.com/mvfxpublic/pages/templates/42/media/header_bg_mobile.jpg")
+            no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+    .about-us section.header video {
+        // display: none;
+    }
+    .about-us section.header .container .header-box {
+        top: 25%;
+    }
+    .about-us section.header .container .header-box .buttons {
+        display: block;
+        max-width: 300px;
+        margin: 1rem auto 0;
+    }
+    .about-us section.header .container .header-box .buttons img.arrow_down {
+        width: 10px;
+        margin-left: 5px;
+    }
+    .about-us section.header .container .header-box .buttons a.join-now {
+        padding: 0;
+    }
+    .about-us section.introduction {
+        height: 580px;
+    }
+    .about-us section.introduction .letter-m {
+        display: none;
+    }
+    .about-us section.introduction .slogan-1 {
+        display: none;
+    }
+    .about-us section.introduction .container {
+        padding: 4rem 2rem 2rem;
+    }
+    .about-us section.introduction .container .team-photo {
+        width: 80%;
+    }
+    .about-us section.introduction .container .letter-o {
+        display: none;
+    }
+    .about-us section.introduction .container p {
+        font-size: 1rem;
+        margin-left: 0;
+    }
+    .about-us section.introduction .container h2 {
+        max-width: 300px;
+        margin-left: 0;
+    }
+    .about-us section.demorell {
+        height: auto;
+        overflow: hidden;
+    }
+    .about-us section.demorell .container {
+        padding-top: 0;
+    }
+    .about-us section.demorell .container .demorell-title {
+        padding-top: 0;
+    }
+    .about-us section.demorell .container .demorell-title p {
+        margin-left: 0;
+    }
+    .about-us section.demorell .container .demorell-title h2 {
+        max-width: 360px;
+        margin-left: 0;
+    }
+    .about-us section.demorell .letter-i {
+        display: none;
+    }
+    .about-us section.demorell .slogan-3 {
+        display: none;
+    }
+    .about-us section.demorell .letter-t {
+        display: none;
+    }
+    .about-us section.art .letter-i {
+        display: none;
+    }
+    .about-us section.art .conainer {
+        padding: 2rem !important !important;
+    }
+    .about-us section.art .conainer .row .col-d-none {
+        display: none;
+    }
+    .about-us section.work .letter-o-2 {
+        display: none;
+    }
+    .about-us section.work .slogan-4 {
+        display: none;
+    }
+    .about-us section.work .container {
+        padding: 2rem;
+    }
+    .about-us section.work .container .row .col-left {
+        height: auto;
+    }
+    .about-us section.work .container .row .col-right {
+        height: auto;
+    }
+    .about-us section.code .letter-n {
+        display: none;
+    }
+    .about-us section.code .code-title p {
+        font-size: 1rem;
+    }
+    .about-us section.code .code-title h2 {
+        font-size: 2rem;
+    }
+    .about-us section.code .container {
+        padding: 2rem 2rem 0;
+    }
+    .about-us section.code .container .code-title {
+        padding-top: 0;
+    }
+    .about-us section.code .container .code-title p {
+        line-height: 1rem;
+    }
+    .about-us section.code .container .row .code-col {
+        margin-top: 20px;
+    }
+    .about-us section.partners {
+        width: 100%;
+        height: auto;
+    }
+    .about-us section.partners .letter-v {
+        display: none;
+    }
+    .about-us section.partners .code-title {
+        max-width: 700px;
+        margin: 0 auto;
+        padding-top: 0;
+        padding-bottom: 2rem;
+    }
+    .about-us section.partners .code-title h2 {
+        font-size: 2rem;
+    }
+    .about-us section.partners .container {
+        padding: 2rem;
+        max-width: 1600px;
+        position: relative;
+        padding-bottom: 2rem;
+        padding-top: 0;
+    }
+    .about-us section.partners .container .row .col-text {
+        padding-top: 0;
+        max-width: 100%;
+    }
+    .about-us section.partners .container .row .col-text h2 {
+        font-weight: 700;
+        max-width: 400px;
+        padding-top: 0;
+    }
+    .about-us section.partners .container .row .col-text p {
+        padding-top: 1rem;
+    }
+    .about-us section.ninjas {
+        padding-bottom: 2rem;
+    }
+    .about-us section.ninjas .letter-f {
+        display: none;
+    }
+    .about-us section.ninjas .ninjas-title {
+        max-width: 700px;
+        margin: 0 auto;
+        padding-top: 0;
+        padding-bottom: 2rem;
+    }
+    .about-us section.ninjas .ninjas-title h2 {
+        font-size: 2rem;
+    }
+    .about-us section.ninjas .container {
+        padding: 2.2rem;
+    }
+    .about-us section.support {
+        padding-bottom: 2rem;
+    }
+    .about-us section.support .letter-f {
+        display: none;
+    }
+    .about-us section.support .support-title {
+        max-width: 700px;
+        margin: 0 auto;
+        padding-top: 0;
+        padding-bottom: 2rem;
+    }
+    .about-us section.support .support-title h2 {
+        font-size: 2rem;
+    }
+    .about-us section.support .container {
+        padding: 2.2rem;
+    }
+    .about-us section.footer {
+        height: 700px;
+        // background: url("https://s3.motionvfx.com/mvfxpublic/pages/templates/42/media/footer_bg_mobile.jpg");
+    }
+    .about-us section.footer .letter-x {
+        display: none;
+    }
+    .about-us section.footer .container .header-box {
+        top: 10%;
+        padding: 2rem;
+    }
+    .about-us section.footer .container .header-box .social-icons {
+        width: 100%;
+        height: 80px;
+        padding-top: 100px;
+    }
+    .about-us section.footer .container .header-box .social-icons h2 {
+        color: #fff;
+        font-size: 0.7rem;
+    }
+    .about-us section.footer .container .header-box .social-icons a.twitter {
+        margin-left: 7px;
+        margin-right: 7px;
+    }
+    .about-us section.footer .container .header-box .social-icons a.facebook {
+        margin-left: 7px;
+        margin-right: 7px;
+    }
+    .about-us section.footer .container .header-box .social-icons a.vimeo {
+        margin-left: 7px;
+        margin-right: 7px;
+    }
+    .about-us section.footer .container .header-box .social-icons a.youtube {
+        margin-left: 7px;
+        margin-right: 7px;
+    }
+    .about-us section.footer .container .header-box .social-icons a.instagram {
+        margin-left: 7px;
+        margin-right: 7px;
+    }
+    .about-us section.footer .container .header-box .social-icons a.linkedin {
+        margin-left: 7px;
+        margin-right: 7px;
+    }
+    .about-us section.footer .container .header-box h1 {
+        font-size: 2rem;
+    }
+}
+@media all and (min-width: 300px) and (max-width: 360px) {
+    .about-us section.introduction {
+        height: 520px;
+    }
+    .about-us section.introduction .letter-m {
+        display: none;
+    }
+    .about-us section.introduction .slogan-1 {
+        display: none;
+    }
+    .about-us section.introduction .container {
+        padding: 3rem 2rem 2rem;
+    }
+    .about-us section.introduction .container .team-photo {
+        width: 80%;
+    }
+    .about-us section.introduction .container .letter-o {
+        display: none;
+    }
+    .about-us section.introduction .container p {
+        font-size: 1rem;
+        margin-left: 0;
+    }
+    .about-us section.introduction .container h2 {
+        max-width: 300px;
+        margin-left: 0;
+    }
+    .about-us section.demorell {
+        height: auto;
+        overflow: hidden;
+    }
+    .about-us section.demorell .container {
+        padding-top: 0;
+    }
+    .about-us section.art .letter-i {
+        display: none;
+    }
+    .about-us section.art .conainer {
+        padding: 2rem !important !important;
+    }
+    .about-us section.art .conainer .row .col-d-none {
+        display: none;
+    }
+    .about-us section.footer {
+        height: 800px;
+    }
+    .about-us section.footer .container .header-box {
+        top: 10%;
+    }
+}

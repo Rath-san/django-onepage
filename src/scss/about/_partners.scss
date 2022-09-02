@@ -1,0 +1,61 @@
+.about-us section.partners {
+    width: 100%;
+    height: auto;
+    position: relative;
+    overflow: hidden;
+}
+.about-us section.partners .letter-v {
+    font-size: 15rem;
+    left: 50%;
+    margin-left: -1100px;
+    z-index: 3;
+}
+.about-us section.partners .slogan-6 {
+    font-size: 1rem;
+    right: 50%;
+    margin-right: -900px;
+    top: 50%;
+    font-weight: 700;
+    color: #cacaca;
+}
+.about-us section.partners .container {
+    max-width: 1600px;
+    position: relative;
+    padding: 4rem;
+    padding-top: 0;
+}
+.about-us section.partners .container .row .col-text {
+    max-width: 400px;
+    padding-top: 4rem;
+    padding-right: 60px;
+}
+.about-us section.partners .container .row .col-text p {
+    padding-top: 2rem;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #b8b8b8;
+    line-height: 36px;
+    margin-bottom: 1.2rem;
+}
+.about-us section.partners .container .row .col-text h2 {
+    max-width: 780px;
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 2rem;
+}
+.about-us section.partners .container .row .col-text a {
+    text-decoration: none;
+    color: #000;
+    transition: 0.5s all;
+}
+.about-us section.partners .container .row .col-text a:hover {
+    color: #4d96f9;
+}
+.about-us section.partners .container .row .col-img {
+    position: relative;
+    overflow: hidden;
+    transition: 0.5s all;
+}
+.about-us section.partners .container .row .col-img img {
+    width: 100%;
+}

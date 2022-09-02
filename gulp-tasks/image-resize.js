@@ -11,150 +11,73 @@ const {
 } = require("./constants");
 
 const FORMATS = ["jpg"];
-const IMAGE_QUALITY = 90;
+const IMAGE_QUALITY = 50;
 
 const CONFIGS = [
     // {
-    //     directory: '_basic',
-    //     sizes: [
-    //         {w: 500},
-    //         {w: 250}
-    //     ],
-    // }
-    // {
-    //     directory: '_footer',
+    //     directory: "_team_photo",
     //     sizes: [
     //         ...RESPONSIVE_SIZES_MOBILE,
-    //         ...RESPONSIVE_SIZES_DESKTOP
-    //     ],
+    //         ...[
+    //             {w: 2200},
+    //             {w: 1600},
+    //             {w: 1200},
+    //         ]
+    //     ]
     // },
-
+    // {
+    //     directory: "_team_us",
+    //     sizes: RESPONSIVE_SIZES
+    // },
+    // {
+    //     directory: "_work_left",
+    //     sizes: [
+    //         ...RESPONSIVE_SIZES_MOBILE,
+    //         ...[
+    //             {w: 1100},
+    //         ]
+    //     ]
+    // },
+    // {
+    //     directory: "_work_right",
+    //     sizes: [
+    //         ...RESPONSIVE_SIZES_MOBILE,
+    //         ...[
+    //             {w: 2100},
+    //             {w: 1700},
+    //             {w: 1300}
+    //         ]
+    //     ]
+    // },
+    // {
+    //     directory: "_apple",
+    //     sizes: [
+    //         ...RESPONSIVE_SIZES_MOBILE,
+    //         ...[
+    //             {w: 2000},
+    //             {w: 1600},
+    //             {w: 1200}
+    //         ]
+    //     ]
+    // },
     {
-        directory: '_mobile',
-        sizes: RESPONSIVE_SIZES_MOBILE
-    }
-
+        directory: "_footer_bg",
+        sizes: RESPONSIVE_SIZES.map(e => ({...e, h: 1000}))
+    },
     // {
-    //     directory: "_head",
+    //     directory: "_person",
     //     sizes: [
-    //         ...RESPONSIVE_SIZES_MOBILE,
-    //         ...RESPONSIVE_SIZES_DESKTOP
+    //         {w: 420},
+    //         {w: 840},
     //     ]
     // },
     // {
-    //     type: 'desktop',
-    //     directory: "_desktop",
-    //     sizes: RESPONSIVE_SIZES_DESKTOP,
-    // },
-    // {
-    //     directory: "_all",
-    //     sizes: RESPONSIVE_SIZES.map((size) => ({ ...size, h: 860 })),
-    // },
-    // {
-    //     directory: "_slider",
+    //     directory: "_test",
     //     sizes: [
-    //         ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ ...size, h: 300 })),
-    //         ...RESPONSIVE_SIZES_DESKTOP
-    //     ],
-    // },
-    // {
-    //     directory: '_fcp',
-    //     sizes: [
-    //         {w: 152}
+    //         {w: 420},
+    //         {w: 840}
     //     ]
     // },
-    // {
-    //     directory: '_imac',
-    //     sizes: [
-    //         {w: 1540},
-    //         {w: 770},
-    //         {w: 385}
-    //     ]
-    // }
-
-    // {
-    //     directory: "_phones",
-    //     sizes: [
-    //         {w: 400},
-    //     ],
-    // },
-    // {
-    //     directory: "_show",
-    //     sizes: [
-    //         {w: 2000},
-    //         {w: 1500},
-    //         {w: 1000},
-    //         {w: 500}
-    //     ],
-    // },
-    // {
-    //     directory: "_top",
-    //     sizes: [
-    //         ...RESPONSIVE_SIZES_DESKTOP.map(size => ({...size, h: 860 })),
-    //     ],
-    // },
-
-    // {
-    //     directory: "_s7",
-    //     sizes: [
-    //         {w: 1200},
-    //         {w: 600}
-    //     ],
-    // },
-    // {
-    //     directory: "_s6",
-    //     sizes: [
-    //         {w: 1150},
-    //         {w: 575}
-    //     ],
-    // },
-    // {
-    //     directory: "_s5",
-    //     sizes: [
-    //         {w: 1000},
-    //         {w: 500}
-    //     ],
-    // },
-    // {
-    //     directory: "_s4",
-    //     sizes: [
-    //         {w: 1200},
-    //         {w: 600}
-    //     ],
-    // },
-
-    // {
-    //     directory: "_s3",
-    //     sizes: [
-    //         {w: 1000},
-    //         {w: 500}
-    //     ],
-    // },
-    // {
-    //     directory: "_s2",
-    //     sizes: [
-    //         {w: 1200},
-    //         {w: 600}
-    //     ],
-    // },
-    // {
-    //     directory: "_prev",
-    //     sizes: [
-    //         {w: 640},
-    //         // {w: 320}
-    //     ],
-    // },
-    // {
-    //     directory: "_bg",
-    //     sizes: [
-    //         {w: 640},
-    //         // {w: 320}
-    //     ],
-    // },
-    
-
-
-
 ];
 
 function resizeTask(
