@@ -1,7 +1,6 @@
 (() => {
     const onWindowLoad = () => {
         handleTopNav().init();
-        // fp().init();
     };
 
     window.addEventListener("load", onWindowLoad);

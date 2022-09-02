@@ -52,7 +52,7 @@ function showTuts() {
 	//tu zmieniamy wysokosc jak jest wiecej niz 1 rzad tutoriali
 	var tuts=`
 	<div class='tuts' style='height:100%;padding-bottom:4%'>
-		<div class='watch'>
+		<div class='watch section__title'>
 			LEARN HOW TO USE IT
 		</div>
 		${makePlayers()}
@@ -91,7 +91,7 @@ function showTuts() {
 
 
 window.onload = function() {
-	document.getElementById("regularPrice").innerHTML = "$149";
+	// document.getElementById("regularPrice").innerHTML = "$149";
 	
 	setTrailerSize();
 
@@ -150,11 +150,11 @@ function onClickVimeoOn(num)  {
 	html += '</div>';
 
 	document.getElementById("vimeo").innerHTML = html;
-	document.getElementById("vimeo").style.display = 'block';
-	document.getElementById("vimeo").style.position = 'fixed';
-	document.getElementById("videoInner").style.position = 'fixed'; 
-    document.getElementById("videoInner").style.top ='34%';
-    document.getElementById("videoInner").style.transform = 'translate(0px, -50%)';
+	document.getElementById("vimeo").style.display = 'flex';
+	// document.getElementById("vimeo").style.position = 'fixed';
+	// document.getElementById("videoInner").style.position = 'fixed'; 
+    // document.getElementById("videoInner").style.top ='34%';
+    // document.getElementById("videoInner").style.transform = 'translate(0px, -50%)';
     document.getElementById("topNav2").style.pointerEvents = "none";
 }
 
@@ -257,47 +257,54 @@ function setDots() {
 		}
 	}
     
-    var navBuyNow = document.getElementById("navBuyNow");
+    var topNav = document.getElementById("topNav");
+	var sideNav = document.getElementById("nav");
 
 	//hide dots for the first page and show top menu
 	if(num==1) {
-		document.getElementById("buyNowFrame").style.pointerEvents = "none";
+		// document.getElementById("buyNowFrame").style.pointerEvents = "none";
 		document.getElementById("section0").style.opacity = "1";
 		
 		setTimeout(function() {
-			var nameCurrent = getUrlName();
-			var numCurrent = getNumForName(nameCurrent);
+			// var nameCurrent = getUrlName();
+			// var numCurrent = getNumForName(nameCurrent);
+
+			topNav.classList.remove('active');
+			sideNav.classList.remove('active');
 		
 			//check if we on section num 1 after delay
-			if(numCurrent==1) {
-				document.getElementById("nav").style.pointerEvents = "none";
-				document.getElementById("nav").style.opacity = "0";
-				document.getElementById("logoSmall").style.opacity = "0";
+			// if(numCurrent==1) {
+			// 	// document.getElementById("nav").style.pointerEvents = "none";
+			// 	// document.getElementById("nav").style.opacity = "0";
+			// 	// document.getElementById("logoSmall").style.opacity = "0";
                 
-                navBuyNow.classList.remove('buy2');
-                navBuyNow.classList.add('buy');
-                navBuyNow.style.pointerEvents = "auto";
-			}
+            //     // navBuyNow.classList.remove('buy2');
+            //     // navBuyNow.classList.add('buy');
+            //     // navBuyNow.style.pointerEvents = "auto";
+			// }
 		}, 750);
 	}
 	else {
-		document.getElementById("nav").style.pointerEvents = "auto";
-		document.getElementById("buyNowFrame").style.pointerEvents = "auto";
+		// document.getElementById("nav").style.pointerEvents = "auto";
+		// document.getElementById("buyNowFrame").style.pointerEvents = "auto";
+
+		topNav.classList.add('active');
+		sideNav.classList.add('active');
 		
 		setTimeout(function() {
-			document.getElementById("nav").style.opacity = "1";
-			document.getElementById("logoSmall").style.opacity = "1";
+			// document.getElementById("nav").style.opacity = "1";
+			// document.getElementById("logoSmall").style.opacity = "1";
             
-            navBuyNow.classList.remove('buy');
-            navBuyNow.classList.add('buy2');
-			navBuyNow.style.pointerEvents = "auto";
+            // navBuyNow.classList.remove('buy');
+            // navBuyNow.classList.add('buy2');
+			// navBuyNow.style.pointerEvents = "auto";
             
 			var nameCurrent = getUrlName();
 			var numCurrent = getNumForName(nameCurrent);
 		
 			//check if we on section num 1 after delay
 			if(numCurrent!=1) {
-				document.getElementById("section0").style.opacity = "0";
+				// document.getElementById("section0").style.opacity = "0";
 			}
  		}, 750);
 		
@@ -455,36 +462,36 @@ function mobileAndTabletcheck() {
 	
 function checkMobile() {
 	if(!mobileAndTabletcheck()) {
-		var videoId1, videoId2, bgImg1, bgImg2;
+		// var videoId1, videoId2, bgImg1, bgImg2;
 			
-		videoId1 = document.getElementById("video1");
-		videoId2 = document.getElementById("video2");
-		bgImg1 = document.getElementById("section3");
-		bgImg2 = document.getElementById("section10");
+		// videoId1 = document.getElementById("video1");
+		// videoId2 = document.getElementById("video2");
+		// bgImg1 = document.getElementById("section3");
+		// bgImg2 = document.getElementById("section10");
 		
-		videoId1.style.display = 'block';
-		videoId2.style.display = 'block';
+		// videoId1.style.display = 'block';
+		// videoId2.style.display = 'block';
 		
-		videoId1.play();
-		videoId2.play();
+		// videoId1.play();
+		// videoId2.play();
 			
-		bgImg1.style.backgroundImage = '';
-		bgImg2.style.backgroundImage = '';
+		// bgImg1.style.backgroundImage = '';
+		// bgImg2.style.backgroundImage = '';
 	}
 	else {
-		var wide1, wide2, videoId1, videoId2;
+		// var wide1, wide2, videoId1, videoId2;
 			
-		wide1 = document.getElementById("widescreen1");
-		wide2 = document.getElementById("widescreen2");
+		// wide1 = document.getElementById("widescreen1");
+		// wide2 = document.getElementById("widescreen2");
 	
-		wide1.style.display = 'none';
-		wide2.style.display = 'none';
+		// wide1.style.display = 'none';
+		// wide2.style.display = 'none';
 		
-		videoId1 = document.getElementById("video1");
-		videoId2 = document.getElementById("video2");
+		// videoId1 = document.getElementById("video1");
+		// videoId2 = document.getElementById("video2");
 		
-		videoId1.style.display = 'none';
-		videoId2.style.display = 'none';
+		// videoId1.style.display = 'none';
+		// videoId2.style.display = 'none';
 	}
 }
 
@@ -498,4 +505,4 @@ function checkAnchorRedirects() {
 }
 
 checkAnchorRedirects();
-checkMobile();
+// checkMobile();
