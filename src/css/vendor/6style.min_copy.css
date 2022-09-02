@@ -1092,6 +1092,7 @@
     -ms-transition: opacity 500ms ease-in-out;
     transition: opacity 500ms ease-in-out;
 }
+
 .filmlook .prBeforeAfter .handle img.big {
     height: 40px;
     width: 40px;
@@ -1118,8 +1119,8 @@
     opacity: 1;
 }
 .gallery-block.compact-gallery .item .image {
-    // transition: 0.8s ease;
-    // opacity: 0.5;
+    /* transition: 0.8s ease; */
+    /* opacity: 0.5; */
 }
 .fp-slidesNav.fp-bottom {
     text-align: center;
@@ -1762,11 +1763,9 @@
     }
 }
 @media (min-width: 524px) {
-    .gallery-block .zoom-on-hover {
-        &:hover .image {
-            transition: all .25s ease-in-out !important;
-            transform: scale(1.1);
-        }
+    .gallery-block .zoom-on-hover:hover .image {
+        transform: scale(1.1);
+        opacity: 0.7;
     }
 }
 @media screen and (max-width: 524px) {

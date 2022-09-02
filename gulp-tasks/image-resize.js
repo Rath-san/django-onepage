@@ -10,8 +10,8 @@ const {
     RESPONSIVE_SIZES,
 } = require("./constants");
 
-const FORMATS = ["jpg", "webp"];
-const IMAGE_QUALITY = 25;
+const FORMATS = ["jpeg", "webp"];
+const IMAGE_QUALITY = 50;
 
 const CONFIGS = [
     // {
@@ -24,10 +24,13 @@ const CONFIGS = [
     //     directory: "_desktop",
     //     sizes: RESPONSIVE_SIZES_DESKTOP,
     // },
-    // {
-    //     directory: "_all",
-    //     sizes: RESPONSIVE_SIZES.map((size) => ({ ...size, h: 860 })),
-    // },
+    {
+        directory: "_all",
+        sizes: [
+            ...RESPONSIVE_SIZES_DESKTOP,
+            ...RESPONSIVE_SIZES_MOBILE.map((size) => ({ ...size, h: 960 }))
+        ],
+    },
     // {
     //     directory: "_slider",
     //     sizes: [
@@ -59,11 +62,11 @@ const CONFIGS = [
     //     sizes: [{w: 640}],
     //     targetFormat: ["png", "webp"]
     // },
-    {
-        directory: "_custom6",
-        sizes: [{w: 512}, {w: 360}],
-        targetFormat: ["jpg", "webp"]
-    },
+    // {
+    //     directory: "_custom6",
+    //     sizes: [{w: 512}, {w: 360}],
+    //     targetFormat: ["jpg", "webp"]
+    // },
     // {
     //     directory: "_prevs",
     //     sizes: [{w: 640}],
@@ -84,7 +87,7 @@ const CONFIGS = [
 ];
 
 function resizeTask(
-    managedFormats = ["jpg", "png"],
+    managedFormats = ["jpeg", "png"],
     imgDist = "src/_images/otp/"
 ) {
     CONFIGS.forEach(({ directory, sizes, type, quality = IMAGE_QUALITY, targetFormat = FORMATS }) => {
@@ -147,6 +150,8 @@ function resizeTask(
                             imageClone.toFormat(format, {
                                 quality,
                             });
+
+                            console.log(file.basename);
 
                             await imageClone.toFile(
                                 path.resolve(

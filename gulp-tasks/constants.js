@@ -62,6 +62,10 @@ const STATICS = [
         route: "/static",
         dir: "src/static",
     },
+    {
+        route: '/vendor',
+        dir: ["src/scripts/vendor", "src/css/vendor"],
+    }
 ];
 
 const DIRS = {

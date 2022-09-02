@@ -7,7 +7,7 @@ const shell = require('any-shell-escape')
 const {exec} = require('child_process')
 
 const FORMATS = ["mp4"];
-const VIDEO_QUALITY = 28; // this is not deterministic lower = uglier
+const VIDEO_QUALITY = 33; // this is not deterministic lower = bigger
 
 const CONFIGS = [
     // {
@@ -17,7 +17,7 @@ const CONFIGS = [
     //     directory: "_promo",
     // },
     {
-        directory: 'filmlook'
+        directory: '_movie'
     }
 ];
 

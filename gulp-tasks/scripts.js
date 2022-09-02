@@ -33,6 +33,8 @@ function jsTask() {
                 // (iife = "Immediately Invoked Function Expression")
                 format: "iife",
 
+                globals: { jquery: '$' },
+
                 // Show source code when debugging in browser
                 sourcemap: true,
             },

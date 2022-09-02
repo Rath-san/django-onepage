@@ -1,3 +1,22 @@
+import './vendor/jquery.fullPage';
+import './vendor/ycp';
+import './vendor/youtube';
+import './site';
+// import YTPlayer from "yt-player";
+
+// const player = new YTPlayer("#yt-player");
+
+// console.log(player);
+
+// player.load("OGU-FWLqdMg");
+// player.setVolume(100);
+
+// player.on("playing", () => {
+// //   console.log(player.getDuration()); // => 351.521
+// });
+
+
+
 // import { doOnVisible } from "./libs/do-on-visible";
 // import initPrevs from "./utils/prevs";
 // import Splitting from "splitting";

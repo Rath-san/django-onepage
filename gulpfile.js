@@ -1,8 +1,8 @@
 const { watch, series } = require("gulp");
-const {
-  resizeImages,
-  resizeImagesCustom,
-} = require("./gulp-tasks/image-resize");
+// const {
+//   resizeImages,
+//   resizeImagesCustom,
+// } = require("./gulp-tasks/image-resize");
 const {
   resizeVideos,
 } = require("./gulp-tasks/video-resize");
@@ -24,9 +24,9 @@ function watchTask() {
 }
 
 module.exports = {
-  resizeImage: resizeImages,
+  // resizeImage: resizeImages,
   resizeVideo: resizeVideos,
-  resizeCustom: resizeImagesCustom,
+  // resizeCustom: resizeImagesCustom,
   dev: series(
     scssTask,
     jsTask,
